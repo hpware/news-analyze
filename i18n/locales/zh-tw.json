@@ -6,6 +6,15 @@
     "home": "首頁",
     "dailybriefing": "今日報導"
   },
+  "home": {
+    "nonMoving": "嗨！這是你的",
+    "moving": {
+      "newsPlatform": "新聞平台",
+      "miniWikipedia": "米你維基百科",
+      "newsComparePlatform": "新聞觀點比對平台"
+    },
+    "startusing": "開始使用!"
+  },
   "dailybriefing": "今日報導",
   "Welcome": "歡迎",
   "loading": "載入中..."

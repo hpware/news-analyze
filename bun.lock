@@ -4,6 +4,9 @@
     "": {
       "name": "nuxt-app",
       "dependencies": {
+        "@fontsource-variable/noto-sans-tc": "^5.2.5",
+        "@fontsource/fira-code": "^5.2.6",
+        "@fontsource/fira-sans": "^5.2.5",
         "@heroicons/vue": "^2.2.0",
         "@nuxt/image": "1.10.0",
         "@nuxtjs/i18n": "9.5.4",
@@ -175,6 +178,12 @@
     "@fastify/accept-negotiator": ["@fastify/accept-negotiator@1.1.0", "", {}, "sha512-OIHZrb2ImZ7XG85HXOONLcJWGosv7sIvM2ifAPQVhg9Lv7qdmMBNVaai4QTdyuaqbKM5eO6sLSQOYI7wEQeCJQ=="],
 
     "@fastify/busboy": ["@fastify/busboy@3.1.1", "", {}, "sha512-5DGmA8FTdB2XbDeEwc/5ZXBl6UbBAyBOOLlPuBnZ/N1SwdH9Ii+cOX3tBROlDgcTXxjOYnLMVoKk9+FXAw0CJw=="],
+
+    "@fontsource-variable/noto-sans-tc": ["@fontsource-variable/noto-sans-tc@5.2.5", "", {}, "sha512-oaAn5hkLxraNBOWuiqyJ6+t1SmQ9Sszmcs+wJpmAmUO/1dsaHjDU5HXEjutvPpucqVeqdvVNr/kHRx+ghdiPeA=="],
+
+    "@fontsource/fira-code": ["@fontsource/fira-code@5.2.6", "", {}, "sha512-wCkIpPm0BqlkCPLYeY4Vui96ODmVUV0/GpEe3OfJ4v8EJn/BF2SlyxvarFsTs1CKiGjrO2cXlIZbBrKi9F+hUQ=="],
+
+    "@fontsource/fira-sans": ["@fontsource/fira-sans@5.2.5", "", {}, "sha512-N+GrTGOTIeYE/Wi5tY0RAnc1Tl3ddCdwfZQncvA1zH/lOpKerj9ZS5nfniSXDZ9wrXFRdWTH7anyrRDc+cMpCg=="],
 
     "@heroicons/vue": ["@heroicons/vue@2.2.0", "", { "peerDependencies": { "vue": ">= 3" } }, "sha512-G3dbSxoeEKqbi/DFalhRxJU4mTXJn7GwZ7ae8NuEQzd1bqdd0jAbdaBZlHPcvPD2xI1iGzNVB4k20Un2AguYPw=="],
 

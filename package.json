@@ -11,6 +11,9 @@
     "prettier": "prettier --write ."
   },
   "dependencies": {
+    "@fontsource-variable/noto-sans-tc": "^5.2.5",
+    "@fontsource/fira-code": "^5.2.6",
+    "@fontsource/fira-sans": "^5.2.5",
     "@heroicons/vue": "^2.2.0",
     "@nuxt/image": "1.10.0",
     "@nuxtjs/i18n": "9.5.4",

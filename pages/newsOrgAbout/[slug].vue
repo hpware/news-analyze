@@ -26,6 +26,20 @@ const {
   },
 });
 
+const {
+  data: fetchOtherData,
+  pending: fetchOtherDataPending,
+  error: fetchOtherDataError,
+} = useFetch("/api/getData/fetchSidebarData", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: {
+    lang: locale,
+  }
+})
+
 watchEffect(() => {
   loading.value = pending.value;
 });
@@ -46,10 +60,10 @@ onMounted(() => {
 import { GlobeAltIcon } from "@heroicons/vue/24/outline";
 </script>
 <template>
-  <div>
-    <div class="text-center align-center justify-center">
+  <div class="flex flex-row flex-wrap w-full mt-2">
+    <div class="text-center align-center justify-center w-[70%]">
       <div
-        class="flex flex-row bg-[#AAACAAFF] rounded-3xl p-3 gap-3 m-3 scale-5"
+        class="flex flex-row bg-[#AAACAA61] rounded-3xl p-3 gap-3 m-3 scale-5"
       >
         <NuxtImg
           :src="fetchNewsOrgInfo?.logoUrl"
@@ -75,6 +89,29 @@ import { GlobeAltIcon } from "@heroicons/vue/24/outline";
           ><GlobeAltIcon class="w-6 h-6" />網站</a
         >
       </div>
+    </div>
+    <div class="flex flex-col gap-3 text-left justify-right align-right bg-[#AAACAA61] w-[28%] rounded-3xl p-3 mt-3 h-screen">
+      <h3 class="text-2xl mt-2s">其他媒體</h3>
+      <hr/>
+      <div v-for="data in fetchOtherData" :key="data.id" class="flex flex-col">
+        <NuxtImg :src="data.image"></NuxtImg>
+        <div class="flex flex-row">
+        <h1 class="text-xl text-bold">{{ data.title }}</h1>
+        <span class="text-ms ml-2 align-center justify-center text-center">
+          (
+          <span>{{ data.lean }}</span>
+           - 
+           <span>文章分數: 
+            <span>{{ data.score }}</span>
+          </span> )
+        </span>
+        </div>
+      </div>
+      <NuxtLink class="justify-center align-center text-center">
+        <button class="bg-red-500 text-black p-2 rounded-full justify-center align-center">
+          <span>查看更多</span>
+        </button>
+      </NuxtLink>
     </div>
   </div>
 </template>

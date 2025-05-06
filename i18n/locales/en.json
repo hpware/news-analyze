@@ -6,6 +6,15 @@
     "home": "Home",
     "dailybriefing": "Daily Briefing"
   },
+  "home": {
+    "nonMoving": "Hi! This is your ",
+    "moving": {
+      "newsPlatform": "News Platform",
+      "miniWikipedia": "Mini Wikipedia",
+      "newsComparePlatform": "news comparison platform"
+    },
+    "startusing": "Let's Start!"
+  },
   "dailybriefing": "Daily Briefing",
   "Welcome": "Welcome",
   "loading": "Loading..."
