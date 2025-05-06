@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { gsap } from 'gsap';
+import { ScrambleTextPlugin } from 'gsap/dist/ScrambleTextPlugin';
+gsap.registerPlugin(ScrambleTextPlugin) 
 const loading = ref(true);
 const route = useRoute();
 const slug = route.params.slug;
@@ -24,6 +27,15 @@ watchEffect(() => {
 });
 useSeoMeta({
   title: fetchNewsOrgInfo.value?.title,
+});
+
+const orgNameAnimation = ref(null);
+
+onMounted(() => {
+    gsap.to(orgNameAnimation.value, {
+  duration: 1, 
+  scrambleText: fetchNewsOrgInfo.value?.title,
+});
 });
 
 // Import Icons
