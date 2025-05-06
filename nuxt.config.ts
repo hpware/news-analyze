@@ -1,4 +1,3 @@
-import tailwindcss from '@tailwindcss/vite';
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-06',
   devtools: { enabled: true },
@@ -6,13 +5,8 @@ export default defineNuxtConfig({
     "/": { redirect: "/home"},
     "/zh_tw": { redirect: "/zh_tw/home"},
   } ,     
-  css: ['~/styles/tailwind.css'],
-  modules: [
-    '@nuxt/image',
-    '@nuxtjs/robots',
-    '@nuxtjs/seo',
-    '@nuxtjs/i18n'
-  ],
+  css: ['~/styles/main.css'],
+  modules: ['@nuxt/image', '@nuxtjs/robots', '@nuxtjs/seo', '@nuxtjs/i18n', "@nuxtjs/tailwindcss"],
   i18n: {
     defaultLocale: 'en',
     locales: [
@@ -27,6 +21,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
+      title: "", 
       meta: [
         { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
         { charset: "utf-8" },
@@ -36,9 +31,10 @@ export default defineNuxtConfig({
       ]
     }
   },
-  vite: {
-    plugins: [
-      tailwindcss(),
-    ],
-  }
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },// Add your content paths here
+  },
 })

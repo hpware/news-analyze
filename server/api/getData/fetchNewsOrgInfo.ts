@@ -5,7 +5,8 @@ export default defineEventHandler(async(event) => {
             title: "News Org 1",
             slug: "taisounds",
             website: "https://www.taisounds.com.tw",
-            description: ""
+            description: "",
+            facebook: "https://www.facebook.com/taisounds",
         }
 })
 

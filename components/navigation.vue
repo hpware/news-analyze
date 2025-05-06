@@ -25,7 +25,8 @@ const runAnimation = () => {
 }
 </script>
 <template>
-    <div class="fixed top-0 left-0 w-full bg-[#81611a] h-[60px] flex align-center flex-row text-white pl-4 pt-2 gap-x-5 justify-between">
+    <!--Spent too much time trying to set a Navbar....-->
+    <div class="fixed top-0 inset-x-0 bg-[#81611a]/70 backdrop-blur-sm h-[55px] flex align-center flex-row text-white pl-4 pt-2 gap-x-5 justify-between z-50 rounded-3xl m-2">
         <div class="text-3xl text-bold">
             <!--Use mouseenter instead of hover-->
             <a href="/" @mouseenter="runAnimation" ref="title">
