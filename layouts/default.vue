@@ -1,3 +1,5 @@
+<script setup lang="ts">
+</script>
 <template>
     <nav>
 
@@ -6,6 +8,6 @@
         <slot/>
     </main>
     <footer>
-        
+
     </footer>
 </template>
