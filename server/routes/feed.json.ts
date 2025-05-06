@@ -1,3 +1,1 @@
-export default defineEventHandler(async () => {
-    
-});
+export default defineEventHandler(async () => {});

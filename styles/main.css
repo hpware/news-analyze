@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-      @apply bg-black;
-    }
-    body {
-      @apply bg-black m-0 p-0 min-h-screen text-white;
-    }
+  html {
+    @apply bg-black;
   }
+  body {
+    @apply bg-black m-0 p-0 min-h-screen text-white;
+  }
+}
