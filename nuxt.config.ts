@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   modules: ['@nuxt/image', '@nuxtjs/robots', '@nuxtjs/seo', '@nuxtjs/i18n', "@nuxtjs/tailwindcss"],
   i18n: {
     defaultLocale: 'en',
+    vueI18n: './i18n.config.ts',
     locales: [
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'zh_tw', name: 'Chinese Tradional', file: 'zh-tw.json' },
