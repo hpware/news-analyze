@@ -1,2 +1,4 @@
 User-Agent: *
-Disallow:
+Disallow: /go/
+Disallow: /feed.json
+Disallow: /api/
