@@ -2,6 +2,9 @@
     "core": {
         "sitename": "BlindSpec"
     },
+    "nav": {
+        "home": "Home"
+    },
     "dailybriefing": "Daily Briefing",
     "Welcome": "Welcome"
 }

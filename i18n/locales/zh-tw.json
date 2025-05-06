@@ -2,6 +2,9 @@
     "core": {
         "sitename": "新聞盲點平台"
     },
+    "nav": {
+        "home": "首頁"
+    },
     "dailybriefing": "今日報導",
     "Welcome": "歡迎"
 }
