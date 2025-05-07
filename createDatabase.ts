@@ -27,6 +27,21 @@ create table if not exists newsProviders (
 )
 `;
 
+const createNewsProvidersZh = await sql`
+create table if not exists newsProvidersZh (
+    uuid text primary key,
+    title text not null,
+    slug text unique,
+    website text not null,
+    description text not null,
+    facebookUrl text,
+    twitterUrl text,
+    threadsUrl text,
+    logoUrl text not null,
+    lean text not null
+)
+`;
+
 const createAdminPosts = await sql`
 create table if not exists adminPosts (
     uuid text primary key,

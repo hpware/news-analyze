@@ -31,3 +31,13 @@
     </div>
   </div>
 </template>
+<style scoped>
+@keyframes animateLoginLoad {
+    0% {
+        transform: translateY(-5%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+</style>

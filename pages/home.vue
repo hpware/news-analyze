@@ -4,6 +4,8 @@ import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
 const { t } = useI18n();
 
+const localePath = useLocalePath();
+
 const popMessage = ref(null);
 const messages = [
   t("home.moving.newsPlatform"),
@@ -50,7 +52,7 @@ onMounted(() => {
           class="bg-gradient-to-r from-[#2a7b9b] then-[#8d57c7] to-[#ed4242] bg-clip-text text-transparent"
         ></span
       ></span>
-      <NuxtLink>
+      <NuxtLink :to="localePath('/app/')">
         <button
           class="m-4 bg-[#8C9393] text-white p-3 rounded-full bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-100"
         >
