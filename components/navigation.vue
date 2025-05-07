@@ -25,18 +25,19 @@ const toggleDropdown = () => {
     </div>
     <div class="text-[0.9em] left-1/2 absolute transform -translate-x-1/2 space-x-4 items-center">
       <NuxtLink
-        :to="localePath('home')"
+        :to="localePath('/home')"
         class="hover:text-blue-500 cursor-pointer transiton-all duration-100"
         >{{ t("nav.home") }}</NuxtLink
       >
       &nbsp;
       <NuxtLink
-        :to="localePath('dailybriefing')"
+        :to="localePath('/dailybriefing')"
         class="hover:text-blue-500 cursor-pointer transiton-all duration-100"
         >{{ t("nav.dailybriefing") }}</NuxtLink
       >
     </div>
-    <div class="relative">
+    <div class="flex flex-row align-center justify-center text-center">
+    <div class="relative ml-0">
       <button
         @click="toggleDropdown"
         class="flex items-center space-x-1 px-4 py-2 rounded hover:bg-gray-900 transition-all duration-100 mr-5"
@@ -56,7 +57,6 @@ const toggleDropdown = () => {
           />
         </svg>
       </button>
-
       <Transition
         enter-active-class="animate__animated animate__fadeInDown animate_fastest"
         leave-active-class="animate__animated animate__fadeOutUp animate_fastest"
@@ -77,6 +77,14 @@ const toggleDropdown = () => {
         </div>
       </Transition>
     </div>
+    <div class="mr-2 ml-0">
+        <NuxtLink :to="localePath('/system/login')">
+          <button class="text-white hover:text-[#C6C6C6] transition-all duration-150">
+            <i class="bi bi-person text-3xl"></i>
+          </button>
+        </NuxtLink>
+      </div>
+      </div>
   </div>
 </template>
 <style scoped>
