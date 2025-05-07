@@ -11,14 +11,25 @@ try {
 </script>
 
 <template>
-    {{ ffeed }}
     <hr/>
     <div v-for="item in ffeed">
-        <h2>{{ item.title }}</h2>
+        <span>{{ item.title }}
+            <span v-if="item.title.includes('.cn') || item.title.includes('健康2.0') || 
+                    item.title.includes('中天') || item.title.includes('TVBS') || 
+                    item.title.includes('香港01')" 
+              class="text-red-500 text-sm">
+          &nbsp;- 疑似來自有中資背景公司
+        </span>
+        </span>
         <h4>{{ item.date }}</h4>
-        類似項目:
+        類似新聞:
         <div v-for="itit in item.content">
             {{ itit }}
+            <ul v-for="ititit in itit">
+                <li>
+                    &nbsp; - {{ ititit.content?.[0].content[0] }} - {{ ititit.content?.[2].content[0] }}
+                </li>
+            </ul>
         </div>
         <hr/>
     </div>

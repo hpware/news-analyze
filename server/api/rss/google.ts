@@ -8,12 +8,13 @@ export default defineEventHandler(async (event) => {
   try {
     const feed = await parser.parseURL('https://news.google.com/rss?&hl=zh-TW&gl=TW&ceid=TW:zh-Hant')
     feed.items.forEach(async (item) => {
-        const relatedNews = JSON.parse(await HTMLToJSON(item.content, true))
+        const rawRelatedNews = await HTMLToJSON(item.content, true)
+        const relatedNews = JSON.parse(rawRelatedNews.replace("ol", ""))
         array.push({
             title: item.title,
             link: item.link,
             date: item.pubDate,
-            relatedNews: relatedNews
+            content: relatedNews
         });
         console.log(item.title);
     })
