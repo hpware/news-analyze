@@ -2,7 +2,7 @@
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "animate.css";
 import "@fontsource/fira-sans";
-import '@fontsource-variable/noto-sans-tc';
+import "@fontsource-variable/noto-sans-tc";
 const { t } = useI18n();
 </script>
 <template>

@@ -1,6 +1,7 @@
 # 新聞解析 / News Analyze
 
-## Stack: 
+## Stack:
+
 - Postgres
 - Passport.js
 - Tailwind

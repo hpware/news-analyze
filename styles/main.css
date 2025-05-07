@@ -9,15 +9,17 @@
   body {
     @apply bg-black m-0 p-0 min-h-screen text-white;
   }
-  html,body {
-    font-family: 'Noto Sans TC Variable', "Fira Sans", sans-serif;
+  html,
+  body {
+    font-family: "Noto Sans TC Variable", "Fira Sans", sans-serif;
   }
 }
 
 @font-face {
-  font-family: 'Noto Sans TC Variable';
+  font-family: "Noto Sans TC Variable";
   font-style: normal;
   font-display: auto;
   font-weight: 100 900;
-  src: url(@fontsource-variable/noto-sans-tc/files/noto-sans-tc-chinese-traditional-wght-normal.woff2) format('woff2-variations');
+  src: url(@fontsource-variable/noto-sans-tc/files/noto-sans-tc-chinese-traditional-wght-normal.woff2)
+    format("woff2-variations");
 }

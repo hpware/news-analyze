@@ -33,12 +33,12 @@ const {
 } = useFetch("/api/getData/fetchSidebarData", {
   method: "POST",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   },
   body: {
     lang: locale,
-  }
-})
+  },
+});
 
 watchEffect(() => {
   loading.value = pending.value;
@@ -90,25 +90,31 @@ import { GlobeAltIcon } from "@heroicons/vue/24/outline";
         >
       </div>
     </div>
-    <div class="flex flex-col gap-3 text-left justify-right align-right bg-[#AAACAA61] w-[28%] rounded-3xl p-3 mt-3 h-screen">
+    <div
+      class="flex flex-col gap-3 text-left justify-right align-right bg-[#AAACAA61] w-[28%] rounded-3xl p-3 mt-3 h-screen"
+    >
       <h3 class="text-2xl mt-2s">其他媒體</h3>
-      <hr/>
+      <hr />
       <div v-for="data in fetchOtherData" :key="data.id" class="flex flex-col">
         <NuxtImg :src="data.image"></NuxtImg>
         <div class="flex flex-row">
-        <h1 class="text-xl text-bold">{{ data.title }}</h1>
-        <span class="text-ms ml-2 align-center justify-center text-center">
-          (
-          <span>{{ data.lean }}</span>
-           - 
-           <span>文章分數: 
-            <span>{{ data.score }}</span>
-          </span> )
-        </span>
+          <h1 class="text-xl text-bold">{{ data.title }}</h1>
+          <span class="text-ms ml-2 align-center justify-center text-center">
+            (
+            <span>{{ data.lean }}</span>
+            -
+            <span
+              >文章分數:
+              <span>{{ data.score }}</span>
+            </span>
+            )
+          </span>
         </div>
       </div>
       <NuxtLink class="justify-center align-center text-center">
-        <button class="bg-red-500 text-black p-2 rounded-full justify-center align-center">
+        <button
+          class="bg-red-500 text-black p-2 rounded-full justify-center align-center"
+        >
           <span>查看更多</span>
         </button>
       </NuxtLink>

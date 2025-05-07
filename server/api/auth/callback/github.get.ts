@@ -1,8 +1,5 @@
-export default defineEventHandler(async (event) => {
-    
-})
+export default defineEventHandler(async (event) => {});
 
 async function findUser(githubUser: any) {
-    console.log("Github User: " + githubUser);
-    
+  console.log("Github User: " + githubUser);
 }

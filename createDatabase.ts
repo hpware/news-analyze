@@ -25,7 +25,7 @@ create table if not exists newsProviders (
     logoUrl text not null,
     lean text not null
 )
-`
+`;
 
 const createAdminPosts = await sql`
 create table if not exists adminPosts (
@@ -35,7 +35,7 @@ create table if not exists adminPosts (
     created_at timestampz default current_timestamp,
     byUser text not null
 )
-`
+`;
 const adminUsers = await sql`
 create table if not exists adminUsers (
     uuid text primary key,
@@ -44,7 +44,6 @@ create table if not exists adminUsers (
     created_at timestampz default current_timestamp,
     lastlogged_at timestampz default current_timestamp,
 )
-`
-
+`;
 
 console.log("Creation Complete");
