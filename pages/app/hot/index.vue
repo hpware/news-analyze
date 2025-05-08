@@ -13,7 +13,6 @@ try {
 
 <template>
     <div v-for="item in ffeed" class="justify-center align-center text-center p-4 border border-white rounded-lg m-4">
-        {{  item }}
         <span class="text-xl text-bold text-gray-100">{{ item.title }}
             <span v-if="ass.some((app) => 
             item.title.includes(app)

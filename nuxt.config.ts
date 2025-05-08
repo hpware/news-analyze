@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { redirect: "/home" },
     "/zh_tw": { redirect: "/zh_tw/home" },
-    //"/api/rss/**": { swr: 3600 },
+    "/api/rss/**": { swr: 3600 },
   },
   css: ["~/styles/main.css"],
   modules: [
