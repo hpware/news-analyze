@@ -1,0 +1,39 @@
+<script lang="ts" setup>
+const ffeed = ref();
+const ass = ['健康2.0', '中天', 'TVBS', '香港01', "ETtoday"];
+
+try {
+    const { data } = await useFetch('/api/rss/google')
+    ffeed.value = data.value
+  } catch (error) {
+    console.error('Error:', error)
+  }
+
+</script>
+
+<template>
+    <div v-for="item in ffeed" class="justify-center align-center text-center p-4 border border-white rounded-lg m-4">
+        {{  item }}
+        <span class="text-xl text-bold text-gray-100">{{ item.title }}
+            <span v-if="ass.some((app) => 
+            item.title.includes(app)
+            )" 
+              class="text-red-500 text-sm">
+          &nbsp;- 疑似來自有中資背景公司
+        </span>
+        </span>
+        <h4 class="text-gray-500 text-sm">{{ new Date(item.date).toLocaleString() }}</h4>
+        類似新聞:
+        <div v-for="itit in item.content">
+            <ul v-for="ititit in itit">
+                <li v-if="ititit.content?.[0].content[0] !== item.title">
+                    &nbsp; - <a :href="ititit.content?.[0].attributes?.href">{{ ititit.content?.[0].content[0] }}</a> - <a :href="'/find/newsOrg?name=' + ititit.content?.[2].content[0]">{{ ititit.content?.[2].content[0] }}</a>
+                    <span v-if="ass.some((app) => ititit.content?.[2].content[0].includes(app))" 
+                        class="text-red-500 text-sm">
+                    &nbsp;- 疑似來自有中資背景公司
+                </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</template>
