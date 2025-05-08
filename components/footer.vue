@@ -12,9 +12,7 @@ const localeLink = useLocalePath();
       Inspired by Ground.News
     </span>
     <span class="">
-      <NuxtLink :to="localeLink('/sources')">
-        Sources
-      </NuxtLink>
+      <NuxtLink :to="localeLink('/sources')"> Sources </NuxtLink>
     </span>
   </div>
 </template>
