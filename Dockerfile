@@ -6,10 +6,11 @@
     
     # Copy package files
     COPY package.json ./
-    COPY bun.lockb* package-lock.json* yarn.lock* ./
+    COPY bun.lock* package-lock.json* yarn.lock* ./
     
     # Install dependencies
-    RUN bun install --frozen-lockfile || bun install
+    RUN bun pm untrusted
+    RUN bun install --prod
     
     # Copy source files
     COPY . .
@@ -30,7 +31,6 @@
     for dir in ".output" "dist" "build" ".next"; do\n\
       if [ -d "/build/$dir" ]; then\n\
         mkdir -p "$dir"\n\
-        cp -r "/build/$dir/." "$dir/"\n\
       fi\n\
     done' > /copy-builds.sh && chmod +x /copy-builds.sh
     
