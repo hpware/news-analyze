@@ -9,7 +9,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prettier": "prettier --write .",
-    "createdb": "bun run createDatabase.ts"
+    "createdb": "bun run createDatabase.ts",
+    "start": "bun run .output/server/index.mjs"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-tc": "^5.2.5",
