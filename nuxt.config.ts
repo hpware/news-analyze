@@ -5,6 +5,8 @@ export default defineNuxtConfig({
     "/": { redirect: "/home" },
     "/zh_tw": { redirect: "/zh_tw/home" },
     "/api/rss/**": { swr: 3600 },
+    "/go/**": { ssr: true },
+    "/find/**": { ssr: true },
   },
   css: ["~/styles/main.css"],
   modules: [
