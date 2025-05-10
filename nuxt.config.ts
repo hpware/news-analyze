@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
+    "motion-v/nuxt"
   ],
   i18n: {
     defaultLocale: "en",

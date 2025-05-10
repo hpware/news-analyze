@@ -1,7 +1,5 @@
-import { SQL } from "bun";
+import SQL from "postgres";
 
-const postgres = new SQL({
-  url: process.env.POSTGRES_URL,
-});
+const postgres = SQL(`${process.env.POSTGRES_URL || ""}}`);
 
 export default postgres;

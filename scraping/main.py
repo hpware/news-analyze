@@ -10,7 +10,8 @@ headers = {
 }
 
 #url = "https://tw.news.yahoo.com/"
-url = "https://news.google.com/home?hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+#url = "https://news.google.com/home?hl=zh-TW&gl=TW&ceid=TW:zh-Hant"
+url = "https://news.google.com/topics/CAAqJQgKIh9DQkFTRVFvSUwyMHZNRFptTXpJU0JYcG9MVlJYS0FBUAE?hl=zh-TW&gl=TW&ceid=TW%3Azh-Hant"
 
 page = urlopen(url)
 html_bytes = page.read()
