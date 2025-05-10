@@ -8,10 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
+
     env:
       DEPLOY_URL: ${{ secrets.DEPLOY_URL }}
-    
+
     steps:
       - name: Send deployment request
         id: deploy-request
@@ -24,7 +24,7 @@ jobs:
             --silent \
             --show-error \
             "${{ secrets.DEPLOY_URL }}" || echo "Failed to send request")
-          
+
           if [ $? -eq 0 ]; then
             echo "Deployment request sent successfully"
             echo "Response: $RESPONSE"

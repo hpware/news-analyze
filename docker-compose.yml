@@ -6,7 +6,7 @@ services:
     ports:
       - "127.0.0.1:36694:80"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro 
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - app-network
   newsanalyze-service:
@@ -18,7 +18,7 @@ services:
       retries: 3
     networks:
       - app-network
-    labels: 
+    labels:
       - "traefik.enable=true"
       - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
       - "traefik.http.routers.newsanalyze.entrypoints=webinternal"

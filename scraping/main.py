@@ -1,12 +1,7 @@
-import scrapy
+from urllib.request import urlopen
 
-class BlogSpider(scrapy.Spider):
-    name = 'blogspider'
-    start_urls = ['https://news.google.com/u/4/home?hl=zh-TW&gl=TW&ceid=TW:zh-Hant&pageId=none']
+url = "https://tw.news.yahoo.com/"
 
-    def parse(self, response):
-        for title in response.css('.oxy-post-title'):
-            yield {'title': title.css('::text').get()}
+page = urlopen(url)
 
-        for next_page in response.css('a.next'):
-            yield response.follow(next_page, self.parse)
+page

@@ -42,7 +42,6 @@ create table if not exists newsProvidersZh (
 )
 `;
 
-
 const createGoLinks = await sql`
 create table if not exists go_links {
     uuid text primary key,
@@ -51,7 +50,7 @@ create table if not exists go_links {
     forwardUrl text not null,
     created_at timestampz default current_timestamp
 }
-`
+`;
 /*
 const createAdminPosts = await sql`
 create table if not exists adminPosts (
