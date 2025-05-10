@@ -10,7 +10,7 @@
     
     # Install dependencies
     RUN bun pm untrusted
-    RUN bun install --prod
+    RUN bun install
     
     # Copy source files
     COPY . .
@@ -26,19 +26,9 @@
     # Copy package files for production
     COPY --from=builder /app/package.json ./
     
-    # Create a shell script to handle build output copying
-    RUN echo '#!/bin/sh\n\
-    for dir in ".output" "dist" "build" ".next"; do\n\
-      if [ -d "/build/$dir" ]; then\n\
-        mkdir -p "$dir"\n\
-      fi\n\
-    done' > /copy-builds.sh && chmod +x /copy-builds.sh
-    
     # Copy build outputs from builder
-    COPY --from=builder /app /build
-    RUN /copy-builds.sh && rm -rf /build /copy-builds.sh
-    
-    # Install production dependencies
+    COPY --from=builder /app/.output /app/.output
+ 
     RUN bun install --production
     
     EXPOSE 3000
