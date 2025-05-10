@@ -1,5 +1,7 @@
 # 新聞解析 / News Analyze
 
+![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)
+
 ## Why?
 
 我們使用這個新聞來舉例：
