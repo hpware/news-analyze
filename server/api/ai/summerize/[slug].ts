@@ -1,15 +1,19 @@
 import { Groq } from 'groq-sdk';
+import sql from "~/server/components/postgres";
 
 const groq = new Groq();
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug');
-  const fetchNewsArticle = await fetch(`/api/`);
+  const fetchNewsArticle = await sql`
+    select * from newArticle
+    where slug = ${slug}
+  `;
   const chatCompletion = await groq.chat.completions.create({
         "messages": [
           {
             "role": "user",
-            "content": ``
+            "content": `${fetchNewsArticle.title}\n${fetchNewsArticle.content}`
           },
           {
             "role": "system",
