@@ -24,13 +24,13 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 ## Stack:
 
 - Postgres
-- Passport.js
 - Tailwind
 - Nuxt
 - Animate.css
 - GSAP
-- Zeabur
 - Minio S3
-- Nuxt i18N
+- Nuxt i18n
 - BunJS
 - Groq
+- Clerk
+- Custom Infra
