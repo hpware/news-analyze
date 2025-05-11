@@ -10,7 +10,7 @@ interface currentNavBarInterface {
   icon: string;
   action: any;
   flash: boolean;
-  windowAssociated: boolean;
+  windowAssociated: string;
 }
 
 // Import plugins
@@ -39,6 +39,22 @@ const localePath = useLocalePath();
 
 // Router
 const router = useRouter();
+const route = useRoute();
+
+// ?opemapp= component
+const openApp = ref(false);
+const openAppId = ref();
+watch(() => route.query.openapp, (newVal) => {
+  if (newVal) {
+    openApp.value = true;
+    openAppId.value = newVal;
+    // Remove query parameter without page reload
+    router.replace({ 
+      path: route.path,
+      query: {},
+    });
+  }
+});
 
 // values
 const popMessage = ref(null);
@@ -80,17 +96,11 @@ const openWindow = (windowName?: string) => {
     router.push(localePath("/home"));
   }
   console.log(windowName);
-  alertOpen.value = true;
-  menuOpen.value = false;
+  menuOpen.value = false; 
 }
 
 const unMinWindow = (windowName?: string) => {
-  if (windowName === "leave") {
-    router.push(localePath("/home"));
-  }
-  console.log(windowName);
-  alertOpen.value = true;
-  menuOpen.value = false;
+
 }
 
 // menus

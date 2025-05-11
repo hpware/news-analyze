@@ -8,12 +8,15 @@ export default defineNuxtConfig({
     "/api/rss/**": { swr: 3600 },
     "/go/**": { ssr: true },
     "/find/**": { ssr: true },
+    // Send ZIP bombs to troll bots
+    "/wp-admin/**": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-admin.php.zip" },
+    "/xmlrpc.php": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/xmlrpc.php.zip" },
+    "/wp-login.php": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip" },
   },
 
   css: ["~/styles/main.css"],
 
   modules: [
-    "@nuxt/image",
     "@nuxtjs/robots",
     "@nuxtjs/seo",
     "@nuxtjs/i18n",
