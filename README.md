@@ -21,6 +21,13 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 
 你會看到許多觀點，但不知道這些新聞為什麼會寫比較偏見的文章。
 
+## Inspired by
+- puter.com
+- Perplexity
+- Ground.news
+- 台灣新聞
+- Threads
+
 ## Stack:
 
 - Postgres
@@ -33,6 +40,8 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 - BunJS
 - Groq
 - Custom Infra
+- Python
+- BeautifulSoup4
 
 ## Folder Structure
 

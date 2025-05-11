@@ -1,7 +1,19 @@
 <script setup lang="ts">
+// No layout
 definePageMeta({
   layout: false,
 });
+
+// interfaces
+interface currentNavBarInterface {
+  name: string;
+  icon: string;
+  action: any;
+  flash: boolean;
+  windowAssociated: boolean;
+}
+
+// Import plugins
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 import { createApp } from "vue";
@@ -33,6 +45,8 @@ const popMessage = ref(null);
 const menuOpen = ref(false);
 const langMenuOpen = ref(false);
 const lang = ref(locale.value);
+const alertOpen = ref(false);
+const currentNavBar = ref<currentNavBarInterface[]>([]);
 
 // Date
 const currentDate = ref(
@@ -62,9 +76,23 @@ onMounted(() => {
 
 // functions
 const openWindow = (windowName?: string) => {
+  if (windowName === "leave") {
+    router.push(localePath("/home"));
+  }
   console.log(windowName);
+  alertOpen.value = true;
   menuOpen.value = false;
 }
+
+const unMinWindow = (windowName?: string) => {
+  if (windowName === "leave") {
+    router.push(localePath("/home"));
+  }
+  console.log(windowName);
+  alertOpen.value = true;
+  menuOpen.value = false;
+}
+
 // menus
 const menuItems = [
   { name: "Hot News", windowName: "hotnews"} ,
@@ -86,15 +114,26 @@ const toggleLangMenu = () => {
   <div
     class="absolute inset-x-0 flex flex-row px-2 py-1 bg-[#7D7C7C]/70 text-white justify-between align-center text-center z-50"
   >
+  <!--Menu container-->
     <div class="flex flex-row g-2 text-gray-400 text-white ">
       <button @click="toggleMenu" class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row">
         <ComputerDesktopIcon/>
       </button>
       <span class="ml-1 mr-2 text-[20px]">|</span>
+      <!--navbar icons for min and max application window-->
+      <div v-for="item in currentNavBar" :key="item.name" class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-100 px-4 py-2 cursor-pointer">
+        <button @click="unMinWindow(item.windowAssociated)" class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100">
+          <span>{{ item.name }}</span>
+          <span v-if="item.flash" class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"></span>
+          <span v-if="item.icon" :class="item.icon">
+          </span>
+        </button>
+      </div>
     </div>
     <div class="text-center align-middle justify-center text-white">{{ currentDate }}</div>
   </div>
   <div class="w-full h-[2.5em]"></div>
+  <!--Menu-->
   <Transition
     enter-active-class="animate__animated animate__fadeInDown animate_fast03"
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
@@ -108,12 +147,14 @@ const toggleLangMenu = () => {
     </div>
   </div>
   </Transition>
+  <!--Main desktop contents-->
   <div
     class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-1]"
     id="desktop"
   >
 
   </div>
+<!--Footer-->
   <div
     class="absolute w-[calc(100% - 5px)] inset-x-0 bottom-0 mx-[1.5px] p-3 justify-between align-center flex flex-row"
   >
@@ -134,7 +175,7 @@ const toggleLangMenu = () => {
       <span class="text-sm">{{ new Date().getFullYear() }} &copy yh</span>
     </div>
     <div class="">
-          <button @click="openWindow('login')" class="w-8 h-8 text-gray-400  flex flex-row">
+          <button @click="openWindow('login')" class="w-8 h-8 text-gray-400 flex flex-row">
           <UserIcon class="w-8 h-8 text-gray-400  hover:text-blue-500 transition-all duration-100" />
           </button>
     </div>
