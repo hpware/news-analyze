@@ -134,17 +134,9 @@ const toggleLangMenu = () => {
       <span class="text-sm">{{ new Date().getFullYear() }} &copy yh</span>
     </div>
     <div class="">
-      <!--Clerk-->
-      <SignedOut>
-        <SignInButton>
           <button @click="openWindow('login')" class="w-8 h-8 text-gray-400  flex flex-row">
           <UserIcon class="w-8 h-8 text-gray-400  hover:text-blue-500 transition-all duration-100" />
-        </button>
-        </SignInButton>
-      </SignedOut>
-      <SignedIn>
-        <UserButton />
-      </SignedIn>
+          </button>
     </div>
   </div>
 </template>

@@ -32,7 +32,6 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 - Nuxt i18n
 - BunJS
 - Groq
-- Clerk
 - Custom Infra
 
 ## Folder Structure
