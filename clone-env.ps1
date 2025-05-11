@@ -1,0 +1,1 @@
+Copy-Item "./.env" -Destination "./scraping/.env"

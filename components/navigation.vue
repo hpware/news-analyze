@@ -73,8 +73,3 @@ const toggleDropdown = () => {
     </div>
   </div>
 </template>
-<style scoped>
-.animate_fastest {
-  --animate-duration: 0.2s;
-}
-</style>

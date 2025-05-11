@@ -13,6 +13,12 @@
   body {
     font-family: "Noto Sans TC Variable", "Fira Sans", sans-serif;
   }
+  .animate_fastest {
+    --animate-duration: 0.1s;
+  }
+  .animate_fast03 {
+    --animate-duration: 0.3s;
+  }
   :root {
     --background: bg-black;
     --foreground: 0 0% 98%;

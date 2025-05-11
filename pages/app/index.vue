@@ -82,13 +82,14 @@ const showLogin = () => {
 }
 const openWindow = (windowName?: string) => {
   console.log(windowName);
+  menuOpen.value = false;
 }
 // menus
 const menuItems = [
   { name: "Hot News", windowName: "hotnews"} ,
   { name: "News", windowName: "news"},
   { name: "Sources", windowName: "sources"},
-  { name: 'About This Website', },
+  { name: 'About This Website', windowName: "about"},
   { name: 'Settings', windowName: "settings"},
   { name: 'Leave', windowName: "leave"},
 ]
@@ -113,7 +114,11 @@ const toggleLangMenu = () => {
     <div class="text-gray-400">{{ currentDate }}</div>
   </div>
   <div class="w-full h-[2.5em]"></div>
-  <div class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px]" v-if="menuOpen">
+  <Transition
+    enter-active-class="animate__animated animate__fadeInDown animate_fast03"
+    leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
+  >
+    <div class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px]" v-if="menuOpen">
     <div v-for="item in menuItems" :key="item.name" class="">
       <button @click="openWindow(item.windowName)" class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100">
         <span>{{ item.name }}</span>
@@ -121,11 +126,12 @@ const toggleLangMenu = () => {
       </button>
     </div>
   </div>
+  </Transition>
   <div
     class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-1]"
     id="desktop"
   >
-
+  
   </div>
   <div
     class="absolute w-[calc(100% - 5px)] inset-x-0 bottom-0 mx-[1.5px] p-3 justify-between align-center flex flex-row"
