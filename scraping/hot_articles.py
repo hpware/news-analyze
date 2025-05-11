@@ -1,5 +1,4 @@
-# Going to love the stupid tab tab tab tab system, instead of using brances.
-import re # Regular expressions
+import re
 from urllib.request import urlopen # URL request lib.
 from bs4 import BeautifulSoup # BeautifulSoup lib.
 import json

@@ -34,3 +34,48 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 - Groq
 - Clerk
 - Custom Infra
+
+## Folder Structure
+
+```
+├── .github/
+│   └── workflows/
+├── .nuxt/
+├── .output/
+├── components/
+│   ├── app/
+│   │   └── newsOrgAbout/
+│   └── ui/
+├── i18n/
+├── layouts/
+├── lib/
+├── pages/
+│   └── app/
+├── public/
+├── scraping/
+├── server/
+│   ├── api/
+│   │   └── objectstorage/
+│   ├── components/
+│   └── routes/
+├── styles/
+├── app.vue
+├── createDatabase.ts
+├── nuxt.config.ts
+├── package.json
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+## 如何執行
+
+1. First, rename `.env.example` to `.env` and fill in the blanks.
+2. Run `bun install` to install dependencies.
+3. Run `bun run createDatabase` to create the database.
+4. Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder.
+5. Run `bun run build` to build the project.
+6. Run `bun run preview` to start the preview server.
+7. Open `http://localhost:3000` in your browser.
+
+### For scaping
+First, Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder, then cd into the `scraping` folder. Run `python main.py` to start scraping in Google News.
