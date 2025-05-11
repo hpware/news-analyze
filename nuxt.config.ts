@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
     "motion-v/nuxt",
-    "@clerk/nuxt",
     "@sentry/nuxt/module",
   ],
 

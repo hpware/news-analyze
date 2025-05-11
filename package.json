@@ -13,7 +13,6 @@
     "start": "bun run .output/server/index.mjs"
   },
   "dependencies": {
-    "@clerk/nuxt": "^1.6.3",
     "@fontsource-variable/noto-sans-tc": "^5.2.5",
     "@fontsource/fira-code": "^5.2.6",
     "@fontsource/fira-sans": "^5.2.5",
