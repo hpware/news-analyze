@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-05-06",
   devtools: { enabled: true },
+
   routeRules: {
     "/": { redirect: "/home" },
     "/zh_tw": { redirect: "/zh_tw/home" },
@@ -8,7 +9,9 @@ export default defineNuxtConfig({
     "/go/**": { ssr: true },
     "/find/**": { ssr: true },
   },
+
   css: ["~/styles/main.css"],
+
   modules: [
     "@nuxt/image",
     "@nuxtjs/robots",
@@ -18,7 +21,9 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "motion-v/nuxt",
     "@clerk/nuxt",
+    "@sentry/nuxt/module",
   ],
+
   i18n: {
     defaultLocale: "en",
     vueI18n: "./i18n.config.ts",
@@ -27,11 +32,13 @@ export default defineNuxtConfig({
       { code: "zh_tw", name: "Chinese Tradional", file: "zh-tw.json" },
     ],
   },
+
   site: {
     url: "https://news.yuanhau.com",
     title: "BlindSpec",
     description: "",
   },
+
   app: {
     head: {
       title: "",
@@ -95,12 +102,14 @@ export default defineNuxtConfig({
       ],
     },
   },
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     }, // Add your content paths here
   },
+
   shadcn: {
     /**
      * Prefix for all the imported component
@@ -112,7 +121,19 @@ export default defineNuxtConfig({
      */
     componentDir: "./components/ui",
   },
+
   nitro: {
     preset: "bun", // This is dumb.
+  },
+
+  sentry: {
+    sourceMapsUploadOptions: {
+      org: "hwtwcc",
+      project: "news-analyze",
+    },
+  },
+
+  sourcemap: {
+    client: "hidden",
   },
 });
