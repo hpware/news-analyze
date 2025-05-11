@@ -1,4 +1,5 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import DraggableWindow from "~/components/DraggableWindow.vue";
 const ffeed = ref();
 const ass = ["健康2.0", "中天", "TVBS", "香港01", "ETtoday"];
 import Button from "~/components/ui/button/Button.vue";
@@ -9,14 +10,15 @@ try {
 } catch (error) {
   console.error("Error:", error);
 }
+const title = ref("Hot News");
 </script>
-
 <template>
+    <DraggableWindow :title="title" width="600px" height="400px">
   <div
     v-for="item in ffeed"
-    class="justify-center align-center text-center p-4 border border-white rounded-lg m-4"
+    class="justify-center align-center text-center p-4 border border-black rounded-lg m-4"
   >
-    <span class="text-xl text-bold text-gray-100"
+    <span class="text-xl text-bold text-gray-900"
       >{{ item.title }}
       <span
         v-if="ass.some((app) => item.title.includes(app))"
@@ -29,7 +31,7 @@ try {
       {{ new Date(item.date).toLocaleString() }}
     </h4>
     <div class="flex justify-center gap-2 mt-1">
-      <NuxtLink :to="item.link">
+      <NuxtLink :to="item.link" target="_blank">
         <Button>文章</Button>
       </NuxtLink>
       <NuxtLink>
@@ -60,5 +62,5 @@ try {
         </li>
       </ul>
     </div>
-  </div>
+  </div>    </DraggableWindow> 
 </template>

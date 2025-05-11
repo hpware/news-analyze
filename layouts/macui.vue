@@ -108,7 +108,7 @@ const toggleLangMenu = () => {
     class="absolute inset-x-0 flex flex-row px-2 py-1 bg-[#7D7C7C]/70 text-white justify-between align-center text-center z-50"
   >
   <!--Menu container-->
-    <div class="flex flex-row g-2 text-gray-400 text-white z-999">
+    <div class="flex flex-row g-2 text-gray-400 text-white z-9999">
       <button @click="toggleMenu" class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row">
         <ComputerDesktopIcon/>
       </button>
@@ -133,7 +133,7 @@ const toggleLangMenu = () => {
     enter-active-class="animate__animated animate__fadeInDown animate_fast03"
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
   >
-    <div class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-998" v-if="menuOpen">
+    <div class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998" v-if="menuOpen">
     <div v-for="item in menuItems" :key="item.name" class="">
       <button @click="openWindow(item.windowName)" class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100">
         <span>{{ item.name }}</span>

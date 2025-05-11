@@ -58,29 +58,29 @@ onUnmounted(() => {
       width: props.width || '400px',
       height: props.height || '300px'
     }"
-    class="fixed bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+    class="fixed bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden flex flex-col"
   >
     <div
       @mousedown="startDrag"
-      class="bg-gray-700 p-2 cursor-move flex justify-between items-center"
+      class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0"
     >
       <h3 class="font-semibold">{{ title }}</h3>
       <div class="flex flex-row gap-1">
-              <button
-        @click="emit('close')"
-        class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
-      >
-        ━
-      </button>
-            <button
-        @click="emit('close')"
-        class="p-1 rounded bg-red-500 text-white hover:bg-red-600 transition duration-200"
-      >
-        ✕
-      </button>
+        <button
+          @click="emit('close')"
+          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
+        >
+          ━
+        </button>
+        <button
+          @click="emit('close')"
+          class="p-1 rounded bg-red-500 text-white hover:bg-red-600 transition duration-200"
+        >
+          ✕
+        </button>
       </div>
     </div>
-    <div class="p-4 text-black">
+    <div class="p-4 text-black overflow-y-auto flex-grow">
       <slot></slot>
     </div>
   </div>

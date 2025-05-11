@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import DraggableWindow from "~/components/DraggableWindow.vue";
+// Imports
+import LoginWindow from "~/components/app/windows/login.vue";
+import HotNewsWindow from "~/components/app/windows/hotnews.vue";
+
 definePageMeta({
   layout: "macui",
 });
@@ -23,5 +26,8 @@ watch(() => route.query.openapp, (newVal) => {
 });
 </script>
 <template>
-  <DraggableWindow title="Title">Hi This is a window</DraggableWindow> 
+  <div>
+    <LoginWindow data-app-id="login" />
+    <HotNewsWindow data-app-id="hotnews" />
+  </div>
 </template>
