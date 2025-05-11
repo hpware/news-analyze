@@ -11,8 +11,5 @@ const localeLink = useLocalePath();
     <span class="text-xs mt-0 m-2 text-center align-center justify-center">
       Inspired by Ground.News
     </span>
-    <span class="">
-      <NuxtLink :to="localeLink('/sources')"> Sources </NuxtLink>
-    </span>
   </div>
 </template>
