@@ -55,33 +55,58 @@ onMounted(() => {
       ></span>
       <div class="flex flex-row justify-center align-center gap-0s">
         <NuxtLink :to="localePath('/app/')">
-        <button
-          class="m-4 mr-1 ml-1 bg-[#8C9393] text-white p-3 rounded-full bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
-        >
-          <span>{{ t("home.startusing") }}</span>
-        </button>
-      </NuxtLink>
-      <NuxtLink to="#learnmore">
-        <button
-          class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
-        >
-          <span>{{ t("home.learnmore") }}</span>
-        </button>
-      </NuxtLink>
+          <button
+            class="m-4 mr-1 ml-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
+          >
+            <span>{{ t("home.startusing") }}</span>
+          </button>
+        </NuxtLink>
+        <NuxtLink to="#learnmore">
+          <button
+            class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
+          >
+            <span>{{ t("home.learnmore") }}</span>
+          </button>
+        </NuxtLink>
       </div>
     </div>
     <div class="h-screen"></div>
     <div id="learnmore"></div>
     <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-3">
-      <div class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]">
+      <div
+        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
+      >
         <h1 class="text-8xl mt-0">🤔</h1>
         <h2 class="text-xl font-bold">Why?</h2>
-        <span class="text-sm">台灣的新聞是要痲是來自中國控制的媒體，或是來自只想獲得點閱的記者。</span>
+        <span class="text-sm"
+          >台灣的新聞是要痲是來自中國控制的媒體，或是來自只想獲得點閱的記者。</span
+        >
       </div>
-      <div class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]">
+      <div
+        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
+      >
         <h1 class="text-8xl mt-0">🧐</h1>
         <h2 class="text-xl font-bold">How?</h2>
-        <span class="text-sm">We use web scraping to search for the latest news, and store it into a postgres database.</span>
+        <span class="text-sm"
+          >We use web scraping to search for the latest news, and store it into
+          a postgres database.</span
+        >
+      </div>
+    </div>
+    <br />
+    <h2 class="text-center align-center justify-center text-3xl">
+      Coming soon...
+    </h2>
+    <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-3">
+      <div
+        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5"
+      >
+        <h2 class="text-xl font-bold">Threads 文比較</h2>
+      </div>
+      <div
+        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5"
+      >
+        <h2 class="text-xl font-bold">新聞 Facebook 觀點</h2>
       </div>
     </div>
   </div>

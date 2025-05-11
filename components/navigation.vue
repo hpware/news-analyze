@@ -32,44 +32,44 @@ const toggleDropdown = () => {
       >
     </div>
     <div class="flex flex-row align-center justify-center text-center">
-        <button
-          @click="toggleDropdown"
-          class="flex items-center space-x-1 px-4 py-2 rounded hover:bg-gray-900 transition-all duration-100 mr-5"
+      <button
+        @click="toggleDropdown"
+        class="flex items-center space-x-1 px-4 py-2 rounded hover:bg-gray-900 transition-all duration-100 mr-5"
+      >
+        <span>{{ locale }}</span>
+        <svg
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <span>{{ locale }}</span>
-          <svg
-            class="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
-        <Transition
-          enter-active-class="animate__animated animate__fadeInDown animate_fastest"
-          leave-active-class="animate__animated animate__fadeOutUp animate_fastest"
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </button>
+      <Transition
+        enter-active-class="animate__animated animate__fadeInDown animate_fastest"
+        leave-active-class="animate__animated animate__fadeOutUp animate_fastest"
+      >
+        <div
+          v-if="dropdownOpen"
+          class="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
         >
-          <div
-            v-if="dropdownOpen"
-            class="absolute top-full right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1"
+          <a
+            v-for="loc in availableLocales"
+            :key="loc.code"
+            :href="switchLocalePath(loc.code)"
+            v-on:click="dropdownOpen = false"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-all duration-100"
           >
-            <a
-              v-for="loc in availableLocales"
-              :key="loc.code"
-              :href="switchLocalePath(loc.code)"
-              v-on:click="dropdownOpen = false"
-              class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-all duration-100"
-            >
-              {{ loc.name || loc.code }}
-            </a>
-          </div>
-        </Transition>
+            {{ loc.name || loc.code }}
+          </a>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>

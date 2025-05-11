@@ -36,18 +36,15 @@ soup = BeautifulSoup(html, "html.parser")
 # Find the topiccwiz element
 topiccwiz = soup.find_all("c-wiz", class_=topiccwiz_css)
 news_data = []
+index = 0
 for item in topiccwiz:
+    index+= 1
+    array = []
     hotarticles = item.find_all("article")
     first_article = ""
     passed_first = False
     for article in hotarticles:
         try:
-            if not passed_first:
-                first_title_elem = article.find('a', class_='gPFEn')
-                first_title = first_title_elem.text.strip() if first_title_elem else ''
-                first_article = first_title
-                passed_first = True
-                continue
             title_elem = article.find('a', class_='gPFEn')
             title = title_elem.text.strip() if title_elem else ''
             
@@ -60,12 +57,16 @@ for item in topiccwiz:
                 'title': title,
                 'source': source,
                 'link': link,
-                'category': first_article
             }
-            news_data.append(article_data)
+            array.append(article_data)
         except Exception as e:
             print(f"Error processing article: {e}")
             continue
+
+    sendData = {
+        index: array
+    }
+    news_data.append(sendData)
 
 with open('news.json', 'w', encoding='utf-8') as f:
     json.dump(news_data, f, ensure_ascii=False, indent=2)
