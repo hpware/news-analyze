@@ -76,13 +76,13 @@ const stopDrag = () => {
       <div class="flex flex-row gap-1">
         <button
           @click="emit('min')"
-          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
+          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
         >
           ━
         </button>
         <button
           @click="emit('maximize')"
-          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
+          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
         >
           ⬜
         </button>

@@ -42,8 +42,8 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: "https://news.yuanhau.com",
-    title: "BlindSpec",
+    url: "https://news.yuanhau.com/",
+    title: "新聞盲點平台",
     description: "",
   },
 

@@ -43,7 +43,7 @@ try {
       <ul v-for="ititit in itit">
         <li v-if="ititit.content?.[0].content[0] !== item.title">
           &nbsp; -
-          <a :href="ititit.content?.[0].attributes?.href">{{
+          <a :href="ititit.content?.[0].attributes?.href" target="_blank">{{
             ititit.content?.[0].content[0]
           }}</a>
           -
