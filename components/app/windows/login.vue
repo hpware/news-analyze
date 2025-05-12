@@ -1,10 +1,5 @@
-<script setup lang="ts">
-import DraggableWindow from "~/components/DraggableWindow.vue";
 
-const title = ref("Login");
-</script>
 <template>
-    <DraggableWindow :title="title">
         <div class="flex flex-col items-center justify-center h-full">
             <form class="flex flex-col items-center justify-center h-full">
                             <div class="text-xl mb-4 text-bold">Login / Register</div>
@@ -16,5 +11,4 @@ const title = ref("Login");
             </button>
             </form>
         </div>
-    </DraggableWindow> 
 </template>

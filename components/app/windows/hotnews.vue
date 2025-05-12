@@ -13,7 +13,6 @@ try {
 const title = ref("Hot News");
 </script>
 <template>
-    <DraggableWindow :title="title" width="600px" height="400px">
   <div
     v-for="item in ffeed"
     class="justify-center align-center text-center p-4 border border-black rounded-lg m-4"
@@ -62,5 +61,5 @@ const title = ref("Hot News");
         </li>
       </ul>
     </div>
-  </div>    </DraggableWindow> 
+  </div>
 </template>
