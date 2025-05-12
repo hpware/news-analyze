@@ -136,7 +136,7 @@ watch(() => route.query.openapp, (newVal) => {
 });
 
 const associAppWindow = [
-  { name: "hotnews", id: "1", title: "Hot News", component: HotNewsWindow, width: "600px", height: "400px" },
+  { name: "hotnews", id: "1", title: "Hot News", component: HotNewsWindow, width: "700px", height: "500px" },
   { name: "login", id: "2", title: "Login", component: LoginWindow },
 ]
 

@@ -5,7 +5,8 @@
   },
   "nav": {
     "home": "Home",
-    "dailybriefing": "Daily Briefing"
+    "dailybriefing": "Daily Briefing",
+    "learnmore": "About"
   },
   "home": {
     "nonMoving": "Hi! This is your ",
@@ -15,7 +16,7 @@
       "newsComparePlatform": "news comparison platform"
     },
     "startusing": "Let's Start!",
-    "learnmore": "Learn More"
+    "learnmore": "Learn more"
   },
   "dailybriefing": "Daily Briefing",
   "Welcome": "Welcome",

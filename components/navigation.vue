@@ -30,6 +30,11 @@ const toggleDropdown = () => {
         class="hover:text-blue-500 cursor-pointer transiton-all duration-100"
         >{{ t("nav.home") }}</NuxtLink
       >
+      <NuxtLink
+        :to="localePath('/home#learnmore')"
+        class="hover:text-blue-500 cursor-pointer transiton-all duration-100"
+        >{{ t("nav.learnmore") }}</NuxtLink
+      >
     </div>
     <div class="flex flex-row align-center justify-center text-center">
       <button
