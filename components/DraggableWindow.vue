@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { useThrottleFn } from '@vueuse/core'
 
 const props = defineProps<{
   title: string;
@@ -18,36 +18,33 @@ const position = ref({
 });
 const offset = ref({ x: 0, y: 0 });
 
+const doDrag = useThrottleFn((e: MouseEvent) => {
+  if (!isDragging.value) return
+  
+  requestAnimationFrame(() => {
+    position.value = {
+      x: Math.max(0, Math.min(window.innerWidth - 400, e.clientX - offset.value.x)),
+      y: Math.max(0, Math.min(window.innerHeight - 300, e.clientY - offset.value.y))
+    }
+  })
+}, 16);
+
+
 const startDrag = (e: MouseEvent) => {
-  isDragging.value = true;
+  isDragging.value = true
   offset.value = {
     x: e.clientX - position.value.x,
-    y: e.clientY - position.value.y,
-  };
-};
-
-const doDrag = (e: MouseEvent) => {
-  if (isDragging.value) {
-    position.value = {
-      x: e.clientX - offset.value.x,
-      y: e.clientY - offset.value.y,
-    };
+    y: e.clientY - position.value.y
   }
-};
+  document.addEventListener('mousemove', doDrag)
+  document.addEventListener('mouseup', stopDrag)
+}
 
 const stopDrag = () => {
-  isDragging.value = false;
-};
-
-onMounted(() => {
-  document.addEventListener("mousemove", doDrag);
-  document.addEventListener("mouseup", stopDrag);
-});
-
-onUnmounted(() => {
-  document.removeEventListener("mousemove", doDrag);
-  document.removeEventListener("mouseup", stopDrag);
-});
+  isDragging.value = false
+  document.removeEventListener('mousemove', doDrag)
+  document.removeEventListener('mouseup', stopDrag)
+}
 </script>
 
 <template>

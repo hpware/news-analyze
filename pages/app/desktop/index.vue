@@ -126,20 +126,16 @@ const activeWindows = ref<associAppWindowInterface>([]);
 // ?opemapp= component
 const openApp = ref(false);
 const openAppId = ref();
-watch(
-  () => route.query.openapp,
-  (newVal) => {
-    if (newVal) {
-      openApp.value = true;
-      openAppId.value = newVal;
-      console.log("openAppId", openAppId.value);
-      router.replace({
-        path: route.path,
-        query: {},
-      });
-    }
-  },
-);
+watch(() => route.query.openapp, (newVal) => {
+  if (newVal) {
+    openApp.value = true;
+    openAppId.value = newVal;
+    router.replace({
+      path: route.path,
+      query: {},
+    });
+  }
+});
 
 const associAppWindow = [
   {
@@ -154,27 +150,28 @@ const associAppWindow = [
 ];
 
 const findAndOpenWindow = (windowName: string) => {
-  const app = associAppWindow.find((app) => app.name === windowName);
+  const app = associAppWindow.find((app) => app.name === windowName)
+  
   // Prevent dual logins
-  if (
-    windowName === "login" &&
-    activeWindows.value.some((window) => window.name === "login")
-  ) {
-    return;
+  if (windowName === "login" && 
+      activeWindows.value.some((window) => window.name === "login")) {
+    return
   }
+
   if (app) {
+    // Use shallowRef for better performance with components
+    const windowComponent = shallowRef(app.component)
+    
     activeWindows.value.push({
       id: `${windowName}-${Date.now()}`,
-      component: app.component,
-      title: windowName,
+      component: windowComponent,
+      name: windowName,
+      title: app.title,
       width: app.width || "400px",
       height: app.height || "300px",
-    });
-    console.log("html.value", activeWindows.value);
-  } else {
-    console.error("Window not found");
+    })
   }
-};
+}
 
 const closeWindow = (windowId: string) => {
   activeWindows.value = activeWindows.value.filter(
@@ -257,10 +254,12 @@ const closeWindow = (windowId: string) => {
       :width="window.width"
       :height="window.height"
     >
-      <Component
+        <Suspense>
+              <Component
         :is="window.component"
         @error="console.error('Error:', $event)"
       />
+      </Suspense>
     </DraggableWindow>
   </div>
   <!--Footer-->
