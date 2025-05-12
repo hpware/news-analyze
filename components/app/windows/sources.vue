@@ -13,7 +13,7 @@ const { data: source, pending, error } = await useFetch("/api/getData/fetchSourc
 </script>
 <template>
     <div >
-        <div v-for="item in source.data" :key="item.id">
+        <div v-for="item in source?.data" :key="item.id">
             <h1>{{ item.title }}</h1>
             <span>{{ item.description }}</span>
             <a :href="item.url">{{ item.url }}</a>

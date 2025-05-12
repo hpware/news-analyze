@@ -28,6 +28,10 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 - Ground.news
 - 台灣新聞
 - Threads
+- xfce's Desktop Interface
+- juice website
+- MacOS
+- Windows XP style X - UI
 
 ## Stack:
 

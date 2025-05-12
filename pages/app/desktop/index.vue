@@ -123,21 +123,20 @@ const toggleLangMenu = () => {
 
 // values
 const activeWindows = ref<associAppWindowInterface>([]);
-const currentApplication = ref();
 
 // ?opemapp= component
 const openApp = ref(false);
 const openAppId = ref();
-watch(() => route.query.openapp, (newVal) => {
-  if (newVal) {
-    openApp.value = true;
-    openAppId.value = newVal;
-    router.replace({
-      path: route.path,
-      query: {},
-    });
+const openAppNameQuery = ref();
+
+onMounted(() => {
+  openApp.value = route.query.openapp;
+  openAppId.value = route.query.id;
+  openAppNameQuery.value = route.query.name;
+  if (openApp.value) {
+    openWindow(openApp.value);
   }
-});
+})
 
 const associAppWindow = [
   {
@@ -149,8 +148,10 @@ const associAppWindow = [
     height: "500px",
   },
   { name: "login", id: "2", title: t("app.login") , component: LoginWindow },
-  { name: "sources", id: "3", title: t("app.sources"), component: SourcesWindow },
+  { name: "sources", id: "3", title: t("app.sources"), component: SourcesWindow }
 ];
+
+const currentOpenAppId = ref(0);
 
 const findAndOpenWindow = (windowName: string) => {
   const app = associAppWindow.find((app) => app.name === windowName)
@@ -166,13 +167,14 @@ const findAndOpenWindow = (windowName: string) => {
     const windowComponent = shallowRef(app.component)
     
     activeWindows.value.push({
-      id: `${windowName}-${Date.now()}`,
+      id: currentOpenAppId.value,
       component: windowComponent,
       name: windowName,
       title: app.title,
       width: app.width || "400px",
       height: app.height || "300px",
     })
+    currentOpenAppId.value++;
   }
 }
 
@@ -183,8 +185,18 @@ const closeWindow = (windowId: string) => {
   console.log("activeWindows.value", activeWindows.value);
 };
 
+const topWindow = (windowId: string) => {
+  const windowIndex = activeWindows.value.findIndex(
+    (window) => window.id === windowId,
+  );
+  if (windowIndex !== -1) {
+    const [window] = activeWindows.value.splice(windowIndex, 1);
+    activeWindows.value.push(window);
+  }
+};
+
 useSeoMeta({
-  title: currentApplication.value.title + " - " + t("app.title"),
+  title: "hi" + " - Desktop",
 })
 </script>
 <template>
@@ -249,17 +261,19 @@ useSeoMeta({
   </Transition>
   <!--Main desktop contents-->
   <div
-    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-1]"
+    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
     id="desktop"
   ></div>
-  <div>
-    <DraggableWindow
+    <Transition>
+      <div>
+            <DraggableWindow
       v-for="window in activeWindows"
       :key="window.id"
       :title="window.title"
       @close="closeWindow(window.id)"
       :width="window.width"
       :height="window.height"
+      @clicked="topWindow(window.id)"
     >
         <Suspense>
               <Component
@@ -268,10 +282,11 @@ useSeoMeta({
       />
       </Suspense>
     </DraggableWindow>
-  </div>
+      </div>
+    </Transition>
   <!--Footer-->
   <div
-    class="absolute w-[calc(100% - 5px)] inset-x-0 bottom-0 mx-[1.5px] p-3 justify-between align-center flex flex-row"
+    class="absolute w-[calc(100% - 5px)] inset-x-0 bottom-0 mx-[1.5px] p-3 justify-between align-center flex flex-row z-0"
   >
     <div class="">
       <!--Lang-->

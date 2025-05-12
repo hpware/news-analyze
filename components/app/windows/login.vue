@@ -14,7 +14,7 @@ const submitUserPassword = async () => {
         },
         body: JSON.stringify({
             username: userAccount.value,
-            pcssword: password,
+            password: password,
         }),
     })
     const res = await sendData.json();
@@ -45,7 +45,7 @@ const submitUserPassword = async () => {
 
       <input
         type="text"
-        placeholder="Your Email"
+        placeholder="Username"
         class="mb-2 p-2 border rounded"
         v-model="userAccount"
       />

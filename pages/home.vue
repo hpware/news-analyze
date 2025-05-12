@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import EmojiConvertor from "emoji-js";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -14,6 +15,8 @@ const messages = [
   t("home.moving.newsComparePlatform"),
   "BlindSpec",
 ];
+
+const emoji = new EmojiConvertor();
 
 onMounted(() => {
   const tl = gsap.timeline({ repeat: -1 });
@@ -76,7 +79,7 @@ onMounted(() => {
       <div
         class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
       >
-        <h1 class="text-8xl mt-0">🤔</h1>
+        <h1 class="text-8xl mt-0">{{ emoji.replace_colons(':thinking_face:') }}</h1>
         <h2 class="text-xl font-bold">Why?</h2>
         <span class="text-sm"
           >{{ t("home.whydes")}}</span
@@ -85,7 +88,7 @@ onMounted(() => {
       <div
         class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
       >
-        <h1 class="text-8xl mt-0">🧐</h1>
+        <h1 class="text-8xl mt-0">{{ emoji.replace_colons(':face_with_monocle:') }}</h1>
         <h2 class="text-xl font-bold">How?</h2>
         <span class="text-sm"
           >{{ t("home.howdes")}}</span

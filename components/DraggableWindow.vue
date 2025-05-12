@@ -13,9 +13,10 @@ const emit = defineEmits(["close"]);
 
 const isDragging = ref(false);
 const position = ref({
-  x: props.initialX || Math.floor(window.innerWidth / 2) - Math.random() * 200,
-  y: props.initialY || Math.floor(window.innerHeight / 2) - Math.random() * 10,
+  x: props.initialX || Math.floor(window.innerWidth / 2 - (parseInt(props.width || '400') / 2)),
+  y: props.initialY || Math.floor(window.innerHeight / 2 - (parseInt(props.height || '300') / 2)),
 });
+
 const offset = ref({ x: 0, y: 0 });
 
 const doDrag = useThrottleFn((e: MouseEvent) => {
