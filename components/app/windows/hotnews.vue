@@ -10,7 +10,6 @@ try {
 } catch (error) {
   console.error("Error:", error);
 }
-const title = ref("Hot News");
 </script>
 <template>
   <div
