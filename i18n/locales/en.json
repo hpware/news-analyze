@@ -16,9 +16,21 @@
       "newsComparePlatform": "news comparison platform"
     },
     "startusing": "Let's Start!",
-    "learnmore": "Learn more"
+    "learnmore": "Learn more",
+    "whydes": "Taiwan news mostly came from China-controlled media or from reporters who uses inappropriate content to farm clicks.",
+    "howdes": "We use web scraping to search for the latest news, and store it into a postgres database."
   },
   "dailybriefing": "Daily Briefing",
   "Welcome": "Welcome",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "app": {
+    "hotnews": "Hot News",
+    "news": "News",
+    "sources": "Sources",
+    "about": "About this website",
+    "settings": "settings",
+    "leave": "Leave",
+    "login": "Login",
+    "license": "License"
+  }
 }

@@ -79,7 +79,7 @@ onMounted(() => {
         <h1 class="text-8xl mt-0">🤔</h1>
         <h2 class="text-xl font-bold">Why?</h2>
         <span class="text-sm"
-          >台灣的新聞是要痲是來自中國控制的媒體，或是來自只想獲得點閱的記者。</span
+          >{{ t("home.whydes")}}</span
         >
       </div>
       <div
@@ -88,8 +88,7 @@ onMounted(() => {
         <h1 class="text-8xl mt-0">🧐</h1>
         <h2 class="text-xl font-bold">How?</h2>
         <span class="text-sm"
-          >We use web scraping to search for the latest news, and store it into
-          a postgres database.</span
+          >{{ t("home.howdes")}}</span
         >
       </div>
     </div>

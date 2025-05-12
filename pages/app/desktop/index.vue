@@ -29,6 +29,7 @@ gsap.registerPlugin(TextPlugin);
 // Import Windows
 import LoginWindow from "~/components/app/windows/login.vue";
 import HotNewsWindow from "~/components/app/windows/hotnews.vue";
+import SourcesWindow from "~/components/app/windows/sources.vue";
 
 // Import Shadcn/UI components
 import AlertComponent from "~/components/ui/alert/Alert.vue";
@@ -122,6 +123,7 @@ const toggleLangMenu = () => {
 
 // values
 const activeWindows = ref<associAppWindowInterface>([]);
+const currentApplication = ref();
 
 // ?opemapp= component
 const openApp = ref(false);
@@ -146,7 +148,8 @@ const associAppWindow = [
     width: "700px",
     height: "500px",
   },
-  { name: "login", id: "2", title: "Login", component: LoginWindow },
+  { name: "login", id: "2", title: t("app.login") , component: LoginWindow },
+  { name: "sources", id: "3", title: t("app.sources"), component: SourcesWindow },
 ];
 
 const findAndOpenWindow = (windowName: string) => {
@@ -179,6 +182,10 @@ const closeWindow = (windowId: string) => {
   );
   console.log("activeWindows.value", activeWindows.value);
 };
+
+useSeoMeta({
+  title: currentApplication.value.title + " - " + t("app.title"),
+})
 </script>
 <template>
   <div
@@ -282,7 +289,7 @@ const closeWindow = (windowId: string) => {
       <!--版權資訊-->
       <span class="text-sm">1.0.0</span>
       <span class="text-sm">|</span>
-      <span class="text-sm">MIT License</span>
+      <span class="text-sm">MIT {{ t("app.license") }}</span>
       <span class="text-sm">|</span>
       <span class="text-sm">{{ new Date().getFullYear() }} &copy yh</span>
     </div>

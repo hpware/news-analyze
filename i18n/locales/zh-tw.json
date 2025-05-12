@@ -16,9 +16,21 @@
       "newsComparePlatform": "新聞觀點比對平台"
     },
     "startusing": "開始使用!",
-    "learnmore": "了解更多"
+    "learnmore": "了解更多",
+    "whydes": "台灣的新聞是要痲是來自中國控制的媒體，或是來自只想獲得點閱的記者。",
+    "howdes":" 我們使用使用 Python 寫的網頁爬蟲來搜尋最新的新聞，並將其存入Postgres資料庫中。"
   },
   "dailybriefing": "今日報導",
   "Welcome": "歡迎",
-  "loading": "載入中..."
+  "loading": "載入中...",
+  "app": {
+    "hotnews": "熱門新聞",
+    "news": "新聞",
+    "sources": "資料來源",
+    "about": "關於我們",
+    "settings": "設定",
+    "leave": "離開",
+    "login": "登入",
+    "license": "授權"
+  }
 }
