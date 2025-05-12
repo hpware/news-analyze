@@ -3,13 +3,15 @@ import DraggableWindow from "~/components/DraggableWindow.vue";
 const ffeed = ref();
 const ass = ["健康2.0", "中天", "TVBS", "香港01", "ETtoday"];
 import Button from "~/components/ui/button/Button.vue";
+const pending = ref();
 
 try {
-  const { data } = await useFetch("/api/rss/google");
+  const { data, pending: isPending } = await useFetch("/api/rss/google");
   ffeed.value = data.value;
 } catch (error) {
   console.error("Error:", error);
 }
+
 </script>
 <template>
   <div

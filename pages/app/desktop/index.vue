@@ -125,14 +125,13 @@ const toggleLangMenu = () => {
 const activeWindows = ref<associAppWindowInterface>([]);
 
 // ?opemapp= component
-const openApp = ref(false);
+const openApp = ref();
 const openAppId = ref();
 const openAppNameQuery = ref();
 
-onMounted(() => {
+onMounted(async () => {
   openApp.value = route.query.openapp;
   openAppId.value = route.query.id;
-  openAppNameQuery.value = route.query.name;
   if (openApp.value) {
     openWindow(openApp.value);
   }
@@ -271,6 +270,7 @@ useSeoMeta({
       :key="window.id"
       :title="window.title"
       @close="closeWindow(window.id)"
+      @min="unMinWindow(window.id)"
       :width="window.width"
       :height="window.height"
       @clicked="topWindow(window.id)"

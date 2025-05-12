@@ -9,7 +9,9 @@ const props = defineProps<{
   height?: string;
 }>();
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits(["close", "min", "maximize", "restore"]);
+const title = computed(() => props.title || 'Draggable Window');
+
 
 const isDragging = ref(false);
 const position = ref({
@@ -65,10 +67,16 @@ const stopDrag = () => {
       <h3 class="font-semibold">{{ title }}</h3>
       <div class="flex flex-row gap-1">
         <button
-          @click="emit('close')"
+          @click="emit('min')"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
         >
           ━
+        </button>
+        <button
+          @click="emit('maximize')"
+          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded"
+        >
+          ⬜
         </button>
         <button
           @click="emit('close')"
