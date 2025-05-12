@@ -13,8 +13,8 @@ const emit = defineEmits(['close'])
 
 const isDragging = ref(false)
 const position = ref({
-  x: props.initialX || 100,
-  y: props.initialY || 100
+  x: props.initialX || Math.floor(window.innerWidth / 2) - Math.random() * 200,
+  y: props.initialY || Math.floor(window.innerHeight / 2) - Math.random() * 10
 })
 const offset = ref({ x: 0, y: 0 })
 

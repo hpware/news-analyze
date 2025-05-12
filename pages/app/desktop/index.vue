@@ -14,6 +14,13 @@ interface currentNavBarInterface {
   windowAssociated: string;
 }
 
+interface associAppWindowInterface {
+  name: string;
+  id: string;
+  title: string;
+  component: any;
+}
+
 // Import plugins
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
@@ -111,7 +118,7 @@ const toggleLangMenu = () => {
 }
 
 // values
-const activeWindows = ref();
+const activeWindows = ref<associAppWindowInterface>([]);
 
 // ?opemapp= component
 const openApp = ref(false);
@@ -129,21 +136,23 @@ watch(() => route.query.openapp, (newVal) => {
 });
 
 const associAppWindow = [
-  { name: "hotnews", component: HotNewsWindow },
-  { name: "login", component: LoginWindow },
+  { name: "hotnews", id: "1", title: "Hot News", component: HotNewsWindow, width: "600px", height: "400px" },
+  { name: "login", id: "2", title: "Login", component: LoginWindow },
 ]
 
 const findAndOpenWindow = (windowName: string) => {
   const app = associAppWindow.find((app) => app.name === windowName);
-  console.log("app", app);
-  console.log("windowName", windowName);
-  console.log("activeWindows.value", activeWindows.value);
-  console.log("associAppWindow", associAppWindow);
+  // Prevent dual logins
+  if (windowName === "login" && activeWindows.value.some((window) => window.name === "login")) {
+    return;
+  }
   if (app) {
     activeWindows.value.push({
       id: `${windowName}-${Date.now()}`,
       component: app.component,
-      title: windowName
+      title: windowName,
+      width: app.width || "400px",
+      height: app.height || "300px",
     });
     console.log("html.value", activeWindows.value);
   } else {
@@ -209,8 +218,10 @@ const closeWindow = (windowId: string) => {
       :key="window.id"
       :title="window.title"
       @close="closeWindow(window.id)"
+      :width="window.width"
+      :height="window.height"
     >
-      <component :is="window.component" />
+      <Component :is="window.component" @error="console.error('Error:', $event)" />
     </DraggableWindow>
   </div>
     <!--Footer-->
