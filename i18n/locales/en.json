@@ -31,6 +31,9 @@
     "settings": "settings",
     "leave": "Leave",
     "login": "Login",
-    "license": "License"
+    "license": "License",
+    "search": "Search",
+    "chatbot": "Chatbot",
+    "starred": "Starred"
   }
 }

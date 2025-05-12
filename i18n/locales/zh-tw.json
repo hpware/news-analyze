@@ -31,6 +31,9 @@
     "settings": "設定",
     "leave": "離開",
     "login": "登入",
-    "license": "授權"
+    "license": "授權",
+    "search": "搜尋",
+    "chatbot": "聊天機器人",
+    "starred": "收藏"
   }
 }

@@ -79,6 +79,7 @@ const menuItems = [
   { name: t("app.news"), windowName: "news" },
   { name: t("app.sources"), windowName: "sources" },
   { name: t("app.starred"), windowName: "starred" },
+  { name: t("app.chatbot"), windowName: "chatbot" },
   { name: t("app.about"), windowName: "about" },
   { name: t("app.settings"), windowName: "settings" },
   { name: t("app.login"), windowName: "login" },
@@ -150,7 +151,6 @@ const openWindow = (windowName?: string) => {
   } else {
     if (windowName) findAndOpenWindow(windowName);
   }
-  console.log(windowName);
   menuOpen.value = false;
 };
 
@@ -212,6 +212,17 @@ const findAndOpenWindow = (windowName: string) => {
   }
 };
 
+const obtainTopWindowPosition = (windowId: string) => {
+  const windowIndex = activeWindows.value.findIndex(
+    (window) => window.id === windowId,
+  );
+  console.log(windowIndex)
+  if (windowIndex !== -1) {
+    const [window] = activeWindows.value.splice(windowIndex, 1);
+    activeWindows.value.push(window);
+  }
+}
+
 const closeWindow = (windowId: string) => {
   activeWindows.value = activeWindows.value.filter(
     (window) => window.id !== windowId,
@@ -219,15 +230,7 @@ const closeWindow = (windowId: string) => {
   console.log("activeWindows.value", activeWindows.value);
 };
 
-const topWindow = (windowId: string) => {
-  const windowIndex = activeWindows.value.findIndex(
-    (window) => window.id === windowId,
-  );
-  if (windowIndex !== -1) {
-    const [window] = activeWindows.value.splice(windowIndex, 1);
-    activeWindows.value.push(window);
-  }
-};
+const maxWindow = (windowId: string) => {};
 
 // Title
 useSeoMeta({
@@ -240,7 +243,7 @@ onMounted(() => {
 const bootingHeaderParams = route.query.bypass;
 if (bootingHeaderParams) {
   bootingAnimation.value = false;
-  console.log("Bypass booting animation");
+  return;
 }
   if (bootingAnimation.value) {
     gsap.to(popMessage.value, {
@@ -351,7 +354,8 @@ watchEffect((cleanupFn) => {
         @min="unMinWindow(window.id)"
         :width="window.width"
         :height="window.height"
-        @clicked="topWindow(window.id)"
+        @click="obtainTopWindowPosition(window.id)"
+        @maximize="maxWindow(window.id)"
       >
         <Suspense>
           <Component
