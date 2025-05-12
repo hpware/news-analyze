@@ -19,12 +19,12 @@ const title = ref("Hot News");
   >
     <span class="text-xl text-bold text-gray-900"
       >{{ item.title }}
-      <span
+      <!--<span
         v-if="ass.some((app) => item.title.includes(app))"
         class="text-red-500 text-sm"
       >
         &nbsp;- 疑似來自有中資背景公司
-      </span>
+      </span>-->
     </span>
     <h4 class="text-gray-500 text-sm">
       {{ new Date(item.date).toLocaleString() }}
@@ -50,14 +50,14 @@ const title = ref("Hot News");
           <a :href="'/find/newsOrg?name=' + ititit.content?.[2].content[0]">{{
             ititit.content?.[2].content[0]
           }}</a>
-          <span
+          <!--<span
             v-if="
               ass.some((app) => ititit.content?.[2].content[0].includes(app))
             "
             class="text-red-500 text-sm"
           >
             &nbsp;- 疑似來自有中資背景公司
-          </span>
+          </span>-->
         </li>
       </ul>
     </div>
