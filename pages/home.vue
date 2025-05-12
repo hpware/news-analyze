@@ -78,18 +78,14 @@ onMounted(() => {
       >
         <h1 class="text-8xl mt-0">🤔</h1>
         <h2 class="text-xl font-bold">Why?</h2>
-        <span class="text-sm"
-          >{{ t("home.whydes")}}</span
-        >
+        <span class="text-sm">{{ t("home.whydes") }}</span>
       </div>
       <div
         class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
       >
         <h1 class="text-8xl mt-0">🧐</h1>
         <h2 class="text-xl font-bold">How?</h2>
-        <span class="text-sm"
-          >{{ t("home.howdes")}}</span
-        >
+        <span class="text-sm">{{ t("home.howdes") }}</span>
       </div>
     </div>
     <br />

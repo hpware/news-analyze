@@ -135,7 +135,7 @@ onMounted(async () => {
   if (openApp.value) {
     openWindow(openApp.value);
   }
-})
+});
 
 const associAppWindow = [
   {
@@ -146,25 +146,32 @@ const associAppWindow = [
     width: "700px",
     height: "500px",
   },
-  { name: "login", id: "2", title: t("app.login") , component: LoginWindow },
-  { name: "sources", id: "3", title: t("app.sources"), component: SourcesWindow }
+  { name: "login", id: "2", title: t("app.login"), component: LoginWindow },
+  {
+    name: "sources",
+    id: "3",
+    title: t("app.sources"),
+    component: SourcesWindow,
+  },
 ];
 
 const currentOpenAppId = ref(0);
 
 const findAndOpenWindow = (windowName: string) => {
-  const app = associAppWindow.find((app) => app.name === windowName)
-  
+  const app = associAppWindow.find((app) => app.name === windowName);
+
   // Prevent dual logins
-  if (windowName === "login" && 
-      activeWindows.value.some((window) => window.name === "login")) {
-    return
+  if (
+    windowName === "login" &&
+    activeWindows.value.some((window) => window.name === "login")
+  ) {
+    return;
   }
 
   if (app) {
     // Use shallowRef for better performance with components
-    const windowComponent = shallowRef(app.component)
-    
+    const windowComponent = shallowRef(app.component);
+
     activeWindows.value.push({
       id: currentOpenAppId.value,
       component: windowComponent,
@@ -172,10 +179,10 @@ const findAndOpenWindow = (windowName: string) => {
       title: app.title,
       width: app.width || "400px",
       height: app.height || "300px",
-    })
+    });
     currentOpenAppId.value++;
   }
-}
+};
 
 const closeWindow = (windowId: string) => {
   activeWindows.value = activeWindows.value.filter(
@@ -196,7 +203,7 @@ const topWindow = (windowId: string) => {
 
 useSeoMeta({
   title: "hi" + " - Desktop",
-})
+});
 </script>
 <template>
   <div
@@ -263,27 +270,27 @@ useSeoMeta({
     class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
     id="desktop"
   ></div>
-    <Transition>
-      <div>
-            <DraggableWindow
-      v-for="window in activeWindows"
-      :key="window.id"
-      :title="window.title"
-      @close="closeWindow(window.id)"
-      @min="unMinWindow(window.id)"
-      :width="window.width"
-      :height="window.height"
-      @clicked="topWindow(window.id)"
-    >
+  <Transition>
+    <div>
+      <DraggableWindow
+        v-for="window in activeWindows"
+        :key="window.id"
+        :title="window.title"
+        @close="closeWindow(window.id)"
+        @min="unMinWindow(window.id)"
+        :width="window.width"
+        :height="window.height"
+        @clicked="topWindow(window.id)"
+      >
         <Suspense>
-              <Component
-        :is="window.component"
-        @error="console.error('Error:', $event)"
-      />
-      </Suspense>
-    </DraggableWindow>
-      </div>
-    </Transition>
+          <Component
+            :is="window.component"
+            @error="console.error('Error:', $event)"
+          />
+        </Suspense>
+      </DraggableWindow>
+    </div>
+  </Transition>
   <!--Footer-->
   <div
     class="absolute w-[calc(100% - 5px)] inset-x-0 bottom-0 mx-[1.5px] p-3 justify-between align-center flex flex-row z-0"

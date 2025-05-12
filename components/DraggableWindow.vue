@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useThrottleFn } from '@vueuse/core'
+import { useThrottleFn } from "@vueuse/core";
 
 const props = defineProps<{
   title: string;
@@ -10,44 +10,52 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["close", "min", "maximize", "restore"]);
-const title = computed(() => props.title || 'Draggable Window');
-
+const title = computed(() => props.title || "Draggable Window");
 
 const isDragging = ref(false);
 const position = ref({
-  x: props.initialX || Math.floor(window.innerWidth / 2 - (parseInt(props.width || '400') / 2)),
-  y: props.initialY || Math.floor(window.innerHeight / 2 - (parseInt(props.height || '300') / 2)),
+  x:
+    props.initialX ||
+    Math.floor(window.innerWidth / 2 - parseInt(props.width || "400") / 2),
+  y:
+    props.initialY ||
+    Math.floor(window.innerHeight / 2 - parseInt(props.height || "300") / 2),
 });
 
 const offset = ref({ x: 0, y: 0 });
 
 const doDrag = useThrottleFn((e: MouseEvent) => {
-  if (!isDragging.value) return
-  
+  if (!isDragging.value) return;
+
   requestAnimationFrame(() => {
     position.value = {
-      x: Math.max(0, Math.min(window.innerWidth - 400, e.clientX - offset.value.x)),
-      y: Math.max(0, Math.min(window.innerHeight - 300, e.clientY - offset.value.y))
-    }
-  })
+      x: Math.max(
+        0,
+        Math.min(window.innerWidth - 400, e.clientX - offset.value.x),
+      ),
+      y: Math.max(
+        0,
+        Math.min(window.innerHeight - 300, e.clientY - offset.value.y),
+      ),
+    };
+  });
 }, 16);
 
-
 const startDrag = (e: MouseEvent) => {
-  isDragging.value = true
+  isDragging.value = true;
   offset.value = {
     x: e.clientX - position.value.x,
-    y: e.clientY - position.value.y
-  }
-  document.addEventListener('mousemove', doDrag)
-  document.addEventListener('mouseup', stopDrag)
-}
+    y: e.clientY - position.value.y,
+  };
+  document.addEventListener("mousemove", doDrag);
+  document.addEventListener("mouseup", stopDrag);
+};
 
 const stopDrag = () => {
-  isDragging.value = false
-  document.removeEventListener('mousemove', doDrag)
-  document.removeEventListener('mouseup', stopDrag)
-}
+  isDragging.value = false;
+  document.removeEventListener("mousemove", doDrag);
+  document.removeEventListener("mouseup", stopDrag);
+};
 </script>
 
 <template>

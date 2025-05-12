@@ -11,7 +11,6 @@ try {
 } catch (error) {
   console.error("Error:", error);
 }
-
 </script>
 <template>
   <div
