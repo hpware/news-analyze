@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import EmojiConvertor from "emoji-js";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -15,8 +14,6 @@ const messages = [
   t("home.moving.newsComparePlatform"),
   "BlindSpec",
 ];
-
-const emoji = new EmojiConvertor();
 
 onMounted(() => {
   const tl = gsap.timeline({ repeat: -1 });
