@@ -9,9 +9,15 @@ export default defineNuxtConfig({
     "/go/**": { ssr: true },
     "/find/**": { ssr: true },
     // Send ZIP bombs to troll bots
-    "/wp-admin/**": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-admin.php.zip" },
-    "/xmlrpc.php": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/xmlrpc.php.zip" },
-    "/wp-login.php": { redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip" },
+    "/wp-admin/**": {
+      redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-admin.php.zip",
+    },
+    "/xmlrpc.php": {
+      redirect: "https://s3.yhw.tw/data/def-zip-bomb/xmlrpc.php.zip",
+    },
+    "/wp-login.php": {
+      redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip",
+    },
   },
 
   css: ["~/styles/main.css"],

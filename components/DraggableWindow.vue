@@ -1,53 +1,53 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from "vue";
 
 const props = defineProps<{
-  title: string
-  initialX?: number
-  initialY?: number
-  width?: string
-  height?: string
-}>()
+  title: string;
+  initialX?: number;
+  initialY?: number;
+  width?: string;
+  height?: string;
+}>();
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close"]);
 
-const isDragging = ref(false)
+const isDragging = ref(false);
 const position = ref({
   x: props.initialX || Math.floor(window.innerWidth / 2) - Math.random() * 200,
-  y: props.initialY || Math.floor(window.innerHeight / 2) - Math.random() * 10
-})
-const offset = ref({ x: 0, y: 0 })
+  y: props.initialY || Math.floor(window.innerHeight / 2) - Math.random() * 10,
+});
+const offset = ref({ x: 0, y: 0 });
 
 const startDrag = (e: MouseEvent) => {
-  isDragging.value = true
+  isDragging.value = true;
   offset.value = {
     x: e.clientX - position.value.x,
-    y: e.clientY - position.value.y
-  }
-}
+    y: e.clientY - position.value.y,
+  };
+};
 
 const doDrag = (e: MouseEvent) => {
   if (isDragging.value) {
     position.value = {
       x: e.clientX - offset.value.x,
-      y: e.clientY - offset.value.y
-    }
+      y: e.clientY - offset.value.y,
+    };
   }
-}
+};
 
 const stopDrag = () => {
-  isDragging.value = false
-}
+  isDragging.value = false;
+};
 
 onMounted(() => {
-  document.addEventListener('mousemove', doDrag)
-  document.addEventListener('mouseup', stopDrag)
-})
+  document.addEventListener("mousemove", doDrag);
+  document.addEventListener("mouseup", stopDrag);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('mousemove', doDrag)
-  document.removeEventListener('mouseup', stopDrag)
-})
+  document.removeEventListener("mousemove", doDrag);
+  document.removeEventListener("mouseup", stopDrag);
+});
 </script>
 
 <template>
@@ -56,7 +56,7 @@ onUnmounted(() => {
       left: `${position.x}px`,
       top: `${position.y}px`,
       width: props.width || '400px',
-      height: props.height || '300px'
+      height: props.height || '300px',
     }"
     class="fixed bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden flex flex-col"
   >

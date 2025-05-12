@@ -22,6 +22,7 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 你會看到許多觀點，但不知道這些新聞為什麼會寫比較偏見的文章。
 
 ## Inspired by
+
 - puter.com
 - Perplexity
 - Ground.news
@@ -86,4 +87,5 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 7. Open `http://localhost:3000` in your browser.
 
 ### For scaping
+
 First, Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder, then cd into the `scraping` folder. Run `python main.py` to start scraping in Google News.
