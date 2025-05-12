@@ -65,7 +65,6 @@ const lang = ref(locale.value);
 const alertOpen = ref(false);
 const currentNavBar = ref<currentNavBarInterface[]>([]);
 const bootingAnimation = ref(true);
-const bypassBoot = ref(false);
 const activeWindows = ref<associAppWindowInterface>([]);
 const openApp = ref();
 const openAppId = ref();
@@ -240,10 +239,10 @@ onMounted(() => {
   // booting animation bypass
 const bootingHeaderParams = route.query.bypass;
 if (bootingHeaderParams) {
-  bypassBoot.value = true;
+  bootingAnimation.value = false;
   console.log("Bypass booting animation");
 }
-  if (!bypassBoot.value) {
+  if (bootingAnimation.value) {
     gsap.to(popMessage.value, {
       duration: 0.5,
       text: t("app.booting"),
@@ -252,8 +251,6 @@ if (bootingHeaderParams) {
     setTimeout(() => {
       bootingAnimation.value = false;
     }, 2000);
-  } else {
-    bootingAnimation.value = false;
   }
 })
 
