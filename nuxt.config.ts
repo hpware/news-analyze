@@ -56,6 +56,7 @@ export default defineNuxtConfig({
       link: [
         { rel: "dns-prefetch", href: "https://utfs.io" },
         { rel: "dns-prefetch", href: "https://s3.yhw.tw" },
+        { rel: "icon", type: "image/svg", href: "/favicon.svg" },
       ],
       meta: [
         { "http-equiv": "X-UA-Compatible", content: "IE=edge" },
