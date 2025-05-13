@@ -11,12 +11,14 @@ export default defineEventHandler(async (event) => {
       {
         id: 1,
         title: "Source 1",
+        logo: "#",
         url: "https://source1.com",
         description: "Description for Source 1",
       },
       {
         id: 2,
         title: "Source 2",
+        logo: "#",
         url: "https://source2.com",
         description: "Description for Source 2",
       },

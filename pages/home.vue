@@ -5,7 +5,13 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "~/components/ui/accordion";
-import { ComputerDesktopIcon, CircleStackIcon, MagnifyingGlassIcon, ViewfinderCircleIcon, DocumentDuplicateIcon } from "@heroicons/vue/24/outline";
+import {
+  ComputerDesktopIcon,
+  CircleStackIcon,
+  MagnifyingGlassIcon,
+  ViewfinderCircleIcon,
+  DocumentDuplicateIcon,
+} from "@heroicons/vue/24/outline";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -26,19 +32,19 @@ const cards = [
   {
     icon: ViewfinderCircleIcon,
     title: t("home.cards.title.find"),
-    description:  t("home.cards.description.find"),
+    description: t("home.cards.description.find"),
   },
   {
     icon: ComputerDesktopIcon,
-    title:  t("home.cards.title.interface"),
+    title: t("home.cards.title.interface"),
     description: t("home.cards.description.interface"),
   },
-    {
+  {
     icon: DocumentDuplicateIcon,
-    title:  t("home.cards.title.documentation"),
-    description:  t("home.cards.description.documentation"),
+    title: t("home.cards.title.documentation"),
+    description: t("home.cards.description.documentation"),
   },
-]
+];
 
 const accordionItems = [
   {
@@ -133,18 +139,31 @@ onMounted(() => {
     <div class="h-screen"></div>
     <div id="learnmore"></div>
     <div class="h-[100px]"></div>
-    <div class="">
-      <div class="justify-center align-center gap-2 p-2 w-full flex flex-row flex-wrap" id="cards">
-        <div class="px-10 bg-gray-900/70 w-[300px] h-[200px] rounded-xl shadow-lg hover:shadow-sky-600/90 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col" v-for="item in cards" :key="item.title">
-            <component :is="item.icon" class="w-8 h-8" />
-            <h3 class="text-xl font-bold">{{ item.title }}</h3>
-            <p class="">{{ item.description }}</p>
+    <div
+      class="justify-center align-center gap-2 p-2 w-full flex flex-row flex-wrap relative"
+      id="cards"
+    >
+      <div
+        class="px-10 bg-gray-900/70 w-[300px] h-[200px] group rounded-xl shadow-lg hover:shadow-sky-600/90 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col"
+        v-for="item in cards"
+        :key="item.title"
+      >
+        <component
+          :is="item.icon"
+          class="w-8 h-8 text-white group-hover:text-sky-500 transition-colors duration-300"
+        />
+        <h3 class="text-xl font-bold">{{ item.title }}</h3>
+        <p
+          class="text-gray-400 group-hover:text-gray-300 transition-colors duration-300"
+        >
+          {{ item.description }}
+        </p>
       </div>
     </div>
     <br />
     <div class="justify-center align-center text-center w-full flex">
       <div
-        class="bg-gray-900/60 rounded-xl shadow-lg p-8 border border-gray-800 hover:border-sky-700 m-4 w-1/2 align-center justify-center text-center duration-700"
+        class="bg-gray-900/60 rounded-xl shadow-lg p-8 border border-gray-800 hover:border-sky-700 m-4 w-full md:w-1/2 align-center justify-center text-center duration-700"
       >
         <span class="text-2xl font-bold">Q/A</span>
         <Accordion
@@ -157,7 +176,9 @@ onMounted(() => {
             :key="item.value"
             :value="item.value"
           >
-            <AccordionTrigger>{{ item.title }}</AccordionTrigger>
+            <AccordionTrigger class="transition-all duration-100">{{
+              item.title
+            }}</AccordionTrigger>
             <AccordionContent>
               {{ item.content }}
             </AccordionContent>
@@ -166,5 +187,4 @@ onMounted(() => {
       </div>
     </div>
   </div>
-</div>
 </template>

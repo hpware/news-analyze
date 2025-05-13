@@ -66,6 +66,7 @@ const openAppNameQuery = ref();
 const currentOpenAppId = ref(0);
 const progress = ref(0);
 const titleAppName = ref("Desktop");
+const openingAppViaAnApp = ref(false);
 
 // Key Data
 const menuItems = [
@@ -100,6 +101,8 @@ const associAppWindow = [
     id: "3",
     title: t("app.sources"),
     component: SourcesWindow,
+    width: "700px",
+    height: "500px",
   },
   {
     name: "about",
@@ -236,14 +239,16 @@ const findAndOpenWindow = (windowName: string) => {
 };
 
 const obtainTopWindowPosition = (windowId: string) => {
-  const windowIndex = activeWindows.value.findIndex(
+  if (!openingAppViaAnApp.value) {
+    const windowIndex = activeWindows.value.findIndex(
     (window) => window.id === windowId,
   );
-  console.log(windowIndex);
   if (windowIndex !== -1) {
     const [window] = activeWindows.value.splice(windowIndex, 1);
+    titleAppName.value = window.name;
     activeWindows.value.push(window);
   }
+}
 };
 
 const closeWindow = (windowId: string) => {
@@ -252,6 +257,14 @@ const closeWindow = (windowId: string) => {
   );
   console.log("activeWindows.value", activeWindows.value);
 };
+
+const openNewWindowViaApp = (windowId: string) => {
+  openingAppViaAnApp.value = true;
+  findAndOpenWindow(windowId);
+  setTimeout(() => {
+    openingAppViaAnApp.value = false;
+  },1000);
+}
 
 const maxWindow = (windowId: string) => {};
 
@@ -416,6 +429,7 @@ watchEffect((cleanupFn) => {
           <Component
             :is="window.component"
             @error="console.error('Error:', $event)"
+            @windowopener="openNewWindowViaApp($event)"
           />
         </Suspense>
       </DraggableWindow>

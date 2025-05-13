@@ -13,9 +13,7 @@ try {
 }
 </script>
 <template>
-  <div v-if="!ffeed">
-    Loading...
-  </div>
+  <div v-if="!ffeed">Loading...</div>
   <div
     v-for="item in ffeed"
     class="justify-center align-center text-center p-4 border border-black rounded-lg m-4"
