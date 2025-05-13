@@ -7,10 +7,10 @@ const loading = ref(true);
 const { t, locale } = useI18n();
 
 const props = defineProps({
-    values: {
-        type: String,
-        required: true,
-    }
+  values: {
+    type: String,
+    required: true,
+  },
 });
 
 const {
@@ -36,7 +36,6 @@ onMounted(() => {
     scrambleText: fetchNewsOrgInfo.value?.title,
   });
 });
-
 </script>
 <template>
   <div>

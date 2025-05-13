@@ -33,6 +33,8 @@ App Design: [PDF Document](/design.pdf)
 - MacOS
 - Windows XP style X - UI
 - Ghostty
+- Some random chat app embeded to most business websites
+- Treble's cool card effect (but not quite yet)
 
 ## Stack:
 
@@ -48,6 +50,7 @@ App Design: [PDF Document](/design.pdf)
 - Custom Infra
 - Python
 - BeautifulSoup4
+- uv
 
 ## Folder Structure
 

@@ -1,0 +1,9 @@
+.nuxt
+.output
+*.lock
+*.md
+.env
+.env*
+sentry*
+package.json
+node_modules

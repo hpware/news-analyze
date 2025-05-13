@@ -157,7 +157,7 @@ const associAppWindow = [
     id: "11",
     title: t("app.terminal"),
     component: Error404Window,
-  }
+  },
 ];
 
 /*
@@ -304,14 +304,14 @@ const findAndOpenWindow = (windowName: string) => {
 const obtainTopWindowPosition = (windowId: string) => {
   if (!openingAppViaAnApp.value) {
     const windowIndex = activeWindows.value.findIndex(
-    (window) => window.id === windowId,
-  );
-  if (windowIndex !== -1) {
-    const [window] = activeWindows.value.splice(windowIndex, 1);
-    titleAppName.value = window.name;
-    activeWindows.value.push(window);
+      (window) => window.id === windowId,
+    );
+    if (windowIndex !== -1) {
+      const [window] = activeWindows.value.splice(windowIndex, 1);
+      titleAppName.value = window.name;
+      activeWindows.value.push(window);
+    }
   }
-}
 };
 
 const closeWindow = (windowId: string) => {
@@ -326,8 +326,8 @@ const openNewWindowViaApp = (windowId: string) => {
   findAndOpenWindow(windowId);
   setTimeout(() => {
     openingAppViaAnApp.value = false;
-  },1000);
-}
+  }, 1000);
+};
 
 const maxWindow = (windowId: string) => {};
 

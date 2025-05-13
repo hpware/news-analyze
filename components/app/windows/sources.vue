@@ -2,12 +2,12 @@
 import noImageLogo from "~/public/geterrorassets/noImageLogo.svg";
 const { t, locale } = useI18n();
 
-const emit = defineEmits(['windowopener', 'loadValue'])
+const emit = defineEmits(["windowopener", "loadValue"]);
 
 const openNewWindow = (itemId: string) => {
-  emit('windowopener', "aboutNewsOrg")
-  emit('loadValue', itemId)
-}
+  emit("windowopener", "aboutNewsOrg");
+  emit("loadValue", itemId);
+};
 
 const {
   data: source,

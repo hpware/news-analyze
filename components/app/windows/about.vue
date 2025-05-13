@@ -24,10 +24,10 @@ import copyrightInfo from "~/components/app/info/copyright.vue";
         ></span
       >
     </div>
-    <hr/>
+    <hr />
     <div class="flex flex-col">
-        <span class="text-xl">版權資訊</span>
-        <copyrightInfo />
+      <span class="text-xl">版權資訊</span>
+      <copyrightInfo />
     </div>
   </div>
 </template>
