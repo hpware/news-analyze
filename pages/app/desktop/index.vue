@@ -23,7 +23,6 @@ interface associAppWindowInterface {
 // Import plugins
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
-import { createApp } from "vue";
 gsap.registerPlugin(TextPlugin);
 
 // Import Windows
@@ -32,6 +31,7 @@ import HotNewsWindow from "~/components/app/windows/hotnews.vue";
 import SourcesWindow from "~/components/app/windows/sources.vue";
 import AboutWindow from "~/components/app/windows/about.vue";
 import ChatbotWindow from "~/components/app/windows/chatbot.vue";
+import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
 
 // Icons
@@ -59,7 +59,7 @@ const lang = ref(locale.value);
 const alertOpen = ref(false);
 const currentNavBar = ref<currentNavBarInterface[]>([]);
 const bootingAnimation = ref(true);
-const activeWindows = ref<associAppWindowInterface>([]);
+const activeWindows = ref<associAppWindowInterface[]>([]);
 const openApp = ref();
 const openAppId = ref();
 const openAppNameQuery = ref();
@@ -67,6 +67,7 @@ const currentOpenAppId = ref(0);
 const progress = ref(0);
 const titleAppName = ref("Desktop");
 const openingAppViaAnApp = ref(false);
+const passedValues = ref();
 
 // Key Data
 const menuItems = [
@@ -76,6 +77,7 @@ const menuItems = [
   { name: t("app.starred"), windowName: "starred" },
   { name: t("app.chatbot"), windowName: "chatbot" },
   { name: t("app.about"), windowName: "about" },
+  { name: t("app.terminal"), windowName: "tty" },
   { name: t("app.settings"), windowName: "settings" },
   { name: t("app.login"), windowName: "login" },
   { name: t("app.leave"), windowName: "leave" },
@@ -142,8 +144,67 @@ const associAppWindow = [
     title: t("app.error404"),
     component: Error404Window,
   },
+  {
+    name: "aboutNewsOrg",
+    id: "10",
+    title: t("app.aboutNewsOrg"),
+    component: AboutNewsOrgWindow,
+  },
+  {
+    name: "tty",
+    id: "11",
+    title: t("app.terminal"),
+    component: Error404Window,
+  }
 ];
 
+/*
+const keyboardShortcuts = {
+  'Meta+k': { 
+    action: () => toggleMenu(), 
+    description: 'Toggle menu' 
+  },
+  'Meta+q': { 
+    action: () => router.push(localePath("/home")), 
+    description: 'Quit to home' 
+  },
+  'Meta+w': { 
+    action: () => closeWindow(activeWindows.value[activeWindows.value.length - 1]?.id), 
+    description: 'Close current window' 
+  },
+  'Meta+t': { 
+    action: () => findAndOpenWindow('tty'), 
+    description: 'Open terminal' 
+  },
+}
+
+
+// Keyboard shortcuts
+const handleKeyboardActions = (e: KeyboardEvent) => {
+  const key = [
+    e.metaKey ? "Meta": "",
+    e.ctrlKey ? "Ctrl": "",
+    e.shiftKey ? "Shift": "",
+    e.altKey ? "Alt": "",
+    e.key.toLowerCase()
+  ].filter(Boolean).join('+')
+
+  const shortcut = keyboardShortcuts[key];
+  if (shortcut) {
+    console.log(`Shortcut triggered: ${key}`);
+    e.preventDefault()
+    shortcut.action()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeyboardActions)
+});
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyboardActions)
+});
+*/
 // Date
 const currentDate = ref(
   new Date().toLocaleDateString("zh-TW", {
@@ -430,6 +491,7 @@ watchEffect((cleanupFn) => {
             :is="window.component"
             @error="console.error('Error:', $event)"
             @windowopener="openNewWindowViaApp($event)"
+            :values="passedValues"
           />
         </Suspense>
       </DraggableWindow>

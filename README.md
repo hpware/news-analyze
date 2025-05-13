@@ -32,6 +32,7 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 - juice website
 - MacOS
 - Windows XP style X - UI
+- Ghostty
 
 ## Stack:
 

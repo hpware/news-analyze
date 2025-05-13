@@ -12,12 +12,12 @@ dotenv.load_dotenv()
 
 
 # Connect to PostgresDB
-#conn = psycopg2.connect(database=os.getenv("POSTGRES_DB"), 
-#                        user=os.getenv("POSTGRES_USER"),
-#                        password=os.getenv("POSTGRES_PASSWORD"),
-#                        host=os.getenv("POSTGRES_HOST"),
-#                        port=os.getenv("POSTGRES_PORT")
-#)
+conn = psycopg2.connect(database=os.getenv("POSTGRES_DB"), 
+                        user=os.getenv("POSTGRES_USER"),
+                        password=os.getenv("POSTGRES_PASSWORD"),
+                        host=os.getenv("POSTGRES_HOST"),
+                        port=os.getenv("POSTGRES_PORT")
+                        )
 
 headers = {
     'User-Agent': 'NewsSceraperBot/1.0 (https://github.com/hpware/news-analyze)'

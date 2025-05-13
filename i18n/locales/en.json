@@ -59,6 +59,7 @@
     "license": "License",
     "search": "Search",
     "chatbot": "Chatbot",
-    "starred": "Starred"
+    "starred": "Starred",
+    "terminal": "Terminal"
   }
 }
