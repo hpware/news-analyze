@@ -17,6 +17,7 @@
     },
     "startusing": "開始使用!",
     "learnmore": "了解更多",
+    "documentation": "如何使用",
     "qanda": {
       "titles": {
         "whydes": "為什麼要做這個平台？",
@@ -30,6 +31,18 @@
       "supportedLocationNews": "We currently only support news from Taiwan for now, but if you want more, you can contribute to the project by adding more news sources to the python scraping scripts.",
       "userData": "We handle your account and password in a secure way, with two encryption methods, one during transit to the server (and also SQL injecton), one saving to the database. For other user data, it is currently NOT end-to-end encrypted, like your AI chat history, your stars, and your name & email. In the near future, we will add E2E encryption (and I can also pratice).",
       "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported, but you can still kinda use it, it is just not pleasant."
+    },
+    "cards": {
+      "title": {
+        "find": "尋找",
+        "interface": "使用者介面",
+        "documentation": "教學"
+      }, 
+      "description": {
+        "find": "你可以輕鬆地從不同的新聞來源找到相同的主題。",
+        "interface": "這個網站使用類似 Xfce / MacOS / DSM 的介面，讓你可以簡單使用這個網站。",
+        "documentation": "我做了一組教學，讓你可以學會如何使用這個網站 UI。"
+      }
     }
   },
   "dailybriefing": "今日報導",

@@ -17,6 +17,7 @@
     },
     "startusing": "Let's Start!",
     "learnmore": "Learn more",
+    "documentation": "Documentation",
     "qanda": {
       "titles": {
         "whydes": "Why make this platform?",
@@ -30,6 +31,18 @@
       "supportedLocationNews": "We currently only support news from Taiwan for now, but if you want more, you can contribute to the project by adding more news sources to the python scraping scripts.",
       "userData": "We handle your account and password in a secure way, with two encryption methods, one during transit to the server (and also SQL injecton), one saving to the database. For other user data, it is currently NOT end-to-end encrypted, like your AI chat history, your stars, and your name & email. In the near future, we will add E2E encryption (and I can also pratice).",
       "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported, but you can still kinda use it, it is just not pleasant."
+    },
+    "cards": {
+      "title": {
+        "find": "Find",
+        "interface": "Interface",
+        "documentation": "Documentation"
+      }, 
+      "description": {
+        "find": "You can easily find the same topic from different news sources.",
+        "interface": "Use a desktop like interface, the one that you already got used to.",
+        "documentation": "We provide a documentation for you to learn how to use the app."
+      }
     }
   },
   "dailybriefing": "Daily Briefing",

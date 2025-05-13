@@ -281,10 +281,10 @@ onMounted(() => {
 });
 
 watchEffect((cleanupFn) => {
-  const tier = setTimeout(() => (progress.value = 10), 200);
-  const timer = setTimeout(() => (progress.value = 30), 500);
-  const timmer = setTimeout(() => (progress.value = 70), 1000);
-  const timmmer = setTimeout(() => (progress.value = 100), 1600);
+  const tier = setTimeout(() => (progress.value = 10), Math.random() * 50);
+  const timer = setTimeout(() => (progress.value = 30), Math.random() * 100);
+  const timmer = setTimeout(() => (progress.value = 70), Math.random() * 150);
+  const timmmer = setTimeout(() => (progress.value = 100), 1800);
   cleanupFn(() => clearTimeout(tier));
   cleanupFn(() => clearTimeout(timer));
   cleanupFn(() => clearTimeout(timmer));
