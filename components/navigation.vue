@@ -20,7 +20,9 @@ const toggleDropdown = () => {
     class="fixed top-0 inset-x-0 bg-[#81611a]/70 backdrop-blur-sm h-[55px] flex align-center items-center flex-row text-white pl-4 gap-x-5 justify-between z-50 rounded-3xl m-2"
   >
     <div class="text-3xl text-bold">
-      <NuxtLink :to="localePath('home')" ref="title">{{ t("core.sitename") }}</NuxtLink>
+      <NuxtLink :to="localePath('home')" ref="title">{{
+        t("core.sitename")
+      }}</NuxtLink>
     </div>
     <div
       class="text-[0.9em] left-1/2 absolute transform -translate-x-1/2 space-x-4 items-center"

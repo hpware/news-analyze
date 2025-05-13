@@ -12,7 +12,7 @@ const { t } = useI18n();
         >{{ error.statusCode }}</span
       >
       <span class="text-2xl text-center align-center justify-center">{{
-        error.statusMessage
+        error.message
       }}</span>
     </div>
     <div class="h-screen"></div>

@@ -1,1 +1,1 @@
-cp ./env scraping/.env
+cp ./.env scraping/.env

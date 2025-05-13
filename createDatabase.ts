@@ -51,24 +51,14 @@ create table if not exists go_links {
     created_at timestampz default current_timestamp
 }
 `;
-/*
-const createAdminPosts = await sql`
-create table if not exists adminPosts (
-    uuid text primary key,
-    slug text not null unique,
-    content text not null,
-    created_at timestampz default current_timestamp,
-    byUser text not null
-)
-`;
-const adminUsers = await sql`
-create table if not exists adminUsers (
-    uuid text primary key,
-    username text not null unique,
-    passwordHash text not null,
-    created_at timestampz default current_timestamp,
-    lastlogged_at timestampz default current_timestamp,
-)
-`;*/
+
+const createUserAiChatHistory = await sql`
+CREATE TABLE IF NOT EXISTS chat_history (
+  id SERIAL PRIMARY KEY,
+  uuid VARCHAR(255) NOT NULL,
+  role VARCHAR(50) NOT NULL,
+  content TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)`;
 
 console.log("Creation Complete");

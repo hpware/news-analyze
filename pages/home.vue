@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "~/components/ui/accordion";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -13,6 +19,27 @@ const messages = [
   t("home.moving.miniWikipedia"),
   t("home.moving.newsComparePlatform"),
   "BlindSpec",
+];
+
+const defaultValue = "item-1";
+
+const accordionItems = [
+  {
+    value: "item-1",
+    title: "Is it accessible?",
+    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+  },
+  {
+    value: "item-2",
+    title: "Is it unstyled?",
+    content:
+      "Yes. It's unstyled by default, giving you freedom over the look and feel.",
+  },
+  {
+    value: "item-3",
+    title: "Can it be animated?",
+    content: "Yes! You can use the transition prop to configure the animation.",
+  },
 ];
 
 onMounted(() => {
@@ -89,20 +116,27 @@ onMounted(() => {
       </div>
     </div>
     <br />
-    <h2 class="text-center align-center justify-center text-3xl">
-      Coming soon...
-    </h2>
-    <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-3">
-      <div
-        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5"
+    <div class="justify-center align-center text-center w-full flex">
+      <div class="bg-[#C9C9C9]/60 rounded-xl shadow-lg p-4 m-4 w-1/2 align-center justify-center text-center">
+      <span class="text-2xl font-bold">Q/A</span>
+      <Accordion
+        type="single"
+        class="align-center justify-center m-auto"
+        collapsible
+        :default-value="defaultValue"
       >
-        <h2 class="text-xl font-bold">Threads 文比較</h2>
-      </div>
-      <div
-        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5"
-      >
-        <h2 class="text-xl font-bold">新聞 Facebook 觀點</h2>
-      </div>
+        <AccordionItem
+          v-for="item in accordionItems"
+          :key="item.value"
+          :value="item.value"
+        >
+          <AccordionTrigger>{{ item.title }}</AccordionTrigger>
+          <AccordionContent>
+            {{ item.content }}
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
+  </div>
   </div>
 </template>

@@ -53,8 +53,6 @@ App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ
 ```
 ├── .github/
 │   └── workflows/
-├── .nuxt/
-├── .output/
 ├── components/
 │   ├── app/
 │   │   └── newsOrgAbout/
