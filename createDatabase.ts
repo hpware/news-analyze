@@ -3,7 +3,7 @@ import sql from "~/server/components/postgres";
 const createUsers = await sql`
 create table if not exists users (
     uuid text primary key,
-    created_at timestampz default current_timestamp,
+    created_at timestamptz default current_timestamp,
     username text not null unique,
     oauthProvider text not null,
     avatarUrl text not null,
@@ -43,13 +43,13 @@ create table if not exists newsProvidersZh (
 `;
 
 const createGoLinks = await sql`
-create table if not exists go_links {
+create table if not exists go_links (
     uuid text primary key,
     title text,
     slug text unique not null,
     forwardUrl text not null,
-    created_at timestampz default current_timestamp
-}
+    created_at timestamptz default current_timestamp
+)
 `;
 
 const createUserAiChatHistory = await sql`
@@ -62,3 +62,6 @@ CREATE TABLE IF NOT EXISTS chat_history (
 )`;
 
 console.log("Creation Complete");
+
+await sql.end();
+process.exit(0)
