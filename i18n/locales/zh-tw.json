@@ -17,8 +17,20 @@
     },
     "startusing": "開始使用!",
     "learnmore": "了解更多",
-    "whydes": "台灣的新聞是要痲是來自中國控制的媒體，或是來自只想獲得點閱的記者。",
-    "howdes": " 我們使用使用 Python 寫的網頁爬蟲來搜尋最新的新聞，並將其存入Postgres資料庫中。"
+    "qanda": {
+      "titles": {
+        "whydes": "為什麼要做這個平台？",
+        "howdes": "這個平台是怎麼運作的？",
+        "supportedLocationNews": "這個平台支援哪些國家的新聞？",
+        "userData": "我們如何處理使用者的資料？",
+        "mobileApp": "這個會做手機版嗎？"
+      },
+      "whydes": "台灣的新聞是要痲是來自中國控制/中國官方的媒體，或是來自只想獲得點閱的記者。這個平台是要讓台灣的NCC知道，發布假新聞就應該被調查，而不是放著不管。",
+      "howdes": " 我們使用使用 Python 寫的網頁爬蟲來搜尋最新的新聞，並將其存入Postgres資料庫中。",
+      "supportedLocationNews": "We currently only support news from Taiwan for now, but if you want more, you can contribute to the project by adding more news sources to the python scraping scripts.",
+      "userData": "We handle your account and password in a secure way, with two encryption methods, one during transit to the server (and also SQL injecton), one saving to the database. For other user data, it is currently NOT end-to-end encrypted, like your AI chat history, your stars, and your name & email. In the near future, we will add E2E encryption (and I can also pratice).",
+      "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported, but you can still kinda use it, it is just not pleasant."
+    }
   },
   "dailybriefing": "今日報導",
   "Welcome": "歡迎",

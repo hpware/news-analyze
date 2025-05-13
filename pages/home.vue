@@ -21,24 +21,32 @@ const messages = [
   "BlindSpec",
 ];
 
-const defaultValue = "item-1";
 
 const accordionItems = [
   {
-    value: "item-1",
-    title: "Is it accessible?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    value: "i1",
+    title: t("home.qanda.titles.whydes"),
+    content: t("home.qanda.whydes"),
   },
   {
-    value: "item-2",
-    title: "Is it unstyled?",
-    content:
-      "Yes. It's unstyled by default, giving you freedom over the look and feel.",
+    value: "i2",
+    title: t("home.qanda.titles.howdes"),
+    content: t("home.qanda.howdes"),
   },
   {
-    value: "item-3",
-    title: "Can it be animated?",
-    content: "Yes! You can use the transition prop to configure the animation.",
+    value: "i3",
+    title: t("home.qanda.titles.supportedLocationNews"),
+    content: t("home.qanda.supportedLocationNews"),
+  },
+  {
+    value: "i4",
+    title: t("home.qanda.titles.userData"),
+    content: t("home.qanda.userData"),
+  },
+  {
+    value: "i5",
+    title: t("home.qanda.titles.mobileApp"),
+    content: t("home.qanda.mobileApp"),
   },
 ];
 
@@ -99,21 +107,8 @@ onMounted(() => {
     </div>
     <div class="h-screen"></div>
     <div id="learnmore"></div>
-    <div class="flex flex-row flex-wrap justify-center gap-x-10 gap-y-3">
-      <div
-        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
-      >
-        <h1 class="text-8xl mt-0">🤔</h1>
-        <h2 class="text-xl font-bold">Why?</h2>
-        <span class="text-sm">{{ t("home.whydes") }}</span>
-      </div>
-      <div
-        class="flex flex-col justify-center items-center align-middle bg-[#C9C9C9]/60 rounded-xl shadow-lg p-5 m-5 w-[300px] h-[200px]"
-      >
-        <h1 class="text-8xl mt-0">🧐</h1>
-        <h2 class="text-xl font-bold">How?</h2>
-        <span class="text-sm">{{ t("home.howdes") }}</span>
-      </div>
+    <div class="">
+      <div class=""></div>
     </div>
     <br />
     <div class="justify-center align-center text-center w-full flex">
@@ -125,7 +120,6 @@ onMounted(() => {
           type="single"
           class="align-center justify-center m-auto"
           collapsible
-          :default-value="defaultValue"
         >
           <AccordionItem
             v-for="item in accordionItems"
