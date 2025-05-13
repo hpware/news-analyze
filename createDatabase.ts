@@ -5,10 +5,10 @@ create table if not exists users (
     uuid text primary key,
     created_at timestamptz default current_timestamp,
     username text not null unique,
-    oauthProvider text not null,
-    avatarUrl text not null,
-    email text not null,
-    oauthProviderGivenId text not null
+    avatarurl text not null,
+    firstname text not null,
+    passwordhash text not null,
+    email text not null
 );
 `;
 
@@ -27,31 +27,6 @@ create table if not exists newsProviders (
 )
 `;
 
-const createNewsProvidersZh = await sql`
-create table if not exists newsProvidersZh (
-    uuid text primary key,
-    title text not null,
-    slug text unique,
-    website text not null,
-    description text not null,
-    facebookUrl text,
-    twitterUrl text,
-    threadsUrl text,
-    logoUrl text not null,
-    lean text not null
-)
-`;
-
-const createGoLinks = await sql`
-create table if not exists go_links (
-    uuid text primary key,
-    title text,
-    slug text unique not null,
-    forwardUrl text not null,
-    created_at timestamptz default current_timestamp
-)
-`;
-
 const createUserAiChatHistory = await sql`
 CREATE TABLE IF NOT EXISTS chat_history (
   id SERIAL PRIMARY KEY,
@@ -60,6 +35,30 @@ CREATE TABLE IF NOT EXISTS chat_history (
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`;
+
+const newsArticles = await sql`
+create table if not exists news_articles (
+    uuid text primary key,
+    title text not null,
+    content text not null,
+    news_org text not null,
+    origin_link text not null,
+    author text,
+    related_uuid text not null
+)
+`
+
+const hotNews = await sql`
+create table if not exists hot_news (
+    uuid text primary key,
+    title text not null,
+    news_org text not null,
+    link text not null,
+    related_uuid text not null,
+    created_at timestamptz default current_timestamp
+)
+`
+
 
 console.log("Creation Complete");
 

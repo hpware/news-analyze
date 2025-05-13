@@ -6,6 +6,7 @@ import psycopg2
 import pandas as pd
 import dotenv
 import os
+import uuid
 
 # Load environment variables from .env file
 dotenv.load_dotenv()
@@ -18,6 +19,7 @@ conn = psycopg2.connect(database=os.getenv("POSTGRES_DB"),
                         host=os.getenv("POSTGRES_HOST"),
                         port=os.getenv("POSTGRES_PORT")
                         )
+cur = conn.cursor()
 
 headers = {
     'User-Agent': 'NewsSceraperBot/1.0 (https://github.com/hpware/news-analyze)'
@@ -42,7 +44,9 @@ for item in topiccwiz:
     hotarticles = item.find_all("article")
     first_article = ""
     passed_first = False
+    catagory_uuid = str(uuid.uuid4())
     for article in hotarticles:
+        article_uuid = str(uuid.uuid4())
         try:
             title_elem = article.find('a', class_='gPFEn')
             title = title_elem.text.strip() if title_elem else ''
@@ -52,21 +56,25 @@ for item in topiccwiz:
             link_elem = article.find('a', class_='WwrzSb')
             orglink = link_elem['href'] if link_elem else ''
             link = re.sub(r'./read/', 'https://news.google.com/read/', orglink)
+            cur.execute("""
+            insert into hot_news (uuid, title, news_org, link, related_uuid)
+            values (%s, %s, %s, %s, %s)
+            """, (article_uuid, title, source, link, catagory_uuid))
             article_data = {
-                'title': title,
-                'source': source,
-                'link': link,
+                "uuid": article_uuid,
+                "title": title,
+                "news_org": source,
+                "link": link,
+                "related_uuid": catagory_uuid
             }
-            array.append(article_data)
+            news_data.append(article_data)
         except Exception as e:
             print(f"Error processing article: {e}")
             continue
 
-    sendData = {
-        index: array
-    }
-    news_data.append(sendData)
-
-with open('news.json', 'w', encoding='utf-8') as f:
+with open('hotnews_data.json', 'w', encoding='utf-8') as f:
     json.dump(news_data, f, ensure_ascii=False, indent=2)
 
+conn.commit()
+cur.close()
+conn.close()
