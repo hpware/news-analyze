@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { History, Plus } from "lucide-vue-next";
+import { History, Plus, Send } from "lucide-vue-next";
+import { Input } from "~/components/ui/input"
 const { t } = useI18n();
 const cookie = useCookie("lastChatId");
 const lastChatId = cookie.value;
@@ -10,6 +11,7 @@ onMounted(() => {
 });
 </script>
 <template>
+  <div class="flex flex-col h-full">
   <div class="justify-center align-center text-center flex flex-col">
     <div class="flex flex-row justify-between">
       <div>Chat Name</div>
@@ -17,15 +19,24 @@ onMounted(() => {
         <div
           class="flex flex-row justify-center align-center text-center gap-2"
         >
-          <button class="p-2 rounded-lg hover:bg-gray-300">
+          <button class="p-2 rounded-t-xl hover:bg-gray-300 transition-all duration-400">
             <History class="h-4 w-4" />
           </button>
-          <button class="p-2 rounded-lg hover:bg-gray-300">
+          <button class="p-2 rounded-t-xl hover:bg-gray-300 transition-all duration-400">
             <Plus class="h-4 w-4" />
           </button>
         </div>
       </div>
     </div>
     <hr />
+        <div ref="chatContainerRef" class="flex-1 overflow-y-auto p-4 space-y-4">
+    </div>
+
+    <div class="text-black w-full flex flex-row space-x-2">
+        <Input class="flex-1 rounded-xl" placeholder="Type a message..."
+      />
+       <button class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500" disabled="true"><Send class="w-5 h-5"/></button>
+    </div>
   </div>
+</div>
 </template>
