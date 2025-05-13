@@ -1,3 +1,6 @@
+<script setup lang="ts">
+import copyrightInfo from "~/components/app/info/copyright.vue";
+</script>
 <template>
   <div class="justify-center align-center text-center flex flex-col">
     <div class="flex flex-col">
@@ -20,6 +23,11 @@
           >public@yuanhau.com</a
         ></span
       >
+    </div>
+    <hr/>
+    <div class="flex flex-col">
+        <span class="text-xl">版權資訊</span>
+        <copyrightInfo />
     </div>
   </div>
 </template>

@@ -149,6 +149,8 @@ const associAppWindow = [
     id: "10",
     title: t("app.aboutNewsOrg"),
     component: AboutNewsOrgWindow,
+    width: "600px",
+    height: "400px",
   },
   {
     name: "tty",

@@ -66,7 +66,7 @@ const stopDrag = () => {
       width: props.width || '400px',
       height: props.height || '300px',
     }"
-    class="fixed bg-white dark:bg-gray-800 rounded-md shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
+    class="fixed bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
   >
     <div
       @mousedown="startDrag"

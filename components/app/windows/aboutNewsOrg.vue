@@ -44,9 +44,9 @@ onMounted(() => {
       <div
         class="flex flex-row bg-[#AAACAAFF] rounded-3xl p-3 gap-3 m-3 scale-5"
       >
-        <NuxtImg
+        <img
           :src="fetchNewsOrgInfo?.logoUrl"
-          class="w-48 h-48 rounded-[10px]"
+          class="w-48 h-48 rounded-l-3xl object-cover p-0 m-0"
         />
         <div class="flex flex-col gap-3 text-left">
           <h1 class="text-4xl font-bold m-3 text-left">

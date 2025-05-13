@@ -60,6 +60,7 @@
     "search": "Search",
     "chatbot": "Chatbot",
     "starred": "Starred",
-    "terminal": "Terminal"
+    "terminal": "Terminal",
+    "aboutNewsOrg": "About this news organization",
   }
 }

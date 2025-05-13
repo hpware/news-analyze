@@ -2,7 +2,7 @@
 
 ![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)
 
-App Design: [Freeform](https://www.icloud.com/freeform/026AxB798cViZ9jJ2DkNsXUCQ#Untitled_5)
+App Design: [PDF Document](/design.pdf)
 
 ## Why?
 
