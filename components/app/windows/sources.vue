@@ -2,10 +2,11 @@
 import noImageLogo from "~/public/geterrorassets/noImageLogo.svg";
 const { t, locale } = useI18n();
 
-const emit = defineEmits(['windowopener'])
+const emit = defineEmits(['windowopener', 'loadValue'])
 
-const openNewWindow = (windowName: string) => {
-  emit('windowopener', windowName)
+const openNewWindow = (itemId: string) => {
+  emit('windowopener', "aboutNewsOrg")
+  emit('loadValue', itemId)
 }
 
 const {
@@ -58,7 +59,7 @@ onMounted(async () => {
       v-for="item in source?.data"
       :key="item.id"
     >
-      <button @click="openNewWindow('chatbot')">
+      <button @click="openNewWindow(item.id)">
         <img
           :src="imageUrls[item.id] || noImageLogo"
           alt="Organization Logo"

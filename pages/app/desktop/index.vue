@@ -491,6 +491,7 @@ watchEffect((cleanupFn) => {
             :is="window.component"
             @error="console.error('Error:', $event)"
             @windowopener="openNewWindowViaApp($event)"
+            @loadValue=""
             :values="passedValues"
           />
         </Suspense>
