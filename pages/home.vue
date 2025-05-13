@@ -117,26 +117,28 @@ onMounted(() => {
     </div>
     <br />
     <div class="justify-center align-center text-center w-full flex">
-      <div class="bg-[#C9C9C9]/60 rounded-xl shadow-lg p-4 m-4 w-1/2 align-center justify-center text-center">
-      <span class="text-2xl font-bold">Q/A</span>
-      <Accordion
-        type="single"
-        class="align-center justify-center m-auto"
-        collapsible
-        :default-value="defaultValue"
+      <div
+        class="bg-[#C9C9C9]/60 rounded-xl shadow-lg p-4 m-4 w-1/2 align-center justify-center text-center"
       >
-        <AccordionItem
-          v-for="item in accordionItems"
-          :key="item.value"
-          :value="item.value"
+        <span class="text-2xl font-bold">Q/A</span>
+        <Accordion
+          type="single"
+          class="align-center justify-center m-auto"
+          collapsible
+          :default-value="defaultValue"
         >
-          <AccordionTrigger>{{ item.title }}</AccordionTrigger>
-          <AccordionContent>
-            {{ item.content }}
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          <AccordionItem
+            v-for="item in accordionItems"
+            :key="item.value"
+            :value="item.value"
+          >
+            <AccordionTrigger>{{ item.title }}</AccordionTrigger>
+            <AccordionContent>
+              {{ item.content }}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
     </div>
-  </div>
   </div>
 </template>

@@ -288,7 +288,7 @@ watchEffect((cleanupFn) => {
 <template>
   <div v-if="bootingAnimation">
     <div
-      class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-0"
+      class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-0 overscroll-none"
     >
       <Progress
         v-model="progress"
@@ -301,7 +301,7 @@ watchEffect((cleanupFn) => {
     </div>
   </div>
   <div
-    class="absolute inset-x-0 flex flex-row px-2 py-1 bg-[#7D7C7C]/70 text-white justify-between align-center text-center z-50"
+    class="absolute inset-x-0 flex flex-row px-2 py-1 bg-[#7D7C7C]/70 text-white justify-between align-center text-center z-50 overscroll-none"
     v-else
   >
     <!--Menu container-->
