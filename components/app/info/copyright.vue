@@ -2,7 +2,7 @@
 const { t } = useI18n();
 </script>
 <template>
-  <div class="gap-2 flex flex-row">
+  <div class="gap-2 flex flex-row justift-center align-center text-center">
     <!--版權資訊-->
     <span class="text-sm">1.0.0</span>
     <span class="text-sm">|</span>
