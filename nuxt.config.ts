@@ -66,12 +66,12 @@ export default defineNuxtConfig({
         {
           name: "keywords",
           content:
-            "News Platform, Mini Wikipedia, News Comparison platform, 新聞平台, 米你維基百科, 新聞觀點比對平台",
+            "News Platform, Mini Wikipedia, News Comparison platform, Desktop News Compare system, Destkop Like system, like ground news, built with nuxtjs, open source, 新聞平台, 米你維基百科, 新聞觀點比對平台, 桌面系統, 新聞桌面系統, Ground News, 類似像 Ground News, 開源, python, nuxtjs, vuejs, tailwind, shadcn",
         },
         {
           name: "og:keywords",
           content:
-            "News Platform, Mini Wikipedia, News Comparison platform, 新聞平台, 米你維基百科, 新聞觀點比對平台",
+            "News Platform, Mini Wikipedia, News Comparison platform, Desktop News Compare system, Destkop Like system, like ground news, built with nuxtjs, open source, 新聞平台, 米你維基百科, 新聞觀點比對平台, 桌面系統, 新聞桌面系統, Ground News, 類似像 Ground News, 開源, python, nuxtjs, vuejs, tailwind, shadcn",
         },
 
         { name: "author", content: "@hpware on GitHub" },
