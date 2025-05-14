@@ -12,6 +12,7 @@ import {
   ViewfinderCircleIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/vue/24/outline";
+import { GithubIcon } from "lucide-vue-next";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -44,6 +45,11 @@ const cards = [
     title: t("home.cards.title.documentation"),
     description: t("home.cards.description.documentation"),
   },
+  {
+    icon: GithubIcon,
+    title: t("home.cards.title.opensource"),
+    description: t("home.cards.description.opensource")
+  }
 ];
 
 const accordionItems = [

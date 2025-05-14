@@ -70,6 +70,7 @@ const progress = ref(0);
 const titleAppName = ref("Desktop");
 const openingAppViaAnApp = ref(false);
 const passedValues = ref();
+const globalWindowVal = ref(new Map());
 
 // Key Data
 const menuItems = [
@@ -162,17 +163,6 @@ const associAppWindow = [
   },
 ];
 
-currentNavBar.value = [
-  {
-    name: "anything",
-    icon: "anything",
-    action: "s",
-    flash: true,
-    windowAssociated: "322",
-    minimized: true,
-  },
-];
-
 /*
 const keyboardShortcuts = {
   'Meta+k': { 
@@ -247,6 +237,15 @@ onMounted(() => {
 });
 
 // functions
+onMounted(() => {
+  associAppWindow.forEach((window) => {
+    globalWindowVal.value.set(window.name, {
+      id: window.id,
+      title: window.title,
+      windowCount: 1
+    });
+  });
+})
 const openWindow = (windowName?: string) => {
   if (windowName === "leave") {
     router.push(localePath("/home"));
@@ -301,10 +300,10 @@ const findAndOpenWindow = (windowName: string) => {
     // Use shallowRef for better performance with components
     const windowComponent = shallowRef(app.component);
     titleAppName.value = app.title;
-
+    const abosluteId = uuidv4();
     activeWindows.value.push({
       id: currentOpenAppId.value,
-      absoluteId: uuidv4(),
+      absoluteId: abosluteId,
       component: windowComponent,
       name: windowName,
       title: app.title,
@@ -313,14 +312,18 @@ const findAndOpenWindow = (windowName: string) => {
     });
     currentOpenAppId.value++;
     // Add to navbar
+    const windowNameVal2 = globalWindowVal.value.get(windowName).windowCount === 1 ? windowName : windowName + "(" + globalWindowVal.value.get(windowName).windowCount + ")"
+    console.log(globalWindowVal.value.get(windowName))
+    console.log(windowNameVal2)
     currentNavBar.value.push({
-      name: "anything",
+      name:  windowNameVal2,
       icon: "anything",
-      action: "s",
+      action: "idk",
       flash: true,
-      windowAssociated: "322",
-      minimized: true,
+      windowAssociated: abosluteId,
+      minimized: false,
     });
+    globalWindowVal.value.get(windowName).windowCount++
   }
 };
 

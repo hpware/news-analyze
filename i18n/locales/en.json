@@ -36,12 +36,14 @@
       "title": {
         "find": "Find",
         "interface": "Interface",
-        "documentation": "Documentation"
+        "documentation": "Documentation",
+        "opensource": "Open Source"
       },
       "description": {
         "find": "You can easily find the same topic from different news sources.",
         "interface": "Use a desktop like interface, the one that you already got used to.",
-        "documentation": "We provide a documentation for you to learn how to use the app."
+        "documentation": "We provide a documentation for you to learn how to use the app.",
+        "opensource": "This platform is open source! minus the database part, but I'm going to try!"
       }
     }
   },

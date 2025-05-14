@@ -36,12 +36,14 @@
       "title": {
         "find": "尋找",
         "interface": "使用者介面",
-        "documentation": "教學"
+        "documentation": "教學",
+        "opensource": "開源"
       },
       "description": {
         "find": "你可以輕鬆地從不同的新聞來源找到相同的主題。",
         "interface": "這個網站使用類似 Xfce / MacOS / DSM 的介面，讓你可以簡單使用這個網站。",
-        "documentation": "我做了一組教學，讓你可以學會如何使用這個網站 UI。"
+        "documentation": "我做了一組教學，讓你可以學會如何使用這個網站 UI。",
+        "opensource": "這個平台的所有程式碼都放在Github上，沒有開源的資料庫，我會想辦法把它用其他方式開源！"
       }
     }
   },
