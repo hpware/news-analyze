@@ -17,7 +17,7 @@ const {
   data: fetchNewsOrgInfo,
   pending,
   error,
-} = useFetch("/api/getData/fetchNewsOrgInfo", {
+} = useFetch("/api/cached/getData/fetchNewsOrgInfo", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

@@ -11,6 +11,7 @@ interface currentNavBarInterface {
   action: any;
   flash: boolean;
   windowAssociated: string;
+  minimized: boolean;
 }
 
 interface associAppWindowInterface {
@@ -21,6 +22,7 @@ interface associAppWindowInterface {
 }
 
 // Import plugins
+import { v4 as uuidv4 } from "uuid";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -160,6 +162,17 @@ const associAppWindow = [
   },
 ];
 
+currentNavBar.value = [
+  {
+    name: "anything",
+    icon: "anything",
+    action: "s",
+    flash: true,
+    windowAssociated: "322",
+    minimized: true,
+  },
+];
+
 /*
 const keyboardShortcuts = {
   'Meta+k': { 
@@ -291,6 +304,7 @@ const findAndOpenWindow = (windowName: string) => {
 
     activeWindows.value.push({
       id: currentOpenAppId.value,
+      absoluteId: uuidv4(),
       component: windowComponent,
       name: windowName,
       title: app.title,
@@ -298,6 +312,15 @@ const findAndOpenWindow = (windowName: string) => {
       height: app.height || "300px",
     });
     currentOpenAppId.value++;
+    // Add to navbar
+    currentNavBar.value.push({
+      name: "anything",
+      icon: "anything",
+      action: "s",
+      flash: true,
+      windowAssociated: "322",
+      minimized: true,
+    });
   }
 };
 
@@ -399,23 +422,24 @@ watchEffect((cleanupFn) => {
       <button
         class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
       ></button>
-      <div
+      <div class="overflow-hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white flex-nowrap whitespace-nowrap min-w-0">
+        <div class="flex flex-row flex-shrink-0 min-w-0">
+        <div
         v-for="item in currentNavBar"
         :key="item.name"
-        class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-100 px-4 py-2 cursor-pointer"
+        class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-150 px-4 py-2 cursor-pointer group rounded-xl"
       >
         <button
           @click="unMinWindow(item.windowAssociated)"
           class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
         >
+          <component :is="item.icon" v-if="item.icon"></component>
           <span>{{ item.name }}</span>
-          <span
-            v-if="item.flash"
-            class="animate-ping absolute inline-flex h-3 w-3 rounded-full bg-red-400 opacity-75"
-          ></span>
-          <span v-if="item.icon" :class="item.icon"> </span>
         </button>
       </div>
+      
+    </div>
+  </div>
     </div>
     <div class="flex flex-row gap-5">
       <button

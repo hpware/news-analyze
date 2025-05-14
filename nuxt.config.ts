@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { redirect: "/home" },
     "/zh_tw": { redirect: "/zh_tw/home" },
-    "/api/rss/**": { swr: 3600 },
     "/go/**": { ssr: true },
     "/find/**": { ssr: true },
     // Send ZIP bombs to troll bots
@@ -18,6 +17,7 @@ export default defineNuxtConfig({
     "/wp-login.php": {
       redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip",
     },
+    "/api/cached/**": { swr: 3600 },
   },
 
   css: ["~/styles/main.css"],

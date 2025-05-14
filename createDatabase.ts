@@ -46,7 +46,7 @@ create table if not exists news_articles (
     author text,
     related_uuid text not null
 )
-`
+`;
 
 const hotNews = await sql`
 create table if not exists hot_news (
@@ -57,10 +57,9 @@ create table if not exists hot_news (
     related_uuid text not null,
     created_at timestamptz default current_timestamp
 )
-`
-
+`;
 
 console.log("Creation Complete");
 
 await sql.end();
-process.exit(0)
+process.exit(0);

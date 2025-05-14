@@ -6,7 +6,7 @@ import Button from "~/components/ui/button/Button.vue";
 const pending = ref();
 
 try {
-  const { data, pending } = await useFetch("/api/rss/google");
+  const { data, pending } = await useFetch("/api/cached/rss/google");
   ffeed.value = data.value;
 } catch (error) {
   console.error("Error:", error);

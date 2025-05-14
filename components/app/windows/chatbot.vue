@@ -37,23 +37,27 @@ onMounted(() => {
         </div>
         <hr />
       </div>
-          <div 
-      ref="chatContainerRef"
-      class="flex-1 overflow-y-auto p-4 space-y-4"
-    >
-      <div 
-        v-for="message in messages" 
-        class="max-w-[80%] rounded-lg p-3"
-      >
+      <div ref="chatContainerRef" class="flex-1 overflow-y-auto p-4 space-y-4">
+        <div
+          v-for="message in messages"
+          class="max-w-[80%] rounded-lg p-3"
+        ></div>
       </div>
-    </div>
-
 
       <div class="text-black w-full flex flex-row space-x-2">
-        <Input class="flex-1 rounded-xl" placeholder="Type a message..." v-ref="message" />
+        <Input
+          class="flex-1 rounded-xl"
+          placeholder="Type a message..."
+          v-ref="message"
+        />
         <button
           class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500"
-          :disabled="() => {if (!message) return false; else return true;}"
+          :disabled="
+            () => {
+              if (!message) return false;
+              else return true;
+            }
+          "
         >
           <Send class="w-5 h-5" />
         </button>

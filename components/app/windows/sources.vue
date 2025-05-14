@@ -13,7 +13,7 @@ const {
   data: source,
   pending,
   error,
-} = await useFetch("/api/getData/fetchSources", {
+} = await useFetch("/api/cached/getData/fetchSources", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
