@@ -248,7 +248,11 @@ onMounted(() => {
 })
 const openWindow = (windowName?: string) => {
   if (windowName === "leave") {
-    router.push(localePath("/home"));
+    if (confirm("Are you sure?")) {
+      router.push(localePath("/home")); 
+    } else {
+      return
+    }
   } else {
     if (windowName) findAndOpenWindow(windowName);
   }
@@ -340,10 +344,13 @@ const obtainTopWindowPosition = (windowId: string) => {
   }
 };
 
-const closeWindow = (windowId: string) => {
+const closeWindow = (windowId: string, windowAID: string) => {
   activeWindows.value = activeWindows.value.filter(
     (window) => window.id !== windowId,
   );
+  currentNavBar.value = currentNavBar.value.filter(
+    (window) => window.windowAssociated !== windowAID
+  )
   console.log("activeWindows.value", activeWindows.value);
 };
 
@@ -508,7 +515,7 @@ watchEffect((cleanupFn) => {
         v-for="window in activeWindows"
         :key="window.id"
         :title="window.title"
-        @close="closeWindow(window.id)"
+        @close="closeWindow(window.id, window.absoluteId)"
         @min="unMinWindow(window.id)"
         :width="window.width"
         :height="window.height"

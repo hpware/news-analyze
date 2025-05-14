@@ -64,6 +64,7 @@ onMounted(async () => {
           :src="imageUrls[item.id] || noImageLogo"
           alt="Organization Logo"
           class="w-16 h-16 rounded-xl"
+          draggable="false"
         />
         <h1>{{ item.title }}</h1>
         <span>{{ item.description }}</span>

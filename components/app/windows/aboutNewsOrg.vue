@@ -46,6 +46,7 @@ onMounted(() => {
         <img
           :src="fetchNewsOrgInfo?.logoUrl"
           class="w-48 h-48 rounded-l-3xl object-cover p-0 m-0"
+          draggable="false"
         />
         <div class="flex flex-col gap-3 text-left">
           <h1 class="text-4xl font-bold m-3 text-left">
