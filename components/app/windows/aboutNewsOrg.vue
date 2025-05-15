@@ -6,6 +6,8 @@ import { ScrambleTextPlugin } from "gsap/dist/ScrambleTextPlugin";
 gsap.registerPlugin(ScrambleTextPlugin);
 const loading = ref(true);
 const { t, locale } = useI18n();
+// Great, there are now no errors ig
+const emit = defineEmits(["windowopener", "error", "loadValue"]);
 
 const props = defineProps({
   values: {

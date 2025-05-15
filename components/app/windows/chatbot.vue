@@ -7,6 +7,11 @@ const cookieChatId = cookie.value;
 const chatId = ref();
 const inputMessage = ref();
 const messages = ref([]);
+// Great, there are now no errors ig
+const emit = defineEmits(["windowopener", "error", "loadValue"]);
+const props = defineProps<{
+  values?: string;
+}>();
 onMounted(async () => {
   console.log(cookieChatId);
   if (cookieChatId) {

@@ -1,4 +1,6 @@
 <script setup lamng="ts">
+// Great, there are now no errors ig
+const emit = defineEmits(["windowopener", "error", "loadValue"]);
 import sha512 from "crypto-js/sha512";
 const userAccount = ref("");
 const userPassword = ref("");

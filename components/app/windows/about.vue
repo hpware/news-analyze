@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import copyrightInfo from "~/components/app/info/copyright.vue";
+// Great, there are now no errors ig
+const emit = defineEmits(["windowopener", "error", "loadValue"]);
+const props = defineProps<{
+  values?: string;
+}>();
 </script>
 <template>
   <div class="justify-center align-center text-center flex flex-col">

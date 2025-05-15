@@ -2,7 +2,11 @@
 import noImageLogo from "~/public/geterrorassets/noImageLogo.svg";
 const { t, locale } = useI18n();
 
-const emit = defineEmits(["windowopener", "loadValue"]);
+// Great, there are now no errors ig
+const emit = defineEmits(["windowopener", "error", "loadValue"]);
+const props = defineProps<{
+  values?: string;
+}>();
 
 const openNewWindow = (itemId: string) => {
   emit("windowopener", "aboutNewsOrg");

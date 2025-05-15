@@ -68,13 +68,17 @@ const stopDrag = () => {
       height: props.height || '300px',
     }"
     class="fixed rounded-xl shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
-    :class="props.black ? 'bg-black text-white' : 'bg-white text-black'"
+    :class="
+      props.black
+        ? 'bg-black text-white border border-white border-t-0'
+        : 'bg-white text-black'
+    "
   >
     <div
       @mousedown="startDrag"
-      class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0"
+      class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0 text-white"
     >
-      <h3 class="font-semibold">{{ title }}</h3>
+      <h3 class="font-semibold text-white">{{ title }}</h3>
       <div class="flex flex-row gap-1">
         <button
           @click="emit('min')"
