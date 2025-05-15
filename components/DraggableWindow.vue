@@ -7,6 +7,7 @@ const props = defineProps<{
   initialY?: number;
   width?: string;
   height?: string;
+  black?: boolean | false;
 }>();
 
 const emit = defineEmits(["close", "min", "maximize", "restore"]);
@@ -66,7 +67,8 @@ const stopDrag = () => {
       width: props.width || '400px',
       height: props.height || '300px',
     }"
-    class="fixed bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
+    class="fixed rounded-xl shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
+    :class="props.black ? 'bg-black text-white' : 'bg-white text-black'"
   >
     <div
       @mousedown="startDrag"

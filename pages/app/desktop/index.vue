@@ -34,6 +34,7 @@ import SourcesWindow from "~/components/app/windows/sources.vue";
 import AboutWindow from "~/components/app/windows/about.vue";
 import ChatbotWindow from "~/components/app/windows/chatbot.vue";
 import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
+import TTYWindow from "~/components/app/windows/tty.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
 
 // Icons
@@ -159,7 +160,10 @@ const associAppWindow = [
     name: "tty",
     id: "11",
     title: t("app.terminal"),
-    component: Error404Window,
+    component: TTYWindow,
+    width: "600px",
+    height: "400px",
+    black: true,
   },
 ];
 
@@ -314,6 +318,7 @@ const findAndOpenWindow = (windowName: string) => {
       title: app.title,
       width: app.width || "400px",
       height: app.height || "300px",
+      black: app.black || false,
     });
     currentOpenAppId.value++;
     // Add to navbar
@@ -528,6 +533,7 @@ watchEffect((cleanupFn) => {
         :height="window.height"
         @click="obtainTopWindowPosition(window.id)"
         @maximize="maxWindow(window.id)"
+        :black="window.black"
       >
         <Suspense>
           <Component
