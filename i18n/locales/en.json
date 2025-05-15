@@ -1,5 +1,6 @@
 {
   "localeflag": "🇺🇸",
+  "nextlang": "zh_tw",
   "core": {
     "sitename": "BlindSpec"
   },
@@ -51,6 +52,7 @@
   "Welcome": "Welcome",
   "loading": "Loading...",
   "app": {
+    "changelangmessage": "Switching the language",
     "launchtext": "Cooking up the desktop...",
     "hotnews": "Hot News",
     "news": "News",

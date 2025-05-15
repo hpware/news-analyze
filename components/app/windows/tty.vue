@@ -103,6 +103,18 @@ const commands = [
     command: "help",
     run: displayHelp,
   },
+  {
+    command: "關於",
+    run: printAbout,
+  },
+  {
+    command: "清掉",
+    run: cleanTTY,
+  },
+  {
+    command: "幫助",
+    run: displayHelp,
+  },
 ];
 </script>
 

@@ -1,5 +1,6 @@
 {
   "localeflag": "🇹🇼",
+  "nextlang": "en",
   "core": {
     "sitename": "新聞盲點平台"
   },
@@ -51,6 +52,7 @@
   "Welcome": "歡迎",
   "loading": "載入中...",
   "app": {
+    "changelangmessage": "正在切換語言中...",
     "launchtext": "系統開機中...",
     "hotnews": "熱門新聞",
     "news": "新聞",

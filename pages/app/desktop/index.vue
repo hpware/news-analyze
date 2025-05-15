@@ -72,6 +72,7 @@ const titleAppName = ref("Desktop");
 const openingAppViaAnApp = ref(false);
 const passedValues = ref();
 const globalWindowVal = ref(new Map());
+const changeLangAnimation = ref(false);
 
 // Key Data
 const menuItems = [
@@ -385,11 +386,21 @@ watchEffect(() => {
 });
 // Booting animation
 onMounted(() => {
+  const changeLang = route.query.changelang;
+  if (changeLang) {
+    bootingAnimation.value = false;
+    changeLangAnimation.value = true;
+  }
+  setTimeout(() => {
+    changeLangAnimation.value = false;
+  }, 4000);
+});
+
+onMounted(() => {
   // booting animation bypass
   const bootingHeaderParams = route.query.bypass;
   if (bootingHeaderParams) {
     bootingAnimation.value = false;
-    return;
   }
   if (bootingAnimation.value) {
     gsap.to(popMessage.value, {
@@ -397,10 +408,10 @@ onMounted(() => {
       text: t("app.booting"),
       ease: "none",
     });
-    setTimeout(() => {
-      bootingAnimation.value = false;
-    }, 2000);
   }
+  setTimeout(() => {
+    bootingAnimation.value = false;
+  }, 2000);
 });
 
 watchEffect((cleanupFn) => {
@@ -415,6 +426,13 @@ watchEffect((cleanupFn) => {
 });
 </script>
 <template>
+  <div v-if="changeLangAnimation">
+    <div
+      class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-0 overscroll-none bg-gray-600/50 z-[999999]"
+    >
+      <span>{{ t("app.changelangmessage") }}</span>
+    </div>
+  </div>
   <div v-if="bootingAnimation">
     <div
       class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-0 overscroll-none"
@@ -464,12 +482,13 @@ watchEffect((cleanupFn) => {
       </div>
     </div>
     <div class="flex flex-row gap-5">
-      <button
-        class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded"
-        @click="toggleLangMenu"
-      >
-        {{ t("localeflag") }}
-      </button>
+      <NuxtLink :to="localePath('/app/desktop?changelang=1', t('nextlang'))">
+        <button
+          class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded"
+        >
+          {{ t("localeflag") }}
+        </button>
+      </NuxtLink>
       <div class="text-center align-middle justify-center text-white">
         {{ currentDate }}
       </div>
@@ -493,26 +512,6 @@ watchEffect((cleanupFn) => {
           <span>{{ item.name }}</span>
           <ChevronRightIcon class="w-4 h-4 justify-center align-center" />
         </button>
-      </div>
-    </div>
-  </Transition>
-  <Transition
-    enter-active-class="animate__animated animate__fadeInDown animate_fast03"
-    leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
-  >
-    <div v-if="langMenuOpen">
-      <div
-        class="w-48 bg-white rounded-md shadow-lg py-1 flex flex-col gap-y-5"
-      >
-        <a
-          v-for="loc in availableLocales"
-          :key="loc.code"
-          :href="switchLocalePath(loc.code)"
-          v-on:click="langMenuOpen = false"
-          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-all duration-100"
-        >
-          {{ loc.name || loc.code }}
-        </a>
       </div>
     </div>
   </Transition>

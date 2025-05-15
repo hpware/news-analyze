@@ -48,6 +48,7 @@ export default defineNuxtConfig({
   },
 
   app: {
+    buildAssetsDir: "/_assets/",
     head: {
       title: "",
       htmlAttrs: {
@@ -55,7 +56,6 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: "dns-prefetch", href: "https://utfs.io" },
-        { rel: "dns-prefetch", href: "https://s3.yhw.tw" },
         { rel: "icon", type: "image/svg", href: "/favicon.svg" },
       ],
       meta: [
