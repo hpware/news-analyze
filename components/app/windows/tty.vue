@@ -13,8 +13,6 @@ const openNewWindow = (windowId: string) => {
   emit("windowopener", windowId);
 };
 
-const printAbout = () => {};
-
 const focusInput = () => {
   inputRef.value?.focus();
 };
@@ -23,21 +21,31 @@ onMounted(() => {
 });
 
 const startScript = () => {
-  console.log(commandInputBox.value);
-  const firstWord = commandInputBox.value.replace(/\s+.*$/, "").trim();
-  const app = commands.find((item) => item.command === firstWord);
-  if (app) {
-    app.run(commandInputBox.value);
-  } else {
-    console.error("Cannot find match");
+  if (commandInputBox.value) {
+    console.log(commandInputBox.value);
+    const firstWord = commandInputBox.value.replace(/\s+.*$/, "").trim();
+    const app = commands.find((item) => item.command === firstWord);
+    if (app) {
+      app.run(commandInputBox.value);
+    } else {
+      console.error("Cannot find match");
+    }
+    commandInputBox.value = "";
   }
-  commandInputBox.value = "";
 };
 
 const findExecutable = (inputContent: string) => {
-  console.log(inputContent);
+  const executeMatch = inputContent.match(/^execute\s+(.*)$/);
+  if (executeMatch) {
+    const targetPath = executeMatch[1].trim();
+    console.log("Executing:", targetPath);
+    openNewWindow(targetPath);
+  } else {
+    console.error("Invalid execute command format");
+  }
 };
 
+const printAbout = () => {};
 // scripts
 const commands = [
   {
