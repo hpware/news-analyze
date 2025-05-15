@@ -1,7 +1,25 @@
 <script setup lang="ts">
+interface prevCommandsInterface {
+  id: number;
+  displaycontent: string;
+  userinput: boolean;
+  error: boolean;
+}
+
 const commandInputBox = ref();
 const inputRef = ref<HTMLInputElement | null>(null);
-const prevCommands = ref([]);
+const prevCommandsId = ref(0);
+const prevCommands = ref<prevCommandsInterface[]>([]);
+
+const printData = (content: any, userinput?: boolean, error?: boolean) => {
+  prevCommands.value.push({
+    id: prevCommandsId,
+    displaycontent: content,
+    userinput: userinput ? userinput : false,
+    error: error ? error : false,
+  });
+  prevCommandsId.value++;
+};
 
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
@@ -21,6 +39,7 @@ onMounted(() => {
 });
 
 const startScript = () => {
+  printData(commandInputBox.value, true);
   if (commandInputBox.value) {
     console.log(commandInputBox.value);
     const firstWord = commandInputBox.value.replace(/\s+.*$/, "").trim();
@@ -28,7 +47,7 @@ const startScript = () => {
     if (app) {
       app.run(commandInputBox.value);
     } else {
-      console.error("Cannot find match");
+      printData(`${commandInputBox.value} does not exist.`, false, true);
     }
     commandInputBox.value = "";
   }
@@ -45,7 +64,15 @@ const findExecutable = (inputContent: string) => {
   }
 };
 
-const printAbout = () => {};
+const aboutMessage = "This is a about message \n Cool ig";
+
+const printAbout = () => {
+  printData(aboutMessage);
+};
+
+const cleanTTY = () => {
+  prevCommands.value = [];
+};
 // scripts
 const commands = [
   {
@@ -56,13 +83,30 @@ const commands = [
     command: "about",
     run: printAbout,
   },
+  {
+    command: "clear",
+    run: cleanTTY,
+  },
+  {
+    command: "clean",
+    run: cleanTTY,
+  },
 ];
 </script>
 
 <template>
   <div class="w-full h-full">
-    <div class="text-white">
-      <div v-for="i in prevCommands" :key="i.id"></div>
+    <div class="text-white flex flex-col">
+      <div v-for="i in prevCommands" :key="i.id">
+        <span v-if="i.userinput"
+          ><span class="mx-1">></span><span>{{ i.displaycontent }}</span></span
+        >
+        <span
+          v-else
+          :class="i.error ? 'text-red-600' : 'text-white'"
+          v-html="i.displaycontent.replace(/\n/g, '<br>')"
+        ></span>
+      </div>
     </div>
     <div class="text-white" @click="focusInput">
       <div class="flex flex-row">
