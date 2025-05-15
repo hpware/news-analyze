@@ -6,6 +6,8 @@ interface prevCommandsInterface {
   error: boolean;
 }
 
+const router = useRouter();
+const localePath = useLocalePath();
 const commandInputBox = ref();
 const inputRef = ref<HTMLInputElement | null>(null);
 const prevCommandsId = ref(0);
@@ -19,6 +21,12 @@ const printData = (content: any, userinput?: boolean, error?: boolean) => {
     error: error ? error : false,
   });
   prevCommandsId.value++;
+};
+
+const displayHelp = () => {
+  const helpContent =
+    "Here are the commands for the Terminal \n\n execute [app]: This command opens an application in the [app] slot. \n about: This displays the about text window \n clear/clean: Wipe the terminal log. \n help: This help text system :D \n\n For more info, please view the documentation: https://news.yuanhau.com/docs";
+  printData(helpContent);
 };
 
 // Great, there are now no errors ig
@@ -64,9 +72,9 @@ const findExecutable = (inputContent: string) => {
   }
 };
 
-const aboutMessage = "This is a about message \n Cool ig";
-
 const printAbout = () => {
+  const aboutMessage =
+    "This platform is made by Howard :) \n You can learn more about me here: https://yuanhau.com/ \n And this website is also open source \n The Github repo is here: https://github.com/hpware/news-analyze";
   printData(aboutMessage);
 };
 
@@ -90,6 +98,10 @@ const commands = [
   {
     command: "clean",
     run: cleanTTY,
+  },
+  {
+    command: "help",
+    run: displayHelp,
   },
 ];
 </script>
