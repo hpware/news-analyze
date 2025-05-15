@@ -3,13 +3,26 @@ import { History, Plus, Send } from "lucide-vue-next";
 import { Input } from "~/components/ui/input";
 const { t } = useI18n();
 const cookie = useCookie("lastChatId");
-const lastChatId = cookie.value;
-const message = ref();
+const cookieChatId = cookie.value;
+const chatId = ref();
+const inputMessage = ref();
 const messages = ref([]);
-onMounted(() => {
-  console.log(lastChatId);
-  if (lastChatId) {
+onMounted(async () => {
+  console.log(cookieChatId);
+  if (cookieChatId) {
+  } else {
+    const { data: checkUserChatId } = await useFetch(
+      "/api/ai/chat/actions/findUserChatId",
+    );
+    cookieChatId.value = checkUserChatId.value;
   }
+});
+onMounted(async () => {
+  const {
+    data: getData,
+    pending,
+    error,
+  } = useFetch(`/api/ai/chat/${chatId.value}`);
 });
 </script>
 <template>
@@ -48,16 +61,11 @@ onMounted(() => {
         <Input
           class="flex-1 rounded-xl"
           placeholder="Type a message..."
-          v-ref="message"
+          v-model="inputMessage"
         />
         <button
           class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500"
-          :disabled="
-            () => {
-              if (!message) return false;
-              else return true;
-            }
-          "
+          :disabled="!inputMessage?.trim()"
         >
           <Send class="w-5 h-5" />
         </button>
