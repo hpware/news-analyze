@@ -29,7 +29,7 @@
     # Copy build outputs from builder
     COPY --from=builder /app/.output /app/.output
 
-    RUN bun install
+    RUN bun install --production
 
     EXPOSE 3000
 
