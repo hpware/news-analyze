@@ -51,6 +51,7 @@
   "Welcome": "歡迎",
   "loading": "載入中...",
   "app": {
+    "launchtext": "系統開機中...",
     "hotnews": "熱門新聞",
     "news": "新聞",
     "sources": "資料來源",

@@ -165,21 +165,21 @@ const associAppWindow = [
 
 /*
 const keyboardShortcuts = {
-  'Meta+k': { 
-    action: () => toggleMenu(), 
-    description: 'Toggle menu' 
+  'Meta+k': {
+    action: () => toggleMenu(),
+    description: 'Toggle menu'
   },
-  'Meta+q': { 
-    action: () => router.push(localePath("/home")), 
-    description: 'Quit to home' 
+  'Meta+q': {
+    action: () => router.push(localePath("/home")),
+    description: 'Quit to home'
   },
-  'Meta+w': { 
-    action: () => closeWindow(activeWindows.value[activeWindows.value.length - 1]?.id), 
-    description: 'Close current window' 
+  'Meta+w': {
+    action: () => closeWindow(activeWindows.value[activeWindows.value.length - 1]?.id),
+    description: 'Close current window'
   },
-  'Meta+t': { 
-    action: () => findAndOpenWindow('tty'), 
-    description: 'Open terminal' 
+  'Meta+t': {
+    action: () => findAndOpenWindow('tty'),
+    description: 'Open terminal'
   },
 }
 
@@ -242,16 +242,17 @@ onMounted(() => {
     globalWindowVal.value.set(window.name, {
       id: window.id,
       title: window.title,
-      windowCount: 1
+      windowCount: 1,
     });
   });
-})
+});
+
 const openWindow = (windowName?: string) => {
   if (windowName === "leave") {
     if (confirm("Are you sure?")) {
-      router.push(localePath("/home")); 
+      router.push(localePath("/home"));
     } else {
-      return
+      return;
     }
   } else {
     if (windowName) findAndOpenWindow(windowName);
@@ -316,18 +317,22 @@ const findAndOpenWindow = (windowName: string) => {
     });
     currentOpenAppId.value++;
     // Add to navbar
-    const windowNameVal2 = globalWindowVal.value.get(windowName).windowCount === 1 ? windowName : windowName + "(" + globalWindowVal.value.get(windowName).windowCount + ")"
-    console.log(globalWindowVal.value.get(windowName))
-    console.log(windowNameVal2)
+    const windowNameVal2 =
+      globalWindowVal.value.get(windowName).windowCount === 1
+        ? windowName
+        : windowName +
+          "(" +
+          globalWindowVal.value.get(windowName).windowCount +
+          ")";
     currentNavBar.value.push({
-      name:  windowNameVal2,
+      name: windowNameVal2,
       icon: "anything",
       action: "idk",
       flash: true,
       windowAssociated: abosluteId,
       minimized: false,
     });
-    globalWindowVal.value.get(windowName).windowCount++
+    globalWindowVal.value.get(windowName).windowCount++;
   }
 };
 
@@ -338,7 +343,7 @@ const obtainTopWindowPosition = (windowId: string) => {
     );
     if (windowIndex !== -1) {
       const [window] = activeWindows.value.splice(windowIndex, 1);
-      titleAppName.value = window.name;
+      titleAppName.value = window.title;
       activeWindows.value.push(window);
     }
   }
@@ -349,8 +354,8 @@ const closeWindow = (windowId: string, windowAID: string) => {
     (window) => window.id !== windowId,
   );
   currentNavBar.value = currentNavBar.value.filter(
-    (window) => window.windowAssociated !== windowAID
-  )
+    (window) => window.windowAssociated !== windowAID,
+  );
   console.log("activeWindows.value", activeWindows.value);
 };
 
@@ -366,9 +371,13 @@ const maxWindow = (windowId: string) => {};
 
 // Title
 useSeoMeta({
-  title: titleAppName.value + " - Desktop",
+  title: "Desktop",
 });
-
+watchEffect(() => {
+  useSeoMeta({
+    title: titleAppName.value + " - Desktop",
+  });
+});
 // Booting animation
 onMounted(() => {
   // booting animation bypass
@@ -410,9 +419,7 @@ watchEffect((cleanupFn) => {
         class="w-3/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
       <br />
-      <span class="text-xl text-bold mt-3"
-        >Launching your fancy desktop...</span
-      >
+      <span class="text-xl text-bold mt-3">{{ t("app.launchtext") }}</span>
     </div>
   </div>
   <div
@@ -432,24 +439,24 @@ watchEffect((cleanupFn) => {
       <button
         class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
       ></button>
-      <div class="overflow-hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white flex-nowrap whitespace-nowrap min-w-0">
-        <div class="flex flex-row flex-shrink-0 min-w-0">
-        <div
-        v-for="item in currentNavBar"
-        :key="item.name"
-        class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-150 px-4 py-2 cursor-pointer group rounded-xl"
+      <div
+        class="overflow-hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white flex-nowrap whitespace-nowrap min-w-0"
       >
-        <button
-          @click="unMinWindow(item.windowAssociated)"
-          class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-        >
-          <component :is="item.icon" v-if="item.icon"></component>
-          <span>{{ item.name }}</span>
-        </button>
+        <div class="flex flex-row flex-shrink-0 min-w-0">
+          <div
+            v-for="item in currentNavBar"
+            :key="item.name"
+            class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-150 px-4 py-1 cursor-pointer group rounded-xl"
+          >
+            <button
+              @click="unMinWindow(item.windowAssociated)"
+              class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
+            >
+              <span>{{ item.name }}</span>
+            </button>
+          </div>
+        </div>
       </div>
-      
-    </div>
-  </div>
     </div>
     <div class="flex flex-row gap-5">
       <button

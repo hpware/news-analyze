@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { GlobeAltIcon } from "@heroicons/vue/24/outline";
+import { Facebook } from "lucide-vue-next";
 import { gsap } from "gsap";
 import { ScrambleTextPlugin } from "gsap/dist/ScrambleTextPlugin";
 gsap.registerPlugin(ScrambleTextPlugin);
@@ -17,7 +18,7 @@ const {
   data: fetchNewsOrgInfo,
   pending,
   error,
-} = useFetch("/api/cached/getData/fetchNewsOrgInfo", {
+} = useFetch("/api/cached/getData/fetchNewsOrgInfo/2293", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -55,18 +56,23 @@ onMounted(() => {
           <span class="text-ms m-1 mt-5 text-left text-wrap">{{
             fetchNewsOrgInfo?.description
           }}</span>
+          <div
+            class="gap-[3px] flex flex-row text-center align-center justify-center"
+          >
+            <a
+              :href="fetchNewsOrgInfo?.website"
+              target="_blank"
+              class="text-gray-800 hover:text-gray-500 transiton-all duration-150 flex flex-row"
+              ><GlobeAltIcon class="w-6 h-6" />網站</a
+            >
+            <a
+              :href="fetchNewsOrgInfo?.facebook"
+              target="_blank"
+              class="text-gray-800 hover:text-gray-500 transiton-all duration-150 flex flex-row"
+              ><Facebook class="w-6 h-6" />Facebook
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div
-        class="gap-[3px] flex flex-row text-center align-center justify-center"
-      >
-        <a
-          :href="fetchNewsOrgInfo?.website"
-          target="_blank"
-          class="text-blue-200 hover:text-blue-300 transiton-all duration-100 flex flex-row"
-          ><GlobeAltIcon class="w-6 h-6" />網站</a
-        >
       </div>
     </div>
   </div>

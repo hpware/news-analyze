@@ -51,6 +51,7 @@
   "Welcome": "Welcome",
   "loading": "Loading...",
   "app": {
+    "launchtext": "Cooking up the desktop...",
     "hotnews": "Hot News",
     "news": "News",
     "sources": "Sources",
