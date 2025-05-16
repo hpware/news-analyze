@@ -6,7 +6,14 @@ interface chatInterface {
   user: boolean;
 }
 
-import { History, Plus, Send } from "lucide-vue-next";
+import {
+  History,
+  Plus,
+  Send,
+  Square,
+  User,
+  BotMessageSquare,
+} from "lucide-vue-next";
 import { Input } from "~/components/ui/input";
 import { v4 as uuidv4 } from "uuid";
 const { t } = useI18n();
@@ -16,6 +23,7 @@ const chatId = ref();
 const inputMessage = ref();
 const messages = ref<chatInterface[]>([]);
 const messageIndex = ref();
+const aiGenerating = ref(false);
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
 const props = defineProps<{
@@ -24,6 +32,7 @@ const props = defineProps<{
 
 const sendChatData = (event?: KeyboardEvent) => {
   if (event?.shiftKey) return;
+  if (inputMessage.value === "") return;
   const userMessage = inputMessage.value;
   inputMessage.value = "";
   messages.value.push({
@@ -32,6 +41,10 @@ const sendChatData = (event?: KeyboardEvent) => {
     message: userMessage,
     user: true,
   });
+  aiGenerating.value = true;
+  setTimeout(() => {
+    aiGenerating.value = false;
+  }, 3000);
 };
 
 onMounted(async () => {
@@ -79,26 +92,48 @@ onMounted(async () => {
         </div>
       </div>
       <div ref="chatContainerRef" class="flex-1 overflow-y-auto p-4 space-y-4">
-        <div v-for="message in messages" class="max-w-[80%] rounded-lg p-3">
-          {{ message.message }}
+        <div
+          v-for="message in messages"
+          class="max-w-[80%] rounded-lg p-3 bg-gray-300/70 rounded-xl"
+        >
+          <div v-if="message.user" class="flex flex-row gap-2">
+            <User class="w-5 h-5" />{{ message.message }}
+          </div>
+          <div v-else class="flex flex-row gap-2">
+            <BotMessageSquare class="w-5 h-5" />{{ message.message }}
+          </div>
         </div>
       </div>
       <div
-        class="text-black w-full flex flex-row space-x-2 sticky bottom-0 border-t p-2 min-h-0 border rounded-xl gray-500/80 backdrop-blur-sm"
+        class="space-x-2 sticky bottom-0 border-t p-2 min-h-0 border rounded-xl gray-500/80 backdrop-blur-sm"
       >
-        <Input
-          class="flex-1 rounded-xl"
-          placeholder="Type a message..."
-          v-model="inputMessage"
-          @keyup.enter="sendChatData($event)"
-        />
-        <button
-          class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500"
-          :disabled="!inputMessage?.trim()"
-          @click="sendChatData()"
+        <div class="text-black w-full flex flex-row">
+          <Input
+            class="flex-1 rounded-xl"
+            placeholder="Type a message..."
+            v-model="inputMessage"
+            @keyup.enter="sendChatData($event)"
+          />
+          <button
+            class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500"
+            :disabled="!inputMessage?.trim()"
+            @click="sendChatData()"
+            v-if="!aiGenerating"
+          >
+            <Send class="w-5 h-5" />
+          </button>
+          <button
+            class="pl-2 pr-2 mr-1 ml-1 bg-black text-white rounded-full hover:bg-gray-700 hover:translate-y-[-4px] transition-all duration-300 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:bg-color-500"
+            :disabled="!inputMessage?.trim()"
+            @click="sendChatData()"
+            v-else
+          >
+            <Square class="w-5 h-5" />
+          </button>
+        </div>
+        <span class="text-xs text-center justify-center align-center w-full"
+          >Note: AI might create imbalanced views.</span
         >
-          <Send class="w-5 h-5" />
-        </button>
       </div>
     </div>
   </div>
