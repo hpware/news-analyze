@@ -65,10 +65,10 @@ const findExecutable = (inputContent: string) => {
   const executeMatch = inputContent.match(/^execute\s+(.*)$/);
   if (executeMatch) {
     const targetPath = executeMatch[1].trim();
-    console.log("Executing:", targetPath);
     openNewWindow(targetPath);
+    printData(`Running ${targetPath}...`);
   } else {
-    console.error("Invalid execute command format");
+    printData(`${executeMatch} ia not an application.`, false, true);
   }
 };
 

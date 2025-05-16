@@ -17,8 +17,12 @@ interface currentNavBarInterface {
 interface associAppWindowInterface {
   name: string;
   id: string;
+  absoluteId: string;
   title: string;
   component: any;
+  width: string;
+  height: string;
+  black: boolean;
 }
 
 // Import plugins
@@ -373,7 +377,12 @@ const openNewWindowViaApp = (windowId: string) => {
   }, 1000);
 };
 
-const maxWindow = (windowId: string) => {};
+const maxWindow = (windowUUId: string) => {
+  const windowIndex = activeWindows.value.findIndex(
+    (window) => window.absoluteId === windowUUId,
+  );
+  console.log(windowIndex);
+};
 
 // Title
 useSeoMeta({
@@ -531,7 +540,7 @@ watchEffect((cleanupFn) => {
         :width="window.width"
         :height="window.height"
         @click="obtainTopWindowPosition(window.id)"
-        @maximize="maxWindow(window.id)"
+        @maximize="maxWindow(window.absoluteId)"
         :black="window.black"
       >
         <Suspense>
