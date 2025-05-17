@@ -76,7 +76,7 @@ const stopDrag = () => {
   >
     <div
       @mousedown="startDrag"
-      class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0 text-white"
+      class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0 text-white z-[50]"
     >
       <h3 class="font-semibold text-white">{{ title }}</h3>
       <div class="flex flex-row gap-1">

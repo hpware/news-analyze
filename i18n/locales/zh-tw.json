@@ -51,6 +51,8 @@
   "dailybriefing": "今日報導",
   "Welcome": "歡迎",
   "loading": "載入中...",
+  "error": "你還沒登入ㄟ，這個功能要登入才可以用",
+  "systemerror": "ㄚ 你撞上了一個錯誤，可以傳給我嗎？我在DC的帳號是[at]hwtw ",
   "app": {
     "changelangmessage": "正在切換語言中...",
     "launchtext": "系統開機中...",

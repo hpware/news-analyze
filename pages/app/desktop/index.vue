@@ -39,6 +39,7 @@ import AboutWindow from "~/components/app/windows/about.vue";
 import ChatbotWindow from "~/components/app/windows/chatbot.vue";
 import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import TTYWindow from "~/components/app/windows/tty.vue";
+import FavStaredWindow from "~/components/app/windows/fav.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
 
 // Icons
@@ -137,7 +138,7 @@ const associAppWindow = [
     name: "starred",
     id: "7",
     title: t("app.starred"),
-    component: Error404Window,
+    component: FavStaredWindow,
   },
   {
     name: "chatbot",
@@ -384,6 +385,10 @@ const maxWindow = (windowUUId: string) => {
   console.log(windowIndex);
 };
 
+const toggleMinWindow = (windowUUId: string) => {
+  const windowIndex = "";
+};
+
 // Title
 useSeoMeta({
   title: "Desktop",
@@ -459,7 +464,7 @@ watchEffect((cleanupFn) => {
     v-else
   >
     <!--Menu container-->
-    <div class="flex flex-row g-2 text-gray-400 text-white z-9999">
+    <div class="flex flex-row g-2 text-gray-400 z-9999">
       <button
         @click="toggleMenu"
         class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row"
@@ -481,7 +486,7 @@ watchEffect((cleanupFn) => {
             class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-150 px-4 py-1 cursor-pointer group rounded-xl"
           >
             <button
-              @click="unMinWindow(item.windowAssociated)"
+              @click="toggleMinWindow(item.windowAssociated)"
               class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
             >
               <span>{{ item.name }}</span>

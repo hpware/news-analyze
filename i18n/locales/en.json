@@ -51,6 +51,8 @@
   "dailybriefing": "Daily Briefing",
   "Welcome": "Welcome",
   "loading": "Loading...",
+  "error": "Oops! You can not use this resoure before logging in.",
+  "systemerror": "Oh cool, you found an error, please contact [at]hwtw on Discord, and I can **try** to fix it",
   "app": {
     "changelangmessage": "Switching the language...",
     "launchtext": "Cooking up the desktop...",
