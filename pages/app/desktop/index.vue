@@ -464,13 +464,14 @@ watchEffect((cleanupFn) => {
     v-else
   >
     <!--Menu container-->
-    <div class="flex flex-row g-2 text-gray-400 z-9999">
+    <div class="flex flex-row g-2 text-gray-400 z-9999 selection:opacity-0">
       <button
         @click="toggleMenu"
         class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row"
       >
         <ComputerDesktopIcon />
       </button>
+      <!--DO NOT MODIFY THE CLASSES OF THIS |, THIS COULD WORK OR BRAKE I HAVE NO CLUE WHY DOES IT DO THAT, BUT DON'T DO IT.-->
       <span class="ml-1 mr-2 text-[20px]">|</span>
       <!--navbar icons for min and max application window-->
       <button
@@ -498,12 +499,14 @@ watchEffect((cleanupFn) => {
     <div class="flex flex-row gap-5">
       <NuxtLink :to="localePath('/app/desktop?changelang=1', t('nextlang'))">
         <button
-          class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded"
+          class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded selection:opacity-0"
         >
           {{ t("localeflag") }}
         </button>
       </NuxtLink>
-      <div class="text-center align-middle justify-center text-white">
+      <div
+        class="text-center align-middle justify-center text-white selection:opacity-0 hover:cursor-default"
+      >
         {{ currentDate }}
       </div>
     </div>
@@ -515,7 +518,7 @@ watchEffect((cleanupFn) => {
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
   >
     <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998"
+      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998 selection:opacity-0"
       v-if="menuOpen"
     >
       <div v-for="item in menuItems" :key="item.name" class="">
