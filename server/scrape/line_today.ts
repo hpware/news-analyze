@@ -21,16 +21,30 @@ async function lineToday(slug: string) {
   // 加 await? no.
   // AHHH I NEED TO CHANGE TO SOMETHING ELSE.
   const html = cheerio.load(data);
-  const title = html("h1.entityTitle").text().replaceAll("\n", "");
-
+  const title = html("h1.entityTitle")
+    .text()
+    .replaceAll("\n", "")
+    .replace("  ", "");
   const paragraph = html("article.news-content").text();
+  const newsOrgdir = html("h4.entityPublishInfo-publisher")
+    .text()
+    .replaceAll("\n", "")
+    .replaceAll(" ", "");
+  const author = html("span.entityPublishInfo-meta-info")
+    .text()
+    .replace(/更新於.*發布於.*•/g, "")
+    .replaceAll("\n", "")
+    .replaceAll(" ", "");
+
   return {
     title: title,
     paragraph: paragraph,
+    origin: newsOrgdir,
+    author: author,
   };
 }
 
 // Texting on console only!
-//console.log(await lineToday("oqmazXP"));
+//console.log(await lineToday("kEJjxKw"));
 
 export default lineToday;

@@ -38,13 +38,13 @@ CREATE TABLE IF NOT EXISTS chat_history (
 
 const newsArticles = await sql`
 create table if not exists news_articles (
-    uuid text primary key,
-    title text not null,
-    content text not null,
-    news_org text not null,
-    origin_link text not null,
-    author text,
-    related_uuid text not null
+uuid text primary key,
+title text not null,
+content text not null,
+news_org text not null,
+origin_link text not null,
+author text,
+related_uuid text not null
 )
 `;
 
@@ -56,6 +56,16 @@ create table if not exists hot_news (
     link text not null,
     related_uuid text not null,
     created_at timestamptz default current_timestamp
+)
+`;
+
+const articlesLt = await sql`
+create table if not exists articles_lt (
+uuid text primary key,
+title text not null,
+content text not null,
+origin text not null,
+author text,
 )
 `;
 
