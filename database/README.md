@@ -7,7 +7,7 @@ Import the schema:
 psql -d database -f database_dump.sql
 ```
 
-## Hoe to create a database_dump
+## How to create a database_dump
 Type or copy This
 ```bash
 pg_dump -U your_username -d your_database --schema-only > schema.sql

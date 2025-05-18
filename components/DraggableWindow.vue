@@ -17,10 +17,10 @@ const isDragging = ref(false);
 const position = ref({
   x:
     props.initialX ||
-    Math.floor(window.innerWidth / 2 - parseInt(props.width || "400") / 2),
+    Math.floor(window.innerWidth / 2 - parseInt(props.width || "600") / 2),
   y:
     props.initialY ||
-    Math.floor(window.innerHeight / 2 - parseInt(props.height || "300") / 2),
+    Math.floor(window.innerHeight / 2 - parseInt(props.height || "400") / 2),
 });
 
 const offset = ref({ x: 0, y: 0 });

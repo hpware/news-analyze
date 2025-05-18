@@ -23,15 +23,7 @@ export default defineNuxtConfig({
 
   css: ["~/styles/main.css"],
 
-  modules: [
-    "@nuxtjs/robots",
-    "@nuxtjs/seo",
-    "@nuxtjs/i18n",
-    "@nuxtjs/tailwindcss",
-    "shadcn-nuxt",
-    "motion-v/nuxt",
-    "@sentry/nuxt/module",
-  ],
+  modules: ["@nuxtjs/robots", "@nuxtjs/seo", "@nuxtjs/i18n", "@nuxtjs/tailwindcss", "shadcn-nuxt", "motion-v/nuxt", "@sentry/nuxt/module", "@nuxt/content"],
 
   i18n: {
     defaultLocale: "en",

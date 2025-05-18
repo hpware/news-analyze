@@ -160,16 +160,12 @@ const associAppWindow = [
     id: "10",
     title: t("app.aboutNewsOrg"),
     component: AboutNewsOrgWindow,
-    width: "600px",
-    height: "400px",
   },
   {
     name: "tty",
     id: "11",
     title: t("app.terminal"),
     component: TTYWindow,
-    width: "600px",
-    height: "400px",
     black: true,
   },
   {
@@ -177,8 +173,6 @@ const associAppWindow = [
     id: "12",
     title: t("app.newsview"),
     component: NewsViewWindow,
-    width: "600px",
-    height: "400px",
   },
 ];
 
@@ -335,8 +329,8 @@ const findAndOpenWindow = (windowName: string) => {
       component: windowComponent,
       name: windowName,
       title: app.title,
-      width: app.width || "400px",
-      height: app.height || "300px",
+      width: app.width || "600px",
+      height: app.height || "400px",
       black: app.black || false,
     });
     currentOpenAppId.value++;
