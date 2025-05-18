@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip",
     },
     "/api/cached/**": { swr: 3600 },
+    "/api/news/get": { swr: 3600  },
   },
 
   css: ["~/styles/main.css"],

@@ -1,15 +1,19 @@
-version: "3.8"
-
 services:
   newsanalyze-service:
-    build: .
-    ports:
-      - "127.0.0.1:36694:3000"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
+    image: ghcr.io/hpware/news-analyze:latest
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 30s
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 1m
       timeout: 10s
       retries: 3
+    networks:
+      - app-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
+      - "traefik.http.routers.newsanalyze.entrypoints=webinternal"
+      - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
+
+networks:
+  web:
+    external: true
