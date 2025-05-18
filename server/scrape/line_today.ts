@@ -25,26 +25,48 @@ async function lineToday(slug: string) {
     .text()
     .replaceAll("\n", "")
     .replace("  ", "");
-  const paragraph = html("article.news-content").text();
+  const paragraph = [];
+  const images = [];
+  html("article.news-content")
+    .contents()
+    .each((i, element) => {
+      if (element.type === "tag" && element.tagName === "figure") {
+        const imgSrc = html(element).find("img").attr("src");
+        if (imgSrc) {
+          images.push(imgSrc);
+        }
+      } else if (element.type === "tag" && element.tagName === "p") {
+        const text = html(element).text().trim();
+        if (text) {
+          paragraph.push(text);
+        }
+      }
+    });
   const newsOrgdir = html("h4.entityPublishInfo-publisher")
     .text()
     .replaceAll("\n", "")
     .replaceAll(" ", "");
-  const author = html("span.entityPublishInfo-meta-info")
+  let author = "";
+  const authorInfo = html("span.entityPublishInfo-meta-info")
     .text()
-    .replace(/更新於.*發布於.*•/g, "")
+    .replace(/更新.*發布.*•/g, "")
     .replaceAll("\n", "")
     .replaceAll(" ", "");
-
+  if (/更新.*發布.*/.test(authorInfo)) {
+    author = "未知";
+  } else {
+    author = authorInfo;
+  }
   return {
     title: title,
     paragraph: paragraph,
     origin: newsOrgdir,
     author: author,
+    images: images,
   };
 }
 
 // Texting on console only!
-//console.log(await lineToday("kEJjxKw"));
+//console.log(await lineToday("wJyR8Nw"));
 
 export default lineToday;

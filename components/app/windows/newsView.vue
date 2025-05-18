@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { data, error, pending } = useFetch("/api/get/lt/kEJjxKw"); //demo URL
+// FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
+const { data, error, pending } = await useFetch("/api/news/get/lt/kEJjxKw"); //demo URL
+console.log(data.value);
+console.log(error.value);
 </script>
 <template>
   <div class="justify-center align-center text-center flex flex-col">
@@ -7,5 +10,6 @@ const { data, error, pending } = useFetch("/api/get/lt/kEJjxKw"); //demo URL
     <span class="text-lg text-bold"
       >origin: {{ data.origin }} • author: {{ data.author }}</span
     >
+    <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
   </div>
 </template>

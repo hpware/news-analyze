@@ -68,6 +68,7 @@
     "chatbot": "聊天機器人",
     "starred": "收藏",
     "terminal": "終端機",
-    "aboutNewsOrg": "關於這個新聞來源"
+    "aboutNewsOrg": "關於這個新聞來源",
+    "newsview": "新聞"
   }
 }

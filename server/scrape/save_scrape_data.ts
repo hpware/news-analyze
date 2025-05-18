@@ -2,7 +2,13 @@ import postgres from "~/server/components/postgres";
 import { v4 as uuidv4 } from "uuid";
 
 async function saveDataToSql(
-  data: { title: string; paragraph: string; author: string; origin: string },
+  data: {
+    title: string;
+    paragraph: any;
+    author: string;
+    origin: string;
+    image: any;
+  },
   slug: string,
 ) {
   const sql = postgres;

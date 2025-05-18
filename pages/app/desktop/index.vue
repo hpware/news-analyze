@@ -41,6 +41,7 @@ import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import TTYWindow from "~/components/app/windows/tty.vue";
 import FavStaredWindow from "~/components/app/windows/fav.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
+import NewsViewWindow from "~/components/app/windows/newsView.vue";
 
 // Icons
 import {
@@ -171,6 +172,14 @@ const associAppWindow = [
     height: "400px",
     black: true,
   },
+  {
+    name: "newsView",
+    id: "12",
+    title: t("app.newsview"),
+    component: NewsViewWindow,
+    width: "600px",
+    height: "400px",
+  },
 ];
 
 /*
@@ -288,6 +297,10 @@ onMounted(async () => {
   openApp.value = route.query.openapp;
   openAppId.value = route.query.id;
   if (openApp.value) {
+    // DO NOT REMOVE THIS FUNCTION!! IT WILL ABSOLUTELY 100% FAIL!
+    if (openApp.value === "newsView") {
+      return;
+    }
     openWindow(openApp.value);
   }
 });
