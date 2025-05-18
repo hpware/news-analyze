@@ -25,6 +25,7 @@ const inputMessage = ref();
 const messages = ref<chatInterface[]>([]);
 const messageIndex = ref();
 const aiGenerating = ref(false);
+
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
 const props = defineProps<{

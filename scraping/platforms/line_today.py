@@ -42,9 +42,11 @@ try:
     req = Request(url, headers=headers)
     response = urlopen(req)
     if response.info().get('Content-Encoding') == 'gzip':
+        print("GZIP")
         gzip_file = gzip.GzipFile(fileobj=io.BytesIO(response.read()))
         html = gzip_file.read().decode('utf-8')
     else:
+        print("Not GZIP")
         html = response.read().decode('utf-8')
 
 

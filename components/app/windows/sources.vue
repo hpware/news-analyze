@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import noImageLogo from "~/public/geterrorassets/noImageLogo.svg";
 const { t, locale } = useI18n();
+const eerrrroorr = ref(false);
+const errorMsg = ref("");
 
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
@@ -26,6 +28,10 @@ const {
     lang: locale,
   },
 });
+if (error) {
+  eerrrroorr.value = true;
+  errorMsg.value = error.value.message;
+}
 
 async function getImageSource(image: string) {
   console.log(image);
@@ -57,6 +63,14 @@ onMounted(async () => {
 });
 </script>
 <template>
+  <div
+    v-if="eerrrroorr"
+    class="flex flex-col bg-gray-200/50 text-black w-full h-full absolute inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
+  >
+    <div class="m-2">
+      {{ errorMsg }}
+    </div>
+  </div>
   <div class="flex flex-row flexw-wrap justify-center gap-2">
     <div
       class="flex flex-col group bg-gray-900/30 rounded-xl p-3 transition-all duration-500 shadow-lg hover:translate-y-[-2px] ransition-all duration-700"

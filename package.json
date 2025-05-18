@@ -36,6 +36,7 @@
     "groq-sdk": "^0.21.0",
     "gsap": "^3.13.0",
     "html-to-json-parser": "^2.0.1",
+    "jssoup": "^0.0.15",
     "lucide-vue-next": "^0.508.0",
     "motion-v": "^1.1.0-alpha.1",
     "nuxt": "^3.17.2",
