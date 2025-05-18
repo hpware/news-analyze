@@ -1,18 +1,21 @@
 services:
   newsanalyze-service:
-    image: ghcr.io/hpware/news-analyze:latest
+    image: ghcr.io/hpware/news-analyze:master
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 1m
       timeout: 10s
       retries: 3
     networks:
-      - app-network
+      - web
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
-      - "traefik.http.routers.newsanalyze.entrypoints=webinternal"
+      - "traefik.http.routers.newsanalyze.entrypoints=websecure"
+      - "traefik.http.routers.newsanalyze.tls=true"
+      - "traefik.http.routers.newsanalyze.tls.certresolver=myresolver"
       - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
+    restart: unless-stopped
 
 networks:
   web:

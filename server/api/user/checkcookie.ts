@@ -1,5 +1,5 @@
 // This should be hooked up to a database soon.
-import postgres from "~/server/components/postgres";
+import sql from "~/server/components/postgres";
 
 // Parse Date Function
 function checkDate(dateString: string) {
@@ -40,8 +40,25 @@ export default defineEventHandler(async (event) => {
       path: "/",
     });
   }
+  if (!loginCookie) {
+    setCookie(event, "lastCheckCookie", nowDate, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+    });
+    return {
+      auth: false,
+      user: null,
+    };
+  }
+  const loginCookieStore = atob(loginCookie);
+  /*const findUser = sql`
+    select * from userlogintokens
+    where token = ${loginCookieStore}
+    `;*/
   return {
     auth: true,
     user: "testing",
+    loginCookie: loginCookieStore, // Debug
   };
 });
