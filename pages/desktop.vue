@@ -510,7 +510,7 @@ watchEffect((cleanupFn) => {
       </div>
     </div>
     <div class="flex flex-row gap-5">
-      <NuxtLink :to="localePath('/app/desktop?changelang=1', t('nextlang'))">
+      <NuxtLink :to="localePath('/desktop?changelang=1', t('nextlang'))">
         <button
           class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded selection:opacity-0"
         >

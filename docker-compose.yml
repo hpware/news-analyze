@@ -1,4 +1,17 @@
 services:
+  reverse-proxy:
+    image: traefik:v3.1
+    command:
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - 127.0.0.1:36694:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web
+
   newsanalyze-service:
     image: ghcr.io/hpware/news-analyze:master
     healthcheck:
@@ -11,12 +24,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
-      - "traefik.http.routers.newsanalyze.entrypoints=websecure"
-      - "traefik.http.routers.newsanalyze.tls=true"
-      - "traefik.http.routers.newsanalyze.tls.certresolver=myresolver"
       - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
     restart: unless-stopped
+    deploy:
+      mode: replicated
+      replicas: 2
 
 networks:
   web:
-    external: true
