@@ -1,5 +1,4 @@
-import JSSoup from "jssoup";
-//import cheerio from "cheerio";
+import * as cheerio from "cheerio";
 
 async function lineToday(slug: string) {
   const url = "https://today.line.me/tw/v2/article/" + slug;
@@ -21,16 +20,17 @@ async function lineToday(slug: string) {
   const data = await fetchPageCode.text();
   // 加 await? no.
   // AHHH I NEED TO CHANGE TO SOMETHING ELSE.
-  const soup = new JSSoup(data, false);
-  const titlesoup = soup.find("h1", "entityTitle");
-  const title = titlesoup.text.replaceAll("\n", "");
+  const html = cheerio.load(data);
+  const title = html("h1.entityTitle").text().replaceAll("\n", "");
 
-  const article = soup.find("article", "news-content");
-  const paragraph = article.text;
+  const paragraph = html("article.news-content").text();
   return {
     title: title,
     paragraph: paragraph,
   };
 }
+
+// Texting on console only!
+//console.log(await lineToday("oqmazXP"));
 
 export default lineToday;
