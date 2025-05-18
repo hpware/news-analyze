@@ -33,12 +33,21 @@ const {
 
 const orgNameAnimation = ref(null);
 
-onMounted(() => {
-  gsap.to(orgNameAnimation.value, {
-    duration: 1,
-    scrambleText: fetchNewsOrgInfo.value?.title,
-  });
-});
+watch(
+  () => fetchNewsOrgInfo.value,
+  (newValue) => {
+    if (newValue?.title) {
+      nextTick(() => {
+        gsap.to(orgNameAnimation.value, {
+          duration: 1,
+          scrambleText: newValue.title,
+          ease: "none",
+        });
+      });
+    }
+  },
+  { immediate: true },
+);
 </script>
 <template>
   <div>
@@ -52,7 +61,10 @@ onMounted(() => {
           draggable="false"
         />
         <div class="flex flex-col gap-3 text-left">
-          <h1 class="text-4xl font-bold m-3 text-left">
+          <h1
+            class="text-4xl font-bold m-3 text-left"
+            ref="orgNameAnimation"
+          >
             {{ fetchNewsOrgInfo?.title }}
           </h1>
           <span class="text-ms m-1 mt-5 text-left text-wrap">{{

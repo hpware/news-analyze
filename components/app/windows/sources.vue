@@ -28,9 +28,9 @@ const {
     lang: locale,
   },
 });
-if (error) {
+if (error === null) {
   eerrrroorr.value = true;
-  errorMsg.value = error.value.message;
+  errorMsg.value = error.value;
 }
 
 async function getImageSource(image: string) {
