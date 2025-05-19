@@ -8,7 +8,7 @@ async function checkUnsafeContent(title: string) {
     console.log(patterns);
     newsAnalyzer.setSensitivePatterns(patterns);
     const kidfriendly = newsAnalyzer.isKidFriendly(title);
-    return kidfriendly;
+    return !kidfriendly;
   } catch (e) {
     console.log(e);
   }

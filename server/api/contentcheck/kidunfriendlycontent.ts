@@ -1,6 +1,21 @@
 import sql from "~/server/components/postgres";
 export default defineEventHandler(async (event) => {
   return {
-    words: ["violence", "kill", "太小"],
+    words: [
+      "尺度太小",
+      "比基尼",
+      "無罩",
+      "脫褲",
+      "裸露",
+      "露豐",
+      "V辣",
+      "激露",
+      "E級曲線",
+      "放0肩",
+      "透視裝",
+      "性侵",
+      "裸照",
+      "性感",
+    ],
   };
 });

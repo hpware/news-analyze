@@ -95,3 +95,6 @@ App Design: [PDF Document](/design.pdf)
 ### For scaping
 
 First, Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder, then cd into the `scraping` folder. Run `python main.py` to start scraping in Google News.
+
+## 有問題? Got questions?
+Use this form: https://yhw.tw/SaBta

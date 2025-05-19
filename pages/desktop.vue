@@ -541,7 +541,7 @@ watchEffect((cleanupFn) => {
   </Transition>
   <!--Main desktop contents-->
   <div
-    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0"
+    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
     id="desktop"
   ></div>
   <Transition>
