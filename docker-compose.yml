@@ -30,6 +30,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
       - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
+      - "com.centurylinklabs.watchtower.enable=true"
     restart: unless-stopped
     deploy:
       mode: replicated
