@@ -43,7 +43,7 @@ import FavStaredWindow from "~/components/app/windows/fav.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
 import NewsViewWindow from "~/components/app/windows/newsView.vue";
 
-// Icons
+// Import Icons
 import {
   ComputerDesktopIcon,
   UserIcon,
@@ -541,7 +541,7 @@ watchEffect((cleanupFn) => {
   </Transition>
   <!--Main desktop contents-->
   <div
-    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
+    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0"
     id="desktop"
   ></div>
   <Transition>

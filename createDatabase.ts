@@ -1,15 +1,26 @@
 import sql from "~/server/components/postgres";
 
 const createUsers = await sql`
-create table if not exists users (
-    uuid text primary key,
-    created_at timestamptz default current_timestamp,
-    username text not null unique,
-    avatarurl text not null,
-    firstname text not null,
-    passwordhash text not null,
-    email text not null
-);
+  create table if not exists users (
+      uuid text primary key,
+      created_at timestamptz default current_timestamp,
+      username text not null unique,
+      avatarurl text,
+      firstname text,
+      passwordhash text not null,
+      email text
+  );
+`;
+
+const usersList = await sql`
+  create table if not exists usertokens (
+      token text not null primary key,
+      created_at timestamptz default current_timestamp,
+      username text not null,
+      email text,
+      avatarurl text,
+      firstname text
+  )
 `;
 
 const createNewsProviders = await sql`

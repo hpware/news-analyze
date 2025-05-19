@@ -18,12 +18,20 @@ export default defineNuxtConfig({
       redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip",
     },
     "/api/cached/**": { swr: 3600 },
-    "/api/news/get": { swr: 3600  },
+    "/api/news/get": { swr: 3600 },
   },
 
   css: ["~/styles/main.css"],
 
-  modules: ["@nuxtjs/robots", "@nuxtjs/seo", "@nuxtjs/i18n", "@nuxtjs/tailwindcss", "shadcn-nuxt", "motion-v/nuxt", "@sentry/nuxt/module", "@nuxt/content"],
+  modules: [
+    "@nuxtjs/robots",
+    "@nuxtjs/seo",
+    "@nuxtjs/i18n",
+    "@nuxtjs/tailwindcss",
+    "shadcn-nuxt",
+    "motion-v/nuxt",
+    "@sentry/nuxt/module",
+  ],
 
   i18n: {
     defaultLocale: "en",
