@@ -5,10 +5,10 @@ const system = ref(false);
 const checkTitle = () => {
   if (!title.value) return;
   system.value = CheckKidUnfriendlyContent(title.value);
-}
+};
 </script>
 <template>
-<input type="text" v-model="title">
-<button @click="checkTitle">
-    <div>{{ system }}</div>
+  <input type="text" v-model="title" />
+  <button @click="checkTitle"></button>
+  <div>{{ system }}</div>
 </template>
