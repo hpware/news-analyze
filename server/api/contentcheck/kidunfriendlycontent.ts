@@ -1,6 +1,6 @@
 import sql from "~/server/components/postgres";
 export default defineEventHandler(async (event) => {
   return {
-    words: ["violence"],
+    words: ["violence", "kill", "太小"],
   };
 });
