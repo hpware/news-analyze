@@ -4,6 +4,10 @@
 
 App Design: [PDF Document](/design.pdf)
 
+## Before deploying, please know this:
+This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣 or 蝦皮 to do so.
+
+
 ## Why?
 
 我們使用這個新聞來舉例：
