@@ -1,6 +1,0 @@
-urlopen
-beautifulsoup4
-psycopg2-binary
-pandas
-dotenv
-chardet

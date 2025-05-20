@@ -4,6 +4,8 @@
 
 App Design: [PDF Document](/design.pdf)
 
+Reverse engineering documentataion: [about](/about/)
+
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣 or 蝦皮 to do so.
 
@@ -30,14 +32,11 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 - puter.com
 - Perplexity
 - Ground.news
-- 台灣新聞
-- Threads
+- Threads (政治方面)
 - xfce's Desktop Interface
 - juice website
-- MacOS
 - Windows XP style X - UI
 - Ghostty
-- Some random chat app embeded to most business websites
 - Treble's cool card effect (but not quite yet)
 
 ## Stack:
@@ -52,53 +51,20 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 - BunJS
 - Groq
 - Custom Infra
-- Python
-- BeautifulSoup4
-- uv
-
-## Folder Structure
-
-```
-├── .github/
-│   └── workflows/
-├── components/
-│   ├── app/
-│   │   └── newsOrgAbout/
-│   └── ui/
-├── i18n/
-├── layouts/
-├── lib/
-├── pages/
-│   └── app/
-├── public/
-├── scraping/
-├── server/
-│   ├── api/
-│   │   └── objectstorage/
-│   ├── components/
-│   └── routes/
-├── styles/
-├── app.vue
-├── createDatabase.ts
-├── nuxt.config.ts
-├── package.json
-├── tailwind.config.js
-└── tsconfig.json
-```
+- Docker
+- Docker Compose
 
 ## 如何執行
 
 1. First, rename `.env.example` to `.env` and fill in the blanks.
 2. Run `bun install` to install dependencies.
 3. Run `bun run createDatabase` to create the database.
-4. Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder.
-5. Run `bun run build` to build the project.
-6. Run `bun run preview` to start the preview server.
-7. Open `http://localhost:3000` in your browser.
+4. Run `bun run build` to build the project.
+5. Run `bun run preview` to start the preview server.
+6. Open `http://localhost:3000` in your browser.
 
 ### For scaping
-
-First, Run `ps1 clone-env.ps1` or `bash clone-env.sh` to clone the `.env` file to the `scraping` folder, then cd into the `scraping` folder. Run `python main.py` to start scraping in Google News.
+Scraping is embeded to the web app, please use the web app.
 
 ## 有問題? Got questions?
 Use this form: https://yhw.tw/SaBta

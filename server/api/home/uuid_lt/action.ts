@@ -6,7 +6,8 @@ interface CacheItem {
 const cache: Record<string, CacheItem> = {};
 const CACHE_DURATION = 1000 * 60 * 60; // 1 Hour
 
-async function getLineTodayData(type: string) {
+async function getLineTodayData(orgtype: string) {
+  const type = orgtype.toLowerCase();
   if (cache[type] && Date.now() - cache[type].timestamp < CACHE_DURATION) {
     console.log("Serving from cache for type:", type);
     return cache[type].data;
@@ -23,7 +24,7 @@ async function getLineTodayData(type: string) {
       },
     });
     const res = await req.json();
-    const req2 = res.pageProps.fallback["getPageData,domestic"].modules;
+    const req2 = res.pageProps.fallback[`getPageData,${type}`].modules;
     const req3 = [];
     req2.forEach((key) => {
       const listings = key.listings;
@@ -67,8 +68,16 @@ export default defineEventHandler(async (event) => {
   }
   const data = await getLineTodayData(String(query.query));
   const validUUIDs = filterUUIDs(data || []);
+  const noDup = [];
+  validUUIDs.forEach((key) => {
+    if (noDup.includes(key)) {
+      return;
+    } else {
+      noDup.push(key);
+    }
+  });
   return {
-    data: validUUIDs,
+    data: noDup,
     cached: !!cache[String(query.query)],
   };
 });
