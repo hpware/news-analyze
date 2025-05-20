@@ -1,8 +1,3 @@
-import { gunzip } from "zlib";
-import { promisify } from "util";
-
-const gunzipAsync = promisify(gunzip);
-
 // Check /about/scraping_line_today_home.md for more info or https://news.yuanhau.com/datainfo/linetodayjsondata.json
 async function getLineTodayData(type: string) {
   try {
@@ -15,20 +10,28 @@ async function getLineTodayData(type: string) {
           "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
       },
     });
-
-    const buffer = await req.arrayBuffer();
-    const decompressed = await gunzipAsync(Buffer.from(buffer));
-    const res = JSON.parse(decompressed.toString());
-    const data = res.getPageData?.[type];
-    return res;
+    const res = await req.json();
+    const req2 = res.pageProps.fallback["getPageData,domestic"].modules;
+    const req3 = [];
+    req2.forEach((key) => {
+      const listings = key.listings;
+      if (Array.isArray(listings)) {
+        listings.forEach((listing) => {
+          if (listing && listing.id) {
+            req3.push(listing.id);
+          }
+        });
+      } else if (listings && listings.id) {
+        req3.push(listings.id);
+      }
+    });
+    return req3;
   } catch (e) {
     console.log(e);
   }
 }
 
-async function demo() {
-  console.log(await getLineTodayData("domestic"));
-}
-demo();
-
-//export default getLineTodayData;
+export default defineEventHandler(async (event) => {
+  const slug = getRouterParam(event, "slug");
+  return await getLineTodayData(slug);
+});
