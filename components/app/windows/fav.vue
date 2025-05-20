@@ -5,7 +5,10 @@ const { data: favData, error, pending } = useFetch("/api/user/fav", {});
 </script>
 <template>
   <BlurPageBeforeLogin>
-    <div>{{ favData }}</div>
-    <!--Testing only!!!-->
+    <div>
+      <div v-for="items in favData.items">
+        {{ items }}
+      </div>
+    </div>
   </BlurPageBeforeLogin>
 </template>

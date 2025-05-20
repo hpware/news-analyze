@@ -154,7 +154,7 @@ useSeoMeta({
       id="cards"
     >
       <div
-        class="px-10 bg-gray-900/70 w-[300px] h-[200px] group rounded-xl shadow-lg hover:shadow-sky-600/90 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col"
+        class="px-10 bg-gray-900/70 w-[300px] h-[200px] group rounded-xl shadow-lg hover:shadow-sky-600/90 hover:-translate-y-3 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col"
         v-for="item in cards"
         :key="item.title"
       >

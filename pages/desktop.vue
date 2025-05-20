@@ -471,7 +471,9 @@ watchEffect((cleanupFn) => {
     v-else
   >
     <!--Menu container-->
-    <div class="flex flex-row g-2 text-gray-400 z-9999 selection:opacity-0">
+    <div
+      class="flex flex-row g-2 rounded-xl gray-500/80 backdrop-blur-sm z-9999 selection:opacity-0"
+    >
       <button
         @click="toggleMenu"
         class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row"

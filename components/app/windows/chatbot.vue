@@ -79,7 +79,7 @@ onMounted(async () => {
 </script>
 <template>
   <blurPageBeforeLogin>
-    <div class="flex flex-col h-full">
+    <div class="flex flex-col h-[100%] w-full">
       <div>
         <div
           class="justify-center align-center text-center flex flex-col sticky top-0 pt-2 min-h-0 border rounded-2xl gray-500/80 backdrop-blur-sm"
@@ -110,7 +110,7 @@ onMounted(async () => {
         >
           <div
             v-for="message in messages"
-            class="max-w-[80%] rounded-lg p-3 bg-gray-300/70 rounded-xl"
+            class="max-w-[80%] p-3 bg-gray-300/70 rounded-xl"
           >
             <div v-if="message.user" class="flex flex-row gap-2">
               <User class="w-5 h-5" />{{ message.message }}
@@ -120,8 +120,9 @@ onMounted(async () => {
             </div>
           </div>
         </div>
+        <div class="h-[75px]"></div>
         <div
-          class="space-x-2 sticky bottom-0 border-t p-2 min-h-0 border rounded-xl gray-500/80 backdrop-blur-sm"
+          class="space-x-2 absolute bottom-2 inset-x-4 border-t p-2 min-h-0 border rounded-xl gray-500/80 backdrop-blur-sm"
         >
           <div class="text-black w-full flex flex-row">
             <Input

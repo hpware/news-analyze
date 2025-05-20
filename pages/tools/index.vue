@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
 // Import Icons
-import { SearchXIcon } from "lucide-vue-next";
+import { SearchXIcon, CircleSlash2Icon } from "lucide-vue-next";
 // Array
 const tools = [
   {
@@ -9,6 +9,12 @@ const tools = [
     content: "這個工具檢查新聞記者是不是使用偏色情的標體 (台灣的很愛用)",
     icon: SearchXIcon,
     go: localePath("/tools/checkweirdkeywords"),
+  },
+  {
+    name: "無廣告新聞",
+    content: "提供無廣告的LINE Today 新聞",
+    icon: CircleSlash2Icon,
+    go: localePath("/tools/freelinetoday"),
   },
 ];
 </script>
@@ -22,7 +28,7 @@ const tools = [
     >
       <NuxtLink :to="item.go" v-for="item in tools">
         <div
-          class="px-10 bg-gray-900/70 w-[300px] h-[200px] group rounded-xl shadow-lg hover:shadow-sky-700/90 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col"
+          class="px-10 bg-gray-900/70 w-[300px] h-[200px] group rounded-xl shadow-lg hover:shadow-sky-700/90 hover:-translate-y-3 backdrop-blur-sm border border-gray-800 hover:border-gray-600/70 transition-all duration-700 justify-center align-middle flex flex-col"
         >
           <component
             :is="item.icon"
