@@ -13,7 +13,7 @@ try {
   if (sendError.value) {
     error.value = true;
   }
-  if (false) {
+  if (true) {
     allowed.value = true;
   } else {
     allowed.value = false;

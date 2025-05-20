@@ -6,6 +6,9 @@ const checkTitle = async () => {
   if (!title.value) return;
   system.value = await CheckKidUnfriendlyContent(title.value);
 };
+useSeoMeta({
+  title: "這個文章是不是使用偏色情的標體？",
+});
 </script>
 <template>
   <div

@@ -102,6 +102,10 @@ onMounted(() => {
     }
   });
 });
+
+useSeoMeta({
+  title: "Home",
+});
 </script>
 <template>
   <div>
