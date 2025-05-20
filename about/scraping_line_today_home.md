@@ -74,3 +74,36 @@ The url hash is just what we needed to use my scraper :D
 You can query it by using: https://news.yuanhau.com/api/news/get/lt/8nlkYeV (Also videos are in the list, so avoid that) or just try this  https://today.line.me/tw/v2/article/8nlkYeV
 
 and that's it, I've bypassed Line's attempt to block people like me. :)
+
+
+## More to this debuckle
+Apperently, there is something called a "hybrid listing" which is s simple recommendation system from here:` https://today.line.me/webapi/recommendation/hybrid/listings/${id}?country=tw&maxVideoCount=0&offset=0&length=70&optOut=false`, the ID still can be obtained via the same main endpoint, but just different things. Unlike the other api endpoint, it has a higher limit of 70, so you can do more things with it, and this endpoint is even easier to parse via json, just look at it.
+
+```JSON
+{
+  "id": "id",
+  "items": [
+    {
+      "id": "news-id",
+      "title": "title",
+      "publisher": "publisher",
+      "publisherId": "100005",
+      "publishTimeUnix": 1747712924000,
+      "contentType": "GENERAL",
+      "thumbnail": {
+        "type": "IMAGE",
+        "hash": "image hash"
+      },
+      "url": {
+        "hash": "67676767",
+        "url": "https://today.line.me/tw/v2/article/67767676"
+      },
+      "categoryId": 100260,
+      "categoryName": "cattype"
+    }
+  ]
+}
+```
+This is 100% easier to work with, and with a another extra, I can easily search shitty news terms. Also there is as category type??? What?
+
+Also the id can just work with the following pattern in regex: `news_cat:[a-zA-Z0-9]{24}`
