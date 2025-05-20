@@ -1,0 +1,444 @@
+{
+  "fallback": {
+    "getTabsData": {
+      "modules": [
+        {
+          "type": "TABS",
+          "tabs": [
+            {
+              "portalPageId": "5e4b951677475352cac02588",
+              "portalPageUrlPath": "top",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "焦點",
+                  "id": "5e4b951677475352cac02588",
+                  "urlPath": "top",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "65c4a4d4a25cba35a599fb95",
+              "id": "5e4b951677475352cac02588",
+              "urlPath": "top",
+              "title": "焦點"
+            },
+            {
+              "portalPageId": "5e4b95d377475352cac0258c",
+              "portalPageUrlPath": "entertainment",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "娛樂",
+                  "id": "5e4b95d377475352cac0258c",
+                  "urlPath": "entertainment",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97063429e7a65895ac37",
+              "id": "5e4b95d377475352cac0258c",
+              "urlPath": "entertainment",
+              "title": "娛樂"
+            },
+            {
+              "portalPageId": "5e4b95da77475352cac0258e",
+              "portalPageUrlPath": "domestic",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "國內",
+                  "id": "5e4b95da77475352cac0258e",
+                  "urlPath": "domestic",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97063429e7a65895ac38",
+              "id": "5e4b95da77475352cac0258e",
+              "urlPath": "domestic",
+              "title": "國內"
+            },
+            {
+              "portalPageId": "5e4b95ee77475352cac02594",
+              "portalPageUrlPath": "global",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "國際",
+                  "id": "5e4b95ee77475352cac02594",
+                  "urlPath": "global",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97193429e7a65895ac3b",
+              "id": "5e4b95ee77475352cac02594",
+              "urlPath": "global",
+              "title": "國際"
+            },
+            {
+              "portalPageId": "5e4b95e577475352cac02590",
+              "portalPageUrlPath": "life",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "生活",
+                  "id": "5e4b95e577475352cac02590",
+                  "urlPath": "life",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97073429e7a65895ac39",
+              "id": "5e4b95e577475352cac02590",
+              "urlPath": "life",
+              "title": "生活"
+            },
+            {
+              "portalPageId": "66e13d50aab4e2201b06a71a",
+              "portalPageUrlPath": "gooddeal",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "好康",
+                  "id": "66e13d50aab4e2201b06a71a",
+                  "urlPath": "gooddeal",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "66e2597f3a5c70865176895d",
+              "id": "66e13d50aab4e2201b06a71a",
+              "urlPath": "gooddeal",
+              "title": "好康"
+            },
+            {
+              "portalPageId": "5e4b9674285bec4ff1420418",
+              "portalPageUrlPath": "finance",
+              "lastModifiedTime": 1747721415846,
+              "expireMode": "AUTO",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "理財",
+                  "id": "5e4b9674285bec4ff1420418",
+                  "urlPath": "finance",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b971c3429e7a65895ac3f",
+              "id": "5e4b9674285bec4ff1420418",
+              "urlPath": "finance",
+              "title": "理財"
+            },
+            {
+              "portalPageId": "61e41c49bc1a99261f617aec",
+              "portalPageUrlPath": "drama",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "追劇",
+                  "id": "61e41c49bc1a99261f617aec",
+                  "urlPath": "drama",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "61f368109cf51a3a4d297c4b",
+              "id": "61e41c49bc1a99261f617aec",
+              "urlPath": "drama",
+              "title": "追劇"
+            },
+            {
+              "portalPageId": "5e4ba98d5c01c9fd138e2fb2",
+              "portalPageUrlPath": "movie",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "電影",
+                  "id": "5e4ba98d5c01c9fd138e2fb2",
+                  "urlPath": "movie",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4ba9ea25b077fc4ed91b55",
+              "id": "5e4ba98d5c01c9fd138e2fb2",
+              "urlPath": "movie",
+              "title": "電影"
+            },
+            {
+              "portalPageId": "66d58a5a9ccb7d6f902da726",
+              "portalPageUrlPath": "anime",
+              "fontColor": "DEFAULT",
+              "expireMode": "AUTO",
+              "expirePeriod": 900000,
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "動漫",
+                  "id": "66d58a5a9ccb7d6f902da726",
+                  "urlPath": "anime",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "66e7ad6950b55e4e0e1e45ab",
+              "id": "66d58a5a9ccb7d6f902da726",
+              "urlPath": "anime",
+              "title": "動漫"
+            },
+            {
+              "portalPageId": "5e4b95f877475352cac02596",
+              "portalPageUrlPath": "music",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "音樂",
+                  "id": "5e4b95f877475352cac02596",
+                  "urlPath": "music",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b971a3429e7a65895ac3c",
+              "id": "5e4b95f877475352cac02596",
+              "urlPath": "music",
+              "title": "音樂"
+            },
+            {
+              "portalPageId": "5e4b960277475352cac0259a",
+              "portalPageUrlPath": "sports",
+              "fontColor": "DEFAULT",
+              "expireMode": "MANUAL",
+              "expirePeriod": 21600000,
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "運動",
+                  "id": "5e4b960277475352cac0259a",
+                  "urlPath": "sports",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b971b3429e7a65895ac3e",
+              "id": "5e4b960277475352cac0259a",
+              "urlPath": "sports",
+              "title": "運動"
+            },
+            {
+              "portalPageId": "5e4b95fd77475352cac02598",
+              "portalPageUrlPath": "NBA",
+              "expireMode": "MANUAL",
+              "expirePeriod": 21600000,
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "NBA",
+                  "id": "5e4b95fd77475352cac02598",
+                  "urlPath": "NBA",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b971b3429e7a65895ac3d",
+              "id": "5e4b95fd77475352cac02598",
+              "urlPath": "NBA",
+              "title": "NBA"
+            },
+            {
+              "portalPageId": "5e4b96e9285bec4ff1420426",
+              "portalPageUrlPath": "CPBL",
+              "lastModifiedTime": 1747708741773,
+              "expireMode": "AUTO",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "中職",
+                  "id": "5e4b96e9285bec4ff1420426",
+                  "urlPath": "CPBL",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b973c3429e7a65895ac4d",
+              "id": "5e4b96e9285bec4ff1420426",
+              "urlPath": "CPBL",
+              "title": "中職"
+            },
+            {
+              "portalPageId": "630f08c7c0a5c10da6407146",
+              "portalPageUrlPath": "video",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "看片",
+                  "id": "630f08c7c0a5c10da6407146",
+                  "urlPath": "video",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "63102fb4c55605107ac0e121",
+              "id": "630f08c7c0a5c10da6407146",
+              "urlPath": "video",
+              "title": "看片"
+            },
+            {
+              "portalPageId": "5e4b967a285bec4ff142041a",
+              "portalPageUrlPath": "health",
+              "expireMode": "MANUAL",
+              "expirePeriod": 43200000,
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "健康",
+                  "id": "5e4b967a285bec4ff142041a",
+                  "urlPath": "health",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97253429e7a65895ac40",
+              "id": "5e4b967a285bec4ff142041a",
+              "urlPath": "health",
+              "title": "健康"
+            },
+            {
+              "portalPageId": "5e4b968d5c01c9fd138e2f92",
+              "portalPageUrlPath": "horoscope",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "星座運勢",
+                  "id": "5e4b968d5c01c9fd138e2f92",
+                  "urlPath": "horoscope",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97273429e7a65895ac43",
+              "id": "5e4b968d5c01c9fd138e2f92",
+              "urlPath": "horoscope",
+              "title": "星座運勢"
+            },
+            {
+              "portalPageId": "5e4b96985c01c9fd138e2f96",
+              "portalPageUrlPath": "food",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "美食",
+                  "id": "5e4b96985c01c9fd138e2f96",
+                  "urlPath": "food",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97303429e7a65895ac45",
+              "id": "5e4b96985c01c9fd138e2f96",
+              "urlPath": "food",
+              "title": "美食"
+            },
+            {
+              "portalPageId": "5e4b969e285bec4ff142041c",
+              "portalPageUrlPath": "travel",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "旅遊",
+                  "id": "5e4b969e285bec4ff142041c",
+                  "urlPath": "travel",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97313429e7a65895ac46",
+              "id": "5e4b969e285bec4ff142041c",
+              "urlPath": "travel",
+              "title": "旅遊"
+            },
+            {
+              "portalPageId": "5e4b96b8285bec4ff142041e",
+              "portalPageUrlPath": "fashion",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "潮流時尚",
+                  "id": "5e4b96b8285bec4ff142041e",
+                  "urlPath": "fashion",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97313429e7a65895ac47",
+              "id": "5e4b96b8285bec4ff142041e",
+              "urlPath": "fashion",
+              "title": "潮流時尚"
+            },
+            {
+              "portalPageId": "5e4b96855c01c9fd138e2f8e",
+              "portalPageUrlPath": "fun",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "鄉民",
+                  "id": "5e4b96855c01c9fd138e2f8e",
+                  "urlPath": "fun",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "5e4b97263429e7a65895ac41",
+              "id": "5e4b96855c01c9fd138e2f8e",
+              "urlPath": "fun",
+              "title": "鄉民"
+            },
+            {
+              "portalPageId": "5f4dfec21cdbd312eed6a6bf",
+              "portalPageUrlPath": "recommendation",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "推薦",
+                  "id": "5f4dfec21cdbd312eed6a6bf",
+                  "urlPath": "recommendation",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "61c2ea09e90ac55cc92ce8cf",
+              "id": "5f4dfec21cdbd312eed6a6bf",
+              "urlPath": "recommendation",
+              "title": "推薦"
+            },
+            {
+              "portalPageId": "5fbcdd867747539bab38afbf",
+              "portalPageUrlPath": "subscription",
+              "fontColor": "DEFAULT",
+              "expireMode": "OFF",
+              "link": {
+                "pageType": "GENERAL",
+                "page": {
+                  "name": "追蹤",
+                  "id": "5fbcdd867747539bab38afbf",
+                  "urlPath": "subscription",
+                  "type": "GENERAL"
+                }
+              },
+              "key": "67242e4c8836f4141c1b385a",
+              "id": "5fbcdd867747539bab38afbf",
+              "urlPath": "subscription",
+              "title": "追蹤"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

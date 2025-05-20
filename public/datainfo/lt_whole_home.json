@@ -1,0 +1,1495 @@
+{
+  "pageProps": {
+    "__lang": "tw",
+    "__namespaces": {
+      "common": {
+        "album.source": "來源",
+        "day.today": "今天",
+        "day.trw": "明天",
+        "day.yesterday": "昨天",
+        "info.weather.recentsearches": "最近搜尋",
+        "popup_close": "關閉",
+        "title.notiEvent.user.unknownUser": "不明的用戶",
+        "toast.copy": "網址已複製。",
+        "today.search.desc.searchempty": "尚無記錄。",
+        "title.editprofile": "編輯個人檔案",
+        "title.profile": "個人檔案",
+        "bt.unblock": "解除封鎖",
+        "btn.block": "封鎖",
+        "btn.manageblockedlist": "管理封鎖名單",
+        "info.blockauser": "您與對方將無法查看彼此的內容。",
+        "info.moreinfo": "查看詳情",
+        "info.reachblockmax": "已達封鎖人數上限。請先解除封鎖部分用戶。",
+        "info.unblockauser": "您與對方將可以查看彼此的內容。",
+        "menu.blockthisuser": "在LINE TODAY封鎖{displayName}",
+        "menu.unblockthisuser": "在LINE TODAY解除封鎖{displayName}",
+        "pop.blockauser.content": "您與對方將無法在LINE TODAY查看彼此的貼文或回覆，且對方不會收到被您封鎖的通知。如欲解除封鎖，請前往「我的帳號」＞「帳號設定」＞「封鎖名單」。",
+        "pop.blockauser.title": "確定要在LINE TODAY封鎖{displayName}？",
+        "pop.unblockauser.content": "您與對方將可以在LINE TODAY查看彼此的貼文或回覆，且對方不會收到被您解除封鎖的通知。",
+        "pop.unblockauser.title": "確定要在LINE TODAY解除封鎖{displayName}？",
+        "pop.unblocked": "已解除封鎖",
+        "bt.socialFeed.viewPost": "查看貼文",
+        "bt.socialFeed.visitDiscussionTab": "查看其他討論",
+        "info.socialFeed.content.unavailable": "此內容目前無法顯示。",
+        "info.socialFeed.noticeTitle": "注意事項",
+        "pop.deleted": "已刪除",
+        "pop.confirmDiscardChangeAndLeave": "變更內容尚未儲存。確定要離開並捨棄變更嗎？",
+        "pop.temporaryerror": "發生暫時性的錯誤。請稍後再試。",
+        "bt.retry": "重試",
+        "pop.nopage": "找不到頁面。請確認您輸入的網址為有效。",
+        "title.service": "LINE TODAY",
+        "title.relatedLinks": "相關連結",
+        "topic.title": "話題",
+        "badge.album": "圖片",
+        "bt.movie.trailer": "預告片",
+        "bt.seemore": "查看更多",
+        "badge.video": "影音",
+        "badge.hot": "熱門",
+        "badge.breaking": "快訊",
+        "badge.new": "最新",
+        "badge.exclusive": "獨家",
+        "badge.pop": "POP",
+        "badge.gooddeal.day.singular": "剩%d天",
+        "badge.gooddeal.day.plural": "剩%d天",
+        "badge.gooddeal.within.today": "限今天",
+        "button.loadmore": "顯示更多",
+        "button.signout": "登出",
+        "button.signin": "登入",
+        "title.categoryManage.shortcut": "類別",
+        "info.noti.signin": "必須登入才能使用此服務。您要登入嗎？",
+        "bt.cancel": "取消",
+        "bt.categoryManage.save": "儲存",
+        "trend.result.day.plural": "最近%d天結果",
+        "trend.result.day.singular": "最近1天結果",
+        "trend.result.hour.plural": "最近%d小時結果",
+        "trend.result.hour.singular": "最近1小時結果",
+        "time.justnow": "剛剛",
+        "time.month": "MM月DD日%2d:%02d",
+        "time.year": "YYYY年MM月DD日%2d:%02d",
+        "time.notification.day.plural": "%d天前",
+        "time.notification.day.singluar": "%d天前",
+        "time.notification.hour.plural": "%d小時前",
+        "time.notification.hour.singular": "%d小時前",
+        "time.notification.min.plural": "%d分鐘前",
+        "time.notification.min.singular": "%d分鐘前",
+        "month.apr.full": "4月",
+        "month.apr.shorter": "4月",
+        "month.aug.full": "8月",
+        "month.aug.shorter": "8月",
+        "month.dec.full": "12月",
+        "month.dec.shorter": "12月",
+        "month.feb.full": "2月",
+        "month.feb.shorter": "2月",
+        "month.jan.full": "1月",
+        "month.jan.shorter": "1月",
+        "month.jul.full": "7月",
+        "month.jul.shorter": "7月",
+        "month.jun.full": "6月",
+        "month.jun.shorter": "6月",
+        "month.mar.full": "3月",
+        "month.mar.shorter": "3月",
+        "month.may.full": "5月",
+        "month.may.shorter": "5月",
+        "month.nov.full": "11月",
+        "month.nov.shorter": "11月",
+        "month.oct.full": "10月",
+        "month.oct.shorter": "10月",
+        "month.sep.full": "9月",
+        "month.sep.shorter": "9月",
+        "day.fri.full": "星期五",
+        "day.fri.shorter": "星期五",
+        "day.mon.full": "星期一",
+        "day.mon.shorter": "星期一",
+        "day.sat.full": "星期六",
+        "day.sat.shorter": "星期六",
+        "day.sun.full": "星期日",
+        "day.sun.shorter": "星期日",
+        "day.thu.full": "星期四",
+        "day.thu.shorter": "星期四",
+        "day.tue.full": "星期二",
+        "day.tue.shorter": "星期二",
+        "day.wed.full": "星期三",
+        "day.wed.shorter": "星期三",
+        "day.fir.shorter": "星期五",
+        "bt.linechatroom": "聊天室",
+        "bt.copyurl": "複製網址",
+        "title.share": "分享",
+        "countdown.rest.time.plural": "d天 h:mm:ss",
+        "countdown.rest.time.singular": "d天 h:mm:ss",
+        "countdown.rest.time.zero": "h:mm:ss",
+        "bt.ok": "確定",
+        "title.search.noresult": "找不到符合的資料",
+        "desc.search.noresult": "請輸入其他文字搜尋。",
+        "bt.go": "前往",
+        "bt.goback": "返回文章",
+        "bt.gosubscription": "探索頻道",
+        "bt.gotIt": "我瞭解了",
+        "bt.seeall": "顯示全部",
+        "menu.terms": "服務條款",
+        "menu.privacy": "隱私權政策",
+        "menu.privacysettings": "隱私權設定",
+        "menu.disclaimer": "服務聲明",
+        "menu.notice": "最新資訊",
+        "info.browser.enablejava": "啟用Javascript",
+        "info.browser.enablejavadsc": "請在瀏覽器上啟用JavaScript來瀏覽頁面中的所有內容。",
+        "info.browser.scope": "您使用的瀏覽器版本較舊，已不再受支援。建議您更新瀏覽器版本，以獲得最佳使用體驗。",
+        "info.browser.update": "請更新您的瀏覽器",
+        "sub.mgt.search": "搜尋",
+        "personalized.recommendation.status": "尚未允許個人化內容。",
+        "personalized.recommendation.manage": "管理設定",
+        "agerestricted_description": "本頁面內容不適合未成年者瀏覽，請問您滿18歲了嗎？",
+        "agerestricted_no": "不是，離開",
+        "agerestricted_title": "限制級內容",
+        "agerestricted_yes": "是",
+        "title.sponsored": "贊助內容",
+        "bt.openinline": "以LINE開啟",
+        "cp.title": "頻道",
+        "banner.title.openLINE": "在LINE應用程式中開啟。",
+        "info.moreoptions": "更多選項",
+        "bt.delete": "刪除",
+        "menu.region_restricted": "Region restriction notification",
+        "_meta.title": "LINE TODAY",
+        "_meta.description": "鎖定LINE TODAY，不怕話題跟不上，每天生活超有梗！新聞、影音與直播，各種豐富內容與貼心服務，就讓LINE TODAY陪伴您的每一天！",
+        "pop.newspnotification": "{welcome_line_today}\n\n自西元 2024年9月11日起，LINE TODAY 的服務提供公司已從原本的 LY Corporation 轉為 LINE Plus Corporation（下稱「此次營業讓與」）。\n\n*LINE TODAY服務包括在LINE應用程式及電腦/行動裝置上與LINE TODAY相關的網站及所有服務。\n\n繼續使用 LINE TODAY 服務即表示您同意此次營業讓與、更新的{menu_plusterms}，及 {menu_plusprivacy}。\n\n我們將持續依據「{menu_marketigtos}」來優化您的服務體驗。您可於 LINE TODAY 中的隱私設定隨時查看目前設定或予以調整。",
+        "pop.existingspnotification": "{welcome_line_today}\n\n自西元 2024年9月11日起，LINE TODAY 的服務提供公司已從原本的 LY Corporation 轉為 LINE Plus Corporation（下稱「此次營業讓與」）。\n\n*LINE TODAY服務包括在LINE應用程式及電腦/行動裝置上與LINE TODAY相關的網站及所有服務。\n\n繼續使用 LINE TODAY 服務即表示您同意此次營業讓與、更新的{menu_plusterms}，及 {menu_plusprivacy}。\n\n我們將持續依據「{menu_marketigtos}」來優化您的服務體驗。您可於 LINE TODAY 中的隱私設定隨時查看目前設定或予以調整。",
+        "pop.welcome.line.today": "歡迎使用LINE TODAY。",
+        "info.internal.reorg": "內部組織重整的一部分",
+        "menu.marketigtos": "特定目的外利用個人資料之同意",
+        "btn.acceptmarketingtos": "了解LINE PLUS隱私權政策\n並同意特定目的外利用個人資料之同意",
+        "btn.notacceptmarketingtos": "了解LINE PLUS隱私權政策\n但不同意特定目的外利用個人資料之同意",
+        "btn.continuetouse": "了解並繼續使用",
+        "menu.plusterms": "LINE TODAY服務條款",
+        "menu.plusprivacy": "LINE Plus隱私權政策",
+        "menu.internal_reorg": "服務公告",
+        "title.contentType.general": "文章",
+        "title.contentType.advertorial": "文章",
+        "title.contentType.videohub": "影片",
+        "title.contentType.trailer": "影片",
+        "title.contentType.live": "LIVE",
+        "title.contentType.movie": "電影",
+        "title.contentType.drama.drama": "戲劇",
+        "title.contentType.drama.movie": "電影",
+        "title.contentType.drama.show": "節目",
+        "title.contentType.poll": "投票",
+        "title.contentType.quiz": "測驗",
+        "title.contentType.profile": "個人檔案",
+        "title.contentType.post": "Post",
+        "info.unavailable.content": "Sadly, this content is not available anymore.",
+        "__": "__"
+      },
+      "forYou": {
+        "foryou.title.hello": "您好",
+        "toppage.foryou.refreshbutton": "更多量身推薦",
+        "toppage.foryou.title": "TODAY量身推薦",
+        "toppage.foryou.title.airs": "Powered by",
+        "__": "__"
+      },
+      "video": {
+        "video.status.nowplaying": "現正播放",
+        "videoend.autoplay": "自動播放下一則",
+        "videoend.comments": "留言",
+        "videoend.info.detail": "詳細資訊",
+        "videoend.info.playcount": "觀看次數",
+        "videoend.norecommendedvideo": "尚無推薦影片",
+        "videoend.recommended": "推薦影片",
+        "videoend.recommendedvideos": "推薦影片",
+        "videoend.tooltip.autoplayoff": "不會自動播放下一段推薦影片。",
+        "videoend.tooltip.autoplayon": "將會自動播放下一段推薦影片。",
+        "preview.continue.watching": "繼續觀看",
+        "embedvideo.btn.copylink": "複製嵌入碼",
+        "embedvideo.pop.title": "影片嵌入碼",
+        "embedvideo.toast.copied": "已複製到剪貼簿。",
+        "info.livevideo.end": "直播已結束",
+        "info.video.cannot": "發生錯誤。\n請稍後再試。",
+        "info.video.geoblock": "此影片無法於您所在的國家或地區播放。",
+        "info.video.mobileonly": "請至手機版LINE中觀看此影片。",
+        "info.video.pclive": "請至手機版LINE中觀看此影片。",
+        "info.video.retry": "無法連線至網路。\n請確認網路連線後再試一次。",
+        "info.video.update": "您目前的LINE版本無法觀看此影片。\n請更新至最新版本後再試一次。",
+        "searchend.info.videos": "影片",
+        "live.liveStateMsg.finished": "本直播可能已經結束，或正在封存以供您稍後播放。",
+        "live.liveStateMsg.reserved": "本直播尚未開始，請稍待片刻。",
+        "bt.video.retry": "重播",
+        "info.video.abort": "影片播放已終止",
+        "info.video.decode": "由於影片檔案損毀或是該影片使用了您的瀏覽器不支援的功能，已終止播放媒體。",
+        "info.video.not.support": "因格式不支援、伺服器或網路的問題無法載入媒體。",
+        "info.video.mid.roll.notify": "{time} 秒後播放廣告",
+        "badge.video.episode": "EP.{episode}",
+        "__": "__"
+      },
+      "quiz": {
+        "bt.quiz.retake": "重新測驗",
+        "bt.quiz.shareResult": "分享結果",
+        "bt.quiz.take": "參加測驗",
+        "info.quiz.status.participateTimes": "%d人次",
+        "title.quiz.page": "測驗",
+        "info.quiz.status.outcomeRatio": "的參與者也是此結果",
+        "bt.quiz.start": "開始",
+        "info.quiz.marks": "得分：%d分",
+        "info.quiz.score": "得分",
+        "bt.quiz.previous": "前一題",
+        "bt.quiz.next": "下一題",
+        "bt.quiz.submit": "送出",
+        "title.quiz.answerKey": "解答區",
+        "info.quiz.correctAnswerRatio": "你答對了x/y題",
+        "info.quiz.skipped": "略過未作答",
+        "info.quiz.correctAnswer": "正確答案：",
+        "info.quiz.yourAnswer": "你的回答：",
+        "title.quiz.calculateResult": "結果計算中",
+        "info.quiz.campaign.firstScore": "首次完成挑戰",
+        "info.quiz.campaign.newRecord": "刷新個人紀錄",
+        "info.quiz.campaign.personalBest": "最佳紀錄：%d分",
+        "info.quiz.campaign.scoreCalculationPeriod": "計分期間：",
+        "info.quiz.campaign.totalScoreFirstWord": "你贏過了",
+        "info.quiz.campaign.totalScoreLastWord": "的參與者",
+        "info.quiz.campaign.scoreCalculationEnded": "計分期間已結束，新的作答不列入計算",
+        "__": "__"
+      },
+      "poll": {
+        "badge.poll.status.afterPeriod": "已結束",
+        "badge.poll.status.beforePeriod": "即將開放",
+        "badge.poll.status.closeSoon": "即將結束",
+        "badge.poll.status.day.plural": "%d天後結束",
+        "badge.poll.status.day.singular": "%d天後結束",
+        "badge.poll.status.hour.plural": "%d小時後結束",
+        "badge.poll.status.hour.singular": "%d小時後結束",
+        "badge.poll.status.inPeriod": "投票中",
+        "info.poll.description.limitation": "可複選（最多%d項）",
+        "info.poll.resultCalculation": "您至今所有的投票都會納入統計，但只會顯示最近一次的投票項目",
+        "info.poll.status.participantAmount": "%d人已投",
+        "info.poll.status.participantHidden": "熱烈進行中",
+        "info.poll.ststus.participatedTime": "%d人次",
+        "info.poll.voteCount": "票",
+        "info.poll.votedOption": "您的選擇",
+        "title.poll.page": "投票",
+        "title.poll.sharedDescription": "快上LINE TODAY參與投票！",
+        "toast.poll.limitation": "最多只能選擇%d項。",
+        "title.poll.titlebar": "投票",
+        "bt.poll.eventVote": "提交",
+        "bt.poll.select.this.option": "選擇",
+        "bt.poll.unselect.this.option": "取消選擇",
+        "info.poll.option.ranking": "目前%optionTitle是第%d名",
+        "info.poll.searchOption": "搜尋投票項目",
+        "info.poll.selectPanel.multiple.selected.title": "已選擇{selectedCount} / {optionCount}",
+        "info.poll.selectPanel.single.selected.title": "已選擇{optionTitle}",
+        "title.poll.optionDetail": "投票內容",
+        "title.poll.voted.successfully": "已提交！",
+        "title.contentType.poll": "投票",
+        "info.freq.oncePerDay": "您每天都有一次投票的機會",
+        "bt.alloptions": "查看所有選項",
+        "bt.vote": "投票",
+        "bt.voteInLINE": "上LINE投票",
+        "pop.voteError": "無法完成投票！",
+        "time.movie.release.year": "YYYY年MM月DD日",
+        "bt.seeResult": "看結果",
+        "info.mandatory": "必要項目",
+        "title.number": "項目%d",
+        "title.ranking": "第%d名",
+        "poll.withdraw.description": "If you need to withdraw your votes, please",
+        "poll.withdraw.clickHere": "click here.",
+        "__": "__"
+      }
+    },
+    "runtimeConfig": {
+      "countryConfig": {
+        "HOST_STATIC_URL": "https://today.line.me",
+        "HOST_CONTENT_API": "https://today.line.me",
+        "HOST_OBS": "https://today-obs.line-scdn.net",
+        "HOST_SHARE": "https://today.line.me",
+        "HOST_LAN_NOTICE": "https://notice2.line.me/globalnews/web/document/notice?lang=zh-Hant",
+        "HOST_LAN_TERMS": "https://terms2.line.me/globalnews_TOS_Plus/sp?lang=zh-Hant&country=tw",
+        "HOST_LAN_DISCLAIMER": "https://terms2.line.me/globalnews_disclaimer/sp?lang=zh-Hant&country=tw",
+        "HOST_OA_URL_PREFIX": "https://liff.line.me/1645278921-kWRPP32q/?accountId=",
+        "V2_URL": "https://today.line.me",
+        "ENABLE_ERROR_REDIRECT_BUTTON": true,
+        "LIFF_HOST": "https://liff.line.me",
+        "ENABLE_LIFF_URL": true,
+        "NEWS_TAB_SDK": "https://static.line-scdn.net/line_webview_bridge_sdk/19005e7ed5e/js/bridge.js",
+        "META_ICON_180": "icon180.png",
+        "META_ICON_192": "icon192.png",
+        "META_ICON_SHORTCUT": "icon64.ico",
+        "META_DEFAULT_IMAGE": "mainimg.png",
+        "SHARE_FB_APP_ID": "1020069503086244",
+        "SHARE_REDIRECTED_URL": "https://line.me/R/ch",
+        "SHARE_SOCIAL_PLUGIN_URL": "https://social-plugins.line.me/lineit/share",
+        "SHARE_QUICK_SHARE_URL": "line://share",
+        "WEATHER_API_EXPIRE_TIME_MS": 3600000,
+        "WEATHER_SET_NEXT_EXPIRE_TIME_MS": 600000,
+        "TRACKING_IDLE": 500,
+        "VIDEO_MAX_LOGS": 200,
+        "VIDEO_EXPIRE_TIME_MS": 2592000000,
+        "GA_ID": "UA-77656633-2",
+        "GA_SAMPLE_RATE": 10,
+        "GA_TOGGLE": false,
+        "GA_TRACK_IMP": true,
+        "GA_CONCURRENCY": 4,
+        "GA_AWAIT_FINISH": true,
+        "GA_SENDBEACON": false,
+        "GA_WEB_VITALS": true,
+        "WTS_PRODUCT_KEY": "line-today-real",
+        "WTS_SAMPLE_RATE": 100,
+        "WTS_TOGGLE": true,
+        "WTS_TRACK_IMP": true,
+        "WTS_CONCURRENCY": 2,
+        "WTS_AWAIT_FINISH": true,
+        "UTS_ID": "linetoday",
+        "UTS_SAMPLE_RATE": 100,
+        "UTS_TOGGLE": true,
+        "UTS_TRACK_IMP": true,
+        "UTS_CONCURRENCY": 2,
+        "UTS_AWAIT_FINISH": true,
+        "UTS_ENV": "release",
+        "UTS_END_POINT": "https://uts-front.line-apps.com",
+        "HMAC_UID_PRIVATE_KEY": "XmTxv7Ea8HP2Pwk0sKJ1Mw4Ty6AJ2gMH",
+        "KEEP": "line://nv/keep",
+        "PCP_BUY_HISTORY_URL": "https://plus.line.me/tw/my?utm_source=today_web&utm_medium=mytoday",
+        "HOMESCREEN_SHORTCUT_HOST_URL": "https://line.me/channel/shortcut",
+        "SHARE_REDIRECTURL": "https://line.me/R/msg/text/",
+        "DEDUPE_ARTICLE_GROUP": "dedupe-T1",
+        "AD_VIDEO_CMS_ID": "2495936",
+        "AD_IMMATURE_RESTRICT": false,
+        "UTILITY_HOST": "https://%provider-utility.line-website.com",
+        "NEWSTAB_REDIRECTURL": "https://line.me/R/nv/news",
+        "BOOKING_MOVIE": true,
+        "LIFF_SDK": "https://static.line-scdn.net/liff/edge/versions/2.17.0/sdk.js",
+        "CC_FORM_URL": "https://contact-cc.line.me/serviceId/15605",
+        "ENABLE_TOP_SEARCHBAR": false,
+        "REACTION_RANK_THRESHOLD": 1,
+        "REACTION_TOP_RANK_THRESHOLD": 2000,
+        "FARO_SAMPLE_RATE": 10,
+        "FARO_API_URL": "https://alloy-gw.line.dev/gln-fc77/collect",
+        "FARO_API_KEY": "gln-cde77f6",
+        "ENABLE_CP_END": true,
+        "ENABLE_OPEN_IN_LINE": true,
+        "LOCK_TIMEOUT": 60000,
+        "STORY_VIDEO_MAX_DURATION": 60,
+        "ENABLE_AD_PPID": true,
+        "ENABLE_PRIVACY_INFO_BY_CONSENT": true,
+        "ANNOUNCEMENT_SHOW_TIME": 1716368400000,
+        "GOOGLE_SITE_VERIFICATION": "W9cV2YrP_Os6bvNZLz9Lq4iCFqEpO9Pr_RuHFzbZDG4",
+        "SERVICE_REGION_RESTRICTION_ENABLED": true,
+        "SERVICE_RESTRICTED_REGIONS": ["KR", "JP"],
+        "HOST_LAN_REGION_RESTRICTED": "https://terms2.line.me/globalnews_region_restriction/sp",
+        "LIFF_REDIRECTURL": "https://line.me/R/app/",
+        "ENABLE_SUB_WINDOW": false,
+        "ENABLE_V3_LOTTERY": true,
+        "ENABLE_V3_COMMENT_END": false,
+        "ENABLE_SOCIAL_FEED": false,
+        "ENABLE_V3_VIDEO_END": false,
+        "TAB_SWIPE_DELTA_PIXEL": 50,
+        "ENABLE_POSTING_IMAGE_UPLOAD": false,
+        "ENABLE_COMPETITION_GAME_END": false,
+        "ENABLE_COMPETITION_SCHEDULE_END": false,
+        "HOME_URL": "https://today.line.me/tw",
+        "LIFF_ID": "1454987169-1WAXAP3K",
+        "GTM_ID": "GTM-MNP6F8L",
+        "CC_OA_URL": "https://line.me/R/oaMessage/@linehelptw/?%E6%88%91%E6%83%B3%E5%95%8FLINE%20TODAY%E7%9B%B8%E9%97%9C%E5%95%8F%E9%A1%8C",
+        "CC_OA_WEB_URL": "https://line.me/R/ti/p/%40linehelptw",
+        "AD_BACKDROP_TEMPLATES": [12192901, 12193768],
+        "AD_VIDEO_POPUP_TEMPLATES": [12356794],
+        "AD_STORY_VIEW_TEMPLATES": [12392030, 12382363],
+        "ANNOUNCEMENT_LINK": "https://notice2.line.me/globalnews/web/document/notice?documentId=100002820&lang=zh-Hant",
+        "HOST_LAN_INTERNAL_REORG": "https://notice2.line.me/globalnews/web/document/notice?documentId=100007087&lang=zh-Hant",
+        "V3_ARTICLE_GROUP": "ArticleV3TW-target"
+      },
+      "COMMIT_SHA": "fb546888",
+      "DEPLOY_ENV": "release",
+      "SENTRY_DSN": "https://8ca685e4ca2f4b2ba32b4459381f91b8@sentry-uit.line-apps.com/475"
+    },
+    "_sentryTraceData": "3c7d80f2f0b9e72a1e7f267599989293-cafd9ef57d736107-1",
+    "_sentryBaggage": "sentry-environment=release,sentry-release=release%40fb546888,sentry-public_key=8ca685e4ca2f4b2ba32b4459381f91b8,sentry-trace_id=3c7d80f2f0b9e72a1e7f267599989293,sentry-transaction=getServerSideProps%20%2Fv3%2Ftab%2F%5B%5B...tabs%5D%5D,sentry-sampled=true",
+    "articleDedupeState": {
+      "pool": {},
+      "serverPool": {}
+    },
+    "fallback": {
+      "getTabsData": {
+        "modules": [
+          {
+            "type": "TABS",
+            "tabs": [
+              {
+                "portalPageId": "5e4b951677475352cac02588",
+                "portalPageUrlPath": "top",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "焦點",
+                    "id": "5e4b951677475352cac02588",
+                    "urlPath": "top",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "65c4a4d4a25cba35a599fb95",
+                "id": "5e4b951677475352cac02588",
+                "urlPath": "top",
+                "title": "焦點"
+              },
+              {
+                "portalPageId": "5e4b95d377475352cac0258c",
+                "portalPageUrlPath": "entertainment",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "娛樂",
+                    "id": "5e4b95d377475352cac0258c",
+                    "urlPath": "entertainment",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97063429e7a65895ac37",
+                "id": "5e4b95d377475352cac0258c",
+                "urlPath": "entertainment",
+                "title": "娛樂"
+              },
+              {
+                "portalPageId": "5e4b95da77475352cac0258e",
+                "portalPageUrlPath": "domestic",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "國內",
+                    "id": "5e4b95da77475352cac0258e",
+                    "urlPath": "domestic",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97063429e7a65895ac38",
+                "id": "5e4b95da77475352cac0258e",
+                "urlPath": "domestic",
+                "title": "國內"
+              },
+              {
+                "portalPageId": "5e4b95ee77475352cac02594",
+                "portalPageUrlPath": "global",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "國際",
+                    "id": "5e4b95ee77475352cac02594",
+                    "urlPath": "global",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97193429e7a65895ac3b",
+                "id": "5e4b95ee77475352cac02594",
+                "urlPath": "global",
+                "title": "國際"
+              },
+              {
+                "portalPageId": "5e4b95e577475352cac02590",
+                "portalPageUrlPath": "life",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "生活",
+                    "id": "5e4b95e577475352cac02590",
+                    "urlPath": "life",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97073429e7a65895ac39",
+                "id": "5e4b95e577475352cac02590",
+                "urlPath": "life",
+                "title": "生活"
+              },
+              {
+                "portalPageId": "66e13d50aab4e2201b06a71a",
+                "portalPageUrlPath": "gooddeal",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "好康",
+                    "id": "66e13d50aab4e2201b06a71a",
+                    "urlPath": "gooddeal",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "66e2597f3a5c70865176895d",
+                "id": "66e13d50aab4e2201b06a71a",
+                "urlPath": "gooddeal",
+                "title": "好康"
+              },
+              {
+                "portalPageId": "5e4b9674285bec4ff1420418",
+                "portalPageUrlPath": "finance",
+                "lastModifiedTime": 1747721415846,
+                "expireMode": "AUTO",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "理財",
+                    "id": "5e4b9674285bec4ff1420418",
+                    "urlPath": "finance",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b971c3429e7a65895ac3f",
+                "id": "5e4b9674285bec4ff1420418",
+                "urlPath": "finance",
+                "title": "理財"
+              },
+              {
+                "portalPageId": "61e41c49bc1a99261f617aec",
+                "portalPageUrlPath": "drama",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "追劇",
+                    "id": "61e41c49bc1a99261f617aec",
+                    "urlPath": "drama",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "61f368109cf51a3a4d297c4b",
+                "id": "61e41c49bc1a99261f617aec",
+                "urlPath": "drama",
+                "title": "追劇"
+              },
+              {
+                "portalPageId": "5e4ba98d5c01c9fd138e2fb2",
+                "portalPageUrlPath": "movie",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "電影",
+                    "id": "5e4ba98d5c01c9fd138e2fb2",
+                    "urlPath": "movie",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4ba9ea25b077fc4ed91b55",
+                "id": "5e4ba98d5c01c9fd138e2fb2",
+                "urlPath": "movie",
+                "title": "電影"
+              },
+              {
+                "portalPageId": "66d58a5a9ccb7d6f902da726",
+                "portalPageUrlPath": "anime",
+                "fontColor": "DEFAULT",
+                "expireMode": "AUTO",
+                "expirePeriod": 900000,
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "動漫",
+                    "id": "66d58a5a9ccb7d6f902da726",
+                    "urlPath": "anime",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "66e7ad6950b55e4e0e1e45ab",
+                "id": "66d58a5a9ccb7d6f902da726",
+                "urlPath": "anime",
+                "title": "動漫"
+              },
+              {
+                "portalPageId": "5e4b95f877475352cac02596",
+                "portalPageUrlPath": "music",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "音樂",
+                    "id": "5e4b95f877475352cac02596",
+                    "urlPath": "music",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b971a3429e7a65895ac3c",
+                "id": "5e4b95f877475352cac02596",
+                "urlPath": "music",
+                "title": "音樂"
+              },
+              {
+                "portalPageId": "5e4b960277475352cac0259a",
+                "portalPageUrlPath": "sports",
+                "fontColor": "DEFAULT",
+                "expireMode": "MANUAL",
+                "expirePeriod": 21600000,
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "運動",
+                    "id": "5e4b960277475352cac0259a",
+                    "urlPath": "sports",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b971b3429e7a65895ac3e",
+                "id": "5e4b960277475352cac0259a",
+                "urlPath": "sports",
+                "title": "運動"
+              },
+              {
+                "portalPageId": "5e4b95fd77475352cac02598",
+                "portalPageUrlPath": "NBA",
+                "expireMode": "MANUAL",
+                "expirePeriod": 21600000,
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "NBA",
+                    "id": "5e4b95fd77475352cac02598",
+                    "urlPath": "NBA",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b971b3429e7a65895ac3d",
+                "id": "5e4b95fd77475352cac02598",
+                "urlPath": "NBA",
+                "title": "NBA"
+              },
+              {
+                "portalPageId": "5e4b96e9285bec4ff1420426",
+                "portalPageUrlPath": "CPBL",
+                "lastModifiedTime": 1747708741773,
+                "expireMode": "AUTO",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "中職",
+                    "id": "5e4b96e9285bec4ff1420426",
+                    "urlPath": "CPBL",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b973c3429e7a65895ac4d",
+                "id": "5e4b96e9285bec4ff1420426",
+                "urlPath": "CPBL",
+                "title": "中職"
+              },
+              {
+                "portalPageId": "630f08c7c0a5c10da6407146",
+                "portalPageUrlPath": "video",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "看片",
+                    "id": "630f08c7c0a5c10da6407146",
+                    "urlPath": "video",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "63102fb4c55605107ac0e121",
+                "id": "630f08c7c0a5c10da6407146",
+                "urlPath": "video",
+                "title": "看片"
+              },
+              {
+                "portalPageId": "5e4b967a285bec4ff142041a",
+                "portalPageUrlPath": "health",
+                "expireMode": "MANUAL",
+                "expirePeriod": 43200000,
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "健康",
+                    "id": "5e4b967a285bec4ff142041a",
+                    "urlPath": "health",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97253429e7a65895ac40",
+                "id": "5e4b967a285bec4ff142041a",
+                "urlPath": "health",
+                "title": "健康"
+              },
+              {
+                "portalPageId": "5e4b968d5c01c9fd138e2f92",
+                "portalPageUrlPath": "horoscope",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "星座運勢",
+                    "id": "5e4b968d5c01c9fd138e2f92",
+                    "urlPath": "horoscope",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97273429e7a65895ac43",
+                "id": "5e4b968d5c01c9fd138e2f92",
+                "urlPath": "horoscope",
+                "title": "星座運勢"
+              },
+              {
+                "portalPageId": "5e4b96985c01c9fd138e2f96",
+                "portalPageUrlPath": "food",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "美食",
+                    "id": "5e4b96985c01c9fd138e2f96",
+                    "urlPath": "food",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97303429e7a65895ac45",
+                "id": "5e4b96985c01c9fd138e2f96",
+                "urlPath": "food",
+                "title": "美食"
+              },
+              {
+                "portalPageId": "5e4b969e285bec4ff142041c",
+                "portalPageUrlPath": "travel",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "旅遊",
+                    "id": "5e4b969e285bec4ff142041c",
+                    "urlPath": "travel",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97313429e7a65895ac46",
+                "id": "5e4b969e285bec4ff142041c",
+                "urlPath": "travel",
+                "title": "旅遊"
+              },
+              {
+                "portalPageId": "5e4b96b8285bec4ff142041e",
+                "portalPageUrlPath": "fashion",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "潮流時尚",
+                    "id": "5e4b96b8285bec4ff142041e",
+                    "urlPath": "fashion",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97313429e7a65895ac47",
+                "id": "5e4b96b8285bec4ff142041e",
+                "urlPath": "fashion",
+                "title": "潮流時尚"
+              },
+              {
+                "portalPageId": "5e4b96855c01c9fd138e2f8e",
+                "portalPageUrlPath": "fun",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "鄉民",
+                    "id": "5e4b96855c01c9fd138e2f8e",
+                    "urlPath": "fun",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "5e4b97263429e7a65895ac41",
+                "id": "5e4b96855c01c9fd138e2f8e",
+                "urlPath": "fun",
+                "title": "鄉民"
+              },
+              {
+                "portalPageId": "5f4dfec21cdbd312eed6a6bf",
+                "portalPageUrlPath": "recommendation",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "推薦",
+                    "id": "5f4dfec21cdbd312eed6a6bf",
+                    "urlPath": "recommendation",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "61c2ea09e90ac55cc92ce8cf",
+                "id": "5f4dfec21cdbd312eed6a6bf",
+                "urlPath": "recommendation",
+                "title": "推薦"
+              },
+              {
+                "portalPageId": "5fbcdd867747539bab38afbf",
+                "portalPageUrlPath": "subscription",
+                "fontColor": "DEFAULT",
+                "expireMode": "OFF",
+                "link": {
+                  "pageType": "GENERAL",
+                  "page": {
+                    "name": "追蹤",
+                    "id": "5fbcdd867747539bab38afbf",
+                    "urlPath": "subscription",
+                    "type": "GENERAL"
+                  }
+                },
+                "key": "67242e4c8836f4141c1b385a",
+                "id": "5fbcdd867747539bab38afbf",
+                "urlPath": "subscription",
+                "title": "追蹤"
+              }
+            ]
+          }
+        ]
+      },
+      "getPageData,domestic": {
+        "id": "5e4b95da77475352cac0258e",
+        "name": "國內",
+        "urlPath": "domestic",
+        "type": "GENERAL",
+        "modules": [
+          {
+            "id": "6583a16ed3b28422363eda2d",
+            "type": "AD",
+            "name": "AD-Top0",
+            "source": "AD",
+            "adRatio": {
+              "gpt": 0,
+              "lap": 100,
+              "dable": 0,
+              "gfp": 0
+            },
+            "lazyLoadingOn": false,
+            "lazyLoadingBuffer": 0,
+            "startDateTime": 0,
+            "endDateTime": 0,
+            "metaData": {
+              "isDesktopOn": "false"
+            },
+            "gptInventoryKey": "",
+            "lapInventoryKey": "l.kCeYXJThsS-",
+            "lapRsid": "Top0_domestic",
+            "gfpInventoryKey": "",
+            "lapCtid": "",
+            "renderOnCondition": false
+          },
+          {
+            "id": "5e4cee49408f3c5ca031940b",
+            "type": "HEADLINE",
+            "containerStyle": "Default",
+            "name": "Headline",
+            "source": "LISTING",
+            "listings": [
+              {
+                "id": "2fca0121-1599-4a90-868a-84c4e4787ff8",
+                "offset": 0,
+                "length": 5
+              }
+            ]
+          },
+          {
+            "id": "5e4ceeda408f3c5ca031940d",
+            "type": "THUMBNAIL_LIST",
+            "containerStyle": "Default",
+            "name": "Digest",
+            "source": "LISTING",
+            "listings": [
+              {
+                "id": "2fca0121-1599-4a90-868a-84c4e4787ff8",
+                "offset": 5,
+                "length": 3
+              }
+            ]
+          },
+          {
+            "id": "5fc909895c590a4476ab142a",
+            "type": "AD",
+            "name": "AD-Top1-LIFF",
+            "source": "AD",
+            "adRatio": {
+              "gpt": 0,
+              "lap": 100,
+              "gfp": 0
+            },
+            "lazyLoadingOn": false,
+            "lazyLoadingBuffer": 0,
+            "startDateTime": 0,
+            "endDateTime": 0,
+            "metaData": {
+              "isDesktopOn": "false"
+            },
+            "gptInventoryKey": "/62654103/TW/mobile/page/mobile_domestic_1",
+            "lapInventoryKey": "l.j1YrDANVAh3",
+            "lapRsid": "domestic_Top1_LIFF",
+            "gfpInventoryKey": "tw_mobile_category_1",
+            "lapCtid": "",
+            "renderOnCondition": false
+          },
+          {
+            "id": "6825ac5665533b082920a277",
+            "type": "THUMBNAIL_LIST",
+            "containerStyle": "RichCard",
+            "name": "Topic：賴清德執政一週年",
+            "source": "LISTING",
+            "header": {
+              "title": "國內話題：賴清德執政一週年",
+              "hasCompositeTitle": false,
+              "subTitle": "賴清德總統在過去一年的主要成就與挑戰",
+              "themeStyle": "THEME_INDIGO_900",
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "賴清德執政一週年",
+                  "id": "682aa62a5842d803f8e30e3c",
+                  "urlPath": "presidency",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "footer": {
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "賴清德執政一週年",
+                  "id": "682aa62a5842d803f8e30e3c",
+                  "urlPath": "presidency",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "listings": [
+              {
+                "id": "ebe540e9-d4b1-4864-92cb-3ec060fe28bb",
+                "offset": 0,
+                "length": 5
+              }
+            ],
+            "referralTopicUrlPath": "presidency"
+          },
+          {
+            "id": "682b0cef1b1269f8dec93e60",
+            "type": "HIGHLIGHT",
+            "containerStyle": "Header",
+            "name": "國內話題：新北重大車禍",
+            "source": "LISTING",
+            "header": {
+              "title": "新北重大死傷車禍",
+              "hasCompositeTitle": false,
+              "subTitle": "一輛小客車19日下午撞上放學人群，造成多名學童、大人送醫，至少3死10多傷，肇事的78歲男子當場昏迷。"
+            },
+            "listings": [
+              {
+                "id": "1feef7d2-3acc-495d-becd-3ef4de6a92ce",
+                "offset": 0,
+                "length": 10
+              }
+            ]
+          },
+          {
+            "id": "5fc909ca5c590a4476ab142b",
+            "type": "AD",
+            "name": "AD-Top2-LIFF",
+            "source": "AD",
+            "adRatio": {
+              "gpt": 0,
+              "lap": 100,
+              "gfp": 0
+            },
+            "lazyLoadingOn": true,
+            "lazyLoadingBuffer": 340,
+            "startDateTime": 0,
+            "endDateTime": 0,
+            "metaData": {
+              "isDesktopOn": "false"
+            },
+            "gptInventoryKey": "/62654103/TW/mobile/page/mobile_domestic_2",
+            "lapInventoryKey": "l.yxdn79egkaf",
+            "lapRsid": "domestic_Top2_LIFF",
+            "gfpInventoryKey": "tw_mobile_category_2",
+            "lapCtid": "",
+            "renderOnCondition": false
+          },
+          {
+            "id": "67dd3788a0961125161e3034",
+            "type": "HIGHLIGHT",
+            "containerStyle": "RichCard",
+            "name": "Topic：罷免觀察室",
+            "source": "LISTING",
+            "header": {
+              "title": "罷免觀察室",
+              "hasCompositeTitle": false,
+              "subTitle": "不斷更新 : 點擊【罷免觀察室】，市長、立委、議員罷免最新進度、罷免門檻、罷免法規懶人包一次看",
+              "themeStyle": "THEME_AMBER_600",
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "罷免觀察室",
+                  "id": "67cce0a182fef814a9ebc29d",
+                  "urlPath": "vote_Legislator_2025",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "footer": {
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "罷免觀察室",
+                  "id": "67cce0a182fef814a9ebc29d",
+                  "urlPath": "vote_Legislator_2025",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "listings": [
+              {
+                "id": "7521552d-118e-4195-ba5c-5ef8fa614ee2",
+                "offset": 0,
+                "length": 6
+              }
+            ],
+            "adArticleListings": [
+              {
+                "id": "0d76984c-2f55-4a42-8b21-7f3fccef9c55",
+                "offset": 0
+              }
+            ],
+            "referralTopicUrlPath": "vote_Legislator_2025"
+          },
+          {
+            "id": "680b39c6b09c4164b14364b7",
+            "type": "CAROUSEL",
+            "containerStyle": "RichCard",
+            "name": "Topic：兒少安全專題",
+            "source": "LISTING",
+            "header": {
+              "title": "兒少安全議題",
+              "hasCompositeTitle": false,
+              "subTitle": "剴剴之死震驚社會，於5/13一審宣判，後續多起兒少事件引發關注",
+              "themeStyle": "THEME_BLACK",
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "誰聽見我的哭聲--兒少安全專題",
+                  "id": "680a8feb5a9711451c8702ef",
+                  "urlPath": "childsafty",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "footer": {
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "誰聽見我的哭聲--兒少安全專題",
+                  "id": "680a8feb5a9711451c8702ef",
+                  "urlPath": "childsafty",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "listings": [
+              {
+                "id": "e74930d3-d4a5-4fed-a673-a712473f1465",
+                "offset": 0,
+                "length": 6
+              }
+            ],
+            "referralTopicUrlPath": "childsafty"
+          },
+          {
+            "id": "5e4cf007408f3c5ca0319415",
+            "type": "THUMBNAIL_LIST",
+            "containerStyle": "Header",
+            "name": "最新國內新聞1",
+            "source": "LISTING",
+            "header": {
+              "title": "最新國內新聞",
+              "hasCompositeTitle": false
+            },
+            "listings": [
+              {
+                "id": "2fca0121-1599-4a90-868a-84c4e4787ff8",
+                "offset": 8,
+                "length": 10
+              }
+            ]
+          },
+          {
+            "id": "5e4cf046408f3c5ca0319416",
+            "type": "FORYOU",
+            "containerStyle": "Header",
+            "name": "ForYou",
+            "source": "CAT_FORYOU",
+            "showCategory": false,
+            "header": {
+              "title": "猜你喜歡",
+              "hasCompositeTitle": false,
+              "subTitle": ""
+            },
+            "style": "THUMBNAIL_LIST",
+            "searchTarget": "news_cat",
+            "listings": [
+              {
+                "id": "news_cat:5e4cf046408f3c5ca0319416",
+                "offset": 0,
+                "length": 8,
+                "target": "categoryForyou",
+                "urlPath": "/recommendation/articles",
+                "params": {
+                  "categoryIds": "100262"
+                }
+              }
+            ]
+          },
+          {
+            "id": "62aac2ae721e6329f78b57a7",
+            "type": "QUIZ",
+            "name": "Quiz",
+            "source": "QUIZ",
+            "title": "TODAY測了沒",
+            "style": "SHOWCASE",
+            "quizList": ["5ylgPRv"]
+          },
+          {
+            "id": "5eddb6970a95b7041f80581b",
+            "type": "POLL",
+            "name": "Poll",
+            "source": "POLL",
+            "pollId": "262881592",
+            "multi": {
+              "title": "全民LINE一票",
+              "polls": ["262072787", "262073187", "262672938"]
+            }
+          },
+          {
+            "id": "6490561f06a4a141b421a5bb",
+            "type": "CAROUSEL",
+            "containerStyle": "RichCard",
+            "name": "TOPIC-小心別被騙",
+            "source": "LISTING",
+            "header": {
+              "title": "小心別被騙",
+              "hasCompositeTitle": false,
+              "subTitle": "日新月異的詐騙案讓你心好累？快來訂閱練就防詐抵抗力吧",
+              "themeStyle": "THEME_INDIGO_900",
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "小心別被騙",
+                  "id": "64afdc3d45ea3f00cad92151",
+                  "urlPath": "TOPIC-anti-fraud",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "footer": {
+              "link": {
+                "pageType": "TOPIC",
+                "page": {
+                  "name": "小心別被騙",
+                  "id": "64afdc3d45ea3f00cad92151",
+                  "urlPath": "TOPIC-anti-fraud",
+                  "type": "TOPIC"
+                }
+              }
+            },
+            "listings": [
+              {
+                "id": "12b181a1-ca7e-41ec-83d9-9fcfde85123a",
+                "offset": 0,
+                "length": 8
+              },
+              {
+                "id": "f665c641-5076-4ca9-8b43-5c95f4cc1f17",
+                "offset": 0,
+                "length": 2
+              }
+            ],
+            "referralTopicUrlPath": "TOPIC-anti-fraud"
+          },
+          {
+            "id": "6543c01d25f70caeb17d2af5",
+            "type": "CAROUSEL",
+            "containerStyle": "Header",
+            "name": "謠言破解",
+            "source": "LISTING",
+            "header": {
+              "title": "謠言破解",
+              "hasCompositeTitle": false,
+              "subTitle": ""
+            },
+            "listings": [
+              {
+                "id": "aefd9844-0b56-489b-87f1-5618412d13d9",
+                "offset": 0,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "id": "5e4cef9d408f3c5ca031940f",
+            "type": "CAROUSEL",
+            "containerStyle": "Header",
+            "name": "熱門國內影音（query）",
+            "source": "LISTING",
+            "header": {
+              "title": "熱門國內影音",
+              "hasCompositeTitle": false
+            },
+            "listings": [
+              {
+                "id": "6134afe7-08a4-4bc2-92d0-f9828b5638a2",
+                "offset": 0,
+                "length": 20
+              }
+            ]
+          },
+          {
+            "id": "64cb54cc36b07f3ccc5aecb0",
+            "type": "CAROUSEL",
+            "containerStyle": "Header",
+            "name": "圖表圖解module-看圖秒懂國內事",
+            "source": "LISTING",
+            "header": {
+              "title": "看圖秒懂國內事",
+              "hasCompositeTitle": false,
+              "subTitle": ""
+            },
+            "listings": [
+              {
+                "id": "c435293b-3cfa-4c43-a7a5-28fe59bcf04d",
+                "offset": 0,
+                "length": 10,
+                "params": {
+                  "shuffle": true
+                }
+              }
+            ]
+          },
+          {
+            "id": "5e4cf117408f3c5ca0319418",
+            "type": "THUMBNAIL_LIST",
+            "containerStyle": "Header",
+            "name": "最多留言",
+            "source": "CATEGORY_MOST_COMMENT",
+            "header": {
+              "title": "最多留言",
+              "hasCompositeTitle": false
+            },
+            "listings": [
+              {
+                "id": "module:5e4cf117408f3c5ca0319418",
+                "offset": 0,
+                "length": 20,
+                "target": "categoryMostComment",
+                "urlPath": "/trending/category/mostComment",
+                "params": {
+                  "targetContent": "ARTICLE",
+                  "shuffled": true,
+                  "categories": "100262:20",
+                  "trendingEventPeriod": "SIX_HOUR"
+                }
+              }
+            ],
+            "showCommentCount": false,
+            "showRank": false,
+            "showPeriodInSubtitle": true
+          },
+          {
+            "id": "5e4fbc1905b7776641d47c54",
+            "type": "THUMBNAIL_LIST",
+            "containerStyle": "Header",
+            "name": "即時熱門排行榜",
+            "source": "CATEGORY_MOST_VIEW",
+            "header": {
+              "title": "即時熱門排行榜",
+              "hasCompositeTitle": false,
+              "subTitle": ""
+            },
+            "listings": [
+              {
+                "id": "module:5e4fbc1905b7776641d47c54",
+                "offset": 0,
+                "length": 20,
+                "target": "categoryMostView",
+                "urlPath": "/trending/category/mostView",
+                "params": {
+                  "targetContent": "ALL",
+                  "categories": "100262:20",
+                  "trendingEventPeriod": "THREE_HOUR"
+                }
+              }
+            ],
+            "showRank": true,
+            "showViewCount": false,
+            "showPeriodInSubtitle": false
+          }
+        ]
+      },
+      "5e4cee49408f3c5ca031940b_{\"offset\":0,\"length\":5}": [
+        {
+          "id": "262882530",
+          "title": "78歲駕駛暴衝釀3死 交通局認定3大肇因",
+          "publisher": "太報",
+          "publisherId": "101366",
+          "publishTimeUnix": 1747716201000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hENUtRxU8GmFoDQQqdDdlNlBbFhBbawBoSjlQU0UIQwIRIV03UW1JAkkLRU1MbVlkSG8CDkxeRFYWPFtgUw"
+          },
+          "url": {
+            "hash": "l2XkBeg"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "2025年5月19日，新北市三峽區發生重大交通事故，肇事者78歲余姓老翁暴衝釀成3死12傷。民眾提供新北市三峽區國光街與國成街交叉口，北大國小旁的通學路段，昨（5/19）日下午發生重大車禍，78歲余姓男子駕駛自小客車於學生放學尖峰時段，突然暴衝撞上正在過馬路的家長與學童，釀成3死12傷，引發社會譁然。新北市交通局今（5/20）日上午聯合市警局交通大隊、當地里長重回事故現場勘查，交通局副局長林麗珠表...",
+          "badgeType": "CUSTOM",
+          "badgeText": "三峽車禍"
+        },
+        {
+          "id": "262882159",
+          "title": "說完「不記得了」昏迷 肇事翁未脫險",
+          "publisher": "鏡週刊",
+          "publisherId": "100150",
+          "publishTimeUnix": 1747716480000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hODsJ_cBYEGtOMw4gUNJvPHZlHBp9VQpibFZWDzwwGl5qH145cFFDCD86TEdrBVVtbl1cWG8wR19kAVY7cQ"
+          },
+          "url": {
+            "hash": "60ly3pw"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "78歲余姓男子肇事釀3死12傷，目前他仍在加護病房未脫離險境，醫院將進行第2次手術。（翻攝畫面／翻攝自黃家賢臉書）新北市三峽昨（19）日發生嚴重車禍事件，78歲余姓男子駕駛自小客車暴衝，釀3死12傷。而他被救出車子時一度還能說話，不過僅留下「不記得了」接著就陷入昏迷。余男送往亞東醫院急救，因有嚴重血胸、腹腔出血，加上臟器受損等狀況，緊急手術後轉往加護病房觀察，但目前他仍意識不清、尚未脫離險境，醫院...",
+          "badgeType": "CUSTOM",
+          "badgeText": "三峽車禍"
+        },
+        {
+          "id": "262882881",
+          "title": "廣島擬首邀台參與原爆紀念、長崎不同調 外交部發聲",
+          "publisher": "民視新聞網",
+          "publisherId": "100495",
+          "publishTimeUnix": 1747717732000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0h9GaWU-pXZmhcLngjQtwZP2R4ahlvSHxhfkgpCXl-PV5yAiI3ZUA1C3l5PkR4Gic3fEF5DCksbFx4TXRuMA"
+          },
+          "url": {
+            "hash": "permXr7"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "即時中心／詹詠淇報導日本廣島市將於8月6日舉行和平紀念儀式，據《日本產經新聞》報導，廣島市傾向通知台灣參加今年和平紀念儀式，而長崎市長鈴木史朗17日則說，按照慣例，不邀請或不通知台灣出席。對此，外交部發言人蕭光偉今（20）日表示，廣島市部分，收到邀請函後會研議適當出席人選。至於長崎市部分，外交部對此表示遺憾。外交部今日上午舉行「單位主管例行新聞說明會」，由外交部發言人兼公眾會執行長蕭光偉主持，並由..."
+        },
+        {
+          "id": "262883517",
+          "title": "又來！2中國男偷渡金門 被海巡抓到",
+          "publisher": "EBC 東森新聞",
+          "publisherId": "100237",
+          "publishTimeUnix": 1747719240000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hirmcFnAwNl1QGigWSk9JCmhMOixjfCxUcn17bHQTbz55NiRcbC5lPicebXEueHFfcH55OncYODl9LyUIaA"
+          },
+          "url": {
+            "hash": "mW6QgnE"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "今（20）日上午5時08分，金馬澎分署金門守望哨以紅外線熱影像系統偵獲烈嶼西南方的二膽島海域，有2名中國人士從小型舢舨施放保麗龍浮板，企圖偷渡上島。第十二巡防區立即調度金門海巡隊線上巡邏的PP-3585艇及CP艇，會同守備大隊展開攔截圍捕，於上午07時53分時查獲2名中國男性，並當場查扣陸籍舢舨1艘。1747746608_50945中國人士從小型舢舨施放保麗龍浮板。（圖／東森新聞）今（20）日紅外..."
+        },
+        {
+          "id": "262882531",
+          "title": "男涉殺花蓮女老師 嫌犯母也殺人遭判14年",
+          "publisher": "壹蘋新聞網",
+          "publisherId": "103145",
+          "publishTimeUnix": 1747717740000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hfpaOkWo6OV9cNicUQA1GCGRgNS5vUCNWfld1Pn41N2Z3Gn8BMwJqPC4zN3MhVH8LfFMjMCpmM2tyVCwNNQ"
+          },
+          "url": {
+            "hash": "qojOVn2"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "26歲劉嫌涉殺蔡姓女老師遭逮捕。資料照片【記者李光濱／花蓮報導】花蓮善心蔡姓女老師遭有聽語障礙的劉嫌勒斃，劉嫌昨被法院依殺人罪裁定羈押。劉嫌背景背遭起底，詭異的是其母劉女多年前不滿友人誣指她偷竊，酒後將對方騙至溪邊，趁醉推入水中活活溺斃，事後還陪家屬守靈、痛哭演戲。這對母子先後走上奪人性命，背負殺人重罪，令人不寒而慄。劉嫌從小隨母姓由外婆扶養，他母親劉女於2018年5月2日與數名友人在台中市租屋處..."
+        }
+      ],
+      "5e4ceeda408f3c5ca031940d_{\"offset\":5,\"length\":3}": [
+        {
+          "id": "262863831",
+          "title": "賴清德就職週年演說 邀在野領袖國安情勢簡報",
+          "publisher": "LINE TODAY",
+          "publisherId": "100011",
+          "publishTimeUnix": 1747676220000,
+          "contentType": "VIDEOHUB",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hHDjQhFn-F2tXKAknNlBoPAV-FARkRARoMx5GXykpDDAcQQ9vMBNbZTlfDA4TYw9GNDJQXS1YSiAleFhWGSVYbBdfFyQfcBtWDTpcZjlXCTAxaAxtDk8e"
+          },
+          "url": {
+            "hash": "qoj6lZ2"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "media": {
+            "index": 0,
+            "type": "obs",
+            "thumbnailHash": "0hRj3cENwxDUUOGhMJ-nZyElJMDio9dh5GaixccXAbFgl8VRNBMTUGXyhxESBVLktsahcJQk1bFQp7QUtyVBwedk4bGiVWTRN4RxtBcyhYUwlVeAxobiZKX1s",
+            "profile": "2",
+            "duration": 1294259,
+            "width": 1920,
+            "height": 1080
+          },
+          "shortDescription": "賴清德總統20日上午9點半在總統府發表執政週年「迎風轉型、穩健前行」談話，涵蓋「民主台灣、韌性精神、訴求團結」3元素，除了回顧過去一年政績外，也對未來規劃進行說明。"
+        },
+        {
+          "id": "262883382",
+          "title": "京華城案苗博雅出庭作證 柯文哲「抓頭」成檢辯攻防",
+          "publisher": "新頭殼",
+          "publisherId": "100086",
+          "publishTimeUnix": 1747719079000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0h2X_fb-FqbXdiH3M8eUkSIFpJYQZReXd-QHwlGEZMNENGMyonVn4-FBQdY1tGLSIiQnl3EEBLZkRNLygiWw"
+          },
+          "url": {
+            "hash": "ZaN7gXP"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "前台北市長柯文哲涉京華城、政治獻金等案。 圖：張良一 / 攝（資料照）Newtalk新聞台北地方法院今（20）日繼續開庭審理京華城案，傳喚曾質詢該議題的社民黨台北市議員苗博雅，當庭勘驗苗當時質詢前台北市長柯文哲的影片。其中，檢辯雙方針對柯備詢時的招牌「抓頭」動作各有解讀，柯的律師說，柯在接受苗博雅質詢時，面露驚訝表情，代表柯對京華城容積並不清楚；但檢察官認為，柯抓頭動作並非代表不知情。柯文哲律師今..."
+        },
+        {
+          "id": "262879027",
+          "title": "中市府花3千萬興建 濺血事件卻不斷發生",
+          "publisher": "NOWnews 今日新聞",
+          "publisherId": "100007",
+          "publishTimeUnix": 1747713365000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hKTdQchQgFHtZKAo3q-1rLGF-GApqTg5yexpbTn4hHx8gBAB5bBxHGHV_HVd9GlZ6eR1SGi8vHUx8T1V6YA"
+          },
+          "url": {
+            "hash": "eLM7oOG"
+          },
+          "categoryId": 100262,
+          "categoryName": "國內",
+          "shortDescription": "▲完工後的大安海水浴場看似安全，卻潛藏傷人危機。（圖／台中市議員王立任提供，2025.05.20）[NOWnews今日新聞] 台中市政府斥資3千萬元興建大安海水浴場的觀光路廊，完工後竟成充滿危機的「殺人海域」！民進黨團踢爆，沙灘上積滿施工廢棄物，其中包含許多尖銳廢棄物，造成許多民眾受傷，經查竟是施工廠商在板模作業結束後，直接將鐵釘棄置於水中，市府卻未在現場做任何警示，任由不知情的遊客涉險。台中市政..."
+        }
+      ]
+    }
+  },
+  "__N_SSP": true
+}

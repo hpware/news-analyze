@@ -10,7 +10,10 @@
     "postinstall": "nuxt prepare",
     "prettier": "prettier --write .",
     "createdb": "bun run createDatabase.ts",
-    "start": "bun run .output/server/index.mjs"
+    "start": "bun run .output/server/index.mjs",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-tc": "^5.2.5",
