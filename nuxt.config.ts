@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     },
     "/api/cached/**": { swr: 3600 },
     "/api/news/get": { swr: 3600 },
+    "/api/home/uuid_lt": { swr: 3600 },
   },
 
   css: ["~/styles/main.css"],
