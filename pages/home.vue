@@ -41,11 +41,6 @@ const cards = [
     description: t("home.cards.description.interface"),
   },
   {
-    icon: DocumentDuplicateIcon,
-    title: t("home.cards.title.documentation"),
-    description: t("home.cards.description.documentation"),
-  },
-  {
     icon: GithubIcon,
     title: t("home.cards.title.opensource"),
     description: t("home.cards.description.opensource"),
@@ -130,11 +125,11 @@ useSeoMeta({
             <span>{{ t("home.startusing") }}</span>
           </button>
         </NuxtLink>
-        <NuxtLink :to="localePath('/docs/')">
+        <NuxtLink :to="localePath('/tools/')">
           <button
             class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
           >
-            <span>{{ t("home.documentation") }}</span>
+            <span>{{ t("home.tools") }}</span>
           </button>
         </NuxtLink>
         <NuxtLink to="#learnmore">

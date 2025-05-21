@@ -10,7 +10,7 @@ const props = defineProps<{
   black?: boolean | false;
 }>();
 
-const emit = defineEmits(["close", "min", "maximize", "restore"]);
+const emit = defineEmits(["close", "min", "restore"]);
 const title = computed(() => props.title || "Draggable Window");
 
 const isDragging = ref(false);
@@ -85,12 +85,6 @@ const stopDrag = () => {
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
         >
           ━
-        </button>
-        <button
-          @click="emit('maximize')"
-          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
-        >
-          ⬜
         </button>
         <button
           @click="emit('close')"

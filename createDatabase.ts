@@ -76,7 +76,7 @@ uuid text primary key,
 title text not null,
 content text not null,
 origin text not null,
-author text,
+author text
 )
 `;
 

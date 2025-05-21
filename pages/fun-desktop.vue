@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Make the Desktop funner // TODO
 // No layout
 definePageMeta({
   layout: false,
@@ -338,6 +339,13 @@ const openNewWindowViaApp = (windowId: string) => {
   }, 1000);
 };
 
+const maxWindow = (windowUUId: string) => {
+  const windowIndex = activeWindows.value.findIndex(
+    (window) => window.absoluteId === windowUUId,
+  );
+  console.log(windowIndex);
+};
+
 const toggleMinWindow = (windowUUId: string) => {
   const windowIndex = "";
 };
@@ -369,6 +377,9 @@ onMounted(() => {
   if (bootingHeaderParams) {
     bootingAnimation.value = false;
   }
+});
+
+onMounted(() => {
   if (bootingAnimation.value) {
     gsap.to(popMessage.value, {
       duration: 0.5,
@@ -406,115 +417,12 @@ watchEffect((cleanupFn) => {
     >
       <Progress
         v-model="progress"
-        class="w-3/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        class="w-3/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#2a7b9b] then-[#8d57c7] to-[#ed4242]"
       />
       <br />
-      <span class="text-xl text-bold mt-3">{{ t("app.launchtext") }}</span>
+      <span class="text-xl text-bold mt-3 text-sky-200">{{
+        t("app.launchtext")
+      }}</span>
     </div>
   </div>
-  <div
-    class="absolute inset-x-0 flex flex-row px-2 py-1 bg-[#7D7C7C]/70 text-white justify-between align-center text-center z-50 overscroll-none"
-    v-else
-  >
-    <!--Menu container-->
-    <div
-      class="flex flex-row g-2 rounded-xl gray-500/80 backdrop-blur-sm z-9999 selection:opacity-0"
-    >
-      <button
-        @click="toggleMenu"
-        class="w-8 h-8 text-white hover:text-blue-500 transition-all duration-100 flex flex-row"
-      >
-        <ComputerDesktopIcon />
-      </button>
-      <!--DO NOT MODIFY THE CLASSES OF THIS |, THIS COULD WORK OR BRAKE I HAVE NO CLUE WHY DOES IT DO THAT, BUT DON'T DO IT.-->
-      <span class="ml-1 mr-2 text-[20px]">|</span>
-      <!--navbar icons for min and max application window-->
-      <button
-        class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-      ></button>
-      <div
-        class="overflow-hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white flex-nowrap whitespace-nowrap min-w-0"
-      >
-        <div class="flex flex-row flex-shrink-0 min-w-0">
-          <div
-            v-for="item in currentNavBar"
-            :key="item.name"
-            class="flex flex-row items-center gap-x-2 hover:bg-gray-100 transition-all duration-150 px-4 py-1 cursor-pointer group rounded-xl"
-          >
-            <button
-              @click="toggleMinWindow(item.windowAssociated)"
-              class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-            >
-              <span>{{ item.name }}</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex flex-row gap-5">
-      <NuxtLink :to="localePath('/desktop?changelang=1', t('nextlang'))">
-        <button
-          class="p-1 hover:text-blue-200 transition-all duration-100 hover:bg-gray-500 rounded selection:opacity-0"
-        >
-          {{ t("localeflag") }}
-        </button>
-      </NuxtLink>
-      <div
-        class="text-center align-middle justify-center text-white selection:opacity-0 hover:cursor-default"
-      >
-        {{ currentDate }}
-      </div>
-    </div>
-  </div>
-  <div class="w-full h-[2.5em]"></div>
-  <!--Menu-->
-  <Transition
-    enter-active-class="animate__animated animate__fadeInDown animate_fast03"
-    leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
-  >
-    <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998 selection:opacity-0"
-      v-if="menuOpen"
-    >
-      <div v-for="item in menuItems" :key="item.name" class="">
-        <button
-          @click="openWindow(item.windowName)"
-          class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-        >
-          <span>{{ item.name }}</span>
-          <ChevronRightIcon class="w-4 h-4 justify-center align-center" />
-        </button>
-      </div>
-    </div>
-  </Transition>
-  <!--Main desktop contents-->
-  <div
-    class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
-    id="desktop"
-  ></div>
-  <Transition>
-    <div>
-      <DraggableWindow
-        v-for="window in activeWindows"
-        :key="window.id"
-        :title="window.title"
-        @close="closeWindow(window.id, window.absoluteId)"
-        @min="unMinWindow(window.id)"
-        :width="window.width"
-        :height="window.height"
-        @click="obtainTopWindowPosition(window.id)"
-        :black="window.black"
-      >
-        <Suspense>
-          <Component
-            :is="window.component"
-            @error="console.error('Error:', $event)"
-            @windowopener="openNewWindowViaApp($event)"
-            @loadValue=""
-            :values="passedValues"
-          />
-        </Suspense>
-      </DraggableWindow>
-    </div>
-  </Transition>
 </template>
