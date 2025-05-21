@@ -1,14 +1,14 @@
 // Trying out the ahocorasick algorithm
 // Recommended by: https://www.threads.com/@hsinspeng/post/DJ3yVGQxBg7
-import AhoCorasick from "ahocorasick";
+import { AhoCorasick } from "@monyone/aho-corasick";
 
 async function checkUnsafeContent(title: string) {
   try {
     const req = await fetch("/api/contentcheck/kidunfriendlycontent");
     const res = await req.json();
-    console.log(res.words);
+    console.log(res);
     const ac = new AhoCorasick(res.words);
-    const kidfriendly = ac.search(title);
+    const kidfriendly = ac.hasKeywordInText(title);
     console.log(kidfriendly);
     return kidfriendly;
   } catch (e) {
