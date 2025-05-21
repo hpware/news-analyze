@@ -59,15 +59,46 @@ function filterUUIDs(ids: string[]): string[] {
   return ids.filter((id) => uuidPattern.test(id));
 }
 
+function filter2(ids: string[]): string[] {
+  const pattern = /.*:[a-zA-Z0-9]{24}/g;
+  return ids.filter((id) => pattern.test(id));
+}
+
+async function tryToPullDataUUID(uuid: string) {
+  const buildUrl =
+    "https://today.line.me/api/v6/listings/" +
+    uuid +
+    "?country=tw&offset=0&length=27";
+  const req = await fetch(buildUrl);
+  const res = await req.json();
+  return res;
+}
+
 export default defineEventHandler(async (event) => {
   try {
+    const query = getQuery(event);
+    if (!query.query) {
+      return {
+        error: "NOT_A_QUERY",
+      };
+    }
     const data = await getUUID(String(query.query));
     const validUUIDs = filterUUIDs(data || []);
-    const slug = getRouterParam(event, "slug");
-    const urlBuild = "/api/home/uuid_lt/action?query=" + String(slug.trim());
-    const articleArray = [];
-    const { data: res } = await useFetch(urlBuild);
-    return res;
+    const diffFormat = [];
+    data.forEach((key) => {
+      if (validUUIDs.includes(key)) {
+        return;
+      } else {
+        diffFormat.push(key);
+      }
+    });
+    const returnData = [];
+    validUUIDs.forEach(async (key) => {
+      const data = await tryToPullDataUUID(key);
+      returnData.push(data);
+    });
+    const fillll = filter2(diffFormat);
+    return { valid: validUUIDs, maybe: fillll, returnData: returnData };
   } catch (e) {
     console.log(e);
     return {

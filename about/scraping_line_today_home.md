@@ -45,7 +45,7 @@ We can ignore everything else, other than the strange UUID in the json. Well, th
 Here is the fancy URL:
 `https://today.line.me/api/v6/listings/{the-uuid-you-got-in-the-listings-json-file}/?country=tw&offset=0&length=24`
 
-This api can be used for fetching the news from them, however, there is an issue, the max length is only just 24 (yes, I tried it only can return 24 when requesting for 1000)
+This api can be used for fetching the news from them, however, there is an issue, the max length is only just 24 (yes, I tried it only can return 27* when requesting for 1000)
 
 
 And viewing the JSON, oh would you look at that.
