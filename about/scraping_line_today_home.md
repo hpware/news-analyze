@@ -106,4 +106,8 @@ Apperently, there is something called a "hybrid listing" which is s simple recom
 ```
 This is 100% easier to work with, and with a another extra, I can easily search shitty news terms. Also there is as category type??? What?
 
-Also the id can just work with the following pattern in regex: `news_cat:[a-zA-Z0-9]{24}`
+Also the id can just work with the following pattern in regex: `news_cat:[a-zA-Z0-9]{24}`, there is also `top_foryou:[a-zA-Z0-9]{24}`
+
+### Hybrid listings?
+- news_cat
+- top_foryou

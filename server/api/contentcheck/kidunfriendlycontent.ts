@@ -17,6 +17,13 @@ export default defineEventHandler(async (event) => {
       "裸照",
       "性感",
       "找妹",
+      "肉蹼",
+      "超兇北半球",
+      "大露",
+      "色誘",
+      "死亡",
+      "撩妹",
+      "裸上身",
     ],
   };
 });

@@ -73,7 +73,23 @@ export default defineEventHandler(async (event) => {
     if (noDup.includes(key)) {
       return;
     } else {
-      noDup.push(key);
+      noDup.push({
+        type: "nuuid",
+        content: key,
+      });
+    }
+  });
+  const nonUUIDbutValidLinks = data.filter((id) =>
+    /.*:[a-zA-Z0-9]{24}/g.test(id),
+  );
+  nonUUIDbutValidLinks.forEach((key) => {
+    if (noDup.includes(key)) {
+      return;
+    } else {
+      noDup.push({
+        type: "vUUID",
+        content: key,
+      });
     }
   });
   return {
