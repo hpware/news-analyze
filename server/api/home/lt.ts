@@ -50,7 +50,10 @@ async function getUUID(orgtype: string) {
     console.log(e);
     if (cache[type]) {
       console.log("Serving expired cache due to error");
-      return cache[type].data;
+      return {
+        ...cache[type].data,
+        cache: true,
+      };
     }
     return [];
   }
@@ -125,6 +128,7 @@ export default defineEventHandler(async (event) => {
       nuuid: fillll,
       uuidData: returnData,
       nuuiddata: cconaa,
+      timestamp: new Date(),
     };
   } catch (e) {
     console.log(e);
