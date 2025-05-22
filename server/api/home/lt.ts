@@ -10,7 +10,10 @@ async function getUUID(orgtype: string) {
   const type = orgtype.toLowerCase();
   if (cache[type] && Date.now() - cache[type].timestamp < CACHE_DURATION) {
     console.log("Serving from cache for type:", type);
-    return cache[type].data;
+    return {
+      ...cache[type].data,
+      cached: true,
+    };
   }
 
   try {
@@ -60,7 +63,7 @@ function filterUUIDs(ids: string[]): string[] {
 }
 
 function filter2(ids: string[]): string[] {
-  const pattern = /.*:[a-zA-Z0-9]{24}/g;
+  const pattern = /news_cat:[a-zA-Z0-9]{24}/g;
   return ids.filter((id) => pattern.test(id));
 }
 
@@ -113,11 +116,8 @@ export default defineEventHandler(async (event) => {
     const fillll = filter2(diffFormat);
     const cconaa: any[] = await Promise.all(
       fillll.map(async (key) => {
-        if (key.includes("news_cat")) {
-          const data = await tryToPullDataNUUID(key);
-          return data;
-        } else {
-        }
+        const data = await tryToPullDataNUUID(key);
+        return data;
       }),
     ).then((ans) => ans.flat());
     return {
