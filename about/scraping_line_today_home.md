@@ -4,10 +4,8 @@ This took me some time, but they use a fancy system for pulling news data.
 
 ## Endpoint on news.yuanhau.com aka this repo (Cached results)
 
-### /api/home/uuid_lt/action?query=${query}
-Fetches the uuid in each listings of the query
 
-### /api/home/lt/${query}
+### /api/home/uuid_lt/feed?query=${query}
 Fetches the uuid and returns back with the news
 
 ## Main endpoint

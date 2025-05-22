@@ -71,6 +71,16 @@ async function tryToPullDataUUID(uuid: string) {
     "?country=tw&offset=0&length=27";
   const req = await fetch(buildUrl);
   const res = await req.json();
+  return res.items;
+}
+
+async function tryToPullDataNUUID(link: string) {
+  const buildUrl =
+    "https://today.line.me/webapi/recommendation/hybrid/listings/" +
+    link +
+    "?country=tw&maxVideoCount=0&offset=0&length=70&optOut=false";
+  const req = await fetch(buildUrl);
+  const res = await req.json();
   return res;
 }
 
@@ -91,7 +101,7 @@ export default defineEventHandler(async (event) => {
         const data = await tryToPullDataUUID(key);
         return data;
       }),
-    );
+    ).then((ans) => ans.flat());
     const diffFormat = [];
     data.forEach((key) => {
       if (validUUIDs.includes(key)) {
@@ -101,10 +111,20 @@ export default defineEventHandler(async (event) => {
       }
     });
     const fillll = filter2(diffFormat);
+    const cconaa: any[] = await Promise.all(
+      fillll.map(async (key) => {
+        if (key.includes("news_cat")) {
+          const data = await tryToPullDataNUUID(key);
+          return data;
+        } else {
+        }
+      }),
+    ).then((ans) => ans.flat());
     return {
-      valid: uniqueUUIDs,
-      maybe: fillll,
-      returnData: returnData,
+      uuids: uniqueUUIDs,
+      nuuid: fillll,
+      uuidData: returnData,
+      nuuiddata: cconaa,
     };
   } catch (e) {
     console.log(e);
