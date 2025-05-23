@@ -33,3 +33,6 @@ __pycache__
 *.sql
 !database/*.sql
 _dt_*.py
+
+# Testing files
+test.vue
