@@ -4,9 +4,9 @@ import sql from "~/server/components/postgres";
 const groq = new Groq();
 
 export default defineEventHandler(async (event) => {
-  const host = await getRequestHost(event);
-  const protocol = await getRequestProtocol(event);
-  const hears = await getRequestHeaders(event);
+  const host =  getRequestHost(event);
+  const protocol =  getRequestProtocol(event);
+  const hears =  getRequestHeaders(event);
   const slug = getRouterParam(event, "slug");
   const body = await readBody(event);
   if (!slug) {
@@ -47,8 +47,8 @@ export default defineEventHandler(async (event) => {
         content: body.message,
       },
     ],
-    model: "llama-3.1-8b-instant",
-    temperature: 1,
+    model: "gemma2-9b-it",
+    temperature: 0.71,
     max_completion_tokens: 1024,
     top_p: 1,
     stream: true,
@@ -56,7 +56,6 @@ export default defineEventHandler(async (event) => {
   });
 
   /*
-  // Save user message
   await sql`
     INSERT INTO chat_history (uuid, role, content)
     VALUES (${slug}, 'user', ${body.message})
@@ -78,7 +77,6 @@ export default defineEventHandler(async (event) => {
         }
 
         /*
-        // Save complete assistant response
         if (assistantResponse) {
           await sql`
             INSERT INTO chat_history (uuid, role, content)
