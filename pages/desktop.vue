@@ -40,16 +40,13 @@ import ChatbotWindow from "~/components/app/windows/chatbot.vue";
 import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import TTYWindow from "~/components/app/windows/tty.vue";
 import FavStaredWindow from "~/components/app/windows/fav.vue";
-import Error404Window from "~/components/app/windows/error404.vue";
 import NewsWindow from "~/components/app/windows/news.vue";
 import NewsViewWindow from "~/components/app/windows/newsView.vue";
-import SettingsWindow from "~/components/app/windows/settings.vue"
+import SettingsWindow from "~/components/app/windows/settings.vue";
 
 // Import Icons
 import {
   ComputerDesktopIcon,
-  UserIcon,
-  LanguageIcon,
   ChevronRightIcon,
 } from "@heroicons/vue/24/outline";
 
@@ -230,10 +227,6 @@ const unMinWindow = (windowName?: string) => {
 const toggleMenu = () => {
   menuOpen.value = !menuOpen.value;
 };
-// Lang Menu
-const toggleLangMenu = () => {
-  langMenuOpen.value = !langMenuOpen.value;
-};
 
 // ?openapp= component
 onMounted(async () => {
@@ -377,6 +370,7 @@ onMounted(() => {
   }, 2000);
 });
 
+// Loading Effect.
 watchEffect((cleanupFn) => {
   const tier = setTimeout(() => (progress.value = 10), Math.random() * 50);
   const timer = setTimeout(() => (progress.value = 30), Math.random() * 100);

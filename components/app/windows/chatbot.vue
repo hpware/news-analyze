@@ -56,7 +56,6 @@ onMounted(async () => {
   } = useFetch(`/api/ai/chat/${chatId.value}`);*/
 });
 
-
 const sendMessage = async (newMessage: any) => {
   if (!newMessage.trim() || !newsId.value.trim() || isStreaming.value) {
     return;
@@ -68,7 +67,7 @@ const sendMessage = async (newMessage: any) => {
     user: true,
     timestamp: new Date(),
   });
-  messageIndex.value += 1
+  messageIndex.value += 1;
 
   try {
     isStreaming.value = true;
@@ -183,9 +182,7 @@ const formatTime = (timestamp: any) => {
             </div>
           </div>
           <div v-if="isStreaming" class="">
-            <div>
-            
-            </div>
+            <div></div>
           </div>
         </div>
         <div class="h-[75px]"></div>

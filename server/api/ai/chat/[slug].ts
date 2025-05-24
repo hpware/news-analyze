@@ -4,9 +4,9 @@ import sql from "~/server/components/postgres";
 const groq = new Groq();
 
 export default defineEventHandler(async (event) => {
-  const host =  getRequestHost(event);
-  const protocol =  getRequestProtocol(event);
-  const hears =  getRequestHeaders(event);
+  const host = getRequestHost(event);
+  const protocol = getRequestProtocol(event);
+  const hears = getRequestHeaders(event);
   const slug = getRouterParam(event, "slug");
   const body = await readBody(event);
   if (!slug) {

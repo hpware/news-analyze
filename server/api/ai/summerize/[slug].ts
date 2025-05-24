@@ -4,8 +4,8 @@ import sql from "~/server/components/postgres";
 const groq = new Groq();
 
 export default defineEventHandler(async (event) => {
-  const host =  getRequestHost(event);
-  const protocol =  getRequestProtocol(event);
+  const host = getRequestHost(event);
+  const protocol = getRequestProtocol(event);
   const slug = getRouterParam(event, "slug");
   const buildURL = protocol + "://" + host + "/api/news/get/lt/" + slug;
   const data = await fetch(buildURL);
@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
     stop: null,
   });
 
-    const stream = new ReadableStream({
+  const stream = new ReadableStream({
     async start(controller) {
       try {
         for await (const chunk of chatCompletion) {
@@ -46,5 +46,4 @@ export default defineEventHandler(async (event) => {
     },
   });
   return sendStream(event, stream);
-
 });

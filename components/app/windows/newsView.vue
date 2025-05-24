@@ -15,7 +15,7 @@ const activateAiSummary = ref(false);
     <div class="flex flex-col">
       <span>AI Summary: </span>
       <button v-if="!activateAiSummary">Activate AI summary</button>
-      <div v-else>{{  }}</div>
+      <div v-else>{{}}</div>
     </div>
   </div>
 </template>

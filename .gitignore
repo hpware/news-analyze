@@ -31,7 +31,7 @@ __pycache__
 .env.sentry-build-plugin
 
 *.sql
-!database/*.sql
+!database/*.sql/
 _dt_*.py
 
 # Testing files
