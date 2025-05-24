@@ -1,11 +1,4 @@
 <script setup lang="ts">
-interface chatInterface {
-  index: number;
-  id: string;
-  message: string;
-  user: boolean;
-}
-
 import {
   History,
   Plus,
@@ -22,9 +15,13 @@ const cookie = useCookie("lastChatId");
 const cookieChatId = cookie.value;
 const chatId = ref();
 const inputMessage = ref();
-const messages = ref<chatInterface[]>([]);
 const messageIndex = ref();
 const aiGenerating = ref(false);
+const messages = ref<any[]>([]);
+const newsId = ref("");
+const isStreaming = ref(false);
+const streamingMessage = ref("");
+const messagesContainer = ref(null);
 
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
@@ -32,43 +29,25 @@ const props = defineProps<{
   values?: string;
 }>();
 
-const sendChatData = (event?: KeyboardEvent) => {
+const sendChatData = async (event?: KeyboardEvent) => {
   if (event?.shiftKey) return;
   if (inputMessage.value === "") return;
   const userMessage = inputMessage.value;
   inputMessage.value = "";
-  messages.value.push({
-    index: messageIndex.value,
-    id: uuidv4(),
-    message: userMessage,
-    user: true,
-  });
   aiGenerating.value = true;
-  setTimeout(() => {
-    aiGenerating.value = false;
-  }, 3000);
+  await sendMessage(userMessage);
 };
 
 const stopChatGenerate = () => {
   aiGenerating.value = false;
 };
 
-/*onMounted(async () => {
-  console.log(cookieChatId);
-  if (cookieChatId) {
-  } else {
-    const { data: checkUserChatId } = await useFetch(
-      "/api/ai/chat/actions/findUserChatId",
-      {
-        method: "POST",
-        body: {
-          userid: "393393",
-        },
-      },
-    );
-    cookieChatId.value = checkUserChatId.value;
-  }
-});*/
+const chatUuid = ref("");
+
+onMounted(() => {
+  chatUuid.value = uuidv4();
+});
+
 onMounted(async () => {
   /*const {
     data: getData,
@@ -76,6 +55,90 @@ onMounted(async () => {
     error,
   } = useFetch(`/api/ai/chat/${chatId.value}`);*/
 });
+
+
+const sendMessage = async (newMessage: any) => {
+  if (!newMessage.trim() || !newsId.value.trim() || isStreaming.value) {
+    return;
+  }
+  messages.value.push({
+    index: messageIndex.value,
+    id: uuidv4(),
+    message: newMessage,
+    user: true,
+    timestamp: new Date(),
+  });
+  messageIndex.value += 1
+
+  try {
+    isStreaming.value = true;
+    streamingMessage.value = "";
+
+    const response = await fetch(`/api/ai/chat/${chatUuid.value}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: newMessage,
+        newsid: newsId.value,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const reader = response.body?.getReader();
+    const decoder = new TextDecoder();
+
+    if (reader) {
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        streamingMessage.value += chunk;
+        await scrollToBottom();
+      }
+    }
+
+    // Add the complete assistant message
+    if (streamingMessage.value) {
+      messages.value.push({
+        role: "assistant",
+        content: streamingMessage.value,
+        timestamp: new Date(),
+      });
+    }
+  } catch (error) {
+    console.error("Error sending message:", error);
+    messages.value.push({
+      role: "assistant",
+      content: "Sorry, there was an error processing your message.",
+      timestamp: new Date(),
+    });
+  } finally {
+    isStreaming.value = false;
+    streamingMessage.value = "";
+    await scrollToBottom();
+  }
+};
+
+const formatMessage = (content: any) => {
+  // Simple markdown-like formatting
+  return content
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*(.*?)\*/g, "<em>$1</em>")
+    .replace(/\n/g, "<br>");
+};
+const formatTime = (timestamp: any) => {
+  return new Intl.DateTimeFormat("zh-TW", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(timestamp);
+};
 </script>
 <template>
   <blurPageBeforeLogin>
@@ -117,6 +180,11 @@ onMounted(async () => {
             </div>
             <div v-else class="flex flex-row gap-2">
               <BotMessageSquare class="w-5 h-5" />{{ message.message }}
+            </div>
+          </div>
+          <div v-if="isStreaming" class="">
+            <div>
+            
             </div>
           </div>
         </div>

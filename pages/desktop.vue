@@ -41,7 +41,9 @@ import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import TTYWindow from "~/components/app/windows/tty.vue";
 import FavStaredWindow from "~/components/app/windows/fav.vue";
 import Error404Window from "~/components/app/windows/error404.vue";
+import NewsWindow from "~/components/app/windows/news.vue";
 import NewsViewWindow from "~/components/app/windows/newsView.vue";
+import SettingsWindow from "~/components/app/windows/settings.vue"
 
 // Import Icons
 import {
@@ -127,13 +129,13 @@ const associAppWindow = [
     name: "settings",
     id: "5",
     title: t("app.settings"),
-    component: Error404Window,
+    component: SettingsWindow,
   },
   {
     name: "news",
     id: "6",
     title: t("app.news"),
-    component: Error404Window,
+    component: NewsWindow,
   },
   {
     name: "starred",
@@ -150,27 +152,21 @@ const associAppWindow = [
     height: "600px",
   },
   {
-    name: "error404",
-    id: "9",
-    title: t("app.error404"),
-    component: Error404Window,
-  },
-  {
     name: "aboutNewsOrg",
-    id: "10",
+    id: "9",
     title: t("app.aboutNewsOrg"),
     component: AboutNewsOrgWindow,
   },
   {
     name: "tty",
-    id: "11",
+    id: "10",
     title: t("app.terminal"),
     component: TTYWindow,
     black: true,
   },
   {
     name: "newsView",
-    id: "12",
+    id: "11",
     title: t("app.newsview"),
     component: NewsViewWindow,
   },

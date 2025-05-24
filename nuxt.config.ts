@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { redirect: "/home" },
     "/zh_tw": { redirect: "/zh_tw/home" },
+    "/desktop": { prerender: true },
     "/go/**": { ssr: true },
     "/find/**": { ssr: true },
     // Send ZIP bombs to troll bots

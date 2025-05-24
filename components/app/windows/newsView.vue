@@ -3,6 +3,7 @@
 const { data, error, pending } = await useFetch("/api/news/get/lt/kEJjxKw"); //demo URL
 console.log(data.value);
 console.log(error.value);
+const activateAiSummary = ref(false);
 </script>
 <template>
   <div class="justify-center align-center text-center flex flex-col">
@@ -11,5 +12,10 @@ console.log(error.value);
       >origin: {{ data.origin }} • author: {{ data.author }}</span
     >
     <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
+    <div class="flex flex-col">
+      <span>AI Summary: </span>
+      <button v-if="!activateAiSummary">Activate AI summary</button>
+      <div v-else>{{  }}</div>
+    </div>
   </div>
 </template>
