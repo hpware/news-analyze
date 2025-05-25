@@ -1,36 +1,25 @@
 <script setup lang="ts">
-//const { data: tabs, error: tabserror } = await useFetch("/api/cached/tabs");
 
-const tabs = [
-  {
-    text: "國內",
-    url: "domestic",
-    default: true,
-  },
-  {
-    text: "國外",
-    url: "global",
-    default: false,
-  },
-];
-
-const primary = ref<string>(
-  tabs.find((tab) => tab.default === true).url || "domestic",
-);
+const pullTabsData = async () => {
+  const req = await fetch("/api/cached/tabs");
+  const data = await req.json();
+  return data.data;
+}
 const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
+const tabs = ref([]);
+const primary = ref<string>("domestic");
+
 
 const updateContent = async (url: string, tabAction: boolean) => {
   if (tabAction === true) {
     primary.value = url;
     switchTabs.value = true;
   }
-  console.log(url.trim());
   try {
     const req = await fetch(`/api/home/lt?query=${url.trim()}`);
     const data = await req.json();
-    console.log(data);
     if (data) {
       contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
       switchTabs.value = false;
@@ -43,13 +32,8 @@ const updateContent = async (url: string, tabAction: boolean) => {
 };
 
 const isPrimary = (url: string, defaultAction: boolean) => {
-  if (defaultAction === true) {
-    const item = tabs.find((tab) => tab.url === url);
-    if (item.default === true) {
-      return "text-sky-600 text-bold";
-    }
-  }
-  if (defaultAction === false) {
+  if (primary.value === url) {
+    return "text-sky-600 text-bold";
   }
   return "text-black";
 };
@@ -59,6 +43,8 @@ const openNews = (url: string) => {
 };
 
 onMounted(async () => {
+  tabs.value = await pullTabsData();
+  primary.value = tabs.value.find((tab) => tab.default === true)?.url || "domestic";
   await updateContent(primary.value, false);
 });
 </script>
@@ -66,7 +52,7 @@ onMounted(async () => {
   <div class="justify-center align-center text-center">
     <!--Tabs-->
     <div
-      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center"
+      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50]"
     >
       <div class="gap-2 flex flex-row justify-center align-center text-center">
         <button
@@ -79,25 +65,24 @@ onMounted(async () => {
         </button>
       </div>
     </div>
-    <div v-if="switchTabs">Loading...</div>
     <Transition
-        enter-active-class="animate__animated animate__fadeIn"
-        leave-active-class="animate__animated animate__fadeOut"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
     >
-          <div v-if="!switchTabs">
-      <div
-        v-for="item in contentArray"
-        :key="item.id"
-        :class="item.contentType !== 'GENERAL' && 'hidden'"
-      >
-        <button @click="openNews(item.url.hash)">
-          <div class="p-2 bg-gray-200 rounded m-1 p-1">
-            <h1 class="text-2xl text-bold">{{ item.title }}</h1>
-            <p>{{ item.shortDescription }}</p>
-          </div>
-        </button>
+      <div v-if="!switchTabs">
+        <div
+          v-for="item in contentArray"
+          :key="item.id"
+          :class="item.contentType !== 'GENERAL' && 'hidden'"
+        >
+          <button @click="openNews(item.url.hash)">
+            <div class="p-2 bg-gray-200 rounded m-1 p-1">
+              <h1 class="text-2xl text-bold">{{ item.title }}</h1>
+              <p>{{ item.shortDescription }}</p>
+            </div>
+          </button>
+        </div>
       </div>
-    </div>
     </Transition>
   </div>
 </template>

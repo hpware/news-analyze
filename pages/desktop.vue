@@ -166,8 +166,8 @@ const associAppWindow = [
     id: "11",
     title: t("app.newsview"),
     component: NewsViewWindow,
-    width: "700px",
-    height: "500px",
+    width: "800px",
+    height: "600px",
   },
 ];
 
