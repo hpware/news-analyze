@@ -6,11 +6,9 @@ async function checkUnsafeContent(title: string) {
   try {
     const req = await fetch("/api/contentcheck/kidunfriendlycontent");
     const res = await req.json();
-    console.log(res);
     const ac = new AhoCorasick(res.words);
     const kidfriendly = ac.hasKeywordInText(title);
-    console.log(kidfriendly);
-    return kidfriendly;
+     return kidfriendly;
   } catch (e) {
     console.log(e);
   }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 const pullTabsData = async () => {
   const req = await fetch("/api/cached/tabs");
   const data = await req.json();
@@ -46,6 +47,22 @@ onMounted(async () => {
     tabs.value.find((tab) => tab.default === true)?.url || "domestic";
   await updateContent(primary.value, false);
 });
+const checkResults = ref(new Map());
+const checks = async (title: string) => {
+  const result = await CheckKidUnfriendlyContent(title);
+  checkResults.value.set(title, result);
+  return result;
+};
+const getCheckResult = (title: string) => {
+  return checkResults.value.get(title);
+};
+watch(contentArray, async (newContent) => {
+  for (const item of newContent) {
+    if (item.title) {
+      await checks(item.title);
+    }
+  }
+}, { immediate: true });
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -76,7 +93,7 @@ onMounted(async () => {
         >
           <button @click="openNews(item.url.hash)">
             <div class="p-2 bg-gray-200 rounded m-1 p-1">
-              <h1 class="text-2xl text-bold">{{ item.title }}</h1>
+              <h1 class="text-2xl text-bold" :class="getCheckResult(item.title) ? 'text-red-600' : ''">{{ item.title }}</h1>
               <p class="m-0 text-gray-600">
                 {{ item.publisher }} --
                 {{
@@ -90,7 +107,7 @@ onMounted(async () => {
                   })
                 }}
               </p>
-              <p>{{ item.shortDescription }}</p>
+              <p :class="getCheckResult(item.title) ? 'hidden' : ''">{{ item.shortDescription }}</p>
             </div>
           </button>
         </div>

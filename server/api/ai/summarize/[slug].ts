@@ -7,6 +7,8 @@ export default defineEventHandler(async (event) => {
   const host = getRequestHost(event);
   const protocol = getRequestProtocol(event);
   const slug = getRouterParam(event, "slug");
+  const query = getQuery(event);
+  const locale = query.locale;
   const buildURL = protocol + "://" + host + "/api/news/get/lt/" + slug;
   const data = await fetch(buildURL);
   const fetchNewsArticle = await data.json();
@@ -18,7 +20,7 @@ export default defineEventHandler(async (event) => {
       },
       {
         role: "system",
-        content: `You are a news summarizer. You will be given a news article and you will summarize it into a short paragraph.`,
+        content: `You are a news summarizer. You will be given a news article and you will summarize it into a short paragraph. The user's current locale is ${locale || "zh-tw"} please use the correct language as the response.`,
       },
     ],
     model: "gemma2-9b-it",

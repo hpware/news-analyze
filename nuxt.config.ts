@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     "/api/home/lt": { swr: 3600 },
   },
 
-  css: ["~/styles/main.css"],
+  css: ["~/styles/main.css", "@fontsource-variable/noto-sans-tc"],
 
   modules: ["@nuxtjs/robots", "@nuxtjs/seo", "@nuxtjs/i18n", "@nuxtjs/tailwindcss", "shadcn-nuxt", "motion-v/nuxt", "@sentry/nuxt/module"],
 
@@ -37,7 +37,6 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: "https://news.yuanhau.com/",
     title: "新聞盲點平台",
     description: "",
   },
