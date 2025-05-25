@@ -4,7 +4,7 @@
 
 App Design: [PDF Document](/design.pdf)
 
-Reverse engineering documentataion: [about](/about/)
+Reverse engineering documentation: [about](/about/)
 
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣 or 蝦皮 to do so.
@@ -53,6 +53,7 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 - Custom Infra
 - Docker
 - Docker Compose
+- GitHub Actions
 
 ## 如何執行
 
@@ -63,8 +64,9 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 5. Run `bun run preview` to start the preview server.
 6. Open `http://localhost:3000` in your browser.
 
-### For scaping
-Scraping is embeded to the web app, please use the web app.
-
 ## 有問題? Got questions?
+Use GitHub Issues 
+
+------ or ------
+
 Use this form: https://yhw.tw/SaBta

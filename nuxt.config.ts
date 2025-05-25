@@ -25,15 +25,7 @@ export default defineNuxtConfig({
 
   css: ["~/styles/main.css"],
 
-  modules: [
-    "@nuxtjs/robots",
-    "@nuxtjs/seo",
-    "@nuxtjs/i18n",
-    "@nuxtjs/tailwindcss",
-    "shadcn-nuxt",
-    "motion-v/nuxt",
-    "@sentry/nuxt/module",
-  ],
+  modules: ["@nuxtjs/robots", "@nuxtjs/seo", "@nuxtjs/i18n", "@nuxtjs/tailwindcss", "shadcn-nuxt", "motion-v/nuxt", "@sentry/nuxt/module"],
 
   i18n: {
     defaultLocale: "en",
@@ -136,8 +128,22 @@ export default defineNuxtConfig({
 
   nitro: {
     preset: "bun", // This is dumb.
+    experimental: {
+      openAPI: true,
+    },
   },
-
+  /*  scalar: {
+    darkMode: true,
+    hideModels: false,
+    hideDownloadButton: false,
+    metaData: {
+      title: 'API Documentation by Scalar',
+    },
+    showSidebar: true,
+    pathRouting: {
+      basePath: '/scalar',
+    },
+  },*/
   sentry: {
     sourceMapsUploadOptions: {
       org: "hwtwcc",
