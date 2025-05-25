@@ -14,11 +14,18 @@ const tabs = [
   },
 ];
 
-const primary = ref(tabs.find((tab) => tab.default === true).url || "domestic");
+const primary = ref<string>(
+  tabs.find((tab) => tab.default === true).url || "domestic",
+);
 const contentArray = ref([]);
 const errorr = ref(false);
+const switchTabs = ref(false);
 
-const updateContent = async (url: string) => {
+const updateContent = async (url: string, tabAction: boolean) => {
+  if (tabAction === true) {
+    primary.value = url;
+    switchTabs.value = true;
+  }
   console.log(url.trim());
   try {
     const req = await fetch(`/api/home/lt?query=${url.trim()}`);
@@ -26,6 +33,7 @@ const updateContent = async (url: string) => {
     console.log(data);
     if (data) {
       contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
+      switchTabs.value = false;
     }
   } catch (e) {
     errorr.value = true;
@@ -45,8 +53,13 @@ const isPrimary = (url: string, defaultAction: boolean) => {
   }
   return "text-black";
 };
+
+const openNews = (url: string) => {
+  console.log(url);
+};
+
 onMounted(async () => {
-  await updateContent(primary.value);
+  await updateContent(primary.value, false);
 });
 </script>
 <template>
@@ -58,7 +71,7 @@ onMounted(async () => {
       <div class="gap-2 flex flex-row justify-center align-center text-center">
         <button
           v-for="item in tabs"
-          @click="updateContent(item.url)"
+          @click="updateContent(item.url, true)"
           :class="isPrimary(item.url, true)"
           class=""
         >
@@ -66,12 +79,25 @@ onMounted(async () => {
         </button>
       </div>
     </div>
-    <div
-      v-for="item in contentArray"
-      :key="item.id"
-      :class="item.contentType !== 'GENERAL' && 'hidden'"
+    <div v-if="switchTabs">Loading...</div>
+    <Transition
+        enter-active-class="animate__animated animate__fadeIn"
+        leave-active-class="animate__animated animate__fadeOut"
     >
-      {{ item.title }}
+          <div v-if="!switchTabs">
+      <div
+        v-for="item in contentArray"
+        :key="item.id"
+        :class="item.contentType !== 'GENERAL' && 'hidden'"
+      >
+        <button @click="openNews(item.url.hash)">
+          <div class="p-2 bg-gray-200 rounded m-1 p-1">
+            <h1 class="text-2xl text-bold">{{ item.title }}</h1>
+            <p>{{ item.shortDescription }}</p>
+          </div>
+        </button>
+      </div>
     </div>
+    </Transition>
   </div>
 </template>
