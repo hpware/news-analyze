@@ -1,16 +1,14 @@
 <script setup lang="ts">
-
 const pullTabsData = async () => {
   const req = await fetch("/api/cached/tabs");
   const data = await req.json();
   return data.data;
-}
+};
 const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
 const primary = ref<string>("domestic");
-
 
 const updateContent = async (url: string, tabAction: boolean) => {
   if (tabAction === true) {
@@ -44,7 +42,8 @@ const openNews = (url: string) => {
 
 onMounted(async () => {
   tabs.value = await pullTabsData();
-  primary.value = tabs.value.find((tab) => tab.default === true)?.url || "domestic";
+  primary.value =
+    tabs.value.find((tab) => tab.default === true)?.url || "domestic";
   await updateContent(primary.value, false);
 });
 </script>
@@ -78,6 +77,19 @@ onMounted(async () => {
           <button @click="openNews(item.url.hash)">
             <div class="p-2 bg-gray-200 rounded m-1 p-1">
               <h1 class="text-2xl text-bold">{{ item.title }}</h1>
+              <p class="m-0 text-gray-600">
+                {{ item.publisher }} --
+                {{
+                  new Date(item.publishTimeUnix).toLocaleString("zh-TW", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false,
+                  })
+                }}
+              </p>
               <p>{{ item.shortDescription }}</p>
             </div>
           </button>

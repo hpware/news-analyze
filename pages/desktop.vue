@@ -133,6 +133,8 @@ const associAppWindow = [
     id: "6",
     title: t("app.news"),
     component: NewsWindow,
+    width: "800px",
+    height: "600px",
   },
   {
     name: "starred",
@@ -166,8 +168,6 @@ const associAppWindow = [
     id: "11",
     title: t("app.newsview"),
     component: NewsViewWindow,
-    width: "800px",
-    height: "600px",
   },
 ];
 

@@ -12,7 +12,7 @@ import {
   ViewfinderCircleIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/vue/24/outline";
-import { GithubIcon } from "lucide-vue-next";
+import { GithubIcon, KeyIcon } from "lucide-vue-next";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
@@ -44,6 +44,11 @@ const cards = [
     icon: GithubIcon,
     title: t("home.cards.title.opensource"),
     description: t("home.cards.description.opensource"),
+  },
+  {
+    icon: KeyIcon,
+    title: t("home.cards.title.apis"),
+    description: t("home.cards.description.apis"),
   },
 ];
 
