@@ -22,6 +22,9 @@ services:
       - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
       - "com.centurylinklabs.watchtower.enable=true"
     restart: unless-stopped
+    env_file:
+      - path: ./.env
+        required: true
     deploy:
       mode: replicated
       replicas: 2
