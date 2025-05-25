@@ -7,7 +7,7 @@ App Design: [PDF Document](/design.pdf)
 Reverse engineering documentation: [about](/about/)
 
 ## Before deploying, please know this:
-This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣 or 蝦皮 to do so.
+This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
 
 
 ## Why?
@@ -54,6 +54,18 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 - Docker
 - Docker Compose
 - GitHub Actions
+- Line Today
+- Cheerio
+
+## Demo:
+You can try out the platform now via this link: https://yhw.tw/news?goto=desktop
+
+## Preview Images:
+### Home Page:
+![](/.github/README/home.png)
+
+### Desktop App:
+![](/.github/README/desktop.png)
 
 ## 如何執行
 
@@ -65,8 +77,17 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 6. Open `http://localhost:3000` in your browser.
 
 ## 有問題? Got questions?
-Use GitHub Issues 
+<div>
+Use GitHub Issues<br/>
+------ or ------<br/>
+Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
+</div>
 
------- or ------
 
-Use this form: https://yhw.tw/SaBta
+## FREE APIs:
+If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thx
+https://news.yuanhau.com/api/home/lt?query=domestic
+
+https://news.yuanhau.com/api/news/get/lt/${article url hash}
+
+or you can self host the API on your own server with a basic docker compose command.
