@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 const pullTabsData = async () => {
-  const req = await fetch("/api/cached/tabs");
+  const req = await fetch("/api/tabs");
   const data = await req.json();
   return data.data;
 };
