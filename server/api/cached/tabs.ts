@@ -14,6 +14,7 @@ export default defineEventHandler(async (event) => {
     return req2;
   } catch (e) {
     return {
+      error: e,
       data: [
         {
           text: "國內",
