@@ -56,13 +56,17 @@ const checks = async (title: string) => {
 const getCheckResult = (title: string) => {
   return checkResults.value.get(title);
 };
-watch(contentArray, async (newContent) => {
-  for (const item of newContent) {
-    if (item.title) {
-      await checks(item.title);
+watch(
+  contentArray,
+  async (newContent) => {
+    for (const item of newContent) {
+      if (item.title) {
+        await checks(item.title);
+      }
     }
-  }
-}, { immediate: true });
+  },
+  { immediate: true },
+);
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -93,7 +97,12 @@ watch(contentArray, async (newContent) => {
         >
           <button @click="openNews(item.url.hash)">
             <div class="p-2 bg-gray-200 rounded m-1 p-1">
-              <h1 class="text-2xl text-bold" :class="getCheckResult(item.title) ? 'text-red-600' : ''">{{ item.title }}</h1>
+              <h1
+                class="text-2xl text-bold"
+                :class="getCheckResult(item.title) ? 'text-red-600' : ''"
+              >
+                {{ item.title }}
+              </h1>
               <p class="m-0 text-gray-600">
                 {{ item.publisher }} --
                 {{
@@ -107,7 +116,9 @@ watch(contentArray, async (newContent) => {
                   })
                 }}
               </p>
-              <p :class="getCheckResult(item.title) ? 'hidden' : ''">{{ item.shortDescription }}</p>
+              <p :class="getCheckResult(item.title) ? 'hidden' : ''">
+                {{ item.shortDescription }}
+              </p>
             </div>
           </button>
         </div>

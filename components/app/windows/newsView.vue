@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const slug = "kEJjxKw"
+import { SparklesIcon } from "lucide-vue-next";
+const slug = "kEJjxKw";
 // FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
 const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`); //demo URL
 console.log(data.value);
@@ -18,7 +19,7 @@ const aiSummary = async () => {
     while (reader) {
       const { value, done } = await reader.read();
       if (done) break;
-      
+
       const chunk = decoder.decode(value);
       summaryText.value += chunk;
     }
@@ -27,19 +28,35 @@ const aiSummary = async () => {
   } finally {
     isGenerating.value = false;
   }
-}
+};
 </script>
 <template>
-  <div class="justify-center align-center text-center flex flex-col">
-    <h2 class="text-3xl text-bold">{{ data.title }}</h2>
-    <span class="text-lg text-bold"
-      >origin: {{ data.origin }} • author: {{ data.author }}</span
-    >
-    <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
+  <div
+    class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
+  >
     <div class="flex flex-col">
-      <span>AI Summary: </span>
-      <button v-if="!activateAiSummary" @click="aiSummary" class="bg-sky-600">Activate AI summary</button>
-      <div v-else>{{summaryText}}</div>
+      <h2 class="text-3xl text-bold">{{ data.title }}</h2>
+      <span class="text-lg text-bold"
+        >origin: {{ data.origin }} • author: {{ data.author }}</span
+      >
+      <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
+    </div>
+    <div class="flex flex-col w-full justify-center align-center text-center">
+      <div
+        class="group bg-gray-100/70 shadow-lg backdrop-blur-sm p-2 m-2 rounded-xl w-1/2 justify-center align-center text-center"
+      >
+        <span>AI Summary: </span>
+        <button
+          v-if="!activateAiSummary"
+          @click="aiSummary"
+          class="bg-gray-200 align-middle justify-center text-center p-2 flex flex-row group-hover:bg-gray-300/90 rounded hover:bg-gray-500 transition-all duration-200"
+        >
+          <SparklesIcon
+            class="w-4 h-4 align-middle justify-center text-center"
+          />Activate
+        </button>
+        <div v-else>{{ summaryText }}</div>
+      </div>
     </div>
   </div>
 </template>

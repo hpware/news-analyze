@@ -8,7 +8,7 @@ async function checkUnsafeContent(title: string) {
     const res = await req.json();
     const ac = new AhoCorasick(res.words);
     const kidfriendly = ac.hasKeywordInText(title);
-     return kidfriendly;
+    return kidfriendly;
   } catch (e) {
     console.log(e);
   }

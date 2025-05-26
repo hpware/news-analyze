@@ -78,6 +78,8 @@ const openingAppViaAnApp = ref(false);
 const passedValues = ref();
 const globalWindowVal = ref(new Map());
 const changeLangAnimation = ref(false);
+const openArticlesArray = ref<any[]>([]);
+const openArticlesId = ref(0);
 
 // Key Data
 const menuItems = [
@@ -383,6 +385,14 @@ watchEffect((cleanupFn) => {
   cleanupFn(() => clearTimeout(timmer));
   cleanupFn(() => clearTimeout(timmmer));
 });
+
+const openArticles = async (slug: string) => {
+  openArticlesArray.value.push({
+    id: openArticlesId.value,
+    slug: slug,
+  });
+  openArticlesId.value += 1;
+};
 </script>
 <template>
   <div v-if="changeLangAnimation">
@@ -503,6 +513,7 @@ watchEffect((cleanupFn) => {
             @error="console.error('Error:', $event)"
             @windowopener="openNewWindowViaApp($event)"
             @loadValue=""
+            @openArticles="openArticles"
             :values="passedValues"
           />
         </Suspense>
