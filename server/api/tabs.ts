@@ -1,6 +1,6 @@
 const cacheEnabled = true;
 let cachedData: { data: string[]; timestamp: number } | null = null;
-const CACHE_DURAION = 1000 * 60 * 60; // 1 Hour
+const CACHE_DURATION = 1000 * 60 * 60; // 1 Hour
 export default defineEventHandler(async (event) => {
   if (
     cachedData &&

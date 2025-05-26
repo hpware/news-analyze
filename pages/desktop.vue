@@ -80,6 +80,7 @@ const globalWindowVal = ref(new Map());
 const changeLangAnimation = ref(false);
 const openArticlesArray = ref<any[]>([]);
 const openArticlesId = ref(0);
+const storeStaticArticleId = ref(0);
 
 // Key Data
 const menuItems = [
@@ -393,6 +394,11 @@ const openArticles = async (slug: string) => {
   });
   openArticlesId.value += 1;
 };
+
+const getStaticArticleId = () => {
+  storeStaticArticleId.value += 1
+  return storeStaticArticleId.value
+}
 </script>
 <template>
   <div v-if="changeLangAnimation">
@@ -514,6 +520,7 @@ const openArticles = async (slug: string) => {
             @windowopener="openNewWindowViaApp($event)"
             @loadValue=""
             @openArticles="openArticles"
+            :staticid="getStaticArticleId"
             :values="passedValues"
           />
         </Suspense>

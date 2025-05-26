@@ -54,8 +54,13 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 - Docker
 - Docker Compose
 - GitHub Actions
-- Line Today
+- Line Today (Unoffical APIs)
 - Cheerio
+- Sentry
+- Umami Analytics
+
+## Mirrors:
+- [Gitea (Self Hosted)](https://git.yhw.tw/howard/news-analyze)
 
 ## Demo:
 You can try out the platform now via this link: https://yhw.tw/news?goto=desktop

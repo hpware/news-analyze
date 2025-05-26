@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
+const emit = defineEmits(["close", "min", "restore"]);
+const staticid = computed(() => props.staticid);
+
 const pullTabsData = async () => {
   const req = await fetch("/api/tabs");
   const data = await req.json();
@@ -72,7 +75,7 @@ watch(
   <div class="justify-center align-center text-center">
     <!--Tabs-->
     <div
-      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50]"
+      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50] overflow-x-auto scrollbar-hide min-w-min whitespace-nowrap px-2"
     >
       <div class="gap-2 flex flex-row justify-center align-center text-center">
         <button
@@ -119,6 +122,7 @@ watch(
               <p :class="getCheckResult(item.title) ? 'hidden' : ''">
                 {{ item.shortDescription }}
               </p>
+              <!--ADD 類似 NEWS ARTICLES.-->
             </div>
           </button>
         </div>
