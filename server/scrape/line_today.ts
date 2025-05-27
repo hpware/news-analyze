@@ -1,5 +1,25 @@
 import * as cheerio from "cheerio";
 
+function findTime(timeText: string) {
+  const now = new Date();
+
+  const hourMatch = timeText.match(/(\d+)小時前/);
+  const dayMatch = timeText.match(/(\d+)天前/);
+  const minuteMatch = timeText.match(/(\d+)分鐘前/);
+  if (hourMatch) {
+    const hoursAgo = parseInt(hourMatch[1]);
+    return new Date(now.getTime() - hoursAgo * 60 * 60 * 1000);
+  } else if (dayMatch) {
+    const daysAgo = parseInt(dayMatch[1]);
+    return new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000);
+  } else if (minuteMatch) {
+    const minutesAgo = parseInt(minuteMatch[1]);
+    return new Date(now.getTime() - minutesAgo * 60 * 1000);
+  }
+  
+  return null;
+}
+
 async function lineToday(slug: string) {
   const url = "https://today.line.me/tw/v2/article/" + slug;
   const fetchPageCode = await fetch(url, {
@@ -46,6 +66,7 @@ async function lineToday(slug: string) {
     .text()
     .replaceAll("\n", "")
     .replaceAll(" ", "");
+
   let author = "";
   const authorInfo = html("span.entityPublishInfo-meta-info")
     .text()
@@ -57,16 +78,26 @@ async function lineToday(slug: string) {
   } else {
     author = authorInfo;
   }
+  const orgAuthorDateData = html("span.entityPublishInfo-meta-info").text()
+  const updateMatch = orgAuthorDateData.match(/更新於\s*([^•]+)/);
+  const publishMatch = orgAuthorDateData.match(/發布於\s*(.+)$/);
+let updatedAt: Date | null = null;
+  if (updateMatch) {
+    updatedAt = findTime(updateMatch[1].trim());
+  }
+let publishedAt: Date | null = null;
+  if (publishMatch) {
+    publishedAt = findTime(publishMatch[1].trim());
+  }
   return {
     title: title,
     paragraph: paragraph,
     origin: newsOrgdir,
     author: author,
     images: images,
+    updateat: updatedAt,
+    publishedat: publishedAt
   };
 }
-
-// Texting on console only!
-//console.log(await lineToday("wJyR8Nw"));
 
 export default lineToday;
