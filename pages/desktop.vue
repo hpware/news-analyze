@@ -32,7 +32,7 @@ import { TextPlugin } from "gsap/TextPlugin";
 gsap.registerPlugin(TextPlugin);
 
 // Import Windows
-import LoginWindow from "~/components/app/windows/login.vue";
+import UserWindow from "~/components/app/windows/user.vue";
 import HotNewsWindow from "~/components/app/windows/hotnews.vue";
 import SourcesWindow from "~/components/app/windows/sources.vue";
 import AboutWindow from "~/components/app/windows/about.vue";
@@ -92,7 +92,7 @@ const menuItems = [
   { name: t("app.about"), windowName: "about" },
   { name: t("app.terminal"), windowName: "tty" },
   { name: t("app.settings"), windowName: "settings" },
-  { name: t("app.login"), windowName: "login" },
+  { name: t("app.login"), windowName: "user" },
   { name: t("app.leave"), windowName: "leave" },
 ];
 
@@ -106,10 +106,10 @@ const associAppWindow = [
     height: "500px",
   },
   {
-    name: "login",
+    name: "user",
     id: "2",
     title: t("app.login"),
-    component: LoginWindow,
+    component: UserWindow,
   },
   {
     name: "sources",

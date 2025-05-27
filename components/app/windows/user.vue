@@ -2,9 +2,15 @@
 // Great, there are now no errors ig
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
 import sha512 from "crypto-js/sha512";
+import Input from "~/components/ui/input/Input.vue";
 const userAccount = ref("");
 const userPassword = ref("");
+const error = ref(false);
+const errormsg = ref("");
+const success = ref(false);
 const submitUserPassword = async () => {
+  error.value = false;
+  errormsg.value = "";
   // Encrypt password during transit
   const password = sha512(userPassword.value).toString();
 
@@ -21,46 +27,52 @@ const submitUserPassword = async () => {
   });
   const res = await sendData.json();
 
-  if (res.status === "ok") {
-    // Store the token in local storage
+  if (!res.error) {
+    error.value = false;
     localStorage.setItem("token", res.token);
-    // Redirect to the home page
-    window.location.href = "/";
     success.value = true;
+    console.log(res);
+    userAccount.value = "";
   } else {
-    alert("Login failed");
-    error.value = true;
+     error.value = true;
+     errormsg.value = res.error
   }
-  // Clear the input fields
-  userAccount.value = "";
   userPassword.value = "";
+
 };
 </script>
 <template>
-  <div class="flex flex-col items-center justify-center h-full">
+  <div class="">
     <form
       class="flex flex-col items-center justify-center h-full"
       @submit.prevent="submitUserPassword"
       v-if="!success"
     >
-      <div class="text-xl mb-4 text-bold">Login / Register</div>
-
-      <input
+      <span class="text-2xl text-bold mb-0">Login / Register</span>
+      <span class="mb-4 text-sm mt-0">We will create a account for you if you don't have one.</span>
+      <div class="">
+      <Input  
         type="text"
         placeholder="Username"
         class="mb-2 p-2 border rounded"
         v-model="userAccount"
+        required
       />
-      <input
+      <Input
         type="password"
         placeholder="Password"
         class="p-2 border rounded mb-2"
         v-model="userPassword"
+        required
       />
+      </div>
+      <span v-if="error" class="text-red-600 text-xs m-2">Error: {{ errormsg }}</span>
       <button class="bg-black text-white p-2 rounded transition duration-200">
         Log In
       </button>
     </form>
-    <div v-else></div>
+    <div v-else>
+      Hi! ${user}
+    </div>
   </div>
 </template>
