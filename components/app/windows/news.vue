@@ -13,6 +13,7 @@ const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
 const primary = ref<string>("domestic");
+const likeart = ref([]); 
 
 const updateContent = async (url: string, tabAction: boolean) => {
   if (tabAction === true) {
@@ -75,7 +76,7 @@ watch(
   <div class="justify-center align-center text-center">
     <!--Tabs-->
     <div
-      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50] overflow-x-auto scrollbar-hide min-w-min whitespace-nowrap px-2"
+      class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50] overflow-x-auto scrollbar-xl min-w-min whitespace-nowrap px-2"
     >
       <div class="gap-2 flex flex-row justify-center align-center text-center">
         <button
@@ -88,6 +89,14 @@ watch(
         </button>
       </div>
     </div>
+    <Transition
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
+    >
+      <div v-if="switchTabs" class="absolute inset-x-0 top-12 p-2 m-12 z-[50]">
+        Loading...
+      </div>
+    </Transition>
     <Transition
       enter-active-class="animate__animated animate__fadeIn"
       leave-active-class="animate__animated animate__fadeOut"
@@ -123,6 +132,9 @@ watch(
                 {{ item.shortDescription }}
               </p>
               <!--ADD 類似 NEWS ARTICLES.-->
+              <div class="flex flex-col bg-gray-500">
+                <div class="" v-for="item in likeart"></div>
+              </div>
             </div>
           </button>
         </div>
