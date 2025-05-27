@@ -13,6 +13,7 @@ export default defineEventHandler(async (event) => {
   }
   const body = await readBody(event);
   const { username, password } = body;
+  console.log(password);
   if (!username || !password) {
     return {
       error: "NO_USER_AND_PASSWORD_SUBMITED",
@@ -25,45 +26,55 @@ export default defineEventHandler(async (event) => {
     };
   }
   // Server side hashing
-  const hashedPassword = await argon2.hash(salt, password);
 
   // Check if user exists, if not, create a user
   try {
+    console.log(username);
     const fetchUserInfo = await sql`
       select * from users
-      where user = ${username}`;
-    if (!fetchUserInfo) {
-      const createNewUser = await sql`
+      where username = ${username}`;
+    console.log(fetchUserInfo[0]);
+    if (fetchUserInfo.length === 0) {
+        const hashedPassword = await argon2.hash(salt + password);
+        const createNewUser = await sql`
         insert into users (uuid, username, passwordhash)
         values (${uuidv4()}, ${username}, ${hashedPassword})
         `;
-      if (!createNewUser) {
+        console.log(createNewUser);
+      if (fetchUserInfo.length !== 0) { 
         return {
           error: "CANNOT_CREATE_NEW_USER",
         };
       }
+      const newToken = uuidv4();
+      //const newToken64 = atob(newToken);
+      return {
+        user: fetchUserInfo,
+        token: newToken,
+      };
     } else {
-      if (fetchUserInfo.password !== hashedPassword) {
+      const isValid = await argon2.verify(fetchUserInfo[0].passwordhash, salt + password);
+      if (!isValid) {
         return {
           error: "PASSWORD_NO_MATCH",
         };
       }
-      const newToken = uuidv4();
-      const newToken64 = atob(newToken);
-      const saveNewToken = await sql`
-        insert into usertokens
-        `;
-      if (!saveNewToken) {
-        return {
-          error: "CANNOT_CREATE_NEW_TOKEN",
-        };
-      }
+    }
+    const newToken = uuidv4();
+    const newToken64 = btoa(newToken);
+    const fetchUserInfoAgain = await sql`
+      select * from users
+      where username = ${username}`;
+      /*await sql`
+        INSERT INTO usertokens (user, token)
+        VALUES (${fetchUserInfo[0].username}, ${newToken64})
+      `;*/
       return {
-        user: fetchUserInfo.user,
+        user: fetchUserInfoAgain,
         token: newToken,
       };
-    }
   } catch (e) {
+    console.log(e);
     return {
       error: "UNABLE_TO_PROCESS",
     };

@@ -25,8 +25,8 @@ async function lineToday(slug: string) {
     .text()
     .replaceAll("\n", "")
     .replace("  ", "");
-  const paragraph = [];
-  const images = [];
+  const paragraph = <any[]>[];
+  const images = <any[]>[];
   html("article.news-content")
     .contents()
     .each((i, element) => {
