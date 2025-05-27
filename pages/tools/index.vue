@@ -2,7 +2,7 @@
 const localePath = useLocalePath();
 // Import Icons
 import { SearchXIcon, CircleSlash2Icon } from "lucide-vue-next";
-const { t } = useI18n(); 
+const { t } = useI18n();
 // Array
 const tools = [
   {
@@ -19,8 +19,8 @@ const tools = [
   },
 ];
 useSeoMeta({
-  title: `${t("tools.title")}`
-})
+  title: `${t("tools.title")}`,
+});
 </script>
 <template>
   <div

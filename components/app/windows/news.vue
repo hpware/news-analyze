@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ScanEyeIcon } from "lucide-vue-next";
 import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 const emit = defineEmits(["close", "min", "restore"]);
 const staticid = computed(() => props.staticid);
@@ -35,9 +36,9 @@ const updateContent = async (url: string, tabAction: boolean) => {
 
 const isPrimary = (url: string, defaultAction: boolean) => {
   if (primary.value === url) {
-    return "text-sky-600 text-bold";
+    return true;
   }
-  return "text-black";
+  return false;
 };
 
 const openNews = (url: string) => {
@@ -72,12 +73,12 @@ watch(
 );
 const findRel = (title: string) => {
   return tf(title);
-}
+};
 
 const tf = (text: string) => {
-  const words = text.toLowerCase().split('');
+  const words = text.toLowerCase().split("");
   // const words = text.toLowerCase().match(/[\u4e00-\u9fff]|[a-zA-Z0-9]+/g) || [];
-  
+
   const freqMap = new Map();
 
   for (const word of words) {
@@ -92,7 +93,7 @@ const tf = (text: string) => {
   }
 
   return tfVector;
-}
+};
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -104,8 +105,9 @@ const tf = (text: string) => {
         <button
           v-for="item in tabs"
           @click="updateContent(item.url, true)"
-          :class="isPrimary(item.url, true)"
+          :class="isPrimary(item.url, true) ? 'text-sky-600 text-bold' : 'text-black'"
           class=""
+          :disabled="isPrimary(item.url, true)"
         >
           <span>{{ item.text }}</span>
         </button>
@@ -129,39 +131,45 @@ const tf = (text: string) => {
           :key="item.id"
           :class="item.contentType !== 'GENERAL' && 'hidden'"
         >
-          <button @click="openNews(item.url.hash)">
-            <div class="p-2 bg-gray-200 rounded m-1 p-1">
-              <h1
-                class="text-2xl text-bold"
-                :class="getCheckResult(item.title) ? 'text-red-600' : ''"
+          <div class="p-2 bg-gray-200 rounded m-1 p-1">
+            <h1
+              class="text-2xl text-bold"
+              :class="getCheckResult(item.title) ? 'text-red-600' : ''"
+            >
+              {{ item.title }}
+            </h1>
+            <p class="m-0 text-gray-600">
+              <button >{{ item.publisher }}</button> --
+              {{
+                new Date(item.publishTimeUnix).toLocaleString("zh-TW", {
+                  year: "numeric",
+                  month: "2-digit",
+                  day: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: false,
+                })
+              }}
+            </p>
+            <div class="justify-center align-center text-center flex flex-row p-1">
+              <button
+                @click="openNews(item.url.hash)"
+                class="flex flex-row p-1 bg-sky-300/50 hover:bg-sky-400/50 shadow-lg backdrop-blur-sm rounded transition-all duration-200"
               >
-                {{ item.title }}
-              </h1>
-              <p class="m-0 text-gray-600">
-                {{ item.publisher }} --
-                {{
-                  new Date(item.publishTimeUnix).toLocaleString("zh-TW", {
-                    year: "numeric",
-                    month: "2-digit",
-                    day: "2-digit",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    hour12: false,
-                  })
-                }}
-              </p>
-              <div>
-                <h3 class="text-lg">類似文章</h3>
-                <div>{{ findRel(item.title) }}</div>
-                <!--<div v-for="item in findRel(item.title)">
+                <ScanEyeIcon class="w-6 h-6 p-1" /><span>觀看文章</span>
+              </button>
+            </div>
+            <div>
+              <h3 class="text-lg">類似文章</h3>
+              <div>{{ findRel(item.title) }}</div>
+              <!--<div v-for="item in findRel(item.title)">
                   {{ item }}
                 </div>-->
-              </div>
-              <!--<p :class="getCheckResult(item.title) ? 'hidden' : ''">
+            </div>
+            <!--<p :class="getCheckResult(item.title) ? 'hidden' : ''">
                 {{ item.shortDescription }}
               </p>-->
-            </div>
-          </button>
+          </div>
         </div>
       </div>
     </Transition>
