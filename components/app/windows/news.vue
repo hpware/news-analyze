@@ -6,7 +6,18 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
+import { AhoCorasick } from "@monyone/aho-corasick";
+
+async function CheckKidUnfriendlyContent(title: string, words: any[]) {
+  try {
+    const ac = new AhoCorasick(words);
+    const kidfriendly = ac.hasKeywordInText(title);
+    return kidfriendly;
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 const emit = defineEmits(["close", "min", "restore"]);
 const staticid = computed(() => props.staticid);
 
@@ -54,8 +65,19 @@ onMounted(async () => {
   await updateContent(primary.value, false);
 });
 const checkResults = ref(new Map());
+var words = <any[]>[];
+const pullWord = async () => {
+  if (words.length === 0) {
+    const req = await fetch("/api/contentcheck/kidunfriendlycontent");
+    const res = await req.json();
+    pullWord = res.words;
+    return res.words
+  }
+  return pullWord;
+}
 const checks = async (title: string) => {
-  const result = await CheckKidUnfriendlyContent(title);
+  const wordss = await pullWord();
+  const result = await CheckKidUnfriendlyContent(title, wordss);
   checkResults.value.set(title, result);
   return result;
 };
@@ -157,7 +179,7 @@ const openPublisher = (text: string) => {};
                     </button>
                   </TooltipTrigger>
                   <TooltipContent class="rounded">
-                    會打開關於媒體的視窗
+                    會打開關於媒體({{ item.publisher }})的視窗
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>

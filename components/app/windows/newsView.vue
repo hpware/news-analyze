@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SparklesIcon } from "lucide-vue-next";
+import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
 const slug = "kEJjxKw";
 // FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
 const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`); //demo URL
@@ -37,8 +37,10 @@ const aiSummary = async () => {
   >
     <div class="flex flex-col">
       <h2 class="text-3xl text-bold">{{ data.title }}</h2>
-      <span class="text-lg text-bold"
-        >origin: {{ data.origin }} • author: {{ data.author }}</span
+      <span
+        class="text-lg text-bold flex flex-row justify-center text-center align-center"
+        ><NewspaperIcon class="w-7 h-7 p-1" />{{ data.origin }} •
+        <UserIcon class="w-7 h-7 p-1" />{{ data.author }}</span
       >
       <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
     </div>

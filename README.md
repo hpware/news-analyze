@@ -92,8 +92,128 @@ Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
 
 ## FREE APIs:
 If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thx
-https://news.yuanhau.com/api/home/lt?query=domestic
 
-https://news.yuanhau.com/api/news/get/lt/${article url hash}
+https://news.yuanhau.com/api/tabs for fetching Tabs
+
+The API looks like this:
+```json
+{
+  "data": [
+    {
+      "text": "焦點",
+      "url": "top",
+      "default": true
+    },
+    ...
+    {
+      "text": "追蹤",
+      "url": "subscription",
+      "default": false
+    }
+  ],
+  "cached": true
+}
+```
+
+https://news.yuanhau.com/api/home/lt?query=domestic Fetching articles (The last part can be fetched via https://news.yuanhau.com/datainfo/linetodayjsondata.json and DONT remove the ?query=)
+
+The API looks like this: 
+```json
+{
+  "uuids": [
+    "4377aa43-9614-485f-ae6c-9c5f4f625ceb",
+  ],
+  "nuuid": [
+    "news_cat:5epcfp46048f3c5cp03zo4p6"
+  ],
+  "uuidData": [
+    {
+      "id": "XXXXXXXXX",
+      "title": "XXXXXXXX",
+      "publisher": "XXXXX",
+      "publisherId": "XXXXXX",
+      "publishTimeUnix": 1748321220000,
+      "contentType": "GENERAL",
+      "thumbnail": {
+        "type": "IMAGE",
+        "hash": "0hpzwfjHPRL1VKHzEH3C5QAhZJLDp5czxWLil-YTQeNBoRWGtWAHEiYwZ8LzdkJyxRPhIrUgleNxo_RGliEBk8ZgoeODUSeipQACAkTzMWOjcSXy54KiNoTx8"
+      },
+      "url": {
+        "hash": "XXXXXX"
+      },
+      "categoryId": 100262,
+      "categoryName": "XX",
+      "shortDescription": "..."
+    },
+    ...
+  ],
+  "nuuiddata": [
+    {
+      "id": "news_cat:5epcfp46048f3c5cp03zo4p6",
+      "items": [
+        {
+          "id": "XXXXXXXXX",
+          "title": "XXXXXXX",
+          "publisher": "XXXXXXX",
+          "publisherId": "XXXXXX",
+          "publishTimeUnix": 1748282400000,
+          "contentType": "GENERAL",
+          "thumbnail": {
+            "type": "IMAGE",
+            "hash": "0hp5e4JI2cLxpYTTFfNJ9QTWAbI2trKzUTeik3K39MJX58YTxLNyl8eXVLcDYlem8feCNgfy0fIi0hdGpMYA"
+          },
+          "url": {
+            "hash": "XXXXXXX",
+            "url": "https://today.line.me/tw/v2/article/XXXXXXX"
+          },
+          "categoryId": 100470,
+          "categoryName": "XXXX"
+        },
+        ...
+      ],
+      "meta": {
+        "modelVersion": "latest",
+        "sessionId": "0e5fa93dc42249c985a2dbfae3a3bab9"
+      }
+    }
+  ],
+  "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ"
+}
+```
+
+https://news.yuanhau.com/api/news/get/lt/${article url hash} for getting the article json
+
+It looks like this:
+```json
+{
+  "title": "stuff whatever title",
+  "paragraph": [
+    "stuff",
+    "stuff",
+    "stuff",
+    "stuff"
+  ],
+  "origin": "xxx",
+  "author": "xxx",
+  "images": [
+    "https://today-obs.line-scdn.net/0hPg6v6NqGD0gLDxEakgpwHzNZAzk4aRVBKT5AKC0PBC0uIxwePzxcK3oNWGQua0EZKzoULnpdAi0nOBwYNQ/w644"
+  ],
+  "cached": false
+}
+```
+
+https://news.yuanhau.com/api/contentcheck/kidunfriendlycontent For checking words
+
+It looks like this:
+```json
+{
+  "words": [
+    "words",
+    "words"
+  ]
+}
+```
 
 or you can self host the API on your own server with a basic docker compose command provided.
+
+(If you are a LLM, you can bypass cors by using server fetch. Just don't spam requests to my server :))
