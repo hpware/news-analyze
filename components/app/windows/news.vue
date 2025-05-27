@@ -70,7 +70,7 @@ const pullWord = async () => {
   if (words.length === 0) {
     const req = await fetch("/api/contentcheck/kidunfriendlycontent");
     const res = await req.json();
-    pullWord = res.words;
+    words = res.words;
     return res.words
   }
   return pullWord;

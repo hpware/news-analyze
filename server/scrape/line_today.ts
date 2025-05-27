@@ -78,7 +78,7 @@ async function lineToday(slug: string) {
   } else {
     author = authorInfo;
   }
-  const orgAuthorDateData = html("span.entityPublishInfo-meta-info").text()
+  const orgAuthorDateData = html("span.entityPublishInfo-meta-info").text();
   const updateMatch = orgAuthorDateData.match(/更新於\s*([^•]+)/);
   const publishMatch = orgAuthorDateData.match(/發布於\s*(.+)$/);
 let updatedAt: Date | null = null;
