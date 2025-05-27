@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { ScanEyeIcon } from "lucide-vue-next";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 const emit = defineEmits(["close", "min", "restore"]);
 const staticid = computed(() => props.staticid);
@@ -39,10 +45,6 @@ const isPrimary = (url: string, defaultAction: boolean) => {
     return true;
   }
   return false;
-};
-
-const openNews = (url: string) => {
-  console.log(url);
 };
 
 onMounted(async () => {
@@ -94,6 +96,12 @@ const tf = (text: string) => {
 
   return tfVector;
 };
+
+const openNews = (url: string) => {
+  console.log(url);
+};
+
+const openPublisher = (text: string) => {};
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -105,7 +113,9 @@ const tf = (text: string) => {
         <button
           v-for="item in tabs"
           @click="updateContent(item.url, true)"
-          :class="isPrimary(item.url, true) ? 'text-sky-600 text-bold' : 'text-black'"
+          :class="
+            isPrimary(item.url, true) ? 'text-sky-600 text-bold' : 'text-black'
+          "
           class=""
           :disabled="isPrimary(item.url, true)"
         >
@@ -139,7 +149,19 @@ const tf = (text: string) => {
               {{ item.title }}
             </h1>
             <p class="m-0 text-gray-600">
-              <button >{{ item.publisher }}</button> --
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <button @click="openPublisher(item.publisher)">
+                      {{ item.publisher }}
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent class="rounded">
+                    會打開關於媒體的視窗
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              --
               {{
                 new Date(item.publishTimeUnix).toLocaleString("zh-TW", {
                   year: "numeric",
@@ -151,13 +173,24 @@ const tf = (text: string) => {
                 })
               }}
             </p>
-            <div class="justify-center align-center text-center flex flex-row p-1">
-              <button
-                @click="openNews(item.url.hash)"
-                class="flex flex-row p-1 bg-sky-300/50 hover:bg-sky-400/50 shadow-lg backdrop-blur-sm rounded transition-all duration-200"
-              >
-                <ScanEyeIcon class="w-6 h-6 p-1" /><span>觀看文章</span>
-              </button>
+            <div
+              class="justify-center align-center text-center flex flex-row p-1"
+            >
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <button
+                      @click="openNews(item.url.hash)"
+                      class="flex flex-row p-1 bg-sky-300/50 hover:bg-sky-400/50 shadow-lg backdrop-blur-sm rounded transition-all duration-200"
+                    >
+                      <ScanEyeIcon class="w-6 h-6 p-1" /><span>觀看文章</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent class="rounded">
+                    會打開新的視窗
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             <div>
               <h3 class="text-lg">類似文章</h3>

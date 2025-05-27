@@ -17,9 +17,11 @@
       "newsComparePlatform": "news comparison platform"
     },
     "startusing": "Let's Start!",
+    "openapp": "This will open the desktop application in your browser.",
     "learnmore": "Learn more",
     "documentation": "Documentation",
     "tools": "Tools",
+    "opentools": "This will open simple tools",
     "qanda": {
       "titles": {
         "whydes": "Why make this platform?",

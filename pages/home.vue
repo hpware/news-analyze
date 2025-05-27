@@ -6,6 +6,12 @@ import {
   AccordionTrigger,
 } from "~/components/ui/accordion";
 import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
   ComputerDesktopIcon,
   CircleStackIcon,
   MagnifyingGlassIcon,
@@ -123,20 +129,38 @@ useSeoMeta({
         ></span
       ></span>
       <div class="flex flex-row justify-center align-center gap-0s">
-        <NuxtLink :to="localePath('/desktop')">
-          <button
-            class="m-4 mr-1 ml-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
-          >
-            <span>{{ t("home.startusing") }}</span>
-          </button>
-        </NuxtLink>
-        <NuxtLink :to="localePath('/tools/')">
-          <button
-            class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
-          >
-            <span>{{ t("home.tools") }}</span>
-          </button>
-        </NuxtLink>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <NuxtLink :to="localePath('/desktop')">
+                <button
+                  class="m-4 mr-1 ml-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
+                >
+                  <span>{{ t("home.startusing") }}</span>
+                </button>
+              </NuxtLink>
+            </TooltipTrigger>
+            <TooltipContent class="rounded">
+              {{ t("home.openapp") }}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <NuxtLink :to="localePath('/tools/')">
+                <button
+                  class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
+                >
+                  <span>{{ t("home.tools") }}</span>
+                </button>
+              </NuxtLink>
+            </TooltipTrigger>
+            <TooltipContent class="rounded">
+              {{ t("home.opentools") }}
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         <NuxtLink to="#learnmore">
           <button
             class="m-4 ml-1 mr-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gray-700 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
