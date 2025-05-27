@@ -1,6 +1,7 @@
 # 新聞解析 / News Analyze
 
-![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)
+![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)&nbsp;![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/hpware/news-analyze?utm_source=oss&utm_medium=github&utm_campaign=hpware%2Fnews-analyze&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)&nbsp;![LICENSE](https://img.shields.io/github/license/hpware/news-analyze?style=flat)&nbsp;![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hpware/news-analyze/build_docker_image.yml)
+
 
 App Design: [PDF Document](/design.pdf)
 
@@ -95,4 +96,4 @@ https://news.yuanhau.com/api/home/lt?query=domestic
 
 https://news.yuanhau.com/api/news/get/lt/${article url hash}
 
-or you can self host the API on your own server with a basic docker compose command.
+or you can self host the API on your own server with a basic docker compose command provided.

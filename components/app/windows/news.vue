@@ -13,7 +13,6 @@ const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
 const primary = ref<string>("domestic");
-const likeart = ref([]); 
 
 const updateContent = async (url: string, tabAction: boolean) => {
   if (tabAction === true) {
@@ -131,10 +130,6 @@ watch(
               <p :class="getCheckResult(item.title) ? 'hidden' : ''">
                 {{ item.shortDescription }}
               </p>
-              <!--ADD 類似 NEWS ARTICLES.-->
-              <div class="flex flex-col bg-gray-500">
-                <div class="" v-for="item in likeart"></div>
-              </div>
             </div>
           </button>
         </div>

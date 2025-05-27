@@ -396,9 +396,9 @@ const openArticles = async (slug: string) => {
 };
 
 const getStaticArticleId = () => {
-  storeStaticArticleId.value += 1
-  return storeStaticArticleId.value
-}
+  storeStaticArticleId.value += 1;
+  return storeStaticArticleId.value;
+};
 </script>
 <template>
   <div v-if="changeLangAnimation">

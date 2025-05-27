@@ -9,6 +9,7 @@ const activateAiSummary = ref(false);
 const isGenerating = ref(false);
 const summaryText = ref("");
 const { locale } = useI18n();
+const likeart = ref([]);
 const aiSummary = async () => {
   activateAiSummary.value = true;
   isGenerating.value = true;
@@ -56,6 +57,15 @@ const aiSummary = async () => {
           />Activate
         </button>
         <div v-else>{{ summaryText }}</div>
+      </div>
+      <div class="flex flex-col bg-gray-500">
+        <div class="flex flex-row" v-for="item in likeart">
+          <img /><!--Image-->
+          <div class="flex flex-col">
+            <h2>title</h2>
+            <span>description</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
