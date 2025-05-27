@@ -340,6 +340,7 @@ const toggleMinWindow = (windowUUId: string) => {
 useSeoMeta({
   title: "Desktop",
 });
+
 watchEffect(() => {
   useSeoMeta({
     title: titleAppName.value + " - Desktop",

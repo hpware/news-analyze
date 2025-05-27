@@ -34,11 +34,10 @@ const submitUserPassword = async () => {
     console.log(res);
     userAccount.value = "";
   } else {
-     error.value = true;
-     errormsg.value = res.error
+    error.value = true;
+    errormsg.value = res.error;
   }
   userPassword.value = "";
-
 };
 </script>
 <template>
@@ -49,30 +48,32 @@ const submitUserPassword = async () => {
       v-if="!success"
     >
       <span class="text-2xl text-bold mb-0">Login / Register</span>
-      <span class="mb-4 text-sm mt-0">We will create a account for you if you don't have one.</span>
+      <span class="mb-4 text-sm mt-0"
+        >We will create a account for you if you don't have one.</span
+      >
       <div class="">
-      <Input  
-        type="text"
-        placeholder="Username"
-        class="mb-2 p-2 border rounded"
-        v-model="userAccount"
-        required
-      />
-      <Input
-        type="password"
-        placeholder="Password"
-        class="p-2 border rounded mb-2"
-        v-model="userPassword"
-        required
-      />
+        <Input
+          type="text"
+          placeholder="Username"
+          class="mb-2 p-2 border rounded"
+          v-model="userAccount"
+          required
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          class="p-2 border rounded mb-2"
+          v-model="userPassword"
+          required
+        />
       </div>
-      <span v-if="error" class="text-red-600 text-xs m-2">Error: {{ errormsg }}</span>
+      <span v-if="error" class="text-red-600 text-xs m-2"
+        >Error: {{ errormsg }}</span
+      >
       <button class="bg-black text-white p-2 rounded transition duration-200">
         Log In
       </button>
     </form>
-    <div v-else>
-      Hi! ${user}
-    </div>
+    <div v-else>Hi! ${user}</div>
   </div>
 </template>

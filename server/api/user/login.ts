@@ -35,13 +35,13 @@ export default defineEventHandler(async (event) => {
       where username = ${username}`;
     console.log(fetchUserInfo[0]);
     if (fetchUserInfo.length === 0) {
-        const hashedPassword = await argon2.hash(salt + password);
-        const createNewUser = await sql`
+      const hashedPassword = await argon2.hash(salt + password);
+      const createNewUser = await sql`
         insert into users (uuid, username, passwordhash)
         values (${uuidv4()}, ${username}, ${hashedPassword})
         `;
-        console.log(createNewUser);
-      if (fetchUserInfo.length !== 0) { 
+      console.log(createNewUser);
+      if (fetchUserInfo.length !== 0) {
         return {
           error: "CANNOT_CREATE_NEW_USER",
         };
@@ -53,7 +53,10 @@ export default defineEventHandler(async (event) => {
         token: newToken,
       };
     } else {
-      const isValid = await argon2.verify(fetchUserInfo[0].passwordhash, salt + password);
+      const isValid = await argon2.verify(
+        fetchUserInfo[0].passwordhash,
+        salt + password,
+      );
       if (!isValid) {
         return {
           error: "PASSWORD_NO_MATCH",
@@ -65,14 +68,14 @@ export default defineEventHandler(async (event) => {
     const fetchUserInfoAgain = await sql`
       select * from users
       where username = ${username}`;
-      /*await sql`
+    /*await sql`
         INSERT INTO usertokens (user, token)
         VALUES (${fetchUserInfo[0].username}, ${newToken64})
       `;*/
-      return {
-        user: fetchUserInfoAgain,
-        token: newToken,
-      };
+    return {
+      user: fetchUserInfoAgain,
+      token: newToken,
+    };
   } catch (e) {
     console.log(e);
     return {

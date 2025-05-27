@@ -73,5 +73,16 @@
     "terminal": "終端機",
     "aboutNewsOrg": "關於這個新聞來源",
     "newsview": "新聞"
+  },
+  "tools":{
+    "title": "工具",
+    "name": {
+      "checkweirdkeywords": "檢查偏色情標體",
+      "noadlinetoday": "無廣告新聞"
+    },
+    "content": {
+      "checkweirdkeywords": "這個工具檢查新聞記者是不是使用偏色情的標體 (台灣的很愛用)",
+      "noadlinetoday": "提供無廣告的LINE Today 新聞"
+    }
   }
 }

@@ -70,6 +70,29 @@ watch(
   },
   { immediate: true },
 );
+const findRel = (title: string) => {
+  return tf(title);
+}
+
+const tf = (text: string) => {
+  const words = text.toLowerCase().split('');
+  // const words = text.toLowerCase().match(/[\u4e00-\u9fff]|[a-zA-Z0-9]+/g) || [];
+  
+  const freqMap = new Map();
+
+  for (const word of words) {
+    if (word.trim()) {
+      freqMap.set(word, (freqMap.get(word) || 0) + 1);
+    }
+  }
+
+  const tfVector = <any>{};
+  for (const [term, count] of freqMap) {
+    tfVector[term] = count / words.length;
+  }
+
+  return tfVector;
+}
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -127,9 +150,16 @@ watch(
                   })
                 }}
               </p>
-              <p :class="getCheckResult(item.title) ? 'hidden' : ''">
+              <div>
+                <h3 class="text-lg">類似文章</h3>
+                <div>{{ findRel(item.title) }}</div>
+                <!--<div v-for="item in findRel(item.title)">
+                  {{ item }}
+                </div>-->
+              </div>
+              <!--<p :class="getCheckResult(item.title) ? 'hidden' : ''">
                 {{ item.shortDescription }}
-              </p>
+              </p>-->
             </div>
           </button>
         </div>

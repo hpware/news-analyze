@@ -47,7 +47,7 @@
         "interface": "Use a desktop like interface, the one that you already got used to.",
         "documentation": "We provide a documentation for you to learn how to use the app.",
         "opensource": "This platform is open source! minus the database part, but I'm going to try!",
-        "apis": "We develop apis that does not exist before, like the line today one, but it just needs some revese engineering to find the apis behind it."
+        "apis": "We use api's that are made via reverse engineering."
       }
     }
   },
@@ -73,5 +73,16 @@
     "terminal": "Terminal",
     "aboutNewsOrg": "About this news organization",
     "newsview": "News View"
+  },
+  "tools": {
+    "title": "Tools",
+    "name": {
+      "checkweirdkeywords": "Check Sensivite Keywords",
+      "noadlinetoday": "LINE Today but no ads"
+    },
+    "content": {
+      "checkweirdkeywords": "This tool check if the news title has weird 18+ content.",
+      "noadlinetoday": "Provides free, no ads Line today."
+    }
   }
 }

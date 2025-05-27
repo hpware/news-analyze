@@ -2,27 +2,31 @@
 const localePath = useLocalePath();
 // Import Icons
 import { SearchXIcon, CircleSlash2Icon } from "lucide-vue-next";
+const { t } = useI18n(); 
 // Array
 const tools = [
   {
-    name: "檢查偏色情標體",
-    content: "這個工具檢查新聞記者是不是使用偏色情的標體 (台灣的很愛用)",
+    name: t("tools.name.checkweirdkeywords"),
+    content: t("tools.content.checkweirdkeywords"),
     icon: SearchXIcon,
     go: localePath("/tools/checkweirdkeywords"),
   },
   {
-    name: "無廣告新聞",
-    content: "提供無廣告的LINE Today 新聞",
+    name: t("tools.name.noadlinetoday"),
+    content: t("tools.content.noadlinetoday"),
     icon: CircleSlash2Icon,
     go: localePath("/tools/freelinetoday"),
   },
 ];
+useSeoMeta({
+  title: `${t("tools.title")}`
+})
 </script>
 <template>
   <div
     class="justify-center align-center absolute inset-0 flex flex-col w-full h-screen"
   >
-    <h1 class="text-5xl text-bold m-4 text-center">Tools</h1>
+    <h1 class="text-5xl text-bold m-4 text-center">{{ t("tools.title") }}</h1>
     <div
       class="justify-center align-center gap-2 p-2 w-full flex flex-row flex-wrap relative"
     >
