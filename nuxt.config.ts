@@ -18,6 +18,14 @@ export default defineNuxtConfig({
     "/wp-login.php": {
       redirect: "https://s3.yhw.tw/data/def-zip-bomb/wp-login.php.zip",
     },
+    "/api/**": {
+      cors: true,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
+        },
+    },
     "/api/cached/**": { swr: 3600 },
     "/api/news/get": { swr: 3600 },
     "/api/home/lt": { swr: 3600 },
