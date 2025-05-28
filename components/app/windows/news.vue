@@ -32,7 +32,7 @@ const pullTabsData = async () => {
     const req = await fetch("/api/tabs");
     const data = await req.json();
     if (data.error) {
-      canNotLoadTabUI.value = true; 
+      canNotLoadTabUI.value = true;
       return;
     }
     return data.data;
@@ -82,10 +82,10 @@ const pullWord = async () => {
     const req = await fetch("/api/contentcheck/kidunfriendlycontent");
     const res = await req.json();
     words = res.words;
-    return res.words
+    return res.words;
   }
   return pullWord;
-}
+};
 const checks = async (title: string) => {
   const wordss = await pullWord();
   const result = await CheckKidUnfriendlyContent(title, wordss);
@@ -100,15 +100,13 @@ watch(
   contentArray,
   async (newContent) => {
     for (const item of newContent) {
-      if (item.title && !switchTabs.value && item.contentType === 'GENERAL') {
+      if (item.title && !switchTabs.value && item.contentType === "GENERAL") {
         checks(item.title);
       }
-        console.log(switchTabs.value);
     }
   },
   { immediate: true },
 );
-
 
 const tf = (text: string) => {
   const words = text.toLowerCase().match(/[\u4e00-\u9fff]|[a-zA-Z0-9]+/g) || [];
@@ -130,37 +128,39 @@ const tf = (text: string) => {
 };
 
 const jaccardSimilarity = (v1: any, v2: any) => {
-  const k1 = new Set(Object.keys(v1))
-  const k2 = new Set(Object.keys(v2))
-  const intersection = new Set([...k1].filter(x => k2.has(x)));
+  const k1 = new Set(Object.keys(v1));
+  const k2 = new Set(Object.keys(v2));
+  const intersection = new Set([...k1].filter((x) => k2.has(x)));
   const union = new Set([...k1, ...k2]);
   return intersection.size / union.size;
-}
+};
 
-const findRel = (title: string) => {
+const findRel = async (title: string) => {
+  const req = await fetch("/api/sort");
+};
+
+const useArgFindRel = (title) => {
   const targetVector = tf(title);
   const similarities = [];
-  
+
   for (const item of contentArray.value) {
-    if (item.title !== title && item.contentType === 'GENERAL') {
+    if (item.title !== title && item.contentType === "GENERAL") {
       console.log(item.title);
       const itemVector = tf(item.title);
       console.log(itemVector);
       const similarity = jaccardSimilarity(targetVector, itemVector);
       console.log(similarity);
-      if (similarity > 0.1) { 
+      if (similarity > 0.1) {
         similarities.push({
           title: item.title,
           similarity: similarity,
-          item: item
+          item: item,
         });
       }
       console.log(similarities);
     }
   }
-  return similarities
-    .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 3);
+  return similarities.sort((a, b) => b.similarity - a.similarity).slice(0, 3);
 };
 
 const openNews = (url: string) => {
@@ -187,7 +187,7 @@ const openPublisher = (text: string) => {};
         >
           <span>{{ item.text }}</span>
         </button>
-        <button v-if="canNotLoadTabUI"><RefreshCcwIcon/></button>
+        <button v-if="canNotLoadTabUI"><RefreshCcwIcon /></button>
       </div>
     </div>
     <Transition
@@ -260,8 +260,25 @@ const openPublisher = (text: string) => {};
               </TooltipProvider>
             </div>
             <div>
+            <div>
               <h3 class="text-lg">類似文章</h3>
-              <div>{{ findRel(item.title) }}</div>
+              <div v-if="findRel(item.title).length > 0" class="space-y-2">
+                <div 
+                  v-for="similar in findRel(item.title)" 
+                  :key="similar.item.id"
+                  class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
+                  @click="openNews(similar.item.url.hash)"
+                >
+                  <div class="font-medium">{{ similar.title }}</div>
+                  <div class="text-gray-500 text-xs">
+                    相似度: {{ (similar.similarity * 100).toFixed(1) }}% | {{ similar.item.publisher }}
+                  </div>
+                </div>
+              </div>
+              <div v-else class="text-gray-500 text-sm">
+                找不到類似文章
+              </div>
+            </div>  
               <!--<div v-for="item in findRel(item.title)">
                   {{ item }}
                 </div>-->

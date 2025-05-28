@@ -16,7 +16,7 @@ function findTime(timeText: string) {
     const minutesAgo = parseInt(minuteMatch[1]);
     return new Date(now.getTime() - minutesAgo * 60 * 1000);
   }
-  
+
   return null;
 }
 
@@ -81,11 +81,11 @@ async function lineToday(slug: string) {
   const orgAuthorDateData = html("span.entityPublishInfo-meta-info").text();
   const updateMatch = orgAuthorDateData.match(/更新於\s*([^•]+)/);
   const publishMatch = orgAuthorDateData.match(/發布於\s*(.+)$/);
-let updatedAt: Date | null = null;
+  let updatedAt: Date | null = null;
   if (updateMatch) {
     updatedAt = findTime(updateMatch[1].trim());
   }
-let publishedAt: Date | null = null;
+  let publishedAt: Date | null = null;
   if (publishMatch) {
     publishedAt = findTime(publishMatch[1].trim());
   }
@@ -96,7 +96,7 @@ let publishedAt: Date | null = null;
     author: author,
     images: images,
     updateat: updatedAt,
-    publishedat: publishedAt
+    publishedat: publishedAt,
   };
 }
 

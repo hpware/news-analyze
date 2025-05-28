@@ -89,6 +89,11 @@ Use GitHub Issues<br/>
 Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
 </div>
 
+## Why Line Today?
+<!--[PDF](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c6cef365b20a3faff96540db9b6a9871b60e8e06_cn_b2b_line_today_preroll_______sales_kit_2024.pdf)-->
+[LINE 官方連結](https://vos.line-scdn.net/lbstw-static/images/uploads/download_files/74db75f34e30dee20af94c7d970f2a02/CN_B2B_LINE%20TODAY%20Preroll%E5%BB%A3%E5%91%8A%20Sales%20kit_2024.pdf)
+
+在 LINE 自己的口中 「LINE TODAY是消費者獲取各式知識資訊的重要入⼝」，當然可以讓新聞媒體給他新聞賺錢，所以很多Article多會在 LINE Today 上
 
 ## FREE APIs:
 If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thx

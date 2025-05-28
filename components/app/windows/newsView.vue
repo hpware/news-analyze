@@ -2,7 +2,7 @@
 import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
 const slug = "kEJjxKw";
 // FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
-const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`); //demo URL
+const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`);
 console.log(data.value);
 console.log(error.value);
 const activateAiSummary = ref(false);
@@ -36,13 +36,18 @@ const aiSummary = async () => {
     class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
   >
     <div class="flex flex-col">
-      <h2 class="text-3xl text-bold">{{ data.title }}</h2>
-      <span
-        class="text-lg text-bold flex flex-row justify-center text-center align-center"
-        ><NewspaperIcon class="w-7 h-7 p-1" />{{ data.origin }} •
-        <UserIcon class="w-7 h-7 p-1" />{{ data.author }}</span
-      >
-      <div class="test-center" v-for="item in data.paragraph">{{ item }}</div>
+      <div class="group">
+        <h2 class="text-3xl text-bold">{{ data.title }}</h2>
+        <span
+          class="text-lg text-bold flex flex-row justify-center text-center align-center"
+          ><NewspaperIcon class="w-7 h-7 p-1" />{{ data.origin }} •
+          <UserIcon class="w-7 h-7 p-1" />{{ data.author }}</span
+        >
+      </div>
+      <div class="p-4 w-full h-fit pt-0 mt-0"> 
+        <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
+      </div>
+      <div class="text-center" v-for="item in data.paragraph">{{ item }}</div>
     </div>
     <div class="flex flex-col w-full justify-center align-center text-center">
       <div
