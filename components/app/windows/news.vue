@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ScanEyeIcon } from "lucide-vue-next";
+import { ScanEyeIcon, RefreshCcwIcon } from "lucide-vue-next";
 import {
   Tooltip,
   TooltipContent,
@@ -21,16 +21,26 @@ async function CheckKidUnfriendlyContent(title: string, words: any[]) {
 const emit = defineEmits(["close", "min", "restore"]);
 const staticid = computed(() => props.staticid);
 
-const pullTabsData = async () => {
-  const req = await fetch("/api/tabs");
-  const data = await req.json();
-  return data.data;
-};
 const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
 const primary = ref<string>("domestic");
+const canNotLoadTabUI = ref(false);
+const pullTabsData = async () => {
+  try {
+    const req = await fetch("/api/tabs");
+    const data = await req.json();
+    if (data.error) {
+      canNotLoadTabUI.value = true; 
+      return;
+    }
+    return data.data;
+  } catch (e) {
+    canNotLoadTabUI.value = true;
+    return;
+  }
+};
 
 const updateContent = async (url: string, tabAction: boolean) => {
   if (tabAction === true) {
@@ -45,6 +55,7 @@ const updateContent = async (url: string, tabAction: boolean) => {
       switchTabs.value = false;
     }
   } catch (e) {
+    console.log(e);
     errorr.value = true;
   }
 
@@ -79,6 +90,7 @@ const checks = async (title: string) => {
   const wordss = await pullWord();
   const result = await CheckKidUnfriendlyContent(title, wordss);
   checkResults.value.set(title, result);
+  console.log(title);
   return result;
 };
 const getCheckResult = (title: string) => {
@@ -88,20 +100,18 @@ watch(
   contentArray,
   async (newContent) => {
     for (const item of newContent) {
-      if (item.title) {
-        await checks(item.title);
+      if (item.title && !switchTabs.value && item.contentType === 'GENERAL') {
+        checks(item.title);
       }
+        console.log(switchTabs.value);
     }
   },
   { immediate: true },
 );
-const findRel = (title: string) => {
-  return tf(title);
-};
+
 
 const tf = (text: string) => {
-  const words = text.toLowerCase().split("");
-  // const words = text.toLowerCase().match(/[\u4e00-\u9fff]|[a-zA-Z0-9]+/g) || [];
+  const words = text.toLowerCase().match(/[\u4e00-\u9fff]|[a-zA-Z0-9]+/g) || [];
 
   const freqMap = new Map();
 
@@ -117,6 +127,40 @@ const tf = (text: string) => {
   }
 
   return tfVector;
+};
+
+const jaccardSimilarity = (v1: any, v2: any) => {
+  const k1 = new Set(Object.keys(v1))
+  const k2 = new Set(Object.keys(v2))
+  const intersection = new Set([...k1].filter(x => k2.has(x)));
+  const union = new Set([...k1, ...k2]);
+  return intersection.size / union.size;
+}
+
+const findRel = (title: string) => {
+  const targetVector = tf(title);
+  const similarities = [];
+  
+  for (const item of contentArray.value) {
+    if (item.title !== title && item.contentType === 'GENERAL') {
+      console.log(item.title);
+      const itemVector = tf(item.title);
+      console.log(itemVector);
+      const similarity = jaccardSimilarity(targetVector, itemVector);
+      console.log(similarity);
+      if (similarity > 0.1) { 
+        similarities.push({
+          title: item.title,
+          similarity: similarity,
+          item: item
+        });
+      }
+      console.log(similarities);
+    }
+  }
+  return similarities
+    .sort((a, b) => b.similarity - a.similarity)
+    .slice(0, 3);
 };
 
 const openNews = (url: string) => {
@@ -138,11 +182,12 @@ const openPublisher = (text: string) => {};
           :class="
             isPrimary(item.url, true) ? 'text-sky-600 text-bold' : 'text-black'
           "
-          class=""
-          :disabled="isPrimary(item.url, true)"
+          class="disabled:cursor-not-allowed"
+          :disabled="isPrimary(item.url, true) || switchTabs"
         >
           <span>{{ item.text }}</span>
         </button>
+        <button v-if="canNotLoadTabUI"><RefreshCcwIcon/></button>
       </div>
     </div>
     <Transition

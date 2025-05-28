@@ -6,7 +6,6 @@ const props = defineProps<{
 }>();
 import DraggableWindow from "~/components/DraggableWindow.vue";
 const ffeed = ref();
-const ass = ["健康2.0", "中天", "TVBS", "香港01", "ETtoday"];
 import Button from "~/components/ui/button/Button.vue";
 const pending = ref();
 
