@@ -152,7 +152,7 @@ const useArgFindRel = (title, newsOrg) => {
   const similarities = [];
 
   for (const item of contentArray.value) {
-    if (item.title !== title && item.contentType === "GENERAL" item.publisher = newsOrg) {
+    if (item.title !== title && item.contentType === "GENERAL" && item.publisher = newsOrg) {
       console.log(item.title);
       const itemVector = tf(item.title);
       console.log(itemVector);
