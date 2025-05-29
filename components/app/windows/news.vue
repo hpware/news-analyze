@@ -147,17 +147,20 @@ const findRel = async (title: string) => {
   const req = await fetch("/api/sort");
 };
 
+// Check words
+const checkIfEmptyArray = [];
 const useArgFindRel = (title, newsOrg) => {
   const targetVector = tf(title);
   const similarities = [];
 
   for (const item of contentArray.value) {
-    if (item.title !== title && item.contentType === "GENERAL" && item.publisher === newsOrg) {
-      console.log(item.title);
+    if (
+      item.title !== title &&
+      item.contentType === "GENERAL" &&
+      item.publisher === newsOrg
+    ) {
       const itemVector = tf(item.title);
-      console.log(itemVector);
       const similarity = jaccardSimilarity(targetVector, itemVector);
-      console.log(similarity);
       if (similarity > 0.1) {
         similarities.push({
           title: item.title,
@@ -165,10 +168,20 @@ const useArgFindRel = (title, newsOrg) => {
           item: item,
         });
       }
-      console.log(similarities);
     }
   }
+  const idx = checkIfEmptyArray.findIndex((x) => x.title === title);
+  if (idx !== -1) checkIfEmptyArray.splice(idx, 1);
+  checkIfEmptyArray.push({
+    title: title,
+    contains: similarities.length === 0,
+  });
   return similarities.sort((a, b) => b.similarity - a.similarity).slice(0, 3);
+};
+
+const checkIfEmpty = (item) => {
+  const found = checkIfEmptyArray.find((key) => key.title === item);
+  return found ? found.contains : false;
 };
 
 const openNews = (url: string, titleName: string) => {
@@ -273,6 +286,7 @@ const openPublisher = (text: string) => {
               <div>
                 <h3 class="text-lg">類似文章</h3>
                 <div
+                  
                   class="space-y-2"
                 >
                   <div
@@ -280,7 +294,6 @@ const openPublisher = (text: string) => {
                     :key="similar.item.id"
                     class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
                     @click="openNews(similar.item.url.hash, item.title)"
-                    v-if="similar"
                   >
                     <div class="font-medium">{{ similar.title }}</div>
                     <div class="text-gray-500 text-xs">
@@ -288,8 +301,9 @@ const openPublisher = (text: string) => {
                       {{ similar.item.publisher }}
                     </div>
                   </div>
-                   <div v-else class="text-gray-500 text-sm">找不到類似文章</div>
                 </div>
+              <div v-if="checkIfEmpty(item.title)" class="text-gray-500 text-sm">找不到類似文章</div>
+
               </div>
               <!--<div v-for="item in findRel(item.title)">
                   {{ item }}

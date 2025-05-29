@@ -451,11 +451,13 @@ const openArticles = async (slug: string, titleName?: string) => {
   } else {
     titleNameFinal = t("app.newsview");
   }
+  console.log(titleName);
   findAndOpenWindow("newsView", titleName);
-
+  console.log("t2: " + titleName);
   setTimeout(() => {
     openingAppViaAnApp.value = false;
     passedValues.value = null;
+    console.log("wiping values");
   }, 1000);
 };
 
