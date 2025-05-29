@@ -263,6 +263,22 @@ onMounted(async () => {
   }
 });
 
+const navBarDisplayText = (text: string) => {
+  if (!text) {
+    return;
+  }
+  const trimSpaces = text.trim();
+  const regex = /.{0,7}/;
+  console.log("asdasda");
+  if (trimSpaces.length <= 7) {
+    return text;
+  }
+  const maxStay = text.match(regex);
+  const filterToMax7Chars = maxStay[0] + "..."
+  return filterToMax7Chars;
+}
+
+
 const findAndOpenWindow = (windowName: string, windowTitle?: string) => {
   const app = associAppWindow.find((app) => app.name === windowName);
 
@@ -301,13 +317,13 @@ const findAndOpenWindow = (windowName: string, windowTitle?: string) => {
     // Add to navbar
     const windowNameVal2 =
       globalWindowVal.value.get(windowName).windowCount === 1
-        ? app.title
-        : app.title +
+        ? navBarDisplayText(app.title)
+        : navBarDisplayText(app.title) +
           "(" +
           globalWindowVal.value.get(windowName).windowCount +
           ")";
     currentNavBar.value.push({
-      name: windowTitle || windowNameVal2,
+      name: navBarDisplayText(windowTitle) || windowNameVal2,
       icon: "anything",
       action: "idk",
       flash: true,
