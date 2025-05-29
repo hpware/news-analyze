@@ -12,6 +12,7 @@ const commandInputBox = ref();
 const inputRef = ref<HTMLInputElement | null>(null);
 const prevCommandsId = ref(0);
 const prevCommands = ref<prevCommandsInterface[]>([]);
+const { t } = useI18n();
 
 const printData = (content: any, userinput?: boolean, error?: boolean) => {
   prevCommands.value.push({
@@ -25,12 +26,12 @@ const printData = (content: any, userinput?: boolean, error?: boolean) => {
 
 const displayHelp = () => {
   const helpContent =
-    "Here are the commands for the Terminal \n\n execute [app]: This command opens an application in the [app] slot. \n about: This displays the about text window \n clear/clean: Wipe the terminal log. \n help: This help text system :D \n\n For more info, please view the documentation: https://news.yuanhau.com/docs";
+    "Here are the commands for the Terminal \n\n execute [app]: This command opens an application in the [app] slot. \n article [id]: This command will open a LINE Today article in a window. \n about: This displays the about text window \n clear/clean: Wipe the terminal log. \n help: This help text system :D \n\n For more info, please view the documentation: https://news.yuanhau.com/docs";
   printData(helpContent);
 };
 
 // Great, there are now no errors ig
-const emit = defineEmits(["windowopener", "error", "loadValue"]);
+const emit = defineEmits(["windowopener", "error", "loadValue", "openArticles"]);
 const props = defineProps<{
   values?: string;
 }>();
@@ -65,6 +66,9 @@ const findExecutable = (inputContent: string) => {
   const executeMatch = inputContent.match(/^execute\s+(.*)$/);
   if (executeMatch) {
     const targetPath = executeMatch[1].trim();
+    if (targetPath === "newsView") {
+      return
+    }
     openNewWindow(targetPath);
     printData(`Running ${targetPath}...`);
   } else {
@@ -80,6 +84,17 @@ const printAbout = () => {
 
 const cleanTTY = () => {
   prevCommands.value = [];
+};
+
+const openArticle = (inputContent: string) => {
+  const match = inputContent.match(/^article\s+[a-zA-Z0-9]{7}$/);
+  if (match) {
+    const articleId = match[1].trim();
+    emit("openArticles", articleId);
+    printData(`Opening article ${articleId}...`);
+  } else {
+    printData("Invalid article ID format. Please use 'openarticle' followed by a 7-character alphanumeric ID.", false, true);
+  }
 };
 // scripts
 const commands = [
@@ -102,6 +117,10 @@ const commands = [
   {
     command: "help",
     run: displayHelp,
+  },
+  {
+    command: "article",
+    run: openArticle,
   },
   {
     command: "關於",

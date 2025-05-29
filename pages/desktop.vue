@@ -427,10 +427,15 @@ watchEffect((cleanupFn) => {
   cleanupFn(() => clearTimeout(timmmer));
 });
 
-const openArticles = async (slug: string, titleName: string) => {
+const openArticles = async (slug: string, titleName?: string) => {
   openingAppViaAnApp.value = true;
   passedValues.value = slug;
-  const titleNameFinal = titleName + "&nbsp;" + t("app.newsview");
+  var titleNameFinal = "";
+  if (titleName) {
+    titleNameFinal = titleName + "  " + t("app.newsview");
+  } else {
+    titleNameFinal = t("app.newsview");
+  }
   findAndOpenWindow("newsView", titleName);
 
   setTimeout(() => {
