@@ -262,9 +262,9 @@ const openPublisher = (text: string) => {};
             <div>
             <div>
               <h3 class="text-lg">類似文章</h3>
-              <div v-if="findRel(item.title).length > 0" class="space-y-2">
+              <div v-if="useArgFindRel(item.title).length > 0" class="space-y-2">
                 <div 
-                  v-for="similar in findRel(item.title)" 
+                  v-for="similar in useArgFindRel(item.title)" 
                   :key="similar.item.id"
                   class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
                   @click="openNews(similar.item.url.hash)"

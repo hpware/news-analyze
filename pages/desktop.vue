@@ -25,6 +25,19 @@ interface associAppWindowInterface {
   black: boolean;
 }
 
+interface minAppWindowInterface {
+  name: string;
+  id: string;
+  absoluteId: string;
+  title: string;
+  component: any;
+  width: string;
+  height: string;
+  black: boolean;
+  lastpositionw: string;
+  lastpositionh: string;
+}
+
 // Import plugins
 import { v4 as uuidv4 } from "uuid";
 import { gsap } from "gsap";
@@ -68,6 +81,7 @@ const alertOpen = ref(false);
 const currentNavBar = ref<currentNavBarInterface[]>([]);
 const bootingAnimation = ref(true);
 const activeWindows = ref<associAppWindowInterface[]>([]);
+const hiddenWindows = ref<minAppWindowInterface[]>([]);
 const openApp = ref();
 const openAppId = ref();
 const openAppNameQuery = ref();
@@ -225,6 +239,7 @@ const openWindow = (windowName?: string) => {
 };
 
 const unMinWindow = (windowName?: string) => {
+  hiddenWindows.value = hiddenWindows.value.filter(window => window.name !== windowName);
   console.log(windowName);
 };
 
@@ -333,7 +348,24 @@ const openNewWindowViaApp = (windowId: string) => {
 };
 
 const toggleMinWindow = (windowUUId: string) => {
-  const windowIndex = "";
+  const windowInfo = currentNavBar.value.find(item => item.windowAssociated === windowUUId);
+  const activeWindow = activeWindows.value.find(window => window.absoluteId === windowUUId);
+// Add logic to store hidden windows.
+  if (windowInfo && activeWindow) {
+    hiddenWindows.value.push({
+      id: activeWindow.id,
+      absoluteId: activeWindow.absoluteId,
+      component: activeWindow.component,
+      name: activeWindow.name,
+      title: activeWindow.title,
+      width: activeWindow.width,
+      height: activeWindow.height,
+      black: activeWindow.black || false,
+      lastpositionw: "",
+      lastpositionh: ""
+    });
+    //activeWindows.value = activeWindows.value.filter(window => window.absoluteId !== windowUUId);
+  }
 };
 
 // Title
@@ -438,9 +470,6 @@ const getStaticArticleId = () => {
       <!--DO NOT MODIFY THE CLASSES OF THIS |, THIS COULD WORK OR BRAKE I HAVE NO CLUE WHY DOES IT DO THAT, BUT DON'T DO IT.-->
       <span class="ml-1 mr-2 text-[20px]">|</span>
       <!--navbar icons for min and max application window-->
-      <button
-        class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-      ></button>
       <div
         class="overflow-hidden overflow-x-auto overflow-y-hidden scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white flex-nowrap whitespace-nowrap min-w-0"
       >
