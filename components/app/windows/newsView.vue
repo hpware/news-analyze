@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
-const slug = "kEJjxKw";
+const props = defineProps<{
+  values?: string;
+}>();
+
+const slug = props.values; // Make the props.values static to the window NOT the entire thing and no arrays.
+
 // FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
 const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`);
 console.log(data.value);

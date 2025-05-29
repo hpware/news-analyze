@@ -31,7 +31,12 @@ const displayHelp = () => {
 };
 
 // Great, there are now no errors ig
-const emit = defineEmits(["windowopener", "error", "loadValue", "openArticles"]);
+const emit = defineEmits([
+  "windowopener",
+  "error",
+  "loadValue",
+  "openArticles",
+]);
 const props = defineProps<{
   values?: string;
 }>();
@@ -67,7 +72,7 @@ const findExecutable = (inputContent: string) => {
   if (executeMatch) {
     const targetPath = executeMatch[1].trim();
     if (targetPath === "newsView") {
-      return
+      return;
     }
     openNewWindow(targetPath);
     printData(`Running ${targetPath}...`);
@@ -93,7 +98,11 @@ const openArticle = (inputContent: string) => {
     emit("openArticles", articleId);
     printData(`Opening article ${articleId}...`);
   } else {
-    printData("Invalid article ID format. Please use 'openarticle' followed by a 7-character alphanumeric ID.", false, true);
+    printData(
+      "Invalid article ID format. Please use 'openarticle' followed by a 7-character alphanumeric ID.",
+      false,
+      true,
+    );
   }
 };
 // scripts

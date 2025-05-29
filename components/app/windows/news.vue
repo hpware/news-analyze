@@ -33,7 +33,7 @@ const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
-const primary = ref<string>("domestic");
+const primary = ref<string>("top"); // Hard code value fn
 const canNotLoadTabUI = ref(false);
 const pullTabsData = async () => {
   try {
@@ -147,12 +147,12 @@ const findRel = async (title: string) => {
   const req = await fetch("/api/sort");
 };
 
-const useArgFindRel = (title) => {
+const useArgFindRel = (title, newsOrg) => {
   const targetVector = tf(title);
   const similarities = [];
 
   for (const item of contentArray.value) {
-    if (item.title !== title && item.contentType === "GENERAL") {
+    if (item.title !== title && item.contentType === "GENERAL" item.publisher = newsOrg) {
       console.log(item.title);
       const itemVector = tf(item.title);
       console.log(itemVector);
@@ -277,7 +277,7 @@ const openPublisher = (text: string) => {
                   class="space-y-2"
                 >
                   <div
-                    v-for="similar in useArgFindRel(item.title)"
+                    v-for="similar in useArgFindRel(item.title, item.publisher)"
                     :key="similar.item.id"
                     class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
                     @click="openNews(similar.item.url.hash, item.title)"

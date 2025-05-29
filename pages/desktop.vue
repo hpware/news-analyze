@@ -274,10 +274,9 @@ const navBarDisplayText = (text: string) => {
     return text;
   }
   const maxStay = text.match(regex);
-  const filterToMax7Chars = maxStay[0] + "..."
+  const filterToMax7Chars = maxStay[0] + "...";
   return filterToMax7Chars;
-}
-
+};
 
 const findAndOpenWindow = (windowName: string, windowTitle?: string) => {
   const app = associAppWindow.find((app) => app.name === windowName);
