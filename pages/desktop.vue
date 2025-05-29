@@ -227,7 +227,7 @@ onMounted(() => {
 
 const openWindow = (windowName?: string) => {
   if (windowName === "leave") {
-    if (confirm("Are you sure?")) {
+    if (confirm(t("app.areyousure"))) {
       router.push(localePath("/home"));
     } else {
       return;
@@ -239,7 +239,9 @@ const openWindow = (windowName?: string) => {
 };
 
 const unMinWindow = (windowName?: string) => {
-  hiddenWindows.value = hiddenWindows.value.filter(window => window.name !== windowName);
+  hiddenWindows.value = hiddenWindows.value.filter(
+    (window) => window.name !== windowName,
+  );
   console.log(windowName);
 };
 
@@ -261,7 +263,7 @@ onMounted(async () => {
   }
 });
 
-const findAndOpenWindow = (windowName: string) => {
+const findAndOpenWindow = (windowName: string, windowTitle?: string) => {
   const app = associAppWindow.find((app) => app.name === windowName);
 
   // Prevent dual logins
@@ -290,7 +292,7 @@ const findAndOpenWindow = (windowName: string) => {
       absoluteId: abosluteId,
       component: windowComponent,
       name: windowName,
-      title: app.title,
+      title: windowTitle || app.title,
       width: app.width || "600px",
       height: app.height || "400px",
       black: app.black || false,
@@ -299,13 +301,13 @@ const findAndOpenWindow = (windowName: string) => {
     // Add to navbar
     const windowNameVal2 =
       globalWindowVal.value.get(windowName).windowCount === 1
-        ? windowName
-        : windowName +
+        ? app.title
+        : app.title +
           "(" +
           globalWindowVal.value.get(windowName).windowCount +
           ")";
     currentNavBar.value.push({
-      name: windowNameVal2,
+      name: windowTitle || windowNameVal2,
       icon: "anything",
       action: "idk",
       flash: true,
@@ -348,9 +350,13 @@ const openNewWindowViaApp = (windowId: string) => {
 };
 
 const toggleMinWindow = (windowUUId: string) => {
-  const windowInfo = currentNavBar.value.find(item => item.windowAssociated === windowUUId);
-  const activeWindow = activeWindows.value.find(window => window.absoluteId === windowUUId);
-// Add logic to store hidden windows.
+  const windowInfo = currentNavBar.value.find(
+    (item) => item.windowAssociated === windowUUId,
+  );
+  const activeWindow = activeWindows.value.find(
+    (window) => window.absoluteId === windowUUId,
+  );
+  // Add logic to store hidden windows.
   if (windowInfo && activeWindow) {
     hiddenWindows.value.push({
       id: activeWindow.id,
@@ -362,10 +368,11 @@ const toggleMinWindow = (windowUUId: string) => {
       height: activeWindow.height,
       black: activeWindow.black || false,
       lastpositionw: "",
-      lastpositionh: ""
+      lastpositionh: "",
     });
     //activeWindows.value = activeWindows.value.filter(window => window.absoluteId !== windowUUId);
   }
+  console.log(hiddenWindows.value);
 };
 
 // Title
@@ -420,14 +427,31 @@ watchEffect((cleanupFn) => {
   cleanupFn(() => clearTimeout(timmmer));
 });
 
-const openArticles = async (slug: string) => {
-  openArticlesArray.value.push({
-    id: openArticlesId.value,
-    slug: slug,
-  });
-  openArticlesId.value += 1;
+const openArticles = async (slug: string, titleName: string) => {
+  openingAppViaAnApp.value = true;
+  passedValues.value = slug;
+  const titleNameFinal = titleName + "&nbsp;" + t("app.newsview");
+  findAndOpenWindow("newsView", titleName);
+
+  setTimeout(() => {
+    openingAppViaAnApp.value = false;
+    passedValues.value = null;
+  }, 1000);
 };
 
+const openNewsSourcePage = async (slug: string, titleName: string) => {
+  openingAppViaAnApp.value = true;
+  passedValues.value = slug;
+  const titleNameFinal = titleName + "&nbsp;" + t("app.aboutNewsOrg");
+  findAndOpenWindow("aboutNewsOrg", titleNameFinal);
+
+  setTimeout(() => {
+    openingAppViaAnApp.value = false;
+    passedValues.value = null;
+  }, 1000);
+};
+
+// Not used?
 const getStaticArticleId = () => {
   storeStaticArticleId.value += 1;
   return storeStaticArticleId.value;
@@ -550,6 +574,7 @@ const getStaticArticleId = () => {
             @windowopener="openNewWindowViaApp($event)"
             @loadValue=""
             @openArticles="openArticles"
+            @openNewsSourcePage="openNewsSourcePage"
             :staticid="getStaticArticleId"
             :values="passedValues"
           />

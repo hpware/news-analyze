@@ -18,8 +18,16 @@ async function CheckKidUnfriendlyContent(title: string, words: any[]) {
   }
 }
 
-const emit = defineEmits(["close", "min", "restore"]);
+const emit = defineEmits([
+  "openArticles",
+  "openNewsSourcePage",
+  "windowopener",
+]);
 const staticid = computed(() => props.staticid);
+
+const openNewWindow = (itemId: string) => {
+  emit("windowopener", "aboutNewsOrg");
+};
 
 const contentArray = ref([]);
 const errorr = ref(false);
@@ -163,11 +171,13 @@ const useArgFindRel = (title) => {
   return similarities.sort((a, b) => b.similarity - a.similarity).slice(0, 3);
 };
 
-const openNews = (url: string) => {
-  console.log(url);
+const openNews = (url: string, titleName: string) => {
+  emit("openArticles", url, titleName);
 };
 
-const openPublisher = (text: string) => {};
+const openPublisher = (text: string) => {
+  emit("openNewsSourcePage", text);
+};
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -247,7 +257,7 @@ const openPublisher = (text: string) => {};
                 <Tooltip>
                   <TooltipTrigger>
                     <button
-                      @click="openNews(item.url.hash)"
+                      @click="openNews(item.url.hash, item.title)"
                       class="flex flex-row p-1 bg-sky-300/50 hover:bg-sky-400/50 shadow-lg backdrop-blur-sm rounded transition-all duration-200"
                     >
                       <ScanEyeIcon class="w-6 h-6 p-1" /><span>觀看文章</span>
@@ -260,25 +270,27 @@ const openPublisher = (text: string) => {};
               </TooltipProvider>
             </div>
             <div>
-            <div>
-              <h3 class="text-lg">類似文章</h3>
-              <div v-if="useArgFindRel(item.title).length > 0" class="space-y-2">
-                <div 
-                  v-for="similar in useArgFindRel(item.title)" 
-                  :key="similar.item.id"
-                  class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
-                  @click="openNews(similar.item.url.hash)"
+              <div>
+                <h3 class="text-lg">類似文章</h3>
+                <div
+                  v-if="useArgFindRel(item.title).length > 0"
+                  class="space-y-2"
                 >
-                  <div class="font-medium">{{ similar.title }}</div>
-                  <div class="text-gray-500 text-xs">
-                    相似度: {{ (similar.similarity * 100).toFixed(1) }}% | {{ similar.item.publisher }}
+                  <div
+                    v-for="similar in useArgFindRel(item.title)"
+                    :key="similar.item.id"
+                    class="p-2 bg-gray-100 rounded text-sm cursor-pointer hover:bg-gray-200"
+                    @click="openNews(similar.item.url.hash, item.title)"
+                  >
+                    <div class="font-medium">{{ similar.title }}</div>
+                    <div class="text-gray-500 text-xs">
+                      相似度: {{ (similar.similarity * 100).toFixed(1) }}% |
+                      {{ similar.item.publisher }}
+                    </div>
                   </div>
                 </div>
+                <div v-else class="text-gray-500 text-sm">找不到類似文章</div>
               </div>
-              <div v-else class="text-gray-500 text-sm">
-                找不到類似文章
-              </div>
-            </div>  
               <!--<div v-for="item in findRel(item.title)">
                   {{ item }}
                 </div>-->

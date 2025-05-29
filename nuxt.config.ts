@@ -20,11 +20,13 @@ export default defineNuxtConfig({
     },
     "/api/**": {
       cors: true,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-          "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Requested-With",
-        },
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods":
+          "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+        "Access-Control-Allow-Headers":
+          "Content-Type, Authorization, X-Requested-With",
+      },
     },
     "/api/cached/**": { swr: 3600 },
     "/api/news/get": { swr: 3600 },
@@ -58,7 +60,7 @@ export default defineNuxtConfig({
   },
 
   app: {
-    buildAssetsDir: "/_assets/",
+    buildAssetsDir: "/_n3a_assets/",
     head: {
       title: "",
       htmlAttrs: {

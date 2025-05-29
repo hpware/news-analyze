@@ -74,7 +74,8 @@
     "starred": "Starred",
     "terminal": "Terminal",
     "aboutNewsOrg": "About this news organization",
-    "newsview": "News View"
+    "newsview": "News View",
+    "areyousure": "Are you sure?",
   },
   "tools": {
     "title": "Tools",

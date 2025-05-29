@@ -44,7 +44,7 @@ const aiSummary = async () => {
           <UserIcon class="w-7 h-7 p-1" />{{ data.author }}</span
         >
       </div>
-      <div class="p-4 w-full h-fit pt-0 mt-0"> 
+      <div class="p-4 w-full h-fit pt-0 mt-0">
         <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
       </div>
       <div class="text-center" v-for="item in data.paragraph">{{ item }}</div>
