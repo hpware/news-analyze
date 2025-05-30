@@ -25,8 +25,6 @@ export default defineEventHandler(async (event) => {
       error: "INVALD_USER_ACCOUNT",
     };
   }
-  // Server side hashing
-
   // Check if user exists, if not, create a user
   try {
     console.log(username);
@@ -47,7 +45,6 @@ export default defineEventHandler(async (event) => {
         };
       }
       const newToken = uuidv4();
-      //const newToken64 = atob(newToken);
       return {
         user: fetchUserInfo,
         token: newToken,
@@ -64,14 +61,13 @@ export default defineEventHandler(async (event) => {
       }
     }
     const newToken = uuidv4();
-    const newToken64 = btoa(newToken);
     const fetchUserInfoAgain = await sql`
       select * from users
       where username = ${username}`;
-    /*await sql`
+    await sql`
         INSERT INTO usertokens (user, token)
-        VALUES (${fetchUserInfo[0].username}, ${newToken64})
-      `;*/
+        VALUES ('${fetchUserInfo[0].username}', '${newToken}')
+      `;
     return {
       user: fetchUserInfoAgain,
       token: newToken,

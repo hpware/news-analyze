@@ -96,6 +96,8 @@ Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
 在 LINE 自己的口中 「LINE TODAY是消費者獲取各式知識資訊的重要入⼝」，當然可以讓新聞媒體給他新聞賺錢，所以很多Article多會在 LINE Today 上
 
 ## FREE APIs:
+API Info: https://news.yuanhau.com/apis
+
 If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thx
 
 https://news.yuanhau.com/api/tabs for fetching Tabs
