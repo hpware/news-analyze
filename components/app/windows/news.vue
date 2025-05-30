@@ -23,7 +23,6 @@ const emit = defineEmits([
   "openNewsSourcePage",
   "windowopener",
 ]);
-const staticid = computed(() => props.staticid);
 
 const openNewWindow = (itemId: string) => {
   emit("windowopener", "aboutNewsOrg");
@@ -285,10 +284,7 @@ const openPublisher = (text: string) => {
             <div>
               <div>
                 <h3 class="text-lg">類似文章</h3>
-                <div
-                  
-                  class="space-y-2"
-                >
+                <div class="space-y-2">
                   <div
                     v-for="similar in useArgFindRel(item.title, item.publisher)"
                     :key="similar.item.id"
@@ -302,8 +298,12 @@ const openPublisher = (text: string) => {
                     </div>
                   </div>
                 </div>
-              <div v-if="checkIfEmpty(item.title)" class="text-gray-500 text-sm">找不到類似文章</div>
-
+                <div
+                  v-if="checkIfEmpty(item.title)"
+                  class="text-gray-500 text-sm"
+                >
+                  找不到類似文章
+                </div>
               </div>
               <!--<div v-for="item in findRel(item.title)">
                   {{ item }}

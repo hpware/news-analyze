@@ -472,12 +472,6 @@ const openNewsSourcePage = async (slug: string, titleName: string) => {
     passedValues.value = null;
   }, 1000);
 };
-
-// Not used?
-const getStaticArticleId = () => {
-  storeStaticArticleId.value += 1;
-  return storeStaticArticleId.value;
-};
 </script>
 <template>
   <div v-if="changeLangAnimation">
@@ -597,7 +591,6 @@ const getStaticArticleId = () => {
             @loadValue=""
             @openArticles="openArticles"
             @openNewsSourcePage="openNewsSourcePage"
-            :staticid="getStaticArticleId"
             :values="passedValues"
           />
         </Suspense>
