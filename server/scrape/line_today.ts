@@ -89,6 +89,8 @@ async function lineToday(slug: string) {
   if (publishMatch) {
     publishedAt = findTime(publishMatch[1].trim());
   }
+  const getAuthorUrl = html("entityPublishInfo-avatarLin").html();
+  console.log(getAuthorUrl);
   return {
     title: title,
     paragraph: paragraph,

@@ -32,7 +32,7 @@ const props = defineProps<{
     <hr />
     <div class="flex flex-col">
       <span class="text-xl">版權資訊</span>
-      <copyrightInfo />
+      <copyrightInfo class="justify-center align-center text-center" />
     </div>
   </div>
 </template>
