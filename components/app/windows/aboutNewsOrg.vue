@@ -20,7 +20,7 @@ const {
   data: fetchNewsOrgInfo,
   pending,
   error,
-} = useFetch("/api/cached/getData/fetchNewsOrgInfo/2293", {
+} = useFetch(`/api/cached/getData/fetchNewsOrgInfo/${props.values}`, {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

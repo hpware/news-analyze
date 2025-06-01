@@ -41,7 +41,6 @@ export default defineNuxtConfig({
     "@nuxtjs/i18n",
     "@nuxtjs/tailwindcss",
     "shadcn-nuxt",
-    "motion-v/nuxt",
     "@sentry/nuxt/module",
   ],
 

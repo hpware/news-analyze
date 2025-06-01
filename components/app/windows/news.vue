@@ -305,9 +305,6 @@ const openPublisher = (text: string) => {
                   找不到類似文章
                 </div>
               </div>
-              <!--<div v-for="item in findRel(item.title)">
-                  {{ item }}
-                </div>-->
             </div>
             <!--<p :class="getCheckResult(item.title) ? 'hidden' : ''">
                 {{ item.shortDescription }}

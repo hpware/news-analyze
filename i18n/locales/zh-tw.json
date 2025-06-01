@@ -61,8 +61,8 @@
   "app": {
     "changelangmessage": "正在切換語言中...",
     "launchtext": "系統開機中...",
-    "hotnews": "熱門新聞",
-    "news": "新聞",
+    "hotnews": "熱門新聞 (舊版)",
+    "news": "熱門新聞",
     "sources": "資料來源",
     "about": "關於這個網站",
     "settings": "設定",

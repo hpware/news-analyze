@@ -68,7 +68,12 @@ const aiSummary = async () => {
             class="w-4 h-4 align-middle justify-center text-center"
           />Activate
         </button>
-        <div v-else>{{ summaryText }}</div>
+        <div v-else>
+          <div v-if="!summaryText">
+            Loading...
+          </div>
+          <div v-else>{{ summaryText }}</div>
+        </div>
       </div>
       <div class="flex flex-col bg-gray-500">
         <div class="flex flex-row" v-for="item in likeart">
