@@ -464,7 +464,7 @@ const openArticles = async (slug: string, titleName?: string) => {
 const openNewsSourcePage = async (slug: string) => {
   openingAppViaAnApp.value = true;
   passedValues.value = slug;
-  const titleNameFinal = slug ?  "關於" + slug : t("app.aboutNewsOrg");
+  const titleNameFinal = slug ? "關於" + slug : t("app.aboutNewsOrg");
   findAndOpenWindow("aboutNewsOrg", titleNameFinal);
 
   setTimeout(() => {

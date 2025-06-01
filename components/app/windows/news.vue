@@ -241,7 +241,7 @@ const openPublisher = (text: string) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <button @click="openPublisher(item.publisher)">
+                    <button @click="openPublisher(item.publisherId)">
                       {{ item.publisher }}
                     </button>
                   </TooltipTrigger>

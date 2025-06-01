@@ -69,9 +69,7 @@ const aiSummary = async () => {
           />Activate
         </button>
         <div v-else>
-          <div v-if="!summaryText">
-            Loading...
-          </div>
+          <div v-if="!summaryText">Loading...</div>
           <div v-else>{{ summaryText }}</div>
         </div>
       </div>
