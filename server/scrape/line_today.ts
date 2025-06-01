@@ -89,8 +89,12 @@ async function lineToday(slug: string) {
   if (publishMatch) {
     publishedAt = findTime(publishMatch[1].trim());
   }
-  const getAuthorUrl = html("entityPublishInfo-avatarLin").html();
-  console.log(getAuthorUrl);
+  
+const findPublisherUrl = html("a.entityPublishInfo-avatarLink").attr("href") || "";
+const publisherIdMatch = findPublisherUrl.match(/[0-9]{6}/);
+const publisherId = publisherIdMatch ? publisherIdMatch[0] : "";
+console.log(publisherId);
+
   return {
     title: title,
     paragraph: paragraph,
@@ -99,7 +103,8 @@ async function lineToday(slug: string) {
     images: images,
     updateat: updatedAt,
     publishedat: publishedAt,
-  };
+    publisherId: publisherId
+ };
 }
 
 export default lineToday;

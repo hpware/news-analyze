@@ -10,6 +10,8 @@ Reverse engineering documentation: [about](/about/)
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried it yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
 
+## Note for developing.
+The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
 ## Why?
 
