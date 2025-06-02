@@ -34,6 +34,7 @@ const switchTabs = ref(false);
 const tabs = ref([]);
 const primary = ref<string>("top"); // Hard code value fn
 const canNotLoadTabUI = ref(false);
+const isDataCached = ref(false);
 const pullTabsData = async () => {
   try {
     const req = await fetch("/api/tabs");
@@ -60,6 +61,7 @@ const updateContent = async (url: string, tabAction: boolean) => {
     if (data) {
       contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
       switchTabs.value = false;
+      isDataCached.value = data.cached || false;
     }
   } catch (e) {
     console.log(e);

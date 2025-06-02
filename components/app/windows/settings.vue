@@ -5,12 +5,12 @@ const { t, locale } = useI18n();
 const user = ref();
 onMounted(async () => {
   const req = await fetch("/api/user/validateUserToken");
-  const res = req.json();
+  const res = await req.json();
   user.value = res;
 });
 
 const logoutAction = () => {};
-const groqApiKeyRegex = /^gsk_[a-zA-Z0-9]{52}$/; 
+const groqApiKeyRegex = /^gsk_[a-zA-Z0-9]{52}$/;
 const customApiKey = ref();
 const isCorrect = ref(false);
 const submitCustomApiKey = async () => {
@@ -27,13 +27,16 @@ const submitCustomApiKey = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({}),
+      body: JSON.stringify({
+        apiKey: apiKey,
+      }),
     });
     const data = await sendApi.json();
     if (data.error) {
     }
   } catch (e) {}
 };
+
 const checkValidApiKey = () => {
   const apiKey = customApiKey.value;
   if (!apiKey) {
@@ -47,7 +50,7 @@ const checkValidApiKey = () => {
   <div class="justify-center align-center text-center">
     <div class="">Greetings, {{ user }}</div>
     <div class="flex flex-row text-center align-center justify-center">
-      <span class="text-md p-1 text-nowrap ">Your Groq API:&nbsp;</span>
+      <span class="text-md p-1 text-nowrap">Your Groq API:&nbsp;</span>
       <Input
         type="text"
         class="h-6 m-1 py-3 rounded"
@@ -58,9 +61,18 @@ const checkValidApiKey = () => {
         v-on:mouseleave="checkValidApiKey"
       />
       <!--If it is a valid api key or not.-->
-      <BadgeCheckIcon v-if="isCorrect" class="w-8 h-8 p-1/2 mr-1 text-green-700"/>
-      <OctagonAlertIcon v-if="!isCorrect" class="w-8 h-8 p-1/2 mr-1 text-red-700"/>
-      <button class="p-1 text-sm  bg-gray-400/60 rounded" @click="submitCustomApiKey">
+      <BadgeCheckIcon
+        v-if="isCorrect"
+        class="w-8 h-8 p-1/2 mr-1 text-green-700"
+      />
+      <OctagonAlertIcon
+        v-if="!isCorrect"
+        class="w-8 h-8 p-1/2 mr-1 text-red-700"
+      />
+      <button
+        class="p-1 text-sm bg-gray-400/60 rounded"
+        @click="submitCustomApiKey"
+      >
         Submit
       </button>
     </div>

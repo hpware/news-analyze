@@ -269,7 +269,6 @@ const navBarDisplayText = (text: string) => {
   }
   const trimSpaces = text.trim();
   const regex = /.{0,7}/;
-  console.log("asdasda");
   if (trimSpaces.length <= 7) {
     return text;
   }
