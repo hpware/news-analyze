@@ -29,7 +29,6 @@ const submitUserPassword = async () => {
 
   if (!res.error) {
     error.value = false;
-    localStorage.setItem("token", res.token);
     success.value = true;
     console.log(res);
     userAccount.value = "";

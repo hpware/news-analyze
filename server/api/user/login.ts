@@ -68,9 +68,9 @@ export default defineEventHandler(async (event) => {
         INSERT INTO usertokens (user, token)
         VALUES ('${fetchUserInfo[0].username}', '${newToken}')
       `;
+    setCookie(event, "token", newToken);
     return {
       user: fetchUserInfoAgain,
-      token: newToken,
     };
   } catch (e) {
     console.log(e);

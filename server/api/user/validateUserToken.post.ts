@@ -2,11 +2,11 @@ import sql from "~/server/components/postgres";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const token = body.token;
+  const token = getCookie(event, "token");
   if (!token) {
     return {
-      error: "NO_TOKEN_GIVEN",
-      requested_action: "SHOW_WARNING",
+      error: "INVALID_TOKEN",
+      requested_action: "LOGOUT_USER",
     };
   }
   const checkIsUUIDRegex =

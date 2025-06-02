@@ -29,15 +29,16 @@ export default defineEventHandler(async (event) => {
       html("div.editor div figure img").attr("src") ||
       "";
     const articles = [];
-    const otherArticles = html("section.moduleContainer div");
-    for (const item in otherArticles) {
-
-    }
+    const otherArticles = html("section.moduleContainer div").html();
+    /*for (const item in otherArticles) {
+        console.log(item);
+        console.log("-");
+    }*/
     return {
       name: newsOrgName,
       description: description,
       logo: logo,
-      articles: []
+      articles: otherArticles,
     };
   } catch (e) {
     console.log(e);

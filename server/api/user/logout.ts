@@ -4,12 +4,7 @@ export default defineEventHandler(async (event) => {
   const nowDate = new Date().toLocaleString();
   try {
     if (loginCookie) {
-      deleteCookie(event, "session");
-      setCookie(event, "lastCheckCookie", nowDate, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        path: "/",
-      });
+      deleteCookie(event, "token");
       return {
         success: true,
         error: null,

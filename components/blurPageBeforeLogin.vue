@@ -9,20 +9,8 @@ const emit = defineEmits(["windowopener", "error", "loadValue"]);
 
 try {
   // 喔 我沒有加 await :( 難怪有問題
-  const token = localStorage.getItem("token");
   const { data, error: sendError } = await useFetch(
     "/api/user/validateUserToken",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        token: token,
-        lang: locale,
-        page: "a_window_application_using_blurPageBeforeLogin_component",
-      }),
-    },
   );
   if (sendError.value) {
     error.value = true;
