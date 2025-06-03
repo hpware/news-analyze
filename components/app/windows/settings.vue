@@ -239,7 +239,7 @@ const deleteAccount = async () => {
       <button
         class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
       >
-        Terms
+        TOS
       </button>
     </div>
     <hr />
