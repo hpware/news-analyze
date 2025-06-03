@@ -41,6 +41,7 @@ interface minAppWindowInterface {
 // Import plugins
 import { v4 as uuidv4 } from "uuid";
 import { gsap } from "gsap";
+import confetti from "js-confetti";
 
 // Import Windows
 import UserWindow from "~/components/app/windows/user.vue";
@@ -101,7 +102,7 @@ const menuItems = [
   { name: t("app.about"), windowName: "about" },
   { name: t("app.terminal"), windowName: "tty" },
   { name: t("app.settings"), windowName: "settings" },
-  { name: t("app.login"), windowName: "user" },
+  { name: t("app.login"), windowName: "login" },
   { name: t("app.leave"), windowName: "leave" },
 ];
 
@@ -115,7 +116,7 @@ const associAppWindow = [
     height: "500px",
   },
   {
-    name: "user",
+    name: "login",
     id: "2",
     title: t("app.login"),
     component: UserWindow,
@@ -194,6 +195,14 @@ const associAppWindow = [
     component: TOSWindow,
   },
 ];
+
+// Confeti
+const successcanvas = ref();
+const confetiActive = ref(false);
+const successpop = ref<any>();
+onMounted(() => {
+  successpop.value = new confetti();
+});
 
 // Date
 const currentDate = ref(
@@ -606,4 +615,7 @@ const openNewsSourcePage = async (slug: string, title: string) => {
       </DraggableWindow>
     </div>
   </Transition>
+  <div v-if="confetiActive">
+    <div v-ref="successcanvas"></div>
+  </div>
 </template>
