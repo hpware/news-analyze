@@ -82,7 +82,9 @@
     "logout": "Logout",
     "deleteaccount": "Delete your account",
     "dangerzone": "DANGER ZONE",
-    "submit": "Submit"
+    "submit": "Submit",
+    "greet": "Greetings, ",
+    "defaultname": "User"
   },
   "popuptext": {
     "logout": "Are you sure you want to logout?",
