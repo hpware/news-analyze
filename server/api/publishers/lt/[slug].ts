@@ -30,23 +30,24 @@ export default defineEventHandler(async (event) => {
       "";
     const bgImage = html("figure.keyVisual img").attr("srcset") || "";
     const articles = [];
-    const regexArticleLinks = /[a-zA-Z0-9]{7}/g
+    const regexArticleLinks = /[a-zA-Z0-9]{7}/g;
     const otherArticles = <any[]>[];
-    html("a.ltcp-link")
-      .each((i, element) => {
-        const articleLink = html(element).attr("href");
-        const articleTitle = html(element).find("h3.header").text();
-        const date = html(element).find("div._articleCard div.css-wqleh6 span").text();
-        if (articleLink && articleTitle) {
-            const articleSlug = articleLink.matchAll(regexArticleLinks);
-          otherArticles.push({
-            index: i,
-            title: articleTitle,
-            link: articleSlug,
-            date: date,
-          });
-        }
-      });
+    html("a.ltcp-link").each((i, element) => {
+      const articleLink = html(element).attr("href");
+      const articleTitle = html(element).find("h3.header").text();
+      const date = html(element)
+        .find("div._articleCard div.css-wqleh6 span")
+        .text();
+      if (articleLink && articleTitle) {
+        const articleSlug = articleLink.matchAll(regexArticleLinks);
+        otherArticles.push({
+          index: i,
+          title: articleTitle,
+          link: articleSlug,
+          date: date,
+        });
+      }
+    });
     return {
       name: newsOrgName,
       description: description,

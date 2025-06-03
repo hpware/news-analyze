@@ -189,8 +189,8 @@ const openNews = (url: string, titleName: string) => {
   emit("openArticles", url, titleName);
 };
 
-const openPublisher = (text: string) => {
-  emit("openNewsSourcePage", text);
+const openPublisher = (slug: string, title: string) => {
+  emit("openNewsSourcePage", slug, title);
 };
 </script>
 <template>
@@ -243,7 +243,9 @@ const openPublisher = (text: string) => {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger>
-                    <button @click="openPublisher(item.publisherId)">
+                    <button
+                      @click="openPublisher(item.publisherId, item.publisher)"
+                    >
                       {{ item.publisher }}
                     </button>
                   </TooltipTrigger>

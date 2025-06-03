@@ -31,10 +31,10 @@
         "mobileApp": "Is there a mobile app?"
       },
       "whydes": "Taiwan news mostly came from China-controlled / China-official media or from reporters who uses inappropriate content to farm clicks and engragement. Or just made up news by the reporters as the Taiwan's NCC doesn't give a shit about the fake news they are promoting as they think it doesn't matter, this platform is a wake up call to the NCC to start to moderate news media corporations that do fake news.",
-      "howdes": "We use web scraping to search for the latest news, and store it into a postgres database, for people to access, and the crawler is not like the OpenAI or any AI company, we just load the page once, and that's it nothing else on your page.",
-      "supportedLocationNews": "We currently only support news from Taiwan for now, but if you want more, you can contribute to the project by adding more news sources to the python scraping scripts.",
+      "howdes": "We use web scraping to search for the latest news, and store it into the system's cache for people to access. This saves server loading time.",
+      "supportedLocationNews": "We will only support Taiwan news, if your country has Line today, you can fork this project and change some of the scraping systems.",
       "userData": "We handle your account and password in a secure way, with two encryption methods, one during transit to the server (and also SQL injecton), one saving to the database. For other user data, it is currently NOT end-to-end encrypted, like your AI chat history, your stars, and your name & email. In the near future, we will add E2E encryption (and I can also pratice).",
-      "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported, but you can still kinda use it, it is just not pleasant."
+      "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported."
     },
     "cards": {
       "title": {
@@ -65,7 +65,7 @@
     "news": "News",
     "sources": "Sources",
     "about": "About this website",
-    "settings": "settings",
+    "settings": "Settings",
     "leave": "Leave",
     "login": "Login",
     "license": "License",
@@ -76,6 +76,21 @@
     "aboutNewsOrg": "About this news organization",
     "newsview": "News View",
     "areyousure": "Are you sure?"
+  },
+  "settings": {
+    "yourgroqapi": "Your Groq API",
+    "logout": "Logout",
+    "deleteaccount": "Delete your account",
+    "dangerzone": "DANGER ZONE",
+    "submit": "Submit"
+  },
+  "popuptext": {
+    "logout": "Are you sure you want to logout?",
+    "delete": " This action cannot be undone. This will permanently delete your account and remove your data from our servers."
+  },
+  "popup": {
+    "cancel": "Cancel",
+    "confirm": "Confirm"
   },
   "tools": {
     "title": "Tools",

@@ -31,10 +31,10 @@
         "mobileApp": "這個會做手機版嗎？"
       },
       "whydes": "台灣的新聞是要痲是來自中國控制/中國官方的媒體，或是來自只想獲得點閱的記者。這個平台是要讓台灣的NCC知道，發布假新聞就應該被調查，而不是放著不管。",
-      "howdes": " 我們使用使用 Python 寫的網頁爬蟲來搜尋最新的新聞，並將其存入Postgres資料庫中。",
-      "supportedLocationNews": "We currently only support news from Taiwan for now, but if you want more, you can contribute to the project by adding more news sources to the python scraping scripts.",
-      "userData": "We handle your account and password in a secure way, with two encryption methods, one during transit to the server (and also SQL injecton), one saving to the database. For other user data, it is currently NOT end-to-end encrypted, like your AI chat history, your stars, and your name & email. In the near future, we will add E2E encryption (and I can also pratice).",
-      "mobileApp": "I will make a application using React Native in the future, but for now, mobile is not supported, but you can still kinda use it, it is just not pleasant."
+      "howdes": " 我們使用使用網頁爬蟲來搜尋最新的新聞，並將其存入系統的快取記憶體中。這樣可以省伺服器的運行時間",
+      "supportedLocationNews": "這個專案只會支援台灣新聞，如果你要加其他有Line Today的新聞的話，可以Fork這個專案，並更改。",
+      "userData": "這個網站使用雙重加密，第一次是使用SHA-512在使用者端加密，第二次就使在伺服器使用 argon2 加密，並把使用者的帳號存入系統裡。",
+      "mobileApp": "可能會，但現在手機不支援。"
     },
     "cards": {
       "title": {
@@ -76,6 +76,21 @@
     "aboutNewsOrg": "關於這個新聞來源",
     "newsview": "新聞",
     "areyousure": "你確定？"
+  },
+  "settings": {
+    "yourgroqapi": "你的Groq API",
+    "logout": "登出",
+    "deleteaccount": "刪除你的帳號",
+    "dangerzone": "DANGER ZONE",
+    "submit": "送出"
+  },
+  "popup": {
+    "cancel": "取消",
+    "confirm": "確認"
+  },
+  "popuptext": {
+    "logout": "你確定要登出?",
+    "delete": "此操作無法撤銷。這將永久刪除您的帳戶並從我們的伺服器中刪除您的資料。"
   },
   "tools": {
     "title": "工具",
