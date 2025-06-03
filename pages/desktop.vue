@@ -41,8 +41,6 @@ interface minAppWindowInterface {
 // Import plugins
 import { v4 as uuidv4 } from "uuid";
 import { gsap } from "gsap";
-import { TextPlugin } from "gsap/TextPlugin";
-gsap.registerPlugin(TextPlugin);
 
 // Import Windows
 import UserWindow from "~/components/app/windows/user.vue";
@@ -56,6 +54,8 @@ import FavStaredWindow from "~/components/app/windows/fav.vue";
 import NewsWindow from "~/components/app/windows/news.vue";
 import NewsViewWindow from "~/components/app/windows/newsView.vue";
 import SettingsWindow from "~/components/app/windows/settings.vue";
+import PrivacyPolicyWindow from "~/components/app/windows/privacypolicy.vue";
+import TOSWindow from "~/components/app/windows/tos.vue";
 
 // Import Icons
 import {
@@ -75,9 +75,7 @@ const route = useRoute();
 // values
 const popMessage = ref(null);
 const menuOpen = ref(false);
-const langMenuOpen = ref(false);
-const lang = ref(locale.value);
-const alertOpen = ref(false);
+2;
 const currentNavBar = ref<currentNavBarInterface[]>([]);
 const bootingAnimation = ref(true);
 const activeWindows = ref<associAppWindowInterface[]>([]);
@@ -92,13 +90,10 @@ const openingAppViaAnApp = ref(false);
 const passedValues = ref();
 const globalWindowVal = ref(new Map());
 const changeLangAnimation = ref(false);
-const openArticlesArray = ref<any[]>([]);
-const openArticlesId = ref(0);
-const storeStaticArticleId = ref(0);
 
 // Key Data
 const menuItems = [
-  { name: t("app.hotnews"), windowName: "hotnews" },
+  // { name: t("app.hotnews"), windowName: "hotnews" },
   { name: t("app.news"), windowName: "news" },
   { name: t("app.sources"), windowName: "sources" },
   { name: t("app.starred"), windowName: "starred" },
@@ -112,7 +107,7 @@ const menuItems = [
 
 const associAppWindow = [
   {
-    name: "hotnews",
+    name: "googlenews",
     id: "1",
     title: t("app.hotnews"),
     component: HotNewsWindow,
@@ -185,6 +180,18 @@ const associAppWindow = [
     id: "11",
     title: t("app.newsview"),
     component: NewsViewWindow,
+  },
+  {
+    name: "privacypolicy",
+    id: "12",
+    title: t("app.privacypolicy"),
+    component: PrivacyPolicyWindow,
+  },
+  {
+    name: "tos",
+    id: "13",
+    title: t("app.tos"),
+    component: TOSWindow,
   },
 ];
 
@@ -488,7 +495,8 @@ const openNewsSourcePage = async (slug: string, title: string) => {
         v-model="progress"
         class="w-3/5 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
       />
-      <br />
+      <!--Spacing for Firefox Users-->
+      <div class="p-2"></div>
       <span class="text-xl text-bold mt-3">{{ t("app.launchtext") }}</span>
     </div>
   </div>
@@ -591,6 +599,8 @@ const openNewsSourcePage = async (slug: string, title: string) => {
             @openArticles="openArticles"
             @openNewsSourcePage="openNewsSourcePage"
             :values="passedValues"
+            :windows="activeWindows"
+            @closeWindow="closeWindow"
           />
         </Suspense>
       </DraggableWindow>

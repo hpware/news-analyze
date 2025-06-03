@@ -104,5 +104,15 @@
       "checkweirdkeywords": "這個工具檢查新聞記者是不是使用偏色情的標體 (台灣的很愛用)",
       "noadlinetoday": "提供無廣告的LINE Today 新聞"
     }
+  },
+  "pages": {
+    "privacypolicy": {
+      "title": "Privacy Policy",
+      "content": "Ummmm"
+    },
+    "tos": {
+      "title": "Terms of service",
+      "content": "N/A"
+    }
   }
 }

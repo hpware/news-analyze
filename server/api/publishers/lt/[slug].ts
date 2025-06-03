@@ -1,3 +1,4 @@
+// TODO Add caching
 import * as cheerio from "cheerio";
 
 export default defineEventHandler(async (event) => {
@@ -24,8 +25,9 @@ export default defineEventHandler(async (event) => {
       .text()
       .replace(/.css-.*\}/, "");
     const description = html("p.description").text();
+    const logoClue = html("div.editor").contents();
     const logo =
-      html("div.editor div figure img").attr("srcset") ||
+      logoClue.find("img").attr("srcset") ||
       html("div.editor div figure img").attr("src") ||
       "";
     const bgImage = html("figure.keyVisual img").attr("srcset") || "";
@@ -49,10 +51,11 @@ export default defineEventHandler(async (event) => {
       }
     });
     return {
-      name: newsOrgName,
+      title: newsOrgName,
       description: description,
       logo: logo,
       articles: otherArticles,
+      logoClue: String(logoClue),
     };
   } catch (e) {
     console.log(e);

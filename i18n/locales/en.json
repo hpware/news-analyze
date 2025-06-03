@@ -104,5 +104,15 @@
       "checkweirdkeywords": "This tool check if the news title has weird 18+ content.",
       "noadlinetoday": "Provides free, no ads Line today."
     }
+  },
+  "pages": {
+    "privacypolicy": {
+      "title": "Privacy Policy",
+      "content": "Ummmm"
+    },
+    "tos": {
+      "title": "Terms of service",
+      "content": "N/A"
+    }
   }
 }
