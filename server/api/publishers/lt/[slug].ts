@@ -1,6 +1,5 @@
 // TODO Add caching
 import * as cheerio from "cheerio";
-import axios from "axios";
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug");
