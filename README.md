@@ -2,10 +2,16 @@
 
 ![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)&nbsp;![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/hpware/news-analyze?utm_source=oss&utm_medium=github&utm_campaign=hpware%2Fnews-analyze&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)&nbsp;![LICENSE](https://img.shields.io/github/license/hpware/news-analyze?style=flat)&nbsp;![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hpware/news-analyze/build_docker_image.yml)
 
+A Neighborhood project.
 
 App Design: [PDF Document](/design.pdf)
 
 Reverse engineering documentation: [about](/about/)
+
+Deploy: [via docker compose](/deploy);
+
+## Demo:
+You can try out the platform RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
 
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
@@ -14,7 +20,7 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
 ## news.yuanhau.com is now back up and running!
-Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing correct, so I just nuked it off my server :). It works now. (Also deploying to zeabur hurt my wallet, as my system is too costly there). oof
+Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing ghcr.io dns correctly (although ping ghcr.io works?), so I just nuked it off my server :), since I don't even use it that much. It works now. (Also deploying to zeabur hurt my wallet (it's like 0.07 for a day for the memory), as my system that I built based on ram is too costly there). oof, so please just self host it.
 
 ## Why?
 
@@ -64,12 +70,11 @@ Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't f
 - Cheerio
 - Sentry
 - Umami Analytics
+- Prettier
 
 ## Mirrors:
-- [Gitea (Self Hosted)](https://git.yhw.tw/howard/news-analyze)
-
-## Demo:
-You can try out the platform now via this link: https://yhw.tw/news?goto=desktop
+- [yhw.tw Gitea](https://git.yhw.tw/howard/news-analyze)
+- [Hackclub Forgejo](https://git.hackclub.app/yuanhau/news-analyze)
 
 ## Preview Images:
 ### Home Page:
@@ -78,7 +83,7 @@ You can try out the platform now via this link: https://yhw.tw/news?goto=desktop
 ### Desktop App:
 ![](/.github/README/desktop.png)
 
-## 如何執行
+## 如何執行 How to preview the app on your local device machine?
 
 1. First, rename `.env.example` to `.env` and fill in the blanks.
 2. Run `bun install` to install dependencies.
@@ -103,7 +108,7 @@ Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
 ## FREE APIs:
 API Info: https://news.yuanhau.com/apis
 
-If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thx
+If you just want to throw to an LLM and tell it to do stuff, here is the endpoints (w/cors, but I (hpware) has given permission for you to use it for free.), you are welcome to build something better than mine. Just credit me :) thanks.
 
 https://news.yuanhau.com/api/tabs for fetching Tabs
 
@@ -127,7 +132,7 @@ The API looks like this:
 }
 ```
 
-https://news.yuanhau.com/api/home/lt?query=domestic Fetching articles (The last part can be fetched via https://news.yuanhau.com/datainfo/linetodayjsondata.json and DONT remove the ?query=)
+https://news.yuanhau.com/api/home/lt?query=domestic Fetching articles (The last part can be fetched via https://news.yuanhau.com/datainfo/linetodayjsondata.json and DON'T remove the ?query=)
 
 The API looks like this:
 ```json
