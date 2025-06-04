@@ -1,6 +1,4 @@
 import sql from "~/server/components/postgres";
-const createSources = await sql``;
-
 export default defineEventHandler(async (event) => {
   const createUsers = await sql`
   create table if not exists users (
@@ -33,7 +31,7 @@ CREATE TABLE IF NOT EXISTS chat_history (
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`;
-
+  const createSources = await sql``;
   return {
     createUsers: createUsers,
     usersList: usersList,
