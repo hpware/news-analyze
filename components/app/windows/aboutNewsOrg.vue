@@ -6,7 +6,7 @@ import { ScrambleTextPlugin } from "gsap/dist/ScrambleTextPlugin";
 gsap.registerPlugin(ScrambleTextPlugin);
 const loading = ref(true);
 const { t, locale } = useI18n();
-// Great, there are now no errors ig
+
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
 
 const props = defineProps({
@@ -54,61 +54,69 @@ watch(
 <template>
   <div>
     <div class="text-center align-center justify-center">
-      <!--<div
-        class="flex flex-row bg-[#AAACAAFF] rounded-3xl p-3 gap-3 m-3 scale-5"
-      >
-        <img
-          :src="fetchNewsOrgInfo?.logoUrl"
-          class="w-48 h-48 rounded-l-3xl object-cover p-0 m-0"
-          draggable="false"
-        />
-        <div class="flex flex-col gap-3 text-left">
-          <h1 class="text-4xl font-bold m-3 text-left" ref="orgNameAnimation">
-            {{ fetchNewsOrgInfo?.title }}
-          </h1>
-          <span class="text-ms m-1 mt-5 text-left text-wrap">{{
-            fetchNewsOrgInfo?.description
-          }}</span>
-          <div
-            class="gap-[3px] flex flex-row text-center align-center justify-center"
-          >
-            <a
-              :href="fetchNewsOrgInfo?.website"
-              target="_blank"
-              v-if="fetchNewsOrgInfo?.website"
-              class="text-gray-800 hover:text-gray-500 transiton-all duration-150 flex flex-row"
-              ><GlobeAltIcon class="w-6 h-6" />網站</a
-            >
-            <a
-              :href="fetchNewsOrgInfo?.facebook"
-              target="_blank"
-              v-if="fetchNewsOrgInfo?.facebook"
-              class="text-gray-800 hover:text-gray-500 transiton-all duration-150 flex flex-row"
-              ><Facebook class="w-6 h-6" />Facebook
-            </a>
-          </div>
-        </div>
-        </div>-->
       <div
-        class="flex flex-row bg-gray-400/70 rounded-3xl p-3 gap-3 m-3 scale-5"
+        class="flex flex-row bg-gray-300/70 rounded-3xl p-3 gap-3 m-3 scale-5"
       >
-        <div class="flex flex-col gap-3 text-left">
-          <h1 class="text-4xl font-bold m-2 text-center" ref="orgNameAnimation">
+        <div class="flex flex-col gap-3 text-left w-full">
+          <h1
+            v-if="pending"
+            class="h-12 bg-gray-200 animate-pulse rounded m-2 w-3/4 mx-auto"
+          ></h1>
+          <h1
+            v-else
+            class="text-4xl font-bold m-2 text-center"
+            ref="orgNameAnimation"
+          >
             {{ fetchNewsOrgInfo?.title }}
           </h1>
-          <span class="text-ms m-1 mt-5 text-left text-wrap">{{
-            fetchNewsOrgInfo?.description
-          }}</span>
+
+          <div v-if="pending" class="flex flex-col gap-2 m-1 mt-5">
+            <div class="h-4 bg-gray-200 animate-pulse rounded w-full"></div>
+            <div class="h-4 bg-gray-200 animate-pulse rounded w-5/6"></div>
+            <div class="h-4 bg-gray-200 animate-pulse rounded w-4/6"></div>
+          </div>
+          <span v-else class="text-ms m-1 mt-5 text-left text-wrap">
+            {{ fetchNewsOrgInfo?.description }}
+          </span>
         </div>
       </div>
-      <div>
-        <div
-          v-for="item in fetchNewsOrgInfo?.articles"
-          class="p-1 bg-gray-300/70 rounded m-1"
-        >
-          {{ item.title }}
-        </div>
+
+      <div class="space-y-3">
+        <template v-if="pending">
+          <div
+            v-for="item in 5"
+            :key="item"
+            class="p-3 bg-gray-300/70 rounded m-1 animate-pulse h-8"
+          ></div>
+        </template>
+        <template v-else>
+          <div
+            v-for="item in fetchNewsOrgInfo?.articles"
+            class="p-1 bg-gray-300/70 rounded m-1"
+          >
+            <div class="flex flex-col">
+              <span class="title text-bold">{{ item.title }}</span>
+              <span class="date text-xs">{{ item.date }}</span>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+</style>

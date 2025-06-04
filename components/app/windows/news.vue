@@ -192,6 +192,7 @@ const openNews = (url: string, titleName: string) => {
 const openPublisher = (slug: string, title: string) => {
   emit("openNewsSourcePage", slug, title);
 };
+const isLoading = computed(() => contentArray.value.length === 0);
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -200,33 +201,82 @@ const openPublisher = (slug: string, title: string) => {
       class="sticky inset-x-0 top-0 bg-gray-300/90 backdrop-blur-xl border shadow-lg rounded-xl p-1 m-1 mt-0 justify-center align-center text-center z-[50] overflow-x-auto scrollbar-xl min-w-min whitespace-nowrap px-2"
     >
       <div class="gap-2 flex flex-row justify-center align-center text-center">
-        <button
-          v-for="item in tabs"
-          @click="updateContent(item.url, true)"
-          :class="
-            isPrimary(item.url, true) ? 'text-sky-600 text-bold' : 'text-black'
-          "
-          class="disabled:cursor-not-allowed"
-          :disabled="isPrimary(item.url, true) || switchTabs"
-        >
-          <span>{{ item.text }}</span>
-        </button>
+        <!-- Tabs Loading State -->
+        <template v-if="canNotLoadTabUI">
+          <div
+            v-for="n in 5"
+            :key="n"
+            class="h-8 w-20 bg-gray-400/50 animate-pulse rounded mx-1"
+          ></div>
+        </template>
+
+        <!-- Actual Tabs -->
+        <template v-else>
+          <button
+            v-for="item in tabs"
+            @click="updateContent(item.url, true)"
+            :class="
+              isPrimary(item.url, true)
+                ? 'text-sky-600 text-bold'
+                : 'text-black'
+            "
+            class="disabled:cursor-not-allowed"
+            :disabled="isPrimary(item.url, true) || switchTabs"
+          >
+            <span>{{ item.text }}</span>
+          </button>
+        </template>
         <button v-if="canNotLoadTabUI"><RefreshCcwIcon /></button>
       </div>
     </div>
-    <Transition
-      enter-active-class="animate__animated animate__fadeIn"
-      leave-active-class="animate__animated animate__fadeOut"
-    >
-      <div v-if="switchTabs" class="absolute inset-x-0 top-12 p-2 m-12 z-[50]">
-        Loading...
-      </div>
-    </Transition>
-    <Transition
-      enter-active-class="animate__animated animate__fadeIn"
-      leave-active-class="animate__animated animate__fadeOut"
-    >
-      <div v-if="!switchTabs">
+
+    <!-- Content Area -->
+    <div>
+      <!-- Loading State -->
+      <template v-if="isLoading">
+        <div v-for="n in 5" :key="n" class="p-2 bg-gray-200 rounded m-1">
+          <!-- Title Skeleton -->
+          <div
+            class="h-8 bg-gray-300 animate-pulse rounded-lg w-3/4 mx-auto mb-2"
+          ></div>
+
+          <!-- Publisher and Date Skeleton -->
+          <div class="flex items-center justify-center gap-2 mb-2">
+            <div class="h-4 w-24 bg-gray-300 animate-pulse rounded"></div>
+            <div class="h-4 w-4 bg-gray-300 animate-pulse rounded">--</div>
+            <div class="h-4 w-32 bg-gray-300 animate-pulse rounded"></div>
+          </div>
+
+          <!-- Action Button Skeleton -->
+          <div class="flex justify-center mb-2">
+            <div class="h-8 w-24 bg-gray-300 animate-pulse rounded"></div>
+          </div>
+
+          <!-- Similar Articles Skeleton -->
+          <div class="mt-4">
+            <div
+              class="h-6 w-20 bg-gray-300 animate-pulse rounded mb-2 mx-auto"
+            ></div>
+            <div class="space-y-2">
+              <div
+                v-for="i in 2"
+                :key="i"
+                class="p-2 bg-gray-300 animate-pulse rounded"
+              >
+                <div
+                  class="h-4 w-3/4 bg-gray-400/50 animate-pulse rounded mb-1"
+                ></div>
+                <div
+                  class="h-3 w-1/2 bg-gray-400/50 animate-pulse rounded"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- Actual Content -->
+      <template v-else>
         <div
           v-for="item in contentArray"
           :key="item.id"
@@ -310,12 +360,25 @@ const openPublisher = (slug: string, title: string) => {
                 </div>
               </div>
             </div>
-            <!--<p :class="getCheckResult(item.title) ? 'hidden' : ''">
-                {{ item.shortDescription }}
-              </p>-->
           </div>
         </div>
-      </div>
-    </Transition>
+      </template>
+    </div>
   </div>
 </template>
+
+<style scoped>
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+</style>
