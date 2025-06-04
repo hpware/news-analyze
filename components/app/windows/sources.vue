@@ -19,7 +19,7 @@ const {
   data: source,
   pending,
   error,
-} = await useFetch("/api/cached/getData/fetchSources", {
+} = await useFetch("/api/publishers/lt_all", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",

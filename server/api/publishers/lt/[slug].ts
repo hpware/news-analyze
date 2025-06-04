@@ -1,8 +1,43 @@
-// TODO Add caching
+import sql from "~/server/components/postgres";
+
 import * as cheerio from "cheerio";
+
+// Caching
+
+interface CacheItems {
+  slug: string;
+  title: string;
+  description: string;
+  articles: any[];
+  timestamp: number;
+}
+const CACHE_DURATION = 1000 * 60 * 30;
+const cache: Record<string, CacheItems> = {};
+
+function cleanupCache() {
+  const now = Date.now();
+  Object.keys(cache).forEach((key) => {
+    if (now - cache[key].timestamp > CACHE_DURATION) {
+      delete cache[key];
+    }
+  });
+}
+
+setInterval(cleanupCache, CACHE_DURATION);
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, "slug");
+  if (!slug) {
+    return {
+      error: "NO_SLUG_PROVIDED",
+    };
+  }
+  if (cache[slug] && Date.now() - cache[slug].timestamp < CACHE_DURATION) {
+    return {
+      ...cache[slug],
+      cached: true,
+    };
+  }
   const buildUrl = "https://today.line.me/tw/v3/publisher/" + slug;
   try {
     const req = await fetch(buildUrl, {
@@ -25,37 +60,42 @@ export default defineEventHandler(async (event) => {
       .text()
       .replace(/.css-.*\}/, "");
     const description = html("p.description").text();
-    const logoClue = html("div.editor").contents();
-    const logo =
-      logoClue.find("img").attr("srcset") ||
-      html("div.editor div figure img").attr("src") ||
-      "";
-    const bgImage = html("figure.keyVisual img").attr("srcset") || "";
-    const articles = [];
     const regexArticleLinks = /[a-zA-Z0-9]{7}/g;
     const otherArticles = <any[]>[];
     html("a.ltcp-link").each((i, element) => {
       const articleLink = html(element).attr("href");
       const articleTitle = html(element).find("h3.header").text();
+      //const image = html(element).find("figure").attr("src");
+      console.log(html(element).find("img"));
+      console.log("----------");
       const date = html(element)
         .find("div._articleCard div.css-wqleh6 span")
         .text();
       if (articleLink && articleTitle) {
-        const articleSlug = articleLink.matchAll(regexArticleLinks);
+        const articleSlug = articleLink
+          .replaceAll("article", "")
+          .match(regexArticleLinks);
         otherArticles.push({
           index: i,
           title: articleTitle,
-          link: articleSlug,
+          link: articleSlug[0],
           date: date,
+          //image: image || "/geterrorassets/noImageLogo.svg",
         });
       }
     });
+    cache[slug] = {
+      slug: slug,
+      title: newsOrgName,
+      description: description,
+      articles: otherArticles,
+      timestamp: Date.now(),
+    };
     return {
       title: newsOrgName,
       description: description,
-      logo: logo,
       articles: otherArticles,
-      logoClue: String(logoClue),
+      cached: false,
     };
   } catch (e) {
     console.log(e);

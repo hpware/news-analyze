@@ -51,6 +51,7 @@ const pullTabsData = async () => {
 };
 
 const updateContent = async (url: string, tabAction: boolean) => {
+  contentArray.value = [];
   if (tabAction === true) {
     primary.value = url;
     switchTabs.value = true;

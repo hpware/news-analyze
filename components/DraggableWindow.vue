@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useThrottleFn } from "@vueuse/core";
+import { XIcon, MinusIcon } from "lucide-vue-next";
 
 const props = defineProps<{
   title: string;
@@ -78,19 +79,23 @@ const stopDrag = () => {
       @mousedown="startDrag"
       class="bg-gray-700 p-2 cursor-move flex justify-between items-center flex-shrink-0 text-white z-[50] selection:opacity-0"
     >
-      <h3 class="font-semibold text-white">{{ title }}</h3>
+      <h3
+        class="font-semibold text-white selection:opactiy-0 selection:bg-gray-700"
+      >
+        {{ title }}
+      </h3>
       <div class="flex flex-row gap-1">
         <button
           @click="emit('min')"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
         >
-          ━
+          <MinusIcon />
         </button>
         <button
           @click="emit('close')"
           class="p-1 rounded bg-red-500 text-white hover:bg-red-600 transition duration-200"
         >
-          ✕
+          <XIcon />
         </button>
       </div>
     </div>

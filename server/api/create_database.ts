@@ -34,7 +34,11 @@ CREATE TABLE IF NOT EXISTS chat_history (
 
 const createSources = await sql``;
 
-console.log("Creation Complete");
-
-await sql.end();
-process.exit(0);
+export default defineEventHandler(async (event) => {
+  return {
+    createUsers: createUsers,
+    usersList: usersList,
+    createUserAiChatHistory: createUserAiChatHistory,
+    createSources: createSources,
+  };
+});
