@@ -35,8 +35,8 @@ export default defineEventHandler(async (event) => {
     if (fetchUserInfo.length === 0) {
       const hashedPassword = await argon2.hash(salt + password);
       const createNewUser = await sql`
-        insert into users (uuid, username, passwordhash)
-        values (${uuidv4()}, ${username}, ${hashedPassword})
+        insert into users (uuid, username, passwordhash, avatarurl)
+        values (${uuidv4()}, ${username}, ${hashedPassword}, ${defaultAvatarUrl})
         `;
       console.log(createNewUser);
       if (fetchUserInfo.length !== 0) {
@@ -70,7 +70,7 @@ export default defineEventHandler(async (event) => {
       `;
     setCookie(event, "token", newToken);
     return {
-      user:  ,
+      user: fetchUserInfoAgain,
     };
   } catch (e) {
     console.log(e);
