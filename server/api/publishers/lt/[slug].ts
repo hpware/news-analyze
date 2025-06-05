@@ -91,9 +91,9 @@ export default defineEventHandler(async (event) => {
         });
       }
     });
-    const pushNewsOrg = await sql`
+    /*const pushNewsOrg = await sql`
       insert into
-      `
+      `*/
     cache[slug] = {
       slug: slug,
       title: newsOrgName,

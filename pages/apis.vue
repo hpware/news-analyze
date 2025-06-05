@@ -46,6 +46,24 @@ const apis = [
     openAccess: true,
   },
   {
+    icon: NewspaperIcon,
+    apiroute: "/api/platform/lt_all",
+    name: "Get the news article from LT",
+    content:
+      "Using the native /api/publishers/lt/[slug] thingy, it will use the stuff from the publishers lt endpoint to get & store data, and will be viewable via this endpoint.",
+    caching: true,
+    openAccess: true,
+  },
+  {
+    icon: NewspaperIcon,
+    apiroute: "/api/publishers/lt/[slug]",
+    name: "Get publishers from LT",
+    content:
+      "This endpoint requires the slug to be filled in, in order to get it to work.",
+    caching: true,
+    openAccess: true,
+  },
+  {
     icon: BotMessageSquareIcon,
     apiroute: "/api/ai/chat/[slug]",
     name: "A Chating API",
