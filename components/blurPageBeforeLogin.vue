@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import logoutUser from "~/components/logoutuser";
 // Imports
 const { t, locale } = useI18n();
 // Values
@@ -15,7 +16,10 @@ try {
   if (sendError.value) {
     error.value = true;
   }
-  if (true) {
+  if (data.requested_action === "LOGOUT_USER") {
+    logoutUser();
+  }
+  if (false) {
     allowed.value = true;
   } else {
     allowed.value = false;
@@ -32,9 +36,11 @@ try {
   >
     <div v-if="!allowed && !error" class="m-2">
       {{ t("error") }}
+      <button>Update</button>
     </div>
     <div v-if="error" class="m-2">
       <span>{{ errorMsg ? errorMsg : "" }} {{ t("systemerror") }}</span>
+      <button>Update</button>
     </div>
   </div>
   <slot></slot>

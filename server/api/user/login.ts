@@ -70,7 +70,7 @@ export default defineEventHandler(async (event) => {
       `;
     setCookie(event, "token", newToken);
     return {
-      user: fetchUserInfoAgain,
+      user:  ,
     };
   } catch (e) {
     console.log(e);

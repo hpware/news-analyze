@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // Check if the env is in development
-const addForceRefreshButtonInWindow = ref(false);
+/*const addForceRefreshButtonInWindow = ref(false);
 const nuxtdeven1v = process.env.NUXT_DEV_ENV?.toLowerCase() === "true";
 onMounted(() => {
   addForceRefreshButtonInWindow.value = nuxtdeven1v || false;
 });
 const forceRefresh = () => {
   window.location.reload();
-};
+  };*/
 
 import { useThrottleFn } from "@vueuse/core";
 import { XIcon, MinusIcon, RefreshCcwDotIcon } from "lucide-vue-next";
@@ -95,13 +95,13 @@ const stopDrag = () => {
         {{ title }}
       </h3>
       <div class="flex flex-row gap-1">
-        <button
+        <!--<button
           @click="forceRefresh"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
           v-if="addForceRefreshButtonInWindow"
         >
           <RefreshCcwDotIcon />
-        </button>
+          </button>-->
         <button
           @click="emit('min')"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
