@@ -244,7 +244,7 @@ const isLoading = computed(() => contentArray.value.length === 0);
           <!-- Publisher and Date Skeleton -->
           <div class="flex items-center justify-center gap-2 mb-2">
             <div class="h-4 w-24 bg-gray-300 animate-pulse rounded"></div>
-            <div class="h-4 w-4 bg-gray-300 animate-pulse rounded">--</div>
+            <div class="h-4 w-4 animate-pulse">--</div>
             <div class="h-4 w-32 bg-gray-300 animate-pulse rounded"></div>
           </div>
 

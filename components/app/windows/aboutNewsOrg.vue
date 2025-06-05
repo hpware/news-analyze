@@ -7,7 +7,12 @@ gsap.registerPlugin(ScrambleTextPlugin);
 const loading = ref(true);
 const { t, locale } = useI18n();
 
-const emit = defineEmits(["windowopener", "error", "loadValue"]);
+const emit = defineEmits([
+  "windowopener",
+  "error",
+  "loadValue",
+  "openArticles",
+]);
 
 const props = defineProps({
   values: {
@@ -50,6 +55,10 @@ watch(
   },
   { immediate: true },
 );
+
+const openNews = (url: string, titleName: string) => {
+  emit("openArticles", url, titleName);
+};
 </script>
 <template>
   <div>
@@ -90,15 +99,22 @@ watch(
           ></div>
         </template>
         <template v-else>
-          <div
+          <hr />
+          <h3 class="text-2xl text-bold">文章</h3>
+          <button
             v-for="item in fetchNewsOrgInfo?.articles"
-            class="p-1 bg-gray-300/70 rounded m-1"
+            @click="() => openNews(item.link, item.title)"
+            class="p-1 bg-gray-300/70 rounded min-h-4 w-full"
           >
-            <div class="flex flex-col">
-              <span class="title text-bold">{{ item.title }}</span>
-              <span class="date text-xs">{{ item.date }}</span>
+            <div>
+              <div class="flex flex-col">
+                <span class="title text-bold texxt-sm">{{
+                  item.title.replaceAll("獨家專欄》", "")
+                }}</span>
+                <span class="date text-xs">{{ item.date }}</span>
+              </div>
             </div>
-          </div>
+          </button>
         </template>
       </div>
     </div>

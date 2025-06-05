@@ -8,10 +8,10 @@ App Design: [PDF Document](/design.pdf)
 
 Reverse engineering documentation: [about](/about/)
 
-Deploy: [via docker compose](/deploy);
+Deploy: [via docker compose](/deploy.md)
 
 ## Demo:
-You can try out the platform RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
+You can try out the app RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
 
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
@@ -20,7 +20,7 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
 ## news.yuanhau.com is now back up and running!
-Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing ghcr.io dns correctly (although ping ghcr.io works?), so I just nuked it off my server :), since I don't even use it that much. It works now. (Also deploying to zeabur hurt my wallet (it's like 0.07 for a day for the memory), as my system that I built based on ram is too costly there). oof, so please just self host it.
+Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing ghcr.io dns correctly (although `ping ghcr.io` works?), so I just nuked it off my server :), since I don't even use it that much. It works now. (Also deploying to zeabur hurt my wallet (it's like 0.07 for a day for the memory), as my system that I built based on ram is too costly there). oof, so please just self host it.
 
 ## Why?
 

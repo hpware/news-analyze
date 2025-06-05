@@ -1,5 +1,5 @@
 import sql from "~/server/components/postgres";
-
+import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 import * as cheerio from "cheerio";
 
 // Caching
@@ -21,6 +21,13 @@ function cleanupCache() {
       delete cache[key];
     }
   });
+}
+async function checks(title: string) {
+  const wordss = await pullWord();
+  const result = await CheckKidUnfriendlyContent(title, wordss);
+  checkResults.value.set(title, result);
+  console.log(title);
+  return result;
 }
 
 setInterval(cleanupCache, CACHE_DURATION);
