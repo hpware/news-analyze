@@ -1,8 +1,21 @@
 <script setup lang="ts">
 import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
+
 const props = defineProps<{
   values?: string;
+  applyForTranslation: {
+    type: Boolean;
+    required: true;
+  };
+  windowTranslateState: {
+    type: Boolean;
+    required: true;
+  };
 }>();
+
+const { applyForTranslation, windowTranslateState } = props;
+
+watch((applyForTranslation) => {}); // Translate when requested?
 
 const slug = props.values; // Make the props.values static to the window NOT the entire thing and no arrays.
 

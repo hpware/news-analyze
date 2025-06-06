@@ -514,7 +514,7 @@ const toggleTranslate = (id: string) => {
 };
 const translateAvailable = () => {};
 
-// Load user config
+// Load user config via HTTP requests to the server.
 onMounted(async () => {
   const loadUserInfoData = await loadUserInfo();
   if (!loadUserInfoData.user) {
@@ -531,6 +531,7 @@ onMounted(async () => {
   }
   // Use Google as the default translate provider
   translateProvider.value = loadUserInfoData.translate.provider || "google";
+  console.log(langPrefDifferent);
 });
 </script>
 <template>

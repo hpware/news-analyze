@@ -32,6 +32,19 @@ const emit = defineEmits([
   "windowopener",
 ]);
 
+const props = defineProps({
+  applyForTranslation: {
+    type: Boolean,
+    required: true,
+  },
+  windowTranslateState: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const { applyForTranslation, windowTranslateState } = props;
+
 const openNewWindow = (itemId: string) => {
   emit("windowopener", "aboutNewsOrg");
 };
@@ -202,7 +215,7 @@ const openPublisher = (slug: string, title: string) => {
   emit("openNewsSourcePage", slug, title);
 };
 const isLoading = computed(() => contentArray.value.length === 0);
-const testmessage = await translate("Hi", { from: "en", to: "es" });
+const testmessage = await translate("嗨", { from: "zh", to: "en" });
 </script>
 <template>
   <div class="justify-center align-center text-center">

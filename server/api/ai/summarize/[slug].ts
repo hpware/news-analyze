@@ -12,6 +12,7 @@ export default defineEventHandler(async (event) => {
   const buildURL = protocol + "://" + host + "/api/news/get/lt/" + slug;
   const data = await fetch(buildURL);
   const fetchNewsArticle = await data.json();
+  console.log(locale);
   const chatCompletion = await groq.chat.completions.create({
     messages: [
       {
