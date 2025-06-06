@@ -1,25 +1,23 @@
 <script setup lang="ts">
+// FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
 import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
+import translate from "translate";
+
+interface translateInterfaceText {
+  translateText: string;
+}
+const translateItem: Record<string, translateInterfaceText> = {};
 
 const props = defineProps<{
   values?: string;
-  applyForTranslation: {
-    type: Boolean;
-    required: true;
-  };
-  windowTranslateState: {
-    type: Boolean;
-    required: true;
-  };
+  applyForTranslation: Boolean;
+  windowTranslateState: Boolean;
 }>();
 
 const { applyForTranslation, windowTranslateState } = props;
 
-watch((applyForTranslation) => {}); // Translate when requested?
-
 const slug = props.values; // Make the props.values static to the window NOT the entire thing and no arrays.
 
-// FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
 const { data, error, pending } = useFetch(`/api/news/get/lt/${slug.trim()}`);
 console.log(data.value);
 console.log(error.value);
@@ -28,6 +26,38 @@ const isGenerating = ref(false);
 const summaryText = ref("");
 const { locale } = useI18n();
 const likeart = ref([]);
+// Translating logic
+const translateText = ref(false);
+const translatedBefore = ref(false);
+watch(
+  () => props.applyForTranslation,
+  (value) => {
+    if (value === true) {
+      translateText.value = true;
+      if (!data.value) {
+        return;
+      }
+      startTranslating(data.value.title);
+      startTranslating(data.value.origin);
+      startTranslating(data.value.author);
+      data.value.paragraph.forEach((i, element) => {
+        console.log(element);
+        //startTranslating(data.value.)
+      });
+      // NOT retranslating AGAIN
+      translatedBefore.value = true;
+    } else {
+      translateText.value = false;
+    }
+  },
+); // Translate when requested?
+
+const startTranslating = async (text: string) => {
+  translateItem[text] = {
+    translateText: await translate(text, { from: "zh", to: "en" }),
+  };
+};
+
 const aiSummary = async () => {
   activateAiSummary.value = true;
   isGenerating.value = true;
@@ -87,6 +117,7 @@ const aiSummary = async () => {
         </div>
       </div>
       <div class="flex flex-col bg-gray-500">
+        <!--Similar articles-->
         <div class="flex flex-row" v-for="item in likeart">
           <img /><!--Image-->
           <div class="flex flex-col">

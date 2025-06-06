@@ -116,5 +116,19 @@
       "title": "Terms of service",
       "content": "N/A"
     }
+  },
+  "about": {
+    "why": "Why make this website?",
+    "bulletpoints": {
+      "1": "1. Taiwan's news network is really shit, either they have a bunch of stupid opinions, or just news that are not appropriate for kids ",
+      "2": "2. This website's goal is to everyone see news a bit easier, and can also compare them.",
+      "3half": "Learn Tailwind"
+    },
+    "aboutDev": {
+      "title": "About the dev",
+      "dev": "developer：yh",
+      "contactEmailStarter": "Contact Email："
+    },
+    "copyrightInfo": "Copyright Info"
   }
 }

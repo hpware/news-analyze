@@ -114,5 +114,19 @@
       "title": "Terms of service",
       "content": "N/A"
     }
+  },
+  "about": {
+    "why": "為什麼要做網站？",
+    "bulletpoints": {
+      "1": "1. 台灣媒體真的很爛，要嘛有超多偏見，或是比較偏小孩不能看的新聞 (aka 擦邊通過的",
+      "2": "2. 這個網站是為了讓大家可以更方便的比較新聞，可以分析新聞的偏見",
+      "3half": "學 TailwindCSS"
+    },
+    "aboutDev": {
+      "title": "關於開發者",
+      "dev": "開發者：yh",
+      "contactEmailStarter": "聯絡信箱："
+    },
+    "copyrightInfo": "版權資訊"
   }
 }
