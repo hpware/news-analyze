@@ -34,7 +34,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crypto-js": "^4.2.0",
-    "google-translate-api": "^2.3.0",
     "groq-sdk": "^0.21.0",
     "gsap": "^3.13.0",
     "html-to-json-parser": "^2.0.1",
