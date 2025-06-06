@@ -246,7 +246,7 @@ const testmessage = await translate("嗨", { from: "zh", to: "en" });
             class="disabled:cursor-not-allowed"
             :disabled="isPrimary(item.url, true) || switchTabs"
           >
-            <span>{{ locale === "en" ? item.text : testmessage }}</span>
+            <span>{{ true ? item.text : testmessage }}</span>
           </button>
         </template>
         <button v-if="canNotLoadTabUI"><RefreshCcwIcon /></button>
