@@ -37,6 +37,9 @@ function cleanUpSlug(orgslug: string) {
 }
 
 export default defineEventHandler(async (event) => {
+  const translateQuery = getQuery(event).translate;
+  const translate = translateQuery === "true" ? true : false;
+  console.log(translate);
   const slug = getRouterParam(event, "slug");
   const cleanSlug = cleanUpSlug(slug);
   if (

@@ -1,4 +1,11 @@
 <script setup lang="ts">
+// Translate stuff
+interface translateInterfaceText {
+  translateText: string;
+}
+const translateItems: Record<string, translateInterfaceText> = {};
+
+// Imports
 import { ScanEyeIcon, RefreshCcwIcon } from "lucide-vue-next";
 import {
   Tooltip,
@@ -7,6 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { AhoCorasick } from "@monyone/aho-corasick";
+import translate from "translate";
 
 async function CheckKidUnfriendlyContent(title: string, words: any[]) {
   try {
@@ -194,6 +202,7 @@ const openPublisher = (slug: string, title: string) => {
   emit("openNewsSourcePage", slug, title);
 };
 const isLoading = computed(() => contentArray.value.length === 0);
+const testmessage = await translate("Hi", { from: "en", to: "es" });
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -224,7 +233,7 @@ const isLoading = computed(() => contentArray.value.length === 0);
             class="disabled:cursor-not-allowed"
             :disabled="isPrimary(item.url, true) || switchTabs"
           >
-            <span>{{ item.text }}</span>
+            <span>{{ locale === "en" ? item.text : testmessage }}</span>
           </button>
         </template>
         <button v-if="canNotLoadTabUI"><RefreshCcwIcon /></button>

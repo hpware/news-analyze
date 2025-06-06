@@ -33,8 +33,10 @@ const titleOrg = computed(() => props.title);
 const titleMaxRegexDetection = /[a-zA-Z0-9]{,10}/;
 const title = ref("Draggable Window");
 onMounted(() => {
-  if (!titleMaxRegexPattern.test(titleOrg.value)) {
+  if (!titleMaxRegexDetection.test(titleOrg)) {
     console.log("Max Detected!!");
+  } else {
+    title.value = titleOrg;
   }
 });
 

@@ -138,6 +138,7 @@ const formatTime = (timestamp: any) => {
     minute: "2-digit",
   }).format(timestamp);
 };
+const scrollToBottom = () => {};
 </script>
 <template>
   <blurPageBeforeLogin>
