@@ -10,7 +10,12 @@ const forceRefresh = () => {
   };*/
 
 import { useThrottleFn } from "@vueuse/core";
-import { XIcon, MinusIcon, RefreshCcwDotIcon } from "lucide-vue-next";
+import {
+  XIcon,
+  MinusIcon,
+  RefreshCcwDotIcon,
+  LanguagesIcon,
+} from "lucide-vue-next";
 
 const props = defineProps<{
   title: string;
@@ -21,8 +26,15 @@ const props = defineProps<{
   black?: boolean | false;
 }>();
 
-const emit = defineEmits(["close", "min", "restore"]);
-const title = computed(() => props.title || "Draggable Window");
+const emit = defineEmits(["close", "min", "restore", "translate"]);
+const titleOrg = computed(() => props.title);
+const titleMaxRegexDetection = /[a-zA-Z0-9]{,10}/;
+const title = ref("Draggable Window");
+onMounted(() => {
+  if (!titleMaxRegexPattern.test(titleOrg.value)) {
+    console.log("Max Detected!!");
+  }
+});
 
 const isDragging = ref(false);
 const position = ref({
@@ -78,7 +90,7 @@ const stopDrag = () => {
       width: props.width || '400px',
       height: props.height || '300px',
     }"
-    class="fixed rounded-xl shadow-lg overflow-hidden flex flex-col shadow-lg shadow-xl/30"
+    class="fixed rounded-xl overflow-hidden flex flex-col shadow-lg shadow-xl/30"
     :class="
       props.black
         ? 'bg-black text-white border border-white border-t-0'
@@ -102,6 +114,12 @@ const stopDrag = () => {
         >
           <RefreshCcwDotIcon />
           </button>-->
+        <button
+          @click="emit('translate')"
+          class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
+        >
+          <LanguagesIcon />
+        </button>
         <button
           @click="emit('min')"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"

@@ -42,6 +42,10 @@ interface minAppWindowInterface {
 import { v4 as uuidv4 } from "uuid";
 import { gsap } from "gsap";
 import confetti from "js-confetti";
+import translate from "translate";
+
+// Import Components
+import loadUserInfo from "~/components/loadUserInfo";
 
 // Import Windows
 import UserWindow from "~/components/app/windows/user.vue";
@@ -91,6 +95,10 @@ const openingAppViaAnApp = ref(false);
 const passedValues = ref();
 const globalWindowVal = ref(new Map());
 const changeLangAnimation = ref(false);
+const applyForTranslation = ref(false);
+const langPrefDifferent = ref(false);
+const notLoggedInState = ref(false);
+const translateProvider = ref("");
 
 // Key Data
 const menuItems = [
@@ -114,12 +122,14 @@ const associAppWindow = [
     component: HotNewsWindow,
     width: "700px",
     height: "500px",
+    translatable: true,
   },
   {
     name: "login",
     id: "2",
     title: t("app.login"),
     component: UserWindow,
+    translatable: false,
   },
   {
     name: "sources",
@@ -128,18 +138,21 @@ const associAppWindow = [
     component: SourcesWindow,
     width: "700px",
     height: "500px",
+    translatable: true,
   },
   {
     name: "about",
     id: "4",
     title: t("app.about"),
     component: AboutWindow,
+    translatable: true,
   },
   {
     name: "settings",
     id: "5",
     title: t("app.settings"),
     component: SettingsWindow,
+    translatable: false,
   },
   {
     name: "news",
@@ -148,12 +161,14 @@ const associAppWindow = [
     component: NewsWindow,
     width: "800px",
     height: "600px",
+    translatable: true,
   },
   {
     name: "starred",
     id: "7",
     title: t("app.starred"),
     component: FavStaredWindow,
+    translatable: true,
   },
   {
     name: "chatbot",
@@ -162,12 +177,14 @@ const associAppWindow = [
     component: ChatbotWindow,
     width: "400px",
     height: "600px",
+    translatable: false,
   },
   {
     name: "aboutNewsOrg",
     id: "9",
     title: t("app.aboutNewsOrg"),
     component: AboutNewsOrgWindow,
+    translatable: true,
   },
   {
     name: "tty",
@@ -175,24 +192,28 @@ const associAppWindow = [
     title: t("app.terminal"),
     component: TTYWindow,
     black: true,
+    translatable: false,
   },
   {
     name: "newsView",
     id: "11",
     title: t("app.newsview"),
     component: NewsViewWindow,
+    translatable: true,
   },
   {
     name: "privacypolicy",
     id: "12",
     title: t("app.privacypolicy"),
     component: PrivacyPolicyWindow,
+    translatable: false,
   },
   {
     name: "tos",
     id: "13",
     title: t("app.tos"),
     component: TOSWindow,
+    translatable: false,
   },
 ];
 
@@ -487,6 +508,30 @@ const openNewsSourcePage = async (slug: string, title: string) => {
     passedValues.value = null;
   }, 1000);
 };
+const toggleTranslate = (id: string) => {
+  console.log("windowId", id);
+  applyForTranslation.value = true;
+};
+const translateAvailable = () => {};
+
+// Load user config
+onMounted(async () => {
+  const loadUserInfoData = await loadUserInfo();
+  if (!loadUserInfoData.user) {
+    notLoggedInState.value = true;
+  }
+  if (
+    loadUserInfoData.langPref !== locale &&
+    langPrefDifferent.doNotShowLangPrefPopUp === false
+  ) {
+    langPrefDifferent.value = true;
+  }
+  if (locale === "en" && loadUserInfoData.translate.enabled === true) {
+    applyForTranslation.value = true;
+  }
+  // Use Google as the default translate provider
+  translateProvider.value = loadUserInfoData.translate.provider || "google";
+});
 </script>
 <template>
   <div v-if="changeLangAnimation">
@@ -586,6 +631,33 @@ const openNewsSourcePage = async (slug: string, title: string) => {
     class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
     id="desktop"
   ></div>
+  <!--Detect langPref different popup-->
+  <Dialog v-model:open="langPrefDifferent">
+    <DialogContent class="!border-0 !bg-black !rounded">
+      <DialogHeader>
+        <DialogTitle>{{ t("settings.logout") }}</DialogTitle>
+        <DialogDescription>
+          {{ t("popuptext.logout") }}
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <Button
+          @click="
+            () => {
+              langPrefDifferent.value = false;
+            }
+          "
+          variant="outline"
+        >
+          {{ t("popup.stay") }}
+        </Button>
+        <Button @click="() => switchLocalePath()" variant="outline">
+          {{ t("popup.change") }}
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+  <!--Window system-->
   <Transition>
     <div>
       <DraggableWindow
@@ -598,6 +670,9 @@ const openNewsSourcePage = async (slug: string, title: string) => {
         :height="window.height"
         @click="obtainTopWindowPosition(window.id)"
         :black="window.black"
+        @translate="() => toggleTranslate(window.id)"
+        :notLoggedInState="notLoggedInState"
+        :windowTranslateState="window.translatable"
       >
         <Suspense>
           <Component
@@ -610,6 +685,9 @@ const openNewsSourcePage = async (slug: string, title: string) => {
             :values="passedValues"
             :windows="activeWindows"
             @closeWindow="closeWindow"
+            :applyForTranslation="applyForTranslation"
+            :windowTranslateState="window.translatable"
+            :notLoggedInState="notLoggedInState"
           />
         </Suspense>
       </DraggableWindow>
