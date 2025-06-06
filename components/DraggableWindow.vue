@@ -24,6 +24,8 @@ const props = defineProps<{
   width?: string;
   height?: string;
   black?: boolean | false;
+  windowTranslateState: boolean | false;
+  notLoggedInState: boolean | false;
 }>();
 
 const emit = defineEmits(["close", "min", "restore", "translate"]);
@@ -117,6 +119,7 @@ const stopDrag = () => {
         <button
           @click="emit('translate')"
           class="p-1 hover:bg-gray-300 dark:hover:bg-gray-600 rounded transition duration-200"
+          v-if="props.windowTranslateState"
         >
           <LanguagesIcon />
         </button>
