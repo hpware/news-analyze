@@ -29,6 +29,7 @@ const likeart = ref([]);
 // Translating logic
 const translateText = ref(false);
 const translatedBefore = ref(false);
+const traslateFailed = ref(false);
 watch(
   () => props.applyForTranslation,
   (value) => {
@@ -63,6 +64,7 @@ const startTranslating = async (text: string) => {
     console.log(translateItem[text]);
   } catch (error) {
     console.error("Translation failed:", error);
+    traslateFailed.value = true;
     translateItem[text] = { translateText: text }; // fallback to original text
   }
 };
@@ -89,6 +91,18 @@ const aiSummary = async () => {
 };
 </script>
 <template>
+  <div
+    class="flex flex-col bg-gray-200/50 text-black w-full h-full absolute inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
+    v-if="traslateFailed"
+  >
+    <div class="m-2 flex flex-col">
+      <span
+        >Translate Failed. <br />
+        Oops, your translation failed.</span
+      >
+      <button></button>
+    </div>
+  </div>
   <div
     class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
   >

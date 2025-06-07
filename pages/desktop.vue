@@ -24,6 +24,7 @@ interface associAppWindowInterface {
   height: string;
   black: boolean;
   translatable: boolean;
+  translateState: boolean;
 }
 
 interface minAppWindowInterface {
@@ -512,9 +513,12 @@ const openNewsSourcePage = async (slug: string, title: string) => {
     passedValues.value = null;
   }, 1000);
 };
-const toggleTranslate = (id: string) => {
-  console.log("windowId", id);
-  applyForTranslation.value = true;
+const toggleTranslate = (windowId: string) => {
+  const windowIndex = activeWindows.value.findIndex((w) => w.id === windowId);
+  if (windowIndex !== -1) {
+    activeWindows.value[windowIndex].translateState =
+      !activeWindows.value[windowIndex].translateState;
+  }
 };
 
 const translateAvailable = () => {};
@@ -691,7 +695,7 @@ onMounted(async () => {
             :values="passedValues"
             :windows="activeWindows"
             @closeWindow="closeWindow"
-            :applyForTranslation="applyForTranslation"
+            :applyForTranslation="window.translateState"
             :windowTranslateState="window.translatable"
             :notLoggedInState="notLoggedInState"
           />
