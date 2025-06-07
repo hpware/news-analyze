@@ -18,7 +18,7 @@ Reverse engineering 文檔: [about](/about/)
 ## 在部署之前，請先知道:
 此程式碼絕對不是為在 Vercel 或 Netlify 上啟動而設計的，它現在在主網站程式碼中具有crawling，而且整個「快取功能」都基於Ram，所以請不要使用這些平台，對於 Zeabur 來說，您的成本一定會比較貴一點。網址：https://news.yuanhau.com 託管在我自己的infra上，你也應該這麼做。可以在Yahoo拍賣、蝦皮取得伺服器來執行這個程式。
 
-## Note for deing
+## Note for developing
 The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
 ## 為什麼?

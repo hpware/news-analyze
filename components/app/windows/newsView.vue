@@ -30,6 +30,8 @@ const likeart = ref([]);
 const translateText = ref(false);
 const translatedBefore = ref(false);
 const traslateFailed = ref(false);
+const displayTranslatedText = ref(false);
+const loadingTranslations = ref(false);
 watch(
   () => props.applyForTranslation,
   (value) => {
@@ -39,8 +41,10 @@ watch(
         return;
       }
       if (translatedBefore.value === true) {
+        displayTranslatedText.value = true;
         return;
       }
+      loadingTranslations.value = true;
       startTranslating(data.value.title);
       startTranslating(data.value.origin);
       startTranslating(data.value.author);
@@ -49,8 +53,13 @@ watch(
       }
       // NOT retranslating AGAIN when disabling the feat
       translatedBefore.value = true;
+      setTimeout(() => {
+        displayTranslatedText.value = true;
+        loadingTranslations.value = false;
+      }, 3000);
     } else {
       translateText.value = false;
+      displayTranslatedText.value = false;
     }
   },
 ); // Translate when requested?
@@ -103,6 +112,8 @@ const aiSummary = async () => {
       <button></button>
     </div>
   </div>
+  <!--TODO: Get a better animation later.-->
+  <div v-if="loadingTranslations">Loading...</div>
   <div
     class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
   >
@@ -110,18 +121,20 @@ const aiSummary = async () => {
       <div class="group">
         <h2 class="text-3xl text-bold">
           {{
-            translateText ? translateItem[data.title].translateText : data.title
+            displayTranslatedText
+              ? translateItem[data.title].translateText
+              : data.title
           }}
         </h2>
         <span
           class="text-lg text-bold flex flex-row justify-center text-center align-center"
           ><NewspaperIcon class="w-7 h-7 p-1" />{{
-            translateText
+            displayTranslatedText
               ? translateItem[data.origin].translateText
               : data.origin
           }}
           • <UserIcon class="w-7 h-7 p-1" />{{
-            translateText
+            displayTranslatedText
               ? translateItem[data.author].translateText
               : data.author
           }}</span
@@ -131,7 +144,7 @@ const aiSummary = async () => {
         <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
       </div>
       <div class="text-center" v-for="item in data.paragraph">
-        {{ translateText ? translateItem[item]?.translateText : item }}
+        {{ displayTranslatedText ? translateItem[item]?.translateText : item }}
       </div>
     </div>
     <div class="flex flex-col w-full justify-center align-center text-center">

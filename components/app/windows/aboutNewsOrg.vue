@@ -85,33 +85,43 @@ const startTranslating = async (text: string) => {
 const translateText = ref(false);
 const translatedBefore = ref(false);
 const traslateFailed = ref(false);
+const displayTranslatedText = ref(false);
+const loadingTranslations = ref(false);
 watch(
   () => props.applyForTranslation,
   (value) => {
     if (value === true) {
       translateText.value = true;
-      if (!data.value) {
+      if (!fetchNewsOrgInfo.value) {
         return;
       }
       if (translatedBefore.value === true) {
+        displayTranslatedText.value = true;
         return;
       }
+      loadingTranslations.value = true;
       startTranslating(fetchNewsOrgInfo.value?.title);
-      startTranslating(fetchNewsOrgInfo.value?.origin);
-      startTranslating(fetchNewsOrgInfo.value?.author);
+      startTranslating(fetchNewsOrgInfo.value?.description);
       for (const articles of fetchNewsOrgInfo.value?.articles) {
         startTranslating(articles.title.replaceAll("獨家專欄》", ""));
         startTranslating(articles.date);
       }
       // NOT retranslating AGAIN when disabling the feat
       translatedBefore.value = true;
+      setTimeout(() => {
+        displayTranslatedText.value = true;
+        loadingTranslations.value = false;
+      }, 3000);
     } else {
       translateText.value = false;
+      displayTranslatedText.value = false;
     }
   },
 ); // Translate when requested?
 </script>
 <template>
+  <div v-if="loadingTranslations">Loading...</div>
+
   <div>
     <div class="text-center align-center justify-center">
       <div
@@ -128,8 +138,8 @@ watch(
             ref="orgNameAnimation"
           >
             {{
-              translateText
-                ? translateItem[fetchNewsOrgInfo?.title]
+              displayTranslatedText
+                ? translateItem[fetchNewsOrgInfo?.title].translateText
                 : fetchNewsOrgInfo?.title
             }}
           </h1>
@@ -141,8 +151,8 @@ watch(
           </div>
           <span v-else class="text-ms m-1 mt-5 text-left text-wrap">
             {{
-              translateText
-                ? translateItem[fetchNewsOrgInfo?.description]
+              displayTranslatedText
+                ? translateItem[fetchNewsOrgInfo?.description].translateText
                 : fetchNewsOrgInfo?.description
             }}
           </span>
@@ -168,12 +178,15 @@ watch(
             <div>
               <div class="flex flex-col">
                 <span class="title text-bold texxt-sm">{{
-                  translateText
+                  displayTranslatedText
                     ? translateItem[item.title.replaceAll("獨家專欄》", "")]
+                        .translateText
                     : item.title.replaceAll("獨家專欄》", "")
                 }}</span>
                 <span class="date text-xs">{{
-                  translateText ? translateItem[item.date] : item.date
+                  displayTranslatedText
+                    ? translateItem[item.date].translateText
+                    : item.date
                 }}</span>
               </div>
             </div>
