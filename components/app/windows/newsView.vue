@@ -56,9 +56,11 @@ watch(
 
 const startTranslating = async (text: string) => {
   try {
+    console.log(text);
     translateItem[text] = {
       translateText: await translate(text, { from: "zh", to: "en" }),
     };
+    console.log(translateItem[text]);
   } catch (error) {
     console.error("Translation failed:", error);
     translateItem[text] = { translateText: text }; // fallback to original text
