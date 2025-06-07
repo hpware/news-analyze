@@ -6,6 +6,12 @@ import { ScrambleTextPlugin } from "gsap/dist/ScrambleTextPlugin";
 gsap.registerPlugin(ScrambleTextPlugin);
 const loading = ref(true);
 const { t, locale } = useI18n();
+import translate from "translate";
+
+interface translateInterfaceText {
+  translateText: string;
+}
+const translateItem: Record<string, translateInterfaceText> = {};
 
 const emit = defineEmits([
   "windowopener",
@@ -19,6 +25,7 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  applyForTranslation: Boolean,
 });
 
 const staticProps = props;
@@ -59,6 +66,50 @@ watch(
 const openNews = (url: string, titleName: string) => {
   emit("openArticles", url, titleName);
 };
+
+const startTranslating = async (text: string) => {
+  try {
+    console.log(text);
+    translateItem[text] = {
+      translateText: await translate(text, { from: "zh", to: "en" }),
+    };
+    console.log(translateItem[text]);
+  } catch (error) {
+    console.error("Translation failed:", error);
+    traslateFailed.value = true;
+    translateItem[text] = { translateText: text }; // fallback to original text
+  }
+};
+
+// Translating logic
+const translateText = ref(false);
+const translatedBefore = ref(false);
+const traslateFailed = ref(false);
+watch(
+  () => props.applyForTranslation,
+  (value) => {
+    if (value === true) {
+      translateText.value = true;
+      if (!data.value) {
+        return;
+      }
+      if (translatedBefore.value === true) {
+        return;
+      }
+      startTranslating(fetchNewsOrgInfo.value?.title);
+      startTranslating(fetchNewsOrgInfo.value?.origin);
+      startTranslating(fetchNewsOrgInfo.value?.author);
+      for (const articles of fetchNewsOrgInfo.value?.articles) {
+        startTranslating(articles.title.replaceAll("獨家專欄》", ""));
+        startTranslating(articles.date);
+      }
+      // NOT retranslating AGAIN when disabling the feat
+      translatedBefore.value = true;
+    } else {
+      translateText.value = false;
+    }
+  },
+); // Translate when requested?
 </script>
 <template>
   <div>
@@ -76,7 +127,11 @@ const openNews = (url: string, titleName: string) => {
             class="text-4xl font-bold m-2 text-center"
             ref="orgNameAnimation"
           >
-            {{ fetchNewsOrgInfo?.title }}
+            {{
+              translateText
+                ? translateItem[fetchNewsOrgInfo?.title]
+                : fetchNewsOrgInfo?.title
+            }}
           </h1>
 
           <div v-if="pending" class="flex flex-col gap-2 m-1 mt-5">
@@ -85,7 +140,11 @@ const openNews = (url: string, titleName: string) => {
             <div class="h-4 bg-gray-200 animate-pulse rounded w-4/6"></div>
           </div>
           <span v-else class="text-ms m-1 mt-5 text-left text-wrap">
-            {{ fetchNewsOrgInfo?.description }}
+            {{
+              translateText
+                ? translateItem[fetchNewsOrgInfo?.description]
+                : fetchNewsOrgInfo?.description
+            }}
           </span>
         </div>
       </div>
@@ -109,9 +168,13 @@ const openNews = (url: string, titleName: string) => {
             <div>
               <div class="flex flex-col">
                 <span class="title text-bold texxt-sm">{{
-                  item.title.replaceAll("獨家專欄》", "")
+                  translateText
+                    ? translateItem[item.title.replaceAll("獨家專欄》", "")]
+                    : item.title.replaceAll("獨家專欄》", "")
                 }}</span>
-                <span class="date text-xs">{{ item.date }}</span>
+                <span class="date text-xs">{{
+                  translateText ? translateItem[item.date] : item.date
+                }}</span>
               </div>
             </div>
           </button>

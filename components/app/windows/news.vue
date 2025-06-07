@@ -216,6 +216,12 @@ const openPublisher = (slug: string, title: string) => {
 };
 const isLoading = computed(() => contentArray.value.length === 0);
 const testmessage = await translate("嗨", { from: "zh", to: "en" });
+const shouldHideItem = (item) => {
+  return (
+    item.contentType !== "GENERAL" ||
+    item.publisher?.toLowerCase().includes("line")
+  );
+};
 </script>
 <template>
   <div class="justify-center align-center text-center">
@@ -257,7 +263,7 @@ const testmessage = await translate("嗨", { from: "zh", to: "en" });
     <div>
       <!-- Loading State -->
       <template v-if="isLoading">
-        <div v-for="n in 5" :key="n" class="p-2 bg-gray-200 rounded m-1">
+        <div v-for="n in 7" :key="n" class="p-2 bg-gray-200 rounded m-1">
           <!-- Title Skeleton -->
           <div
             class="h-8 bg-gray-300 animate-pulse rounded-lg w-3/4 mx-auto mb-2"
@@ -303,9 +309,9 @@ const testmessage = await translate("嗨", { from: "zh", to: "en" });
         <div
           v-for="item in contentArray"
           :key="item.id"
-          :class="item.contentType !== 'GENERAL' && 'hidden'"
+          :class="shouldHideItem(item) && 'hidden'"
         >
-          <div class="p-2 bg-gray-200 rounded m-1 p-1">
+          <div class="p-2 bg-gray-200 rounded m-1">
             <h1
               class="text-2xl text-bold"
               :class="getCheckResult(item.title) ? 'text-red-600' : ''"
