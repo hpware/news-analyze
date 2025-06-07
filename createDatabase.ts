@@ -39,16 +39,22 @@ const createUserOtherData = await sql`
   groq_api_key text,
   starred_news JSON not null,
   translate_provider text,
-  translate_enabled boolean,
-  remove_translate_popup boolean
+  translate_enabled boolean not null,
+  remove_translate_popup boolean not null
   )`;
 
-/*const createSources = await sql`
-  create table if not exists source (
+const createSources = await sql`
+  create table if not exists lt_news_org (
+  news_id text primary key,
+  name text not null,
+  description text
   )
-  `;*/
+  `;
 
 console.log("Creation Complete");
+console.log(
+  "If the script still does not quit after 2 seconds after the 'Creation Complete' message, please stop it by using Ctrl + C or on mac Control + C",
+);
 
 await sql.end();
 process.exit(0);

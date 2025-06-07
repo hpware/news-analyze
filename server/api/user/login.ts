@@ -34,9 +34,10 @@ export default defineEventHandler(async (event) => {
     console.log(fetchUserInfo[0]);
     if (fetchUserInfo.length === 0) {
       const hashedPassword = await argon2.hash(salt + password);
+      const userUUID = uuidv4();
       const createNewUser = await sql`
         insert into users (uuid, username, passwordhash, avatarurl)
-        values (${uuidv4()}, ${username}, ${hashedPassword}, ${defaultAvatarUrl})
+        values (${userUUID}, ${username}, ${hashedPassword}, ${defaultAvatarUrl})
         `;
       console.log(createNewUser);
       if (fetchUserInfo.length !== 0) {
@@ -44,6 +45,10 @@ export default defineEventHandler(async (event) => {
           error: "CANNOT_CREATE_NEW_USER",
         };
       }
+      const createOtherFields = await sql`
+        insert into user_other_data(user_id, user, translate_enabled, translate_provider, remove_translate_popup)
+        values (${userUUID}, ${username}, false, 'google', false)
+        `;
       const newToken = uuidv4();
       return {
         user: fetchUserInfo,
