@@ -55,9 +55,14 @@ watch(
 ); // Translate when requested?
 
 const startTranslating = async (text: string) => {
-  translateItem[text] = {
-    translateText: await translate(text, { from: "zh", to: "en" }),
-  };
+  try {
+    translateItem[text] = {
+      translateText: await translate(text, { from: "zh", to: "en" }),
+    };
+  } catch (error) {
+    console.error("Translation failed:", error);
+    translateItem[text] = { translateText: text }; // fallback to original text
+  }
 };
 
 const aiSummary = async () => {
