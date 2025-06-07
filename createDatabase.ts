@@ -32,7 +32,21 @@ CREATE TABLE IF NOT EXISTS chat_history (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )`;
 
-const createSources = await sql``;
+const createUserOtherData = await sql`
+  create table if not exists user_other_data (
+  user_id text primary key ,
+  user text not null unique,
+  groq_api_key text,
+  starred_news JSON not null,
+  translate_provider text,
+  translate_enabled boolean,
+  remove_translate_popup boolean
+  )`;
+
+/*const createSources = await sql`
+  create table if not exists source (
+  )
+  `;*/
 
 console.log("Creation Complete");
 

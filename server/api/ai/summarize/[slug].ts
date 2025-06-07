@@ -1,19 +1,32 @@
 import { Groq } from "groq-sdk";
 import sql from "~/server/components/postgres";
+import { checkIfUserHasCustomGroqKey } from "~/server/components/customgroqsystem";
 
-const groq = new Groq();
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
 
 export default defineEventHandler(async (event) => {
   const host = getRequestHost(event);
   const protocol = getRequestProtocol(event);
   const slug = getRouterParam(event, "slug");
+  const userToken = getCookie(event, "token") || "";
+  const doesTheUserHasACustomGroqApiAndWhatIsIt =
+    await checkIfUserHasCustomGroqKey(userToken);
+  let groqClient = groq;
+  if (doesTheUserHasACustomGroqApiAndWhatIsIt.status === true) {
+    groqClient = new Groq({
+      apiKey: doesTheUserHasACustomGroqApiAndWhatIsIt.customApi,
+    });
+  }
+
   const query = getQuery(event);
   const locale = query.locale;
   const buildURL = protocol + "://" + host + "/api/news/get/lt/" + slug;
   const data = await fetch(buildURL);
   const fetchNewsArticle = await data.json();
   console.log(locale);
-  const chatCompletion = await groq.chat.completions.create({
+  const chatCompletion = await groqClient.chat.completions.create({
     messages: [
       {
         role: "user",
