@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS chat_history (
 const createUserOtherData = await sql`
   create table if not exists user_other_data (
   user_id text primary key,
-  user text not null unique,
+  username text not null unique,
   groq_api_key text,
   starred_news JSON not null,
   translate_provider text,
