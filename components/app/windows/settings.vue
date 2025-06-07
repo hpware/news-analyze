@@ -1,57 +1,6 @@
 <script setup lang="ts">
 import { BadgeCheckIcon, OctagonAlertIcon } from "lucide-vue-next";
 import { Input } from "~/components/ui/input";
-const { t, locale } = useI18n();
-const user = ref("");
-const enterFirstName = ref();
-const useremail = ref();
-const enteruseremail = ref();
-onMounted(async () => {
-  const req = await fetch("/api/user/validateUserToken");
-  const res = await req.json();
-  user.value = res.firstName;
-  useremail.value = res;
-});
-const setFirstName = async () => {
-  const staticFirstName = "";
-};
-
-const logoutAction = () => {};
-const groqApiKeyRegex = /^gsk_[a-zA-Z0-9]{52}$/;
-const customApiKey = ref();
-const isCorrect = ref(false);
-const submitCustomApiKey = async () => {
-  if (!isCorrect.value) {
-    checkValidApiKey();
-    if (!isCorrect.value) {
-      return;
-    }
-  }
-  const apiKey = customApiKey.value;
-  try {
-    const sendApi = await fetch("/api/ai/loadCustomGroqApi", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        apiKey: apiKey,
-      }),
-    });
-    const data = await sendApi.json();
-    if (data.error) {
-    }
-  } catch (e) {}
-};
-
-const checkValidApiKey = () => {
-  const apiKey = customApiKey.value;
-  if (!apiKey) {
-    isCorrect.value = false;
-    return;
-  }
-  isCorrect.value = groqApiKeyRegex.test(apiKey);
-};
 import {
   Dialog,
   DialogContent,
@@ -62,10 +11,57 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+const { t, locale } = useI18n();
+const user = ref("");
+const enterFirstName = ref();
+const useremail = ref();
+const userData = ref({
+  userAccount: "",
+  firstName: "",
+  requested_action: "",
+  email: "",
+  avatarURL: "",
+  firstName: "",
+});
+const enteruseremail = ref();
+onMounted(async () => {
+  const req = await fetch("/api/user/validateUserToken");
+  const res = await req.json();
+  user.value = res.firstName;
+  userData.value = res;
+  useremail.value = res.email;
+});
+const setFirstName = async () => {
+  const staticFirstName = "";
+};
+
+const emit = defineEmits(["windowopener"]);
+
+const logoutAction = () => {};
+
+const groqApiKeyRegex = /^gsk_[a-zA-Z0-9]{52}$/;
+const customApiKey = ref();
+const isCorrect = ref(false);
+const submitCustomApiKey = async () => {
+  if (!isCorrect.value) {
+    checkValidApiKey();
+    if (!isCorrect.value) {
+      return;
+    }
+  }
+};
+
+const checkValidApiKey = () => {
+  const apiKey = customApiKey.value;
+  if (!apiKey) {
+    isCorrect.value = false;
+    return;
+  }
+  isCorrect.value = groqApiKeyRegex.test(apiKey);
+};
 
 const showDeleteDialog = ref(false);
 const showLogoutDialog = ref(false);
-
 const confirmDelete = async () => {
   await deleteAccount();
   showDeleteDialog.value = false;
@@ -79,6 +75,23 @@ const deleteAccount = async () => {
     method: "DELETE",
   });
 };
+const apiKey = customApiKey.value;
+try {
+  const sendApi = await fetch("/api/ai/loadCustomGroqApi", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      apiKey: apiKey,
+    }),
+  });
+  const data = await sendApi.json();
+  if (data.error) {
+  }
+} catch (e) {
+  console.log(e);
+}
 /**
  *
  *     userAccount: fetchViaSQL[0].username,
@@ -87,11 +100,44 @@ const deleteAccount = async () => {
  avatarURL: fetchViaSQL[0].avatarurl,
  firstName: fetchViaSQL[0].firstName,
  */
+
+const actions = [
+  { name: "NAME", sendValue: enterFirstName.value },
+  { name: "USER_EMAIL", sendValue: enteruseremail.value },
+];
+
+const submitChangeAction = async (action: string) => {
+  const actionMatch = actions.find((a) => a.name === action);
+  if (!actionMatch) {
+    console.error("Invalid action type");
+    return;
+  }
+  try {
+    const req = await fetch("/api/user/sendUserChanges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        action: actionMatch.name,
+        value: actionMatch.sendValue,
+      }),
+    });
+
+    const response = await req.json();
+    if (response.error) {
+      console.error("Error updating user data:", response.error);
+    }
+  } catch (error) {
+    console.error("Failed to submit change:", error);
+  }
+};
 </script>
 <template>
   <div class="justify-center align-center text-center">
     <h1 class="text-3xl text-bold p-2">
-      {{ t("settings.greet") }}{{ user || t("settings.defaultname") }}
+      {{ t("settings.greet")
+      }}{{ user || userData.userAccount || t("settings.defaultname") }}
     </h1>
     <div class="flex flex-row text-center align-center justify-center p-1">
       <span class="text-md p-1 text-nowrap">Change your name:&nbsp;</span>
@@ -112,35 +158,37 @@ const deleteAccount = async () => {
       />
       <button
         class="p-1 text-sm bg-gray-400/60 rounded text-nowrap"
-        @click="setFirstName"
+        @click="submitChangeAction('NAME')"
+        :disabled="!enterFirstName"
       >
         {{ t("settings.submit") }}
       </button>
     </div>
     <div class="flex flex-row text-center align-center justify-center p-1">
       <span class="text-md p-1 text-nowrap">Current email:&nbsp;</span>
-      <span>{{ useremail }}</span>
+      <span>{{ useremail || "Oh, It's empty." }}</span>
     </div>
     <div class="flex flex-row text-center align-center justify-center p-1">
       <span class="text-md p-1 text-nowrap">Change your email:&nbsp;</span>
       <Input
         type="text"
         class="h-6 m-1 py-3 rounded"
-        v-model="enterFirstName"
+        v-model="enteruseremail"
         placeholder="Ex: example@gmail.com"
       />
       <!--If it is a valid api key or not.-->
       <BadgeCheckIcon
-        v-if="enterFirstName"
+        v-if="enteruseremail"
         class="w-8 h-8 p-1/2 mr-1 text-green-700"
       />
       <OctagonAlertIcon
-        v-if="!enterFirstName"
+        v-if="!enteruseremail"
         class="w-8 h-8 p-1/2 mr-1 text-red-700"
       />
       <button
         class="p-1 text-sm bg-gray-400/60 rounded text-nowrap"
-        @click="setFirstName"
+        @click="submitChangeAction('USER_EMAIL')"
+        :disabled="!enteruseremail"
       >
         {{ t("settings.submit") }}
       </button>
@@ -233,18 +281,20 @@ const deleteAccount = async () => {
     >
       <button
         class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
+        @click="emit('windowopener', 'privacypolicy')"
       >
         Privacy Policy
       </button>
       <button
         class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
+        @click="emit('windowopener', 'tos')"
       >
         TOS
       </button>
     </div>
     <hr />
     <div class="justiy-center align-center text-center">
-      {{ t("app.settings") }} v0.0.2
+      {{ t("app.settings") }} v0.0.3
     </div>
   </div>
 </template>

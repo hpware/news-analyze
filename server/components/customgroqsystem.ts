@@ -19,7 +19,7 @@ export async function checkIfUserHasCustomGroqKey(token?: string) {
   }
   const fetchUserToken = await sql`
     select groq_api_key from user_other_data
-    where username=${checkRealToken[0].username}`;
+    where username = ${checkRealToken[0].username}`;
   if (fetchUserToken.length === 0) {
     return {
       status: false,

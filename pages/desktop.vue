@@ -220,6 +220,88 @@ const associAppWindow = [
   },
 ];
 
+// OnBoarding
+// Feedback from: https://hackclub.slack.com/archives/C090DPG6681/p1749303838738019
+const currentStep = ref(0);
+const showOnboarding = ref(true);
+onMounted(() => {
+  showOnboarding.value = !localStorage.getItem("onboardingComplete");
+});
+const nextStep = () => {
+  currentStep.value++;
+};
+const finishOnboarding = () => {
+  showOnboarding.value = false;
+  localStorage.setItem("onboardingComplete", "true");
+};
+/*const onBoarding = [
+  {
+    step: 0,
+    point: "none",
+    text: "Hi! Welcome to the news analyze desktop enviroment!",
+    buttons: [
+      "bypass": nextStep,
+      "contuine": nextStep
+    ]
+  },
+  {
+    step: 1,
+    point: "top-left",
+    text: "Click here to open applications",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 2,
+    point: "left-navbar-1",
+    text: "Click here to open the news window",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 3,
+    point: "center",
+    text: "Click here open a news article",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 4,
+    point: "center-close-translate-left",
+    text: "Click here to translate the page.",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 5,
+    point: "center-close-x-left",
+    text: "Click here to close the window",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 6,
+    point: "more-top-right-3",
+    text: "Click here to change the app's language. (YOU WILL LOSE ALL YOUR WINDOWS)",
+    buttons: [
+      "ok": nextStep
+    ]
+  },
+  {
+    step: 7,
+    point: "none",
+    text: "That's it, welcome! If you want to learn more, you can go to yhw.tw/newsanalyzedocs.",
+    buttons: [
+      "ok": finishOnboarding
+    ]
+  },
+  ];*/
+
 // Confeti
 const successcanvas = ref();
 const confetiActive = ref(false);

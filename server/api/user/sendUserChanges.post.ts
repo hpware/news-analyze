@@ -1,7 +1,7 @@
 import sql from "~/server/components/postgres";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const { request_change } = body;
+  /*
   const userToken = getCookie(event, "token");
   if (!userToken) {
     return {
@@ -19,5 +19,6 @@ export default defineEventHandler(async (event) => {
   }
   if (request_change === "groq_api_key") {
     const updateListing = await sql``;
-  }
+    }*/
+  return { body: body };
 });

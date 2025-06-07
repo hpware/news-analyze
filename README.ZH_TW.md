@@ -21,6 +21,10 @@ Reverse engineering 文檔: [about](/about/)
 ## Note for developing
 The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
+## 如果要開發，你需要
+- 一個 Postgres 資料庫 (你可以用 Zeabur 跑開發用資料庫，可以用我的 [優惠連結(?](https://zeabur.com/referral?referralCode=hpware)，你可以拿到大約150塊的試用金額
+- 一個 Groq 的 API
+
 ## 為什麼?
 
 我們使用這個新聞來舉例：
