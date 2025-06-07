@@ -64,7 +64,7 @@ const aiSummary = async () => {
   activateAiSummary.value = true;
   isGenerating.value = true;
   try {
-    const req = await fetch(`/api/ai/summarize/${slug}?lang=${locale}`);
+    const req = await fetch(`/api/ai/summarize/${slug}?lang=${String(locale)}`);
     const reader = req.body?.getReader();
     const decoder = new TextDecoder();
     while (reader) {

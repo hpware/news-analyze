@@ -17,4 +17,7 @@ export default defineEventHandler(async (event) => {
       error: "ERR_NOT_ALLOWED",
     };
   }
+  if (request_change === "groq_api_key") {
+    const updateListing = await sql``;
+  }
 });
