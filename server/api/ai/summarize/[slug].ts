@@ -11,6 +11,7 @@ export default defineEventHandler(async (event) => {
   const protocol = getRequestProtocol(event);
   const slug = getRouterParam(event, "slug");
   const userToken = getCookie(event, "token") || "";
+  console.log("Token: ", userToken);
   const doesTheUserHasACustomGroqApiAndWhatIsIt =
     await checkIfUserHasCustomGroqKey(userToken);
   let groqClient = groq;

@@ -9,7 +9,7 @@ export async function checkIfUserHasCustomGroqKey(token?: string) {
   }
   const checkRealToken = await sql`
     select * from usertokens
-    where tokens=${token}
+    where token = ${token}
   `;
   if (checkRealToken.length === 0) {
     return {
@@ -28,6 +28,6 @@ export async function checkIfUserHasCustomGroqKey(token?: string) {
   }
   return {
     status: true,
-    customAPi: fetchUserToken[0].groq_api_key,
+    customApi: fetchUserToken[0].groq_api_key,
   };
 }

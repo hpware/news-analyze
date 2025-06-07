@@ -46,13 +46,18 @@ export default defineEventHandler(async (event) => {
         };
       }
       const createOtherFields = await sql`
-        insert into user_other_data(user_id, user, translate_enabled, translate_provider, remove_translate_popup)
-        values (${userUUID}, ${username}, false, 'google', false)
+        insert into user_other_data(user_id, username, translate_enabled, translate_provider, remove_translate_popup, starred_news)
+        values (${userUUID}, ${username}, false, 'google', false, '{}'::JSON)
         `;
       const newToken = uuidv4();
+      await sql`
+          INSERT INTO usertokens (username, token)
+          VALUES (${username}, ${newToken})
+      `;
+
+      setCookie(event, "token", newToken);
       return {
-        user: fetchUserInfo,
-        token: newToken,
+        user: fetchUserInfoAgain,
       };
     } else {
       const isValid = await argon2.verify(
@@ -64,19 +69,20 @@ export default defineEventHandler(async (event) => {
           error: "PASSWORD_NO_MATCH",
         };
       }
-    }
-    const newToken = uuidv4();
-    const fetchUserInfoAgain = await sql`
-      select * from users
-      where username = ${username}`;
-    await sql`
-        INSERT INTO usertokens (user, token)
-        VALUES ('${fetchUserInfo[0].username}', '${newToken}')
+      const newToken = uuidv4();
+      const fetchUserInfoAgain = await sql`
+        select * from users
+        where username = ${username}`;
+      await sql`
+          INSERT INTO usertokens (username, token)
+          VALUES (${fetchUserInfoAgain[0].username}, ${newToken})
       `;
-    setCookie(event, "token", newToken);
-    return {
-      user: fetchUserInfoAgain,
-    };
+
+      setCookie(event, "token", newToken);
+      return {
+        user: fetchUserInfoAgain,
+      };
+    }
   } catch (e) {
     console.log(e);
     return {
