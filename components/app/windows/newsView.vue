@@ -37,14 +37,16 @@ watch(
       if (!data.value) {
         return;
       }
+      if (translatedBefore.value === true) {
+        return;
+      }
       startTranslating(data.value.title);
       startTranslating(data.value.origin);
       startTranslating(data.value.author);
-      data.value.paragraph.forEach((i, element) => {
-        console.log(element);
-        //startTranslating(data.value.)
-      });
-      // NOT retranslating AGAIN
+      for (const paragraph of data.value.paragraph) {
+        startTranslating(paragraph);
+      }
+      // NOT retranslating AGAIN when disabling the feat
       translatedBefore.value = true;
     } else {
       translateText.value = false;
@@ -86,22 +88,30 @@ const aiSummary = async () => {
     <div class="flex flex-col">
       <div class="group">
         <h2 class="text-3xl text-bold">
-          {{ translateText ? translateItem[data.title] : data.title }}
+          {{
+            translateText ? translateItem[data.title].translateText : data.title
+          }}
         </h2>
         <span
           class="text-lg text-bold flex flex-row justify-center text-center align-center"
           ><NewspaperIcon class="w-7 h-7 p-1" />{{
-            translateText ? translateItem[data.origin] : data.origin
+            translateText
+              ? translateItem[data.origin].translateText
+              : data.origin
           }}
           • <UserIcon class="w-7 h-7 p-1" />{{
-            translateText ? translateItem[data.author] : data.author
+            translateText
+              ? translateItem[data.author].translateText
+              : data.author
           }}</span
         >
       </div>
       <div class="p-4 w-full h-fit pt-0 mt-0">
         <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
       </div>
-      <div class="text-center" v-for="item in data.paragraph">{{ item }}</div>
+      <div class="text-center" v-for="item in data.paragraph">
+        {{ translateText ? translateItem[item]?.translateText : item }}
+      </div>
     </div>
     <div class="flex flex-col w-full justify-center align-center text-center">
       <div
