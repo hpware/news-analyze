@@ -23,6 +23,7 @@ interface associAppWindowInterface {
   width: string;
   height: string;
   black: boolean;
+  translatable: boolean;
 }
 
 interface minAppWindowInterface {
@@ -34,6 +35,7 @@ interface minAppWindowInterface {
   width: string;
   height: string;
   black: boolean;
+  translatable: boolean;
   lastpositionw: string;
   lastpositionh: string;
 }
@@ -347,6 +349,7 @@ const findAndOpenWindow = (windowName: string, windowTitle?: string) => {
       width: app.width || "600px",
       height: app.height || "400px",
       black: app.black || false,
+      translatable: app.translatable || false,
     });
     currentOpenAppId.value++;
     // Add to navbar
@@ -418,6 +421,7 @@ const toggleMinWindow = (windowUUId: string) => {
       width: activeWindow.width,
       height: activeWindow.height,
       black: activeWindow.black || false,
+      translatable: activeWindow.translatable || false,
       lastpositionw: "",
       lastpositionh: "",
     });
@@ -512,6 +516,7 @@ const toggleTranslate = (id: string) => {
   console.log("windowId", id);
   applyForTranslation.value = true;
 };
+
 const translateAvailable = () => {};
 
 // Load user config via HTTP requests to the server.

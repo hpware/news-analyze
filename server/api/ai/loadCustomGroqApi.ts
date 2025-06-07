@@ -17,5 +17,14 @@ export default defineEventHandler(async (event) => {
       error: "ERR_NOT_USER_LOGIN",
     };
   }
-  const checkUser = await sql``;
+  const verifyUserToken = await sql`
+    SELECT * FROM usertokens
+    where token=${readUserToken}
+    `;
+  if (verifyUserToken.length === 0) {
+    return {
+      error: "ERR_NOT_USER_LOGIN",
+      requested_action: "LOGOUT_USER",
+    };
+  }
 });

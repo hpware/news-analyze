@@ -85,11 +85,17 @@ const aiSummary = async () => {
   >
     <div class="flex flex-col">
       <div class="group">
-        <h2 class="text-3xl text-bold">{{ data.title }}</h2>
+        <h2 class="text-3xl text-bold">
+          {{ translateText ? translateItem[data.title] : data.title }}
+        </h2>
         <span
           class="text-lg text-bold flex flex-row justify-center text-center align-center"
-          ><NewspaperIcon class="w-7 h-7 p-1" />{{ data.origin }} •
-          <UserIcon class="w-7 h-7 p-1" />{{ data.author }}</span
+          ><NewspaperIcon class="w-7 h-7 p-1" />{{
+            translateText ? translateItem[data.origin] : data.origin
+          }}
+          • <UserIcon class="w-7 h-7 p-1" />{{
+            translateText ? translateItem[data.author] : data.author
+          }}</span
         >
       </div>
       <div class="p-4 w-full h-fit pt-0 mt-0">
