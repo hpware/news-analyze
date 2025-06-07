@@ -56,6 +56,9 @@ export default defineEventHandler(async (event) => {
       `;
 
       setCookie(event, "token", newToken);
+      const fetchUserInfoAgain = await sql`
+        select * from users
+        where username = ${username}`;
       return {
         user: fetchUserInfoAgain,
       };
