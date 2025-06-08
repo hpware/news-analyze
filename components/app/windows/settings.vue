@@ -281,13 +281,13 @@ const submitChangeAction = async (action: string) => {
     >
       <button
         class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
-        @click="emit('windowopener', 'privacypolicy')"
+        @click="() => emit('windowopener', 'privacypolicy')"
       >
         Privacy Policy
       </button>
       <button
         class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
-        @click="emit('windowopener', 'tos')"
+        @click="() => emit('windowopener', 'tos')"
       >
         TOS
       </button>

@@ -1,10 +1,4 @@
 <script setup lang="ts">
-// Translate stuff
-interface translateInterfaceText {
-  translateText: string;
-}
-const translateItems: Record<string, translateInterfaceText> = {};
-
 // Imports
 import { ScanEyeIcon, RefreshCcwIcon } from "lucide-vue-next";
 import {
@@ -32,16 +26,10 @@ const emit = defineEmits([
   "windowopener",
 ]);
 
-const props = defineProps({
-  applyForTranslation: {
-    type: Boolean,
-    required: true,
-  },
-  windowTranslateState: {
-    type: Boolean,
-    required: true,
-  },
-});
+const props = defineProps<{
+  applyForTranslation: Boolean;
+  windowTranslateState: Boolean;
+}>();
 
 const { applyForTranslation, windowTranslateState } = props;
 
@@ -53,7 +41,7 @@ const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
-const primary = ref<string>("top"); // Hard code value fn
+const primary = ref<string>("domestic"); // Hard code default value as top is just pure garbage.
 const canNotLoadTabUI = ref(false);
 const isDataCached = ref(false);
 const pullTabsData = async () => {
@@ -84,6 +72,7 @@ const updateContent = async (url: string, tabAction: boolean) => {
       contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
       switchTabs.value = false;
       isDataCached.value = data.cached || false;
+      translatedBefore.value = false;
     }
   } catch (e) {
     console.log(e);
@@ -215,15 +204,73 @@ const openPublisher = (slug: string, title: string) => {
   emit("openNewsSourcePage", slug, title);
 };
 const isLoading = computed(() => contentArray.value.length === 0);
-const testmessage = await translate("嗨", { from: "zh", to: "en" });
 const shouldHideItem = (item) => {
   return (
     item.contentType !== "GENERAL" ||
     item.publisher?.toLowerCase().includes("line")
   );
 };
+
+// Translate (Selective content)
+interface translateInterfaceText {
+  translateText: string;
+}
+const translateItem: Record<string, translateInterfaceText> = {};
+
+const translateLoading = ref(false);
+const displayTranslateContent = ref(false);
+const traslateFailed = ref(false);
+const translatedBefore = ref(false);
+const startTranslating = async (text: string) => {
+  try {
+    translateItem[text] = {
+      translateText: await translate(text, { from: "zh", to: "en" }),
+    };
+    console.log(translateItem[text]);
+  } catch (error) {
+    console.error("Translation failed:", error);
+    traslateFailed.value = true;
+    translateItem[text] = { translateText: text }; // fallback
+  }
+};
+watch(
+  () => props.applyForTranslation,
+  (value) => {
+    if (value === true || translatedBefore.value === false) {
+      if (translatedBefore.value === true) {
+        displayTranslateContent.value = true;
+        return;
+      }
+      translateFunction();
+      // NOT retranslating AGAIN when disabling the feat
+      translatedBefore.value = true;
+    } else {
+      displayTranslateContent.value = false;
+    }
+);
+const translateFunction = () => {
+  if (canNotLoadTabUI.value) {
+    return;
+  }
+  translateLoading.value = true;
+  // Translate tabs
+  for (const tab of tabs.value) {
+    startTranslating(tab.text);
+  }
+  // Translate news titles & news org
+  for (const articleBlock of contentArray.value) {
+    startTranslating(articleBlock.title);
+    startTranslating(articleBlock.publisher);
+
+  }
+  setTimeout(() => {
+    displayTranslateContent.value = true;
+    translateLoading.value = false;
+  }, 3000);
+}
 </script>
 <template>
+  <div v-if="translateLoading">Loading...</div>
   <div class="justify-center align-center text-center">
     <!--Tabs-->
     <div
@@ -252,13 +299,16 @@ const shouldHideItem = (item) => {
             class="disabled:cursor-not-allowed"
             :disabled="isPrimary(item.url, true) || switchTabs"
           >
-            <span>{{ true ? item.text : testmessage }}</span>
+            <span>{{
+              displayTranslateContent
+                ? translateItem[item.text].translateText
+                : item.text
+            }}</span>
           </button>
         </template>
         <button v-if="canNotLoadTabUI"><RefreshCcwIcon /></button>
       </div>
     </div>
-
     <!-- Content Area -->
     <div>
       <!-- Loading State -->
@@ -325,11 +375,19 @@ const shouldHideItem = (item) => {
                     <button
                       @click="openPublisher(item.publisherId, item.publisher)"
                     >
-                      {{ item.publisher }}
+                      {{
+                        displayTranslateContent
+                          ? translateItem[item.publisher].translateText
+                          : item.publisher
+                      }}
                     </button>
                   </TooltipTrigger>
                   <TooltipContent class="rounded">
-                    會打開關於媒體({{ item.publisher }})的視窗
+                    {{ t("news.articleopenpart1") }}({{
+                      displayTranslateContent
+                        ? translateItem[item.publisher].translateText
+                        : item.publisher
+                    }}){{ t("news.articleopenpart2") }}
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
@@ -355,18 +413,20 @@ const shouldHideItem = (item) => {
                       @click="openNews(item.url.hash, item.title)"
                       class="flex flex-row p-1 bg-sky-300/50 hover:bg-sky-400/50 shadow-lg backdrop-blur-sm rounded transition-all duration-200"
                     >
-                      <ScanEyeIcon class="w-6 h-6 p-1" /><span>觀看文章</span>
+                      <ScanEyeIcon class="w-6 h-6 p-1" /><span>{{
+                        t("news.open")
+                      }}</span>
                     </button>
                   </TooltipTrigger>
                   <TooltipContent class="rounded">
-                    會打開新的視窗
+                    {{ t("news.opennewwindow") }}
                   </TooltipContent>
                 </Tooltip>
               </TooltipProvider>
             </div>
             <div>
               <div>
-                <h3 class="text-lg">類似文章</h3>
+                <h3 class="text-lg">{{ t("news.similararticles") }}</h3>
                 <div class="space-y-2">
                   <div
                     v-for="similar in useArgFindRel(item.title, item.publisher)"
@@ -376,8 +436,13 @@ const shouldHideItem = (item) => {
                   >
                     <div class="font-medium">{{ similar.title }}</div>
                     <div class="text-gray-500 text-xs">
-                      相似度: {{ (similar.similarity * 100).toFixed(1) }}% |
-                      {{ similar.item.publisher }}
+                      {{ t("news.similarity") }}:
+                      {{ (similar.similarity * 100).toFixed(1) }}% |
+                      {{
+                        displayTranslateContent
+                          ? translateItem[similar.item.publisher].translateText
+                          : similar.item.publisher
+                      }}
                     </div>
                   </div>
                 </div>
@@ -385,7 +450,7 @@ const shouldHideItem = (item) => {
                   v-if="checkIfEmpty(item.title)"
                   class="text-gray-500 text-sm"
                 >
-                  找不到類似文章
+                  {{ t("news.nosimilararticles") }}
                 </div>
               </div>
             </div>

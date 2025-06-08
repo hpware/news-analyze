@@ -128,5 +128,14 @@
       "contactEmailStarter": "聯絡信箱："
     },
     "copyrightInfo": "版權資訊"
+  },
+  "news": {
+    "open": "觀看文章",
+    "opennewwindow": "會打開新的視窗",
+    "similararticles": "類似文章",
+    "similarity": "相似度",
+    "nosimilararticles": "找不到類似文章",
+    "articleopenpart1": "會打開關於媒體",
+    "articleopenpart2": "的視窗"
   }
 }
