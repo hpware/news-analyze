@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// forgot to import t 💀
+const { t } = useI18n();
+
 // Vars for translating stuff
 interface translateInterfaceText {
   translateText: string;
@@ -366,7 +369,11 @@ const translateFunction = () => {
               class="text-2xl text-bold"
               :class="getCheckResult(item.title) ? 'text-red-600' : ''"
             >
-              {{ item.title }}
+              {{
+                displayTranslateContent
+                  ? translateItem[item.title].translateText
+                  : item.title
+              }}
             </h1>
             <p class="m-0 text-gray-600">
               <TooltipProvider>
