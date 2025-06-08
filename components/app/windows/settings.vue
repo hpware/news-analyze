@@ -10,6 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import getVersionTag from "~/versionTag";
 import { Button } from "@/components/ui/button";
 const { t, locale } = useI18n();
 const user = ref("");
@@ -294,7 +295,7 @@ const submitChangeAction = async (action: string) => {
     </div>
     <hr />
     <div class="justiy-center align-center text-center">
-      {{ t("app.settings") }} v0.0.3
+      {{ t("app.settings") }} v0.0.3 || Version: {{ getVersionTag() }}
     </div>
   </div>
 </template>

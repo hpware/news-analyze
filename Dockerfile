@@ -14,7 +14,7 @@
 
     # Copy source files
     COPY . .
-
+    RUN bun run generateVersionTag
     # Build the application
     RUN bun run build
 
