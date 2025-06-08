@@ -12,6 +12,9 @@ Reverse engineering documentation: [about](/about/)
 
 Deploy: [via docker compose](/deploy.md)
 
+## Updates again: 
+My main production server, news.yuanhau.com, is currently NOT serving any requests, as the server failed to deploy new versions of my app, and I tried to debug the server's DNS, as it turns out, my ISP 中華電信 actively changes my DNS to 192.168.1.1 which cannot get the IP from ghcr.io, and me trying to update the config & restarting the server killed it. :(
+
 ## Demo:
 You can try out the app RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
 
@@ -24,8 +27,8 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 ## Note for developing.
 The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
-## news.yuanhau.com is now back up and running!
-Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing ghcr.io dns correctly (although `ping ghcr.io` works?), so I just nuked it off my server :), since I don't even use it that much. It works now. (Also deploying to zeabur hurt my wallet (it's like 0.07 for a day for the memory), as my system that I built based on ram is too costly there). oof, so please just self host it.
+<!--## news.yuanhau.com is now back up and running!
+Why? Tailscale is changing the dns server to 100.100.100.100 and it just won't find the thing ghcr.io dns correctly (although `ping ghcr.io` works?), so I just nuked it off my server :), since I don't even use it that much. It works now. (Also deploying to zeabur hurt my wallet (it's like 0.07 for a day for the memory), as my system that I built based on ram is too costly there). oof, so please just self host it.-->
 
 ## Why?
 
