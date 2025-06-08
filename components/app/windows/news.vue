@@ -1,4 +1,15 @@
 <script setup lang="ts">
+// Vars for translating stuff
+interface translateInterfaceText {
+  translateText: string;
+}
+const translateItem: Record<string, translateInterfaceText> = {};
+
+const translateLoading = ref(false);
+const displayTranslateContent = ref(false);
+const traslateFailed = ref(false);
+const translatedBefore = ref(false);
+
 // Imports
 import { ScanEyeIcon, RefreshCcwIcon } from "lucide-vue-next";
 import {
@@ -30,8 +41,6 @@ const props = defineProps<{
   applyForTranslation: Boolean;
   windowTranslateState: Boolean;
 }>();
-
-const { applyForTranslation, windowTranslateState } = props;
 
 const openNewWindow = (itemId: string) => {
   emit("windowopener", "aboutNewsOrg");
@@ -212,15 +221,6 @@ const shouldHideItem = (item) => {
 };
 
 // Translate (Selective content)
-interface translateInterfaceText {
-  translateText: string;
-}
-const translateItem: Record<string, translateInterfaceText> = {};
-
-const translateLoading = ref(false);
-const displayTranslateContent = ref(false);
-const traslateFailed = ref(false);
-const translatedBefore = ref(false);
 const startTranslating = async (text: string) => {
   try {
     translateItem[text] = {
@@ -247,6 +247,7 @@ watch(
     } else {
       displayTranslateContent.value = false;
     }
+  },
 );
 const translateFunction = () => {
   if (canNotLoadTabUI.value) {
@@ -261,13 +262,12 @@ const translateFunction = () => {
   for (const articleBlock of contentArray.value) {
     startTranslating(articleBlock.title);
     startTranslating(articleBlock.publisher);
-
   }
   setTimeout(() => {
     displayTranslateContent.value = true;
     translateLoading.value = false;
   }, 3000);
-}
+};
 </script>
 <template>
   <div v-if="translateLoading">Loading...</div>
