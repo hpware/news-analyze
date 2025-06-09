@@ -22,7 +22,6 @@ const userData = ref({
   requested_action: "",
   email: "",
   avatarURL: "",
-  firstName: "",
 });
 const enteruseremail = ref();
 onMounted(async () => {
@@ -93,21 +92,12 @@ try {
 } catch (e) {
   console.log(e);
 }
-/**
- *
- *     userAccount: fetchViaSQL[0].username,
- requested_action: "CONTINUE",
- email: fetchViaSQL[0].email,
- avatarURL: fetchViaSQL[0].avatarurl,
- firstName: fetchViaSQL[0].firstName,
- */
-
-const actions = [
-  { name: "NAME", sendValue: enterFirstName.value },
-  { name: "USER_EMAIL", sendValue: enteruseremail.value },
-];
-
 const submitChangeAction = async (action: string) => {
+  const actions = [
+    { name: "NAME", sendValue: enterFirstName.value },
+    { name: "USER_EMAIL", sendValue: enteruseremail.value },
+  ];
+
   const actionMatch = actions.find((a) => a.name === action);
   if (!actionMatch) {
     console.error("Invalid action type");

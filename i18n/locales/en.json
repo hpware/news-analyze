@@ -75,7 +75,9 @@
     "terminal": "Terminal",
     "aboutNewsOrg": "About this news organization",
     "newsview": "News View",
-    "areyousure": "Are you sure?"
+    "areyousure": "Are you sure?",
+    "privacypolicy": "Privacy Policy",
+    "tos": "Terms of service"
   },
   "settings": {
     "yourgroqapi": "Your Groq API",

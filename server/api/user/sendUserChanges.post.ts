@@ -1,7 +1,6 @@
 import sql from "~/server/components/postgres";
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
-  /*
+  // Check user data.
   const userToken = getCookie(event, "token");
   if (!userToken) {
     return {
@@ -17,8 +16,18 @@ export default defineEventHandler(async (event) => {
       error: "ERR_NOT_ALLOWED",
     };
   }
-  if (request_change === "groq_api_key") {
-    const updateListing = await sql``;
-    }*/
-  return { body: body };
+  // Actual function
+  const body = await readBody(event);
+  if (body.jsonValue.length === 0) {
+    const clearBadDataRegex = /[@-_.+a-zA-Z0-9]{2,}/;
+    let allowed = true;
+    if (body.value.match()) {
+      allowed = false;
+    }
+    return {
+      body: body,
+      allowed: allowed,
+      data: body.value.match(clearBadDataRegex),
+    };
+  }
 });

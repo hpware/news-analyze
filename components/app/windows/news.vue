@@ -84,6 +84,7 @@ const updateContent = async (url: string, tabAction: boolean) => {
       contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
       switchTabs.value = false;
       isDataCached.value = data.cached || false;
+      displayTranslateContent.value = false;
       translatedBefore.value = false;
     }
   } catch (e) {

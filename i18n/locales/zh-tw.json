@@ -75,7 +75,9 @@
     "terminal": "終端機",
     "aboutNewsOrg": "關於這個新聞來源",
     "newsview": "新聞",
-    "areyousure": "你確定？"
+    "areyousure": "你確定？",
+    "privacypolicy": "隱私權政策",
+    "tos": "服務條款"
   },
   "settings": {
     "yourgroqapi": "你的Groq API",
@@ -107,11 +109,11 @@
   },
   "pages": {
     "privacypolicy": {
-      "title": "Privacy Policy",
-      "content": "Ummmm"
+      "title": "隱私權政策",
+      "content": "N/A"
     },
     "tos": {
-      "title": "Terms of service",
+      "title": "服務條款",
       "content": "N/A"
     }
   },

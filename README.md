@@ -12,11 +12,13 @@ Reverse engineering documentation: [about](/about/)
 
 Deploy: [via docker compose](/deploy.md)
 
+Goals before the next devlog: [Markdown file](/GOALS_BEFORE_NEXT_DEVLOG.md)
+
 ## Demo:
 You can try out the app RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
 
 ## Using Translations:
-A few pages now contains translations, like the aboutNewsOrg & newsView pages. This project currently is using Google Translate. However, muiti translate platform support is coming soon™ (If you login with your account). The translations are not accrate at all, like something that should be `I just want to write about sports` becomes `I just want to write`, that bro, what is even that?
+A few pages now contains translations, like the news, aboutNewsOrg and newsView pages. This project currently is using Google Translate. However, muiti translate platform support is coming soon™ (If you login with your account). The translations are not accrate at all, like something that should be `I just want to write about sports` becomes `I just want to write`, that bro, what is even that?
 
 ## Before deploying, please know this:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
