@@ -182,7 +182,7 @@ const useArgFindRel = (title, newsOrg) => {
     if (
       item.title !== title &&
       item.contentType === "GENERAL" &&
-      item.publisher === newsOrg
+      item.publisher !== newsOrg
     ) {
       const itemVector = tf(item.title);
       const similarity = jaccardSimilarity(targetVector, itemVector);

@@ -14,8 +14,14 @@ Deploy: [via docker compose](/deploy.md)
 
 Goals before the next devlog: [Markdown file](/GOALS_BEFORE_NEXT_DEVLOG.md)
 
+Video Guide: [YouTube](https://youtu.be/8P3qgVm6m6g)
+
 ## Demo:
 https://yhw.tw/news
+
+## Video Guide
+
+https://github.com/user-attachments/assets/29414c5d-3b2f-420d-93c0-95c14a15bbb7
 
 ## Issues:
 ### Onboarding:
