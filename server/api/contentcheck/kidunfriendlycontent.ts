@@ -1,29 +1,24 @@
-import sql from "~/server/components/postgres";
+let cachedWords: content | null = null;
+let lastFetchTime: number | null = null;
+const CACHE_DURATION = 1000 * 60 * 60 * 3; // Updates every 3 hours.
+
+interface content {
+  data: string[];
+}
+
 export default defineEventHandler(async (event) => {
-  return {
-    words: [
-      "尺度太小",
-      "比基尼",
-      "無罩",
-      "脫褲",
-      "裸露",
-      "露豐",
-      "V辣",
-      "激露",
-      "E級曲線",
-      "放0肩",
-      "透視裝",
-      "性侵",
-      "裸照",
-      "性感",
-      "找妹",
-      "肉蹼",
-      "超兇北半球",
-      "大露",
-      "色誘",
-      "死亡",
-      "撩妹",
-      "裸上身",
-    ],
-  };
+  const currentTime = Date.now();
+  if (
+    cachedWords &&
+    lastFetchTime &&
+    currentTime - lastFetchTime < CACHE_DURATION
+  ) {
+    return cachedWords;
+  }
+  const fetchWordsFromGitHub = await fetch(
+    "https://raw.githubusercontent.com/hpware/news-analyze/refs/heads/master/words.json",
+  );
+  cachedWords = await fetchWordsFromGitHub.json();
+  lastFetchTime = currentTime;
+  return cachedWords;
 });
