@@ -47,12 +47,8 @@ import { gsap } from "gsap";
 import confetti from "js-confetti";
 import translate from "translate";
 
-// Import Components
-import loadUserInfo from "~/components/loadUserInfo";
-
 // Import Windows
 import UserWindow from "~/components/app/windows/user.vue";
-import HotNewsWindow from "~/components/app/windows/hotnews.vue";
 import SourcesWindow from "~/components/app/windows/sources.vue";
 import AboutWindow from "~/components/app/windows/about.vue";
 import ChatbotWindow from "~/components/app/windows/chatbot.vue";

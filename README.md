@@ -51,6 +51,9 @@ A few pages now contains translations, like the news, aboutNewsOrg and newsView 
 ### Deploying:
 This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
 
+### The API returning outdated data from more than 5+ years:
+Here is the GitHub Issue: https://github.com/hpware/news-analyze/issues/2
+
 ## Why?
 
 We'll use this news article from May 7th 2025 as an example:
