@@ -24,6 +24,30 @@ export default defineEventHandler(async (event) => {
     if (body.value.match()) {
       allowed = false;
     }
+    // Use Static values for now.
+    const requestChange = "groq_api_key";
+    const apiKeyqq = body.value.match(clearBadDataRegex);
+    const allowedColumns = ["groq_api_key", "another_column_name"];
+
+    if (!allowedColumns.includes(requestChange)) {
+      throw new Error("Invalid column name provided");
+    }
+    const sqlC = await sql.unsafe`
+      UPDATE user_other_data SET ${requestChange} = ${apiKeyqq[0]}
+      WHERE username = ${checkUserToken[0].username}`;
+
+    /**
+     * // Example of how requestChange might be validated
+     const allowedColumns = ['groq_api_key', 'another_column_name'];
+
+     if (!allowedColumns.includes(requestChange)) {
+       throw new Error('Invalid column name provided');
+     }
+
+     const sqlC = await sql`
+           UPDATE user_other_data SET ${sql.identifier([requestChange])} = ${apiKeyqq[0]}
+           WHERE username = ${checkUserToken[0].username}`;
+     */
     return {
       body: body,
       allowed: allowed,

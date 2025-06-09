@@ -112,6 +112,7 @@ const submitChangeAction = async (action: string) => {
       body: JSON.stringify({
         action: actionMatch.name,
         value: actionMatch.sendValue,
+        jsonValue: "",
       }),
     });
 
