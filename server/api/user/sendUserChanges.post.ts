@@ -32,9 +32,13 @@ export default defineEventHandler(async (event) => {
     if (!allowedColumns.includes(requestChange)) {
       throw new Error("Invalid column name provided");
     }
-    const sqlC = await sql.unsafe`
-      UPDATE user_other_data SET ${requestChange} = ${apiKeyqq[0]}
-      WHERE username = ${checkUserToken[0].username}`;
+
+    const sqlC = await sql.unsafe(
+      `
+      UPDATE user_other_data SET ${requestChange} = $1
+      WHERE username = $2`,
+      [apiKeyqq[0], checkUserToken[0].username],
+    );
 
     /**
      * // Example of how requestChange might be validated
@@ -52,6 +56,7 @@ export default defineEventHandler(async (event) => {
       body: body,
       allowed: allowed,
       data: body.value.match(clearBadDataRegex),
+      sqlC: sqlC,
     };
   }
 });

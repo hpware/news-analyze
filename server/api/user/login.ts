@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
           error: "CANNOT_CREATE_NEW_USER",
         };
       }
-      const createOtherFields = await sql`
+      await sql`
         insert into user_other_data(user_id, username, translate_enabled, translate_provider, remove_translate_popup, starred_news)
         values (${userUUID}, ${username}, false, 'google', false, '{}'::JSON)
         `;
