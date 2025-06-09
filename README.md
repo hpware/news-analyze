@@ -1,4 +1,4 @@
-# 新聞解析 / News Analyze
+# News Analyze
 
 [English Version](/README.md)&nbsp;[繁體中文版](/README.ZH_TW.md)
 
@@ -15,19 +15,41 @@ Deploy: [via docker compose](/deploy.md)
 Goals before the next devlog: [Markdown file](/GOALS_BEFORE_NEXT_DEVLOG.md)
 
 ## Demo:
-You can try out the app RIGHT NOW via this link: https://yhw.tw/news?goto=desktop
+https://yhw.tw/news
 
-## Using Translations:
-A few pages now contains translations, like the news, aboutNewsOrg and newsView pages. This project currently is using Google Translate. However, muiti translate platform support is coming soon™ (If you login with your account). The translations are not accrate at all, like something that should be `I just want to write about sports` becomes `I just want to write`, that bro, what is even that?
+## Issues:
+### Onboarding:
+Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implemnting the function in a already large repo is kinda hard. So later this week, I will just add a basic video onboading system.
 
-## Before deploying, please know this:
-This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
+### User actions via the API:
+Currently, user actions are broken.
 
-## Note for developing.
-The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
+### Login system:
+The current login DOES NOT see if you're logged in or not, it just prompts if the user wants to login or not. This NEEDS to be fixed
 
-## news.yuanhau.com is now back up and running (again)!
+### Windows with the wraping function `<BlurPageBeforeLogin></BlurPageBeforeLogin>`:
+The wrapping function, `<BlurPageBeforeLogin></BlurPageBeforeLogin>`, is currently running a static value for testing use only, so for pages that reqire you to be logged in WILL NOT work for (even if you logged in). It is just a value in the blurPageBeforeLogin.vue function `if (true)`
+
+### Chatbot:
+Chatbot, which is chatbot for chatting about news articles, is currently not available for ppl to use (even chat).
+
+### Server Downtime
+Use https://status.yhw.tw/ for checking down time, most of the time it will be up, but sometimes it just won't updated to the latest feature & update.
+
+Archive:
 I fixed most issues of the server, including the nameserver stuff, if you want to know how I fixed it, you can view how I fixed it [here](/server_fixes.md) or on [My broken blog](https://4-1-2.yuanhau.com/posts/)
+
+### Scraping restrictions:
+As LINE Today only loads & put the image file via JS in the browser, node-fetch is not working (yes, this platform uses node-fetch as the only way to scrape stuff). If LINE today became more problematic of this platform, those APIs will no longer work & most of the things will just not work, as it requires LINE Today to NOT patch these node-fetch things.
+
+### Developing enviroment lagging:
+The desktop app alone has 700+ lines of code, and compiling on the fly is really slow & can really lag your computer (like my Macbook, which has lagged the entire time I'm trying to develop the app.).
+
+### Translating system:
+A few pages now contains translations, like the news, aboutNewsOrg and newsView pages. This project currently is using Google Translate. However, muiti translate platform support is coming soon™ (If you login with your account). The translations are not accrate at all, like something that should be `I just want to write about sports` becomes `I just want to write`, like bro, what is even that?
+
+### Deploying:
+This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it has the scraping system now inside of the main website code, oh also the entire "caching feature" is based in memory, so please don't use those platforms, for Zeabur your cost might be expensive. idk, I haven't tried hit yet. The web url: https://news.yuanhau.com is hosted on my own infra, you should too. Please get a server off of yahoo 拍賣, 蝦皮 or eBay to do so.
 
 ## Why?
 
