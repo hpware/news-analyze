@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
     return {
       error: "INVALID_TOKEN",
       requested_action: "USE_DEFAULT_STATE",
+      current_spot: "LOGOUT",
     };
   }
   const checkIsUUIDRegex =
@@ -14,6 +15,7 @@ export default defineEventHandler(async (event) => {
     return {
       error: "NOT_A_UUID",
       requested_action: "LOGOUT_USER",
+      current_spot: "LOGOUT",
     };
   }
   const fetchViaSQL = await sql`
@@ -24,6 +26,7 @@ export default defineEventHandler(async (event) => {
     return {
       error: "INVALID_TOKEN",
       requested_action: "LOGOUT_USER",
+      current_spot: "LOGOUT",
     };
   }
 
@@ -35,12 +38,14 @@ export default defineEventHandler(async (event) => {
     return {
       error: "TOKEN_EXPIRED",
       requested_action: "LOGOUT_USER",
+      current_spot: "LOGOUT",
     };
   }
   return {
     userAccount: fetchViaSQL[0].username,
     firstName: fetchViaSQL[0].firstName,
     requested_action: "CONTINUE",
+    current_spot: "KEEP_LOGIN",
     email: fetchViaSQL[0].email,
     avatarURL: fetchViaSQL[0].avatarurl,
     firstName: fetchViaSQL[0].firstName,

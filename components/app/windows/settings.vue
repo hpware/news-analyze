@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { BadgeCheckIcon, OctagonAlertIcon } from "lucide-vue-next";
+import sha512 from "crypto-js/sha512";
+import Input from "~/components/ui/input/Input.vue";
 import { Input } from "~/components/ui/input";
 import {
   Dialog,
@@ -15,6 +17,7 @@ import { Button } from "@/components/ui/button";
 const { t, locale } = useI18n();
 const user = ref("");
 const enterFirstName = ref();
+const isLoggedIn = ref(false);
 const useremail = ref();
 const userData = ref({
   userAccount: "",
@@ -27,9 +30,14 @@ const enteruseremail = ref();
 onMounted(async () => {
   const req = await fetch("/api/user/validateUserToken");
   const res = await req.json();
+  if (res.current_spot === "LOGOUT") {
+    isLoggedIn.value = false;
+    return;
+  }
   user.value = res.firstName;
   userData.value = res;
   useremail.value = res.email;
+  isLoggedIn.value = true;
 });
 const setFirstName = async () => {
   const staticFirstName = "";
@@ -37,7 +45,13 @@ const setFirstName = async () => {
 
 const emit = defineEmits(["windowopener"]);
 
-const logoutAction = () => {};
+const logoutAction = async () => {
+  // I reget rolling my own auth :(
+  const req = await fetch("/api/user/logout");
+  const res = await req.json();
+  console.log(res);
+  showLogoutDialog.value = false;
+};
 
 const groqApiKeyRegex = /^gsk_[a-zA-Z0-9]{52}$/;
 const customApiKey = ref();
@@ -67,9 +81,6 @@ const confirmDelete = async () => {
   showDeleteDialog.value = false;
 };
 
-const confirmLogout = async () => {
-  showLogoutDialog.value = false;
-};
 const deleteAccount = async () => {
   const req = await fetch("/api/user/action", {
     method: "DELETE",
@@ -123,6 +134,43 @@ const submitChangeAction = async (action: string) => {
   } catch (error) {
     console.error("Failed to submit change:", error);
   }
+};
+
+// Login function
+const userAccount = ref("");
+const userPassword = ref("");
+const error = ref(false);
+const errormsg = ref("");
+const success = ref(false);
+const submitUserPassword = async () => {
+  error.value = false;
+  errormsg.value = "";
+  // Encrypt password during transit
+  const password = sha512(userPassword.value).toString();
+
+  // Send data.
+  const sendData = await fetch("/api/user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username: userAccount.value,
+      password: password,
+    }),
+  });
+  const res = await sendData.json();
+
+  if (!res.error) {
+    error.value = false;
+    success.value = true;
+    console.log(res);
+    userAccount.value = "";
+  } else {
+    error.value = true;
+    errormsg.value = res.error;
+  }
+  userPassword.value = "";
 };
 </script>
 <template>
@@ -230,7 +278,7 @@ const submitChangeAction = async (action: string) => {
             <Button @click="showLogoutDialog = false" variant="outline">
               {{ t("popup.cancel") }}
             </Button>
-            <Button @click="confirmLogout" variant="destructive">
+            <Button @click="logoutAction" variant="destructive">
               {{ t("popup.confirm") }}
             </Button>
           </DialogFooter>
