@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { BadgeCheckIcon, OctagonAlertIcon } from "lucide-vue-next";
 import sha512 from "crypto-js/sha512";
-import Input from "~/components/ui/input/Input.vue";
 import { Input } from "~/components/ui/input";
 import {
   Dialog,
