@@ -38,9 +38,6 @@ onMounted(async () => {
   useremail.value = res.email;
   isLoggedIn.value = true;
 });
-const setFirstName = async () => {
-  const staticFirstName = "";
-};
 
 const emit = defineEmits(["windowopener"]);
 
@@ -98,23 +95,12 @@ const confirmDelete = async () => {
   showDeleteDialog.value = false;
 };
 
-const apiKey = customApiKey.value;
-try {
-  const sendApi = await fetch("/api/ai/loadCustomGroqApi", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      apiKey: apiKey,
-    }),
+const deleteAccount = async () => {
+  const req = await fetch("/api/user/sendUserChanges", {
+    method: "DELETE",
   });
-  const data = await sendApi.json();
-  if (data.error) {
-  }
-} catch (e) {
-  console.log(e);
-}
+};
+
 const submitChangeAction = async (action: string) => {
   const actions = [
     { name: "NAME", sendValue: enterFirstName.value },
