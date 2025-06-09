@@ -69,7 +69,7 @@ const submitCustomApiKey = async () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        value: customApiKey,
+        value: customApiKey.value,
       }),
     });
 
