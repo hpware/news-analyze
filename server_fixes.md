@@ -17,7 +17,7 @@ And also I wrote a super stupid cron fix, which is below.
 ## My stupid cron fix:
 Cron Job:
 ```
-0 1 * * * "cd / && bun run hardpushrevolvconf.ts" > /dev/null
+0 1 * * * "bun run /hardpushrevolvconf.ts" > /dev/null
 ```
 
 Here is the script I used to force the change of my resolv.conf file:
