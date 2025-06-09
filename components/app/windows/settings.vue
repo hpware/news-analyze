@@ -62,6 +62,24 @@ const submitCustomApiKey = async () => {
       return;
     }
   }
+  try {
+    const req = await fetch("/api/user/submitGroqKey", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        value: customApiKey,
+      }),
+    });
+
+    const response = await req.json();
+    if (response.error) {
+      console.error("Error updating user data:", response.error);
+    }
+  } catch (error) {
+    console.error("Failed to submit change:", error);
+  }
 };
 
 const checkValidApiKey = () => {
@@ -80,11 +98,6 @@ const confirmDelete = async () => {
   showDeleteDialog.value = false;
 };
 
-const deleteAccount = async () => {
-  const req = await fetch("/api/user/action", {
-    method: "DELETE",
-  });
-};
 const apiKey = customApiKey.value;
 try {
   const sendApi = await fetch("/api/ai/loadCustomGroqApi", {
