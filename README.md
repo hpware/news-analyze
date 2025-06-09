@@ -19,7 +19,7 @@ https://yhw.tw/news
 
 ## Issues:
 ### Onboarding:
-Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implemnting the function in a already large repo is kinda hard. So later this week, I will just add a basic video onboading system.
+Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implementing the function in a already large repo is kinda hard. So later this week, I will just add a basic video onboarding system.
 
 ### User actions via the API:
 Currently, user actions are broken.
@@ -36,7 +36,7 @@ Chatbot, which is chatbot for chatting about news articles, is currently not ava
 ### Server Downtime
 Use https://status.yhw.tw/ for checking down time, most of the time it will be up, but sometimes it just won't updated to the latest feature & update.
 
-Archive:
+#### Archive:
 I fixed most issues of the server, including the nameserver stuff, if you want to know how I fixed it, you can view how I fixed it [here](/server_fixes.md) or on [My broken blog](https://4-1-2.yuanhau.com/posts/)
 
 ### Scraping restrictions:
@@ -53,7 +53,7 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 
 ## Why?
 
-We'll use this news article as an example:
+We'll use this news article from May 7th 2025 as an example:
 
 ```
 Zhu Lilun criticizes the government for being like Hitler German Institute in Taiwan: History should not be distorted for politics | Politics - CNA

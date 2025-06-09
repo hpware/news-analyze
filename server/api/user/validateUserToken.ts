@@ -48,6 +48,5 @@ export default defineEventHandler(async (event) => {
     current_spot: "KEEP_LOGIN",
     email: fetchViaSQL[0].email,
     avatarURL: fetchViaSQL[0].avatarurl,
-    firstName: fetchViaSQL[0].firstName,
   };
 });

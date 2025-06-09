@@ -105,7 +105,6 @@ const translateProvider = ref("");
 
 // Key Data
 const menuItems = [
-  // { name: t("app.hotnews"), windowName: "hotnews" },
   { name: t("app.news"), windowName: "news" },
   { name: t("app.sources"), windowName: "sources" },
   { name: t("app.starred"), windowName: "starred" },
@@ -113,20 +112,10 @@ const menuItems = [
   { name: t("app.about"), windowName: "about" },
   { name: t("app.terminal"), windowName: "tty" },
   { name: t("app.settings"), windowName: "settings" },
-  { name: t("app.login"), windowName: "login" },
   { name: t("app.leave"), windowName: "leave" },
 ];
 
 const associAppWindow = [
-  {
-    name: "googlenews",
-    id: "1",
-    title: t("app.hotnews"),
-    component: HotNewsWindow,
-    width: "700px",
-    height: "500px",
-    translatable: true,
-  },
   {
     name: "login",
     id: "2",

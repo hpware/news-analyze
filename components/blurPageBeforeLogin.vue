@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import logoutUser from "~/components/logoutuser";
 // Imports
 const { t, locale } = useI18n();
 // Values
