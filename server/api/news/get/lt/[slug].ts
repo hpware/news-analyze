@@ -1,5 +1,6 @@
 import lineToday from "~/server/scrape/line_today";
 import sql from "~/server/components/postgres";
+import { v4 as uuidv4 } from "uuid";
 
 interface CacheItems {
   title: string;
@@ -36,6 +37,23 @@ function cleanUpSlug(orgslug: string) {
   return slug;
 }
 
+// Archive articles. For future use?
+async function storeArticlesIfItDoesNotExists(data, RequestId) {
+  const checkDataIsInDatabase = await sql`
+    SELECT * FROM news_articles
+    WHERE jsondata = ${data}
+    `;
+  if (checkDataIsInDatabase.length === 0) {
+    return;
+  }
+  const storeData = await sql`
+    INSERT INTO news_articles (uuid, article_id, jsondata)
+    VALUES (${uuidv4()}, ${RequestId}, ${data})
+    `;
+  console.log(storeData);
+  return;
+}
+
 export default defineEventHandler(async (event) => {
   const translateQuery = getQuery(event).translate;
   const translate = translateQuery === "true" ? true : false;
@@ -54,6 +72,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const data = await lineToday(cleanSlug);
+    storeArticlesIfItDoesNotExists(data, cleanSlug);
     cache[cleanSlug] = {
       ...data,
       timestamp: Date.now(),

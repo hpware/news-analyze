@@ -33,6 +33,13 @@ if (error === null) {
   errorMsg.value = error.value;
 }
 
+onMounted(() => {
+  if (data.length === 0) {
+    eerrrroorr.value = true;
+    errorMsg.value = "No data returned.";
+  }
+});
+
 async function getImageSource(image: string) {
   console.log(image);
   if (!image || image === "#") {

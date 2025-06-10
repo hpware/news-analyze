@@ -51,6 +51,15 @@ const createSources = await sql`
   )
   `;
 
+const createArticlesArchive = await sql`
+  create table if not exists news_articles (
+  uuid text primary key,
+  article_id text primary key,
+  jsondata json not null,
+  archive_timestamp timestamp default CURRENT_TIMESTAMP,
+  )
+  `;
+
 console.log("Creation Complete");
 console.log(
   "If the script still does not quit after 2 seconds after the 'Creation Complete' message, please stop it by using Ctrl + C or on mac Control + C",
