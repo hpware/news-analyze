@@ -3,7 +3,7 @@ name: Build and Push Docker Image
 on:
   push:
     branches:
-      - master
+      - beta
   workflow_dispatch:
 
 env:
@@ -34,7 +34,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=raw,value=latest
+            type=raw,value=beta
             type=ref,event=branch
             type=ref,event=pr
             type=semver,pattern={{version}}

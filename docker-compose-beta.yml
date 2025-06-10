@@ -13,7 +13,7 @@ services:
       - web
 
   newsanalyze-service:
-    image: ghcr.io/hpware/news-analyze:latest
+    image: ghcr.io/hpware/news-analyze:beta
     networks:
       - web
     labels:
