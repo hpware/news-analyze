@@ -88,7 +88,12 @@
     "greet": "Greetings, ",
     "defaultname": "User",
     "login": "Login / Register",
-    "loginmessage": "We will create a account for you if you don't have one."
+    "loginmessage": "We will create a account for you if you don't have one.",
+    "loginButton": "Log In",
+    "placeholder": {
+      "user": "Username",
+      "password": "Password"
+    }
   },
   "popuptext": {
     "logout": "Are you sure you want to logout?",

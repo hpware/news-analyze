@@ -88,7 +88,12 @@
     "greet": "嗨, ",
     "defaultname": "使用者",
     "login": "登入 / 註冊",
-    "loginmessage": "如果妳沒有帳號的話，我們會幫你註冊一個。"
+    "loginmessage": "如果妳沒有帳號的話，我們會幫你註冊一個。",
+    "loginButton": "登入按鈕",
+    "placeholder": {
+      "user": "使用者帳號",
+      "password": "密碼"
+    }
   },
   "popup": {
     "cancel": "取消",
