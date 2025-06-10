@@ -19,7 +19,12 @@ export default defineEventHandler(async (event) => {
     DELETE FROM users
     WHERE username = ${userToken.user}
     `;
+    const deleteOtherUserMetaData = await sql`
+    DELETE FROM user_other_data
+    WHERE username = ${userToken.user}
+    `;
     console.log(deleteUserAccount);
+    console.log(deleteOtherUserMetaData);
     deleteCookie(event, "token");
     return {
       success: true,
