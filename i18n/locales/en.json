@@ -86,7 +86,9 @@
     "dangerzone": "DANGER ZONE",
     "submit": "Submit",
     "greet": "Greetings, ",
-    "defaultname": "User"
+    "defaultname": "User",
+    "login": "Login / Register",
+    "loginmessage": "We will create a account for you if you don't have one."
   },
   "popuptext": {
     "logout": "Are you sure you want to logout?",

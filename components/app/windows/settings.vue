@@ -174,7 +174,39 @@ const submitUserPassword = async () => {
 };
 </script>
 <template>
-  <div class="justify-center align-center text-center">
+  <div class="justify-center align-center text-center" v-if="!isLoggedIn">
+    <form
+      class="flex flex-col items-center justify-center h-full"
+      @submit.prevent="submitUserPassword"
+      v-if="!success"
+    >
+      <span class="text-2xl text-bold mb-0">{{ t("settings.login") }}</span>
+      <span class="mb-4 text-sm mt-0"> {{ t("settings.loginmessage") }}</span>
+      <div class="">
+        <Input
+          type="text"
+          placeholder="Username"
+          class="mb-2 p-2 border rounded"
+          v-model="userAccount"
+          required
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          class="p-2 border rounded mb-2"
+          v-model="userPassword"
+          required
+        />
+      </div>
+      <span v-if="error" class="text-red-600 text-xs m-2"
+        >Error: {{ errormsg }}</span
+      >
+      <button class="bg-black text-white p-2 rounded transition duration-200">
+        Log In
+      </button>
+    </form>
+  </div>
+  <div class="justify-center align-center text-center" v-else>
     <h1 class="text-3xl text-bold p-2">
       {{ t("settings.greet")
       }}{{ user || userData.userAccount || t("settings.defaultname") }}

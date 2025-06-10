@@ -86,7 +86,9 @@
     "dangerzone": "DANGER ZONE",
     "submit": "送出",
     "greet": "嗨, ",
-    "defaultname": "使用者"
+    "defaultname": "使用者",
+    "login": "登入 / 註冊",
+    "loginmessage": "如果妳沒有帳號的話，我們會幫你註冊一個。"
   },
   "popup": {
     "cancel": "取消",
