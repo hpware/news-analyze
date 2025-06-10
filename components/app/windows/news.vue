@@ -168,9 +168,11 @@ const jaccardSimilarity = (v1: any, v2: any) => {
   return intersection.size / union.size;
 };
 
-const findRel = async (title: string) => {
+/*
+const findRel =
+async (title: string) => {
   const req = await fetch("/api/sort");
-};
+};*/
 
 // Check words
 const checkIfEmptyArray = [];

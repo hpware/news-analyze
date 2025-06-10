@@ -1,15 +1,16 @@
+import getUserTokenMinusSQLInjection from "~/server/components/getUserToken";
+
 export default defineEventHandler(async (event) => {
-  const loginCookie = getCookie(event, "session");
-  const lastCheckCookie = getCookie(event, "last_check");
-  const nowDate = new Date().toLocaleString();
+  const loginCookie = await getUserTokenMinusSQLInjection(event);
   try {
-    if (loginCookie) {
+    if (false) {
       deleteCookie(event, "token");
       return {
         success: true,
         error: null,
       };
     }
+    return "testing";
   } catch (e) {
     return {
       success: false,

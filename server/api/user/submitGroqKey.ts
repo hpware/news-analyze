@@ -1,19 +1,11 @@
 import sql from "~/server/components/postgres";
+import getUserTokenMinusSQLInjection from "~/server/components/getUserToken";
 export default defineEventHandler(async (event) => {
   // Check user data.
-  const userToken = getCookie(event, "token");
-  if (!userToken) {
+  const user = getUserTokenMinusSQLInjection(event);
+  if (user.error.length !== 0) {
     return {
-      error: "ERR_NOT_ALLOWED",
-    };
-  }
-  const checkUserToken = await sql`
-    select * from usertokens
-    where token=${userToken}
-    `;
-  if (checkUserToken.length === 0) {
-    return {
-      error: "ERR_NOT_ALLOWED",
+      error: user.error,
     };
   }
   // Actual function
@@ -26,7 +18,7 @@ export default defineEventHandler(async (event) => {
     `
       UPDATE user_other_data SET ${requestChange} = $1
       WHERE username = $2`,
-    [apiKeyqq[0], checkUserToken[0].username],
+    [apiKeyqq[0], user.user],
   );
   return {
     body: body,

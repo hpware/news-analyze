@@ -99,6 +99,8 @@ const deleteAccount = async () => {
   const req = await fetch("/api/user/sendUserChanges", {
     method: "DELETE",
   });
+  const res = await res.json();
+  console.log(res);
 };
 
 const submitChangeAction = async (action: string) => {
