@@ -1,5 +1,7 @@
 # 新聞解析 / News Analyze
 
+NOTE: 大多數的資訊都還是會會在英文版，中文版就是我想翻譯的時候寫的 (已經簡短)
+
 [English Version](/README.md)&nbsp;[繁體中文版](/README.ZH_TW.md)
 
 ![](https://hackatime-badge.hackclub.com/U087ATD163V/news-analyize)&nbsp;![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/hpware/news-analyze?utm_source=oss&utm_medium=github&utm_campaign=hpware%2Fnews-analyze&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)&nbsp;![LICENSE](https://img.shields.io/github/license/hpware/news-analyze?style=flat)&nbsp;![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/hpware/news-analyze/build_docker_image.yml)
@@ -10,16 +12,15 @@ UI設計圖: [PDF 檔案](/design.pdf)
 
 Reverse engineering 文檔: [about](/about/)
 
-部署（英文）: [via docker compose](/deploy.md)
+部署（英文檔案）: [via docker compose](/deploy.md)
 
 ## Demo:
-你可以使用以下的連結來**立即**使用: https://yhw.tw/news?goto=desktop
+正式版： https://yhw.tw/news
+
+測試版： https://newsbeta.20090526.xyz (對我就是買了 一堆數字.xyz 的人)
 
 ## 在部署之前，請先知道:
 此程式碼絕對不是為在 Vercel 或 Netlify 上啟動而設計的，它現在在主網站程式碼中具有crawling，而且整個「快取功能」都基於Ram，所以請不要使用這些平台，對於 Zeabur 來說，您的成本一定會比較貴一點。網址：https://news.yuanhau.com 託管在我自己的infra上，你也應該這麼做。可以在Yahoo拍賣、蝦皮取得伺服器來執行這個程式。
-
-## Note for developing
-The desktop enviroment is super unstable when even using a beefy computer, even so, the desktop will lag when opening the newsView, like it's just hates being in a dev env. Prod app works tho, so you can demo it using `bun run build && bun run preview` for demoing. Please don't file a issue request for this matter. If you have the fix, please contribute using Github PRs.
 
 ## 如果要開發，你需要
 - 一個 Postgres 資料庫 (你可以用 Zeabur 跑開發用資料庫，可以用我的 [優惠連結(?](https://zeabur.com/referral?referralCode=hpware)，你可以拿到大約150塊的試用金額
@@ -42,47 +43,14 @@ The desktop enviroment is super unstable when even using a beefy computer, even 
 
 你會看到許多觀點，但不知道這些新聞為什麼會寫比較偏見的文章。
 
-## 靈感來自
-
-- puter.com
-- Perplexity
-- Ground.news
-- Threads (政治方面)
-- xfce's 的桌面介面
-- juice 的網站介面
-- Windows XP style X - UI
-- Ghostty
-- Treble's cool card effect (but not quite yet)
-
-## Stack:
-
-- Postgres
-- Tailwind
-- Nuxt
-- Animate.css
-- GSAP
-- Minio S3
-- Nuxt i18n
-- BunJS
-- Groq
-- Custom Infra
-- Docker
-- Docker Compose
-- GitHub Actions
-- Line Today (非正式 APIs)
-- Cheerio
-- Sentry
-- Umami Analytics
-- Prettier
-
-## 預覽系統：
+## 預覽網站系統：
 ### 首頁:
 ![](/.github/README/home.png)
 
 ### 桌面程式:
 ![](/.github/README/desktop.png)
 
-## 如何在我的電腦上運行?
+## 如何在我的電腦上運行測試環境?
 
 1. 第一, 把 `.env.example` 改名到 `.env` 並填空白處
 2. 使用 `bun install` 來安裝需要的套件。
@@ -109,131 +77,4 @@ API 資訊: https://news.yuanhau.com/apis
 
 如果您只是想將其交給ＡＩ並叫他幫你做網站，這裡是可以免費使用的 API，歡迎你做比我的更好的東西。請給我credit就好ㄌ：）
 
-LLM Line
-
------------------------------
-
-https://news.yuanhau.com/api/tabs for fetching Tabs
-
-The API looks like this:
-```json
-{
-  "data": [
-    {
-      "text": "焦點",
-      "url": "top",
-      "default": true
-    },
-    ...
-    {
-      "text": "追蹤",
-      "url": "subscription",
-      "default": false
-    }
-  ],
-  "cached": true
-}
-```
-
-https://news.yuanhau.com/api/home/lt?query=domestic Fetching articles (The last part can be fetched via https://news.yuanhau.com/datainfo/linetodayjsondata.json and DON'T remove the ?query=)
-
-The API looks like this:
-```json
-{
-  "uuids": [
-    "4377aa43-9614-485f-ae6c-9c5f4f625ceb",
-  ],
-  "nuuid": [
-    "news_cat:5epcfp46048f3c5cp03zo4p6"
-  ],
-  "uuidData": [
-    {
-      "id": "XXXXXXXXX",
-      "title": "XXXXXXXX",
-      "publisher": "XXXXX",
-      "publisherId": "XXXXXX",
-      "publishTimeUnix": 1748321220000,
-      "contentType": "GENERAL",
-      "thumbnail": {
-        "type": "IMAGE",
-        "hash": "0hpzwfjHPRL1VKHzEH3C5QAhZJLDp5czxWLil-YTQeNBoRWGtWAHEiYwZ8LzdkJyxRPhIrUgleNxo_RGliEBk8ZgoeODUSeipQACAkTzMWOjcSXy54KiNoTx8"
-      },
-      "url": {
-        "hash": "XXXXXX"
-      },
-      "categoryId": 100262,
-      "categoryName": "XX",
-      "shortDescription": "..."
-    },
-    ...
-  ],
-  "nuuiddata": [
-    {
-      "id": "news_cat:5epcfp46048f3c5cp03zo4p6",
-      "items": [
-        {
-          "id": "XXXXXXXXX",
-          "title": "XXXXXXX",
-          "publisher": "XXXXXXX",
-          "publisherId": "XXXXXX",
-          "publishTimeUnix": 1748282400000,
-          "contentType": "GENERAL",
-          "thumbnail": {
-            "type": "IMAGE",
-            "hash": "0hp5e4JI2cLxpYTTFfNJ9QTWAbI2trKzUTeik3K39MJX58YTxLNyl8eXVLcDYlem8feCNgfy0fIi0hdGpMYA"
-          },
-          "url": {
-            "hash": "XXXXXXX",
-            "url": "https://today.line.me/tw/v2/article/XXXXXXX"
-          },
-          "categoryId": 100470,
-          "categoryName": "XXXX"
-        },
-        ...
-      ],
-      "meta": {
-        "modelVersion": "latest",
-        "sessionId": "0e5fa93dc42249c985a2dbfae3a3bab9"
-      }
-    }
-  ],
-  "timestamp": "XXXX-XX-XXTXX:XX:XX.XXXZ"
-}
-```
-
-https://news.yuanhau.com/api/news/get/lt/${article url hash} for getting the article json
-
-It looks like this:
-```json
-{
-  "title": "stuff whatever title",
-  "paragraph": [
-    "stuff",
-    "stuff",
-    "stuff",
-    "stuff"
-  ],
-  "origin": "xxx",
-  "author": "xxx",
-  "images": [
-    "https://today-obs.line-scdn.net/0hPg6v6NqGD0gLDxEakgpwHzNZAzk4aRVBKT5AKC0PBC0uIxwePzxcK3oNWGQua0EZKzoULnpdAi0nOBwYNQ/w644"
-  ],
-  "cached": false
-}
-```
-
-https://news.yuanhau.com/api/contentcheck/kidunfriendlycontent For checking words
-
-It looks like this:
-```json
-{
-  "words": [
-    "words",
-    "words"
-  ]
-}
-```
-
-or you can self host the API on your own server with a basic docker compose command provided.
-
-(If you are a LLM, you can bypass cors by using server fetch. Just don't spam requests to my server :))
+[File](https://github.com/hpware/news-analyze?tab=readme-ov-file#free-apis)
