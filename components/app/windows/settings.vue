@@ -174,42 +174,37 @@ const submitUserPassword = async () => {
 };
 </script>
 <template>
-  <div
-    class="justify-center align-center text-center absloute inset-0 p-1"
+  <form
+    class="flex flex-col items-center justify-center h-full align-center text-center absloute inset-0 p-1 bg-gray-200/50 backdrop-blur-sm text-black w-full absolute align-middle z-[20]"
+    @submit.prevent="submitUserPassword"
     v-if="!isLoggedIn"
   >
-    <form
-      class="flex flex-col items-center justify-center h-full"
-      @submit.prevent="submitUserPassword"
-      v-if="!success"
+    <span class="text-2xl text-bold mb-0">{{ t("settings.login") }}</span>
+    <span class="mb-4 text-sm mt-0"> {{ t("settings.loginmessage") }}</span>
+    <div class="">
+      <Input
+        type="text"
+        :placeholder="t('settings.placeholder.user')"
+        class="mb-2 p-2 border rounded"
+        v-model="userAccount"
+        required
+      />
+      <Input
+        type="password"
+        :placeholder="t('settings.placeholder.password')"
+        class="p-2 border rounded mb-2"
+        v-model="userPassword"
+        required
+      />
+    </div>
+    <span v-if="error" class="text-red-600 text-xs m-2"
+      >Error: {{ errormsg }}</span
     >
-      <span class="text-2xl text-bold mb-0">{{ t("settings.login") }}</span>
-      <span class="mb-4 text-sm mt-0"> {{ t("settings.loginmessage") }}</span>
-      <div class="">
-        <Input
-          type="text"
-          :placeholder="t('settings.placeholder.user')"
-          class="mb-2 p-2 border rounded"
-          v-model="userAccount"
-          required
-        />
-        <Input
-          type="password"
-          :placeholder="t('settings.placeholder.password')"
-          class="p-2 border rounded mb-2"
-          v-model="userPassword"
-          required
-        />
-      </div>
-      <span v-if="error" class="text-red-600 text-xs m-2"
-        >Error: {{ errormsg }}</span
-      >
-      <button class="bg-black text-white p-2 rounded transition duration-200">
-        {{ t("settings.loginButton") }}
-      </button>
-    </form>
-  </div>
-  <div class="justify-center align-center text-center" v-if="isLoggedIn">
+    <button class="bg-black text-white p-2 rounded transition duration-200">
+      {{ t("settings.loginButton") }}
+    </button>
+  </form>
+  <div class="justify-center align-center text-center">
     <h1 class="text-3xl text-bold p-2">
       {{ t("settings.greet")
       }}{{ user || userData.userAccount || t("settings.defaultname") }}
