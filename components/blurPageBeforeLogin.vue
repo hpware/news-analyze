@@ -28,8 +28,8 @@ try {
   if (data.requested_action === "LOGOUT_USER") {
     logoutUser();
   }
-  if (data.requested_action === "CONTIUNE") {
-    if (data.userAccount.length !== 0) {
+  if (data.requested_action === "CONTINUE") {
+    if (data.userAccount && data.userAccount.length !== 0) {
       allowed.value = true;
     } else {
       allowed.value = false;
