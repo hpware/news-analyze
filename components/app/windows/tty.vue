@@ -26,7 +26,7 @@ const printData = (content: any, userinput?: boolean, error?: boolean) => {
 
 const displayHelp = () => {
   const helpContent =
-    "Here are the commands for the Terminal \n\n execute [app]: This command opens an application in the [app] slot. \n article [id]: This command will open a LINE Today article in a window. \n about: This displays the about text window \n clear/clean: Wipe the terminal log. \n help: This help text system :D \n\n For more info, please view the documentation: https://news.yuanhau.com/docs";
+    "Here are the commands for the Terminal \n\n execute [app]: This command opens an application in the [app] slot. \n article [id]: This command will open a LINE Today article in a window. \n about: This displays the about text window \n clear/clean: Wipe the terminal log. \n help: This help text system :D";
   printData(helpContent);
 };
 
@@ -94,7 +94,7 @@ const cleanTTY = () => {
 const openArticle = (inputContent: string) => {
   const match = inputContent.match(/^article\s+[a-zA-Z0-9]{7}$/);
   if (match) {
-    const articleId = match[1].trim();
+    const articleId = match[0].trim();
     emit("openArticles", articleId);
     printData(`Opening article ${articleId}...`);
   } else {

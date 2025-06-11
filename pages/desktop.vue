@@ -60,6 +60,7 @@ import NewsViewWindow from "~/components/app/windows/newsView.vue";
 import SettingsWindow from "~/components/app/windows/settings.vue";
 import PrivacyPolicyWindow from "~/components/app/windows/privacypolicy.vue";
 import TOSWindow from "~/components/app/windows/tos.vue";
+import onBoardingWindow from "~/components/app/windows/onBoarding.vue";
 
 // Import Icons
 import {
@@ -201,6 +202,13 @@ const associAppWindow = [
     id: "13",
     title: t("app.tos"),
     component: TOSWindow,
+    translatable: false,
+  },
+  {
+    name: "onboard",
+    id: "14",
+    title: "OnBoarding",
+    component: onBoardingWindow,
     translatable: false,
   },
 ];

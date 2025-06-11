@@ -2,7 +2,7 @@ import sql from "~/server/components/postgres";
 import getUserTokenMinusSQLInjection from "~/server/components/getUserToken";
 export default defineEventHandler(async (event) => {
   // Check user data.
-  const user = getUserTokenMinusSQLInjection(event);
+  const user = await getUserTokenMinusSQLInjection(event);
   if (user.error.length !== 0) {
     return {
       error: user.error,
