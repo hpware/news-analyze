@@ -132,7 +132,7 @@ useSeoMeta({
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger>
-              <NuxtLink :to="localePath('/desktop')">
+              <NuxtLink :to="localePath('/desktop?openapp=onboard')">
                 <button
                   class="m-4 mr-1 ml-1 bg-[#8C9393] text-white p-3 rounded-[10px] bg-gradient-to-l from-sky-500 to-purple-600 transition-all duration-150 hover:transform hover:scale-105 hover:shadow-lg"
                 >

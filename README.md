@@ -19,7 +19,7 @@ Video Guide: [YouTube](https://youtu.be/8P3qgVm6m6g)
 ## Demo:
 Production (Latest Docker Image): https://yhw.tw/news
 
-Beta (Beta Docekr Image): https://newsbeta.20090526.xyz
+Beta (Beta Docker Image): https://newsbeta.20090526.xyz
 
 ## Video Guide
 
