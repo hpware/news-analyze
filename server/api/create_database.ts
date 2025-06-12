@@ -34,8 +34,8 @@ export default defineEventHandler(async (event) => {
 
   const createUserOtherData = await sql`
     create table if not exists user_other_data (
-    user_id text primary key ,
-    user text not null unique,
+    user_id text primary key,
+    username text not null unique,
     groq_api_key text,
     starred_news JSON not null,
     translate_provider text,
@@ -51,11 +51,21 @@ export default defineEventHandler(async (event) => {
     )
     `;
 
+  const createArticlesArchive = await sql`
+    create table if not exists news_articles (
+    uuid text primary key,
+    article_id text primary key,
+    jsondata json not null,
+    archive_timestamp timestamp default CURRENT_TIMESTAMP,
+    )
+    `;
+
   return {
     createUsers: createUsers,
     usersList: usersList,
     createUserAiChatHistory: createUserAiChatHistory,
     createSources: createSources,
     createUserOtherData: createUserOtherData,
+    createArticlesArchive: createArticlesArchive,
   };
 });
