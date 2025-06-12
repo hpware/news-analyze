@@ -27,6 +27,10 @@ const userData = ref({
 });
 const enteruseremail = ref();
 onMounted(async () => {
+  await validateUserInfo();
+});
+
+const validateUserInfo = async () => {
   const req = await fetch("/api/user/validateUserToken");
   const res = await req.json();
   if (res.current_spot === "LOGOUT") {
@@ -37,7 +41,7 @@ onMounted(async () => {
   userData.value = res;
   useremail.value = res.email;
   isLoggedIn.value = true;
-});
+};
 
 const emit = defineEmits(["windowopener"]);
 
@@ -166,6 +170,7 @@ const submitUserPassword = async () => {
     success.value = true;
     console.log(res);
     userAccount.value = "";
+    await validateUserInfo();
   } else {
     error.value = true;
     errormsg.value = res.error;
