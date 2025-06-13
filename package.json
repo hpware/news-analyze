@@ -39,7 +39,7 @@
     "gsap": "^3.13.0",
     "html-to-json-parser": "^2.0.1",
     "js-confetti": "^0.12.0",
-    "lucide-vue-next": "^0.508.0",
+    "lucide-vue-next": "^0.511.0",
     "nuxt": "^3.17.2",
     "postgres": "^3.4.5",
     "prettier": "^3.5.3",
