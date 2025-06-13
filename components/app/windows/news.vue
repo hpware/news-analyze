@@ -81,7 +81,11 @@ const updateContent = async (url: string, tabAction: boolean) => {
     const req = await fetch(`/api/home/lt?query=${url.trim()}`);
     const data = await req.json();
     if (data) {
-      contentArray.value = [...data.uuidData, ...(data.nuuiddata?.items || [])];
+      const coolArray = [...data.uuidData, ...data.nuuiddata?.items];
+      contentArray.value =
+        coolArray.sort(
+          (title1, title2) => title2.publishTimeUnix - title1.publishTimeUnix,
+        ) || [];
       switchTabs.value = false;
       isDataCached.value = data.cached || false;
       displayTranslateContent.value = false;
