@@ -43,6 +43,11 @@ const validateUserInfo = async () => {
   isLoggedIn.value = true;
 };
 
+const intervalTime = 1000 * 60 * 2; // Validate user Info for every ten min while the admin page is opened.
+setInterval(async () => {
+  await validateUserInfo();
+}, intervalTime);
+
 const emit = defineEmits(["windowopener"]);
 
 const logoutAction = async () => {
@@ -96,6 +101,7 @@ const showDeleteDialog = ref(false);
 const showLogoutDialog = ref(false);
 const confirmDelete = async () => {
   await deleteAccount();
+  await validateUserInfo();
   showDeleteDialog.value = false;
 };
 

@@ -81,7 +81,11 @@ const updateContent = async (url: string, tabAction: boolean) => {
     const req = await fetch(`/api/home/lt?query=${url.trim()}`);
     const data = await req.json();
     if (data) {
-      const coolArray = [...data.uuidData, ...data.nuuiddata?.items];
+      // Made by coderabbit: https://github.com/hpware/news-analyze/pull/6#discussion_r2144713017
+      const coolArray = [
+        ...(data.uuidData ?? []),
+        ...(data.nuuiddata?.items ?? []),
+      ];
       contentArray.value =
         coolArray.sort(
           (title1, title2) => title2.publishTimeUnix - title1.publishTimeUnix,
