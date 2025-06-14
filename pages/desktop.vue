@@ -374,7 +374,9 @@ onMounted(async () => {
     if (openApp.value === "newsView") {
       return;
     }
-    openWindow(openApp.value);
+    setTimeout(() => {
+      openWindow(openApp.value);
+    }, 2000);
   }
 });
 

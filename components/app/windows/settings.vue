@@ -27,6 +27,10 @@ const userData = ref({
 });
 const enteruseremail = ref();
 onMounted(async () => {
+  await validateUserInfo();
+});
+
+const validateUserInfo = async () => {
   const req = await fetch("/api/user/validateUserToken");
   const res = await req.json();
   if (res.current_spot === "LOGOUT") {
@@ -37,7 +41,12 @@ onMounted(async () => {
   userData.value = res;
   useremail.value = res.email;
   isLoggedIn.value = true;
-});
+};
+
+const intervalTime = 1000 * 60 * 2; // Validate user Info for every ten min while the admin page is opened.
+setInterval(async () => {
+  await validateUserInfo();
+}, intervalTime);
 
 const emit = defineEmits(["windowopener"]);
 
@@ -91,22 +100,24 @@ const checkValidApiKey = () => {
 const showDeleteDialog = ref(false);
 const showLogoutDialog = ref(false);
 const confirmDelete = async () => {
-  await deleteAccount();
   showDeleteDialog.value = false;
+  await deleteAccount();
+  await validateUserInfo();
 };
 
 const deleteAccount = async () => {
   const req = await fetch("/api/user/sendUserChanges", {
     method: "DELETE",
   });
-  const res = await res.json();
+  const res = await req.json();
   console.log(res);
 };
 
 const submitChangeAction = async (action: string) => {
+  //const allowedColumns = ["firstname", "email"];
   const actions = [
-    { name: "NAME", sendValue: enterFirstName.value },
-    { name: "USER_EMAIL", sendValue: enteruseremail.value },
+    { name: "NAME", SQLSystem: "firstname", sendValue: enterFirstName.value },
+    { name: "USER_EMAIL", SQLSystem: "email", sendValue: enteruseremail.value },
   ];
 
   const actionMatch = actions.find((a) => a.name === action);
@@ -121,7 +132,7 @@ const submitChangeAction = async (action: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        action: actionMatch.name,
+        action: actionMatch.SQLSystem,
         value: actionMatch.sendValue,
         jsonValue: "",
       }),
@@ -130,7 +141,9 @@ const submitChangeAction = async (action: string) => {
     const response = await req.json();
     if (response.error) {
       console.error("Error updating user data:", response.error);
+      return;
     }
+    await validateUserInfo();
   } catch (error) {
     console.error("Failed to submit change:", error);
   }
@@ -166,6 +179,7 @@ const submitUserPassword = async () => {
     success.value = true;
     console.log(res);
     userAccount.value = "";
+    await validateUserInfo();
   } else {
     error.value = true;
     errormsg.value = res.error;

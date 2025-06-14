@@ -1,6 +1,11 @@
 <script setup lang="ts">
 // FOR THIS MODULE DO NOT USE THE ?APPNAME URL TYPE, IT WILL FALL AT ALL TIMES, I HAVE NO CLUE WHY IS BEHAVIOR HAPPENING RN?
-import { SparklesIcon, UserIcon, NewspaperIcon } from "lucide-vue-next";
+import {
+  SparklesIcon,
+  UserIcon,
+  NewspaperIcon,
+  StarIcon,
+} from "lucide-vue-next";
 import translate from "translate";
 
 interface translateInterfaceText {
@@ -178,6 +183,7 @@ const aiSummary = async () => {
           </div>
         </div>
       </div>
+      <button><StarIcon /></button>
     </div>
   </div>
 </template>

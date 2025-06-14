@@ -1,6 +1,7 @@
 import sql from "~/server/components/postgres";
 import CheckKidUnfriendlyContent from "~/components/checks/checkKidUnfriendlyContent";
 import * as cheerio from "cheerio";
+import { v4 as uuidv4 } from "uuid";
 
 // Caching
 
@@ -91,9 +92,16 @@ export default defineEventHandler(async (event) => {
         });
       }
     });
-    /*const pushNewsOrg = await sql`
-      insert into
-      `*/
+    const pushNewsOrg = await sql`
+      insert into lt_news_org (news_id, name, description)
+      values (${uuidv4()}, ${newsOrgName}, ${description})
+      `;
+    console.log(pushNewsOrg);
+    /**
+    *   news_id text primary key,
+    name text not null,
+    description text
+    */
     cache[slug] = {
       slug: slug,
       title: newsOrgName,

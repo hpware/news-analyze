@@ -54,9 +54,9 @@ const createSources = await sql`
 const createArticlesArchive = await sql`
   create table if not exists news_articles (
   uuid text primary key,
-  article_id text primary key,
+  article_id text,
   jsondata json not null,
-  archive_timestamp timestamp default CURRENT_TIMESTAMP,
+  archive_timestamp timestamp default CURRENT_TIMESTAMP
   )
   `;
 
