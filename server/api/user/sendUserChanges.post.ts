@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   if (body.jsonValue.length === 0) {
     const clearBadDataRegex = /[@-_.+a-zA-Z0-9]{2,}/;
     // Use Static values for now.
-    const requestChange = body.name;
+    const requestChange = body.action;
     const apiKeyqq = body.value.match(clearBadDataRegex);
     const allowedColumns = ["firstname", "email"];
 
