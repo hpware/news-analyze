@@ -29,6 +29,14 @@ export default defineEventHandler(async (event) => {
         sqlC: sqlC,
         success: true,
       };
+    } else if (requestChange === "email") {
+      const sqlC = await sql`
+        UPDATE users SET email = ${apiKeyqq[0]}
+        WHERE username = ${token.user}`;
+      return {
+        sqlC: sqlC,
+        success: true,
+      };
     }
     const sqlC = await sql.unsafe(
       `UPDATE user_other_data SET ${requestChange} = $1 WHERE username = $2`,
