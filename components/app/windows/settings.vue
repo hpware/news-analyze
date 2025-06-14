@@ -100,23 +100,24 @@ const checkValidApiKey = () => {
 const showDeleteDialog = ref(false);
 const showLogoutDialog = ref(false);
 const confirmDelete = async () => {
+  showDeleteDialog.value = false;
   await deleteAccount();
   await validateUserInfo();
-  showDeleteDialog.value = false;
 };
 
 const deleteAccount = async () => {
   const req = await fetch("/api/user/sendUserChanges", {
     method: "DELETE",
   });
-  const res = await res.json();
+  const res = await req.json();
   console.log(res);
 };
 
 const submitChangeAction = async (action: string) => {
+  //const allowedColumns = ["firstname", "email"];
   const actions = [
-    { name: "NAME", sendValue: enterFirstName.value },
-    { name: "USER_EMAIL", sendValue: enteruseremail.value },
+    { name: "NAME", SQLSystem: "firstname", sendValue: enterFirstName.value },
+    { name: "USER_EMAIL", SQLSystem: "email", sendValue: enteruseremail.value },
   ];
 
   const actionMatch = actions.find((a) => a.name === action);
@@ -131,7 +132,7 @@ const submitChangeAction = async (action: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        action: actionMatch.name,
+        action: actionMatch.SQLSystem,
         value: actionMatch.sendValue,
         jsonValue: "",
       }),
