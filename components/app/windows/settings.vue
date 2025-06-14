@@ -141,7 +141,9 @@ const submitChangeAction = async (action: string) => {
     const response = await req.json();
     if (response.error) {
       console.error("Error updating user data:", response.error);
+      return;
     }
+    await validateUserInfo();
   } catch (error) {
     console.error("Failed to submit change:", error);
   }
