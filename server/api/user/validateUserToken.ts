@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
   }
   return {
     userAccount: fetchViaSQL[0].username,
-    firstName: fetchViaSQL[0].firstName,
+    firstName: "",
     requested_action: "CONTINUE",
     current_spot: "KEEP_LOGIN",
     email: fetchViaSQL[0].email,
