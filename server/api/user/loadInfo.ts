@@ -42,8 +42,7 @@ export default defineEventHandler(async (event) => {
         fetchOtherUserData[0].remove_translate_popup || false,
       email: fetchMainData[0].email || "",
       name: fetchMainData[0].firstname || "",
-      useCustomGroqKey:
-        fetchOtherUserData[0].groq_api_key.length !== 0 || false,
+      useCustomGroqKey: +(fetchOtherUserData[0].groq_api_key?.length ?? 0) > 0,
       translate: {
         enabled: fetchOtherUserData[0].translate_enabled || false,
         lang: "en",
