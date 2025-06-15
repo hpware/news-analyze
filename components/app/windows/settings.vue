@@ -18,6 +18,7 @@ const user = ref("");
 const enterFirstName = ref();
 const isLoggedIn = ref(false);
 const useremail = ref();
+const sendSuccess = ref(false);
 const userData = ref({
   userAccount: "",
   firstName: "",
@@ -83,9 +84,17 @@ const submitCustomApiKey = async () => {
     if (response.error) {
       console.error("Error updating user data:", response.error);
     }
+    sendSuccessSystem();
   } catch (error) {
     console.error("Failed to submit change:", error);
   }
+};
+
+const sendSuccessSystem = () => {
+  sendSuccess.value = true;
+  setTimeout(() => {
+    sendSuccess.value = false;
+  }, 3000);
 };
 
 const checkValidApiKey = () => {
@@ -110,6 +119,7 @@ const deleteAccount = async () => {
     method: "DELETE",
   });
   const res = await req.json();
+  sendSuccessSystem();
   console.log(res);
 };
 
@@ -218,6 +228,13 @@ const submitUserPassword = async () => {
       {{ t("settings.loginButton") }}
     </button>
   </form>
+  <div
+    v-if="sendSuccess"
+    class="flex flex-col items-center justify-center h-full align-center text-center absloute inset-0 p-1 bg-gray-200/50 backdrop-blur-sm text-black w-full absolute align-middle z-[20]"
+  >
+    <BadgeCheckIcon class="w-12 h-12 p-1/2 m-1 text-blue-600" />
+    Success!
+  </div>
   <div class="justify-center align-center text-center">
     <h1 class="text-3xl text-bold p-2">
       {{ t("settings.greet")
