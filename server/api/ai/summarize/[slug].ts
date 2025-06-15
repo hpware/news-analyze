@@ -19,8 +19,11 @@ export default defineEventHandler(async (event) => {
     groqClient = new Groq({
       apiKey: doesTheUserHasACustomGroqApiAndWhatIsIt.customApi,
     });
+  } else {
+    groqClient = new Groq({
+      apiKey: process.env.GROQ_API_KEY,
+    });
   }
-
   const query = getQuery(event);
   const locale = query.locale;
   const buildURL = protocol + "://" + host + "/api/news/get/lt/" + slug;
