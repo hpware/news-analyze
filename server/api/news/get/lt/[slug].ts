@@ -43,12 +43,12 @@ async function storeArticlesIfItDoesNotExists(data, RequestId) {
     SELECT * FROM news_articles
     WHERE jsondata = ${data}
     `;
-  if (checkDataIsInDatabase.length === 0) {
+  if (checkDataIsInDatabase.length > 0) {
     return;
   }
   const storeData = await sql`
     INSERT INTO news_articles (uuid, article_id, jsondata)
-    VALUES (${uuidv4()}, ${RequestId}, ${data})
+    VALUES (${uuidv4()}, ${RequestId}, ${data}::JSON)
     `;
   console.log(storeData);
   return;

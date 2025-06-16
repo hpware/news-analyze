@@ -27,7 +27,7 @@ services:
         required: true
     deploy:
       mode: replicated
-      replicas: 2
+      replicas: 3
 
 networks:
   web:
