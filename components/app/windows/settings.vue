@@ -153,6 +153,7 @@ const submitChangeAction = async (action: string) => {
       console.error("Error updating user data:", response.error);
       return;
     }
+    sendSuccessSystem();
     await validateUserInfo();
   } catch (error) {
     console.error("Failed to submit change:", error);
@@ -189,6 +190,7 @@ const submitUserPassword = async () => {
     success.value = true;
     console.log(res);
     userAccount.value = "";
+    sendSuccessSystem();
     await validateUserInfo();
   } else {
     error.value = true;
