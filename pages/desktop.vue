@@ -47,6 +47,9 @@ import { gsap } from "gsap";
 import confetti from "js-confetti";
 import translate from "translate";
 
+// Import Scripts
+import checkAppVersion from "~/components/checkAppVersion";
+
 // Import Windows
 import UserWindow from "~/components/app/windows/user.vue";
 import SourcesWindow from "~/components/app/windows/sources.vue";
@@ -99,6 +102,7 @@ const applyForTranslation = ref(false);
 const langPrefDifferent = ref(false);
 const notLoggedInState = ref(false);
 const translateProvider = ref("");
+const newUpdate = ref(false);
 
 // Key Data
 const menuItems = [
@@ -620,6 +624,12 @@ onMounted(async () => {
   translateProvider.value = loadUserInfoData.translate.provider || "google";
   console.log(langPrefDifferent);
   });*/
+
+// Get ghe newest update
+const newUpdateTimer = 1000 * 60 * 3; // Check for thime every 3 min.
+setInterval(async () => {
+  newUpdate.value = await checkAppVersion();
+}, newUpdateTimer);
 </script>
 <template>
   <div v-if="changeLangAnimation">
@@ -741,6 +751,35 @@ onMounted(async () => {
         </Button>
         <Button @click="() => switchLocalePath()" variant="outline">
           {{ t("popup.change") }}
+        </Button>
+      </DialogFooter>
+    </DialogContent>
+  </Dialog>
+  <!--New Update-->
+  <Dialog v-model:open="langPrefDifferent">
+    <DialogContent class="!border-0 !bg-black !rounded">
+      <DialogHeader>
+        <DialogTitle>There is a new Update!</DialogTitle>
+        <DialogDescription>
+          Click notify later to save your current tasks & update the page.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
+        <Button
+          @click="
+            () => {
+              newUpdate.value = false;
+            }
+          "
+          variant="outline"
+        >
+          Notify later
+        </Button>
+        <Button
+          @click="() => window.location.reload('/desktop')"
+          variant="outline"
+        >
+          Update
         </Button>
       </DialogFooter>
     </DialogContent>
