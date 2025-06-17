@@ -30,6 +30,11 @@ export default defineEventHandler(async (event) => {
     };
   }
 
+  const getUserInfo = await sql`
+    SELECT * FROM users
+    WHERE username = ${fetchViaSQL[0].username}
+    `;
+
   const tokenDate = new Date(fetchViaSQL[0].created_at);
   const now = new Date();
   const dayInMilliseconds = 24 * 60 * 60 * 1000;
@@ -43,10 +48,10 @@ export default defineEventHandler(async (event) => {
   }
   return {
     userAccount: fetchViaSQL[0].username,
-    firstName: fetchViaSQL[0].firstName,
+    firstName: getUserInfo[0].firstName || "",
     requested_action: "CONTINUE",
     current_spot: "KEEP_LOGIN",
-    email: fetchViaSQL[0].email,
-    avatarURL: fetchViaSQL[0].avatarurl,
+    email: getUserInfo[0].email || "",
+    avatarURL: getUserInfo[0].avatarurl || "",
   };
 });
