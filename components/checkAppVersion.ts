@@ -1,10 +1,14 @@
 import currentVersion from "~/versionTag";
 export default async function newestVersion() {
+export default async function newestVersion() {
   const current = currentVersion();
   const req = await fetch("/api/version");
-  const res = await req.json();
-  if (current !== res.version) {
-    return false;
+  if (!req.ok) {
+    console.error("Version check failed:", req.statusText);
+    return true;                // fail-closed → pretend we are up-to-date
   }
-  return true;
+
+  const { version: latest } = await req.json();
+  return current === latest;    // `true`  ➜ up-to-date
+}
 }
