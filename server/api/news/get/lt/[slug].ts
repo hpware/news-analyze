@@ -38,20 +38,32 @@ function cleanUpSlug(orgslug: string) {
 }
 
 // Archive articles. For future use?
-async function storeArticlesIfItDoesNotExists(data, RequestId) {
-  const checkDataIsInDatabase = await sql`
-    SELECT * FROM news_articles
-    WHERE jsondata = ${data}
-    `;
-  if (checkDataIsInDatabase.length > 0) {
-    return;
+function storeArticlesIfItDoesNotExists(data, RequestId) {
+  try {
+    setImmediate(async () => {
+      try {
+        const checkDataIsInDatabase = await sql`
+          SELECT uuid FROM news_articles
+          WHERE article_id = ${RequestId}
+          LIMIT 1
+        `;
+        if (checkDataIsInDatabase.length > 0) {
+          console.log(`Article ${RequestId} already exists in database`);
+          return;
+        }
+        const jsonData = JSON.stringify(data);
+        await sql`
+          INSERT INTO news_articles (uuid, article_id, jsondata)
+          VALUES (${uuidv4()}, ${RequestId}, ${jsonData}::JSON)
+        `;
+        console.log(`Successfully archived article ${RequestId} in background`);
+      } catch (error) {
+        console.error("Failed to archive article in background:", error);
+      }
+    });
+  } catch (error) {
+    console.error("Failed to initiate background archiving:", error);
   }
-  const storeData = await sql`
-    INSERT INTO news_articles (uuid, article_id, jsondata)
-    VALUES (${uuidv4()}, ${RequestId}, ${data}::JSON)
-    `;
-  console.log(storeData);
-  return;
 }
 
 export default defineEventHandler(async (event) => {
