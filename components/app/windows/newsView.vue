@@ -108,17 +108,18 @@ const aiSummary = async () => {
 };
 
 const starArticle = async () => {
-  const req = await fetch(`/user/${slug}/fav`);
+  const buildUrl = `/user/${slug}/fav`;
+  const req = await fetch(buildUrl);
   const res = await req.json();
-  if (req.status === success) {
-    staredStatus.value = req.starred;
+  if (res.status === "success") {
+    staredStatus.value = res.starred;
   }
 };
 
 onMounted(async () => {
   const req = await fetch(`/user/${slug}/star`);
   const res = await req.json();
-  staredStatus.value = req;
+  staredStatus.value = res;
 });
 </script>
 <template>
@@ -188,19 +189,22 @@ onMounted(async () => {
           <div v-else>{{ summaryText }}</div>
         </div>
       </div>
-      <div class="flex flex-col bg-gray-500">
+      <!--<div class="flex flex-col bg-gray-500">
         <!--Similar articles-->
-        <div class="flex flex-row" v-for="item in likeart">
+      <!--<div class="flex flex-row" v-for="item in likeart">
           <img /><!--Image-->
-          <div class="flex flex-col">
+      <!--<div class="flex flex-col">
             <h2>title</h2>
             <span>description</span>
           </div>
         </div>
-      </div>
+      </div>-->
       <button
         @click="starArticle"
-        :class="'duration-300 transition-all' + {staredStatus && 'fill-blue-500 text-blue-500'"
+        :class="[
+          'duration-300 transition-all',
+          { 'fill-blue-500 text-blue-500': staredStatus },
+        ]"
       >
         <StarIcon />
       </button>
