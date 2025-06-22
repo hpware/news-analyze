@@ -11,8 +11,8 @@ const props = defineProps<{
 }>();
 
 const openNewWindow = (itemId: string) => {
-  emit("windowopener", "aboutNewsOrg");
   emit("loadValue", itemId);
+  emit("windowopener", "aboutNewsOrg");
 };
 
 const {
@@ -78,9 +78,9 @@ onMounted(async () => {
       {{ errorMsg }}
     </div>
   </div>
-  <div class="flex flex-row flexw-wrap justify-center gap-2">
+  <div class="flex flex-row flex-wrap justify-center gap-2">
     <div
-      class="flex flex-col group bg-gray-900/30 rounded-xl p-3 transition-all duration-500 shadow-lg hover:translate-y-[-2px] ransition-all duration-700"
+      class="flex flex-col group bg-gray-900/30 rounded-xl p-3 transition-all shadow-lg hover:translate-y-[-2px] ransition-all duration-500 max-w-1/2"
       v-for="item in source?.data"
       :key="item.id"
     >
