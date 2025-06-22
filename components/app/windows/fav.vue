@@ -8,8 +8,16 @@ const openApp = (link: string) => {
 </script>
 <template>
   <BlurPageBeforeLogin>
+    <div v-if="!favData.items">
+      <div
+        class="absolute inset-0 flex flex-col justify-center align-center text-center"
+      >
+          <h2>{{t("fav.haventaddedyet")}}</h2>
+      </div>
+    </div>
     <div
       class="justify-center text-center align-center flex flex-row flex-wrap"
+      v-else
     >
       <div v-for="items in favData.items">
         <div

@@ -25,10 +25,7 @@ try {
   if (sendError.value) {
     error.value = true;
   }
-  if (data.requested_action === "LOGOUT_USER") {
-    logoutUser();
-  }
-  if (data.requested_action === "CONTINUE") {
+  if (data.requested_action === "KEEP_LOGIN") {
     if (data.userAccount && data.userAccount.length !== 0) {
       allowed.value = true;
     } else {
