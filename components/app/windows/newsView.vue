@@ -31,6 +31,7 @@ const isGenerating = ref(false);
 const summaryText = ref("");
 const { locale } = useI18n();
 const likeart = ref([]);
+const staredStatus = ref(false);
 // Translating logic
 const translateText = ref(false);
 const translatedBefore = ref(false);
@@ -105,6 +106,21 @@ const aiSummary = async () => {
     isGenerating.value = false;
   }
 };
+
+const starArticle = async () => {
+  const buildUrl = `/user/${slug}/fav`;
+  const req = await fetch(buildUrl);
+  const res = await req.json();
+  if (res.status === "success") {
+    staredStatus.value = res.starred;
+  }
+};
+
+onMounted(async () => {
+  const req = await fetch(`/user/${slug}/star`);
+  const res = await req.json();
+  staredStatus.value = res;
+});
 </script>
 <template>
   <div
@@ -173,17 +189,25 @@ const aiSummary = async () => {
           <div v-else>{{ summaryText }}</div>
         </div>
       </div>
-      <div class="flex flex-col bg-gray-500">
+      <!--<div class="flex flex-col bg-gray-500">
         <!--Similar articles-->
-        <div class="flex flex-row" v-for="item in likeart">
+      <!--<div class="flex flex-row" v-for="item in likeart">
           <img /><!--Image-->
-          <div class="flex flex-col">
+      <!--<div class="flex flex-col">
             <h2>title</h2>
             <span>description</span>
           </div>
         </div>
-      </div>
-      <button><StarIcon /></button>
+      </div>-->
+      <button
+        @click="starArticle"
+        :class="[
+          'duration-300 transition-all',
+          { 'fill-blue-500 text-blue-500': staredStatus },
+        ]"
+      >
+        <StarIcon />
+      </button>
     </div>
   </div>
 </template>

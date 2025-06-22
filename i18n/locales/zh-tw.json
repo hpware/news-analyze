@@ -71,7 +71,7 @@
     "license": "授權",
     "search": "搜尋",
     "chatbot": "聊天機器人",
-    "starred": "收藏",
+    "starred": "我的最愛",
     "terminal": "終端機",
     "aboutNewsOrg": "關於這個新聞來源",
     "newsview": "新聞",
@@ -146,5 +146,8 @@
     "nosimilararticles": "找不到類似文章",
     "articleopenpart1": "會打開關於媒體",
     "articleopenpart2": "的視窗"
+  },
+  "fav": {
+    "haventaddedyet": "你尚未把新聞加入我的最愛"
   }
 }

@@ -7,16 +7,6 @@ const error = ref(false);
 const errorMsg = ref("");
 const emit = defineEmits(["windowopener", "error", "loadValue"]);
 
-/**
- *   return {
-   userAccount: fetchViaSQL[0].username,
-   firstName: fetchViaSQL[0].firstName,
-   requested_action: "CONTINUE",
-   current_spot: "KEEP_LOGIN",
-   email: fetchViaSQL[0].email,
-   avatarURL: fetchViaSQL[0].avatarurl,
- };
- */
 try {
   // 喔 我沒有加 await :( 難怪有問題
   const { data, error: sendError } = await useFetch(
@@ -25,11 +15,8 @@ try {
   if (sendError.value) {
     error.value = true;
   }
-  if (data.requested_action === "LOGOUT_USER") {
-    logoutUser();
-  }
-  if (data.requested_action === "CONTINUE") {
-    if (data.userAccount && data.userAccount.length !== 0) {
+  if (data.value.requested_action === "CONTINUE") {
+    if (data.value.userAccount && data.value.userAccount.length !== 0) {
       allowed.value = true;
     } else {
       allowed.value = false;

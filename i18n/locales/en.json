@@ -148,5 +148,8 @@
     "nosimilararticles": "There aren't any similar articles.",
     "articleopenpart1": "This will open a open a new window about this new org",
     "articleopenpart2": ""
+  },
+  "fav": {
+    "haventaddedyet": "You haven't added any favorites yet."
   }
 }
