@@ -31,6 +31,7 @@ const isGenerating = ref(false);
 const summaryText = ref("");
 const { locale } = useI18n();
 const likeart = ref([]);
+const staredStatus = ref(false);
 // Translating logic
 const translateText = ref(false);
 const translatedBefore = ref(false);
@@ -105,6 +106,20 @@ const aiSummary = async () => {
     isGenerating.value = false;
   }
 };
+
+const starArticle = async () => {
+  const req = await fetch(`/user/${slug}/fav`);
+  const res = await req.json();
+  if (req.status === success) {
+    staredStatus.value = req.starred;
+  }
+};
+
+onMounted(async () => {
+  const req = await fetch(`/user/${slug}/star`);
+  const res = await req.json();
+  staredStatus.value = req;
+});
 </script>
 <template>
   <div
@@ -183,7 +198,12 @@ const aiSummary = async () => {
           </div>
         </div>
       </div>
-      <button><StarIcon /></button>
+      <button
+        @click="starArticle"
+        :class="'duration-300 transition-all' + {staredStatus && 'fill-blue-500 text-blue-500'"
+      >
+        <StarIcon />
+      </button>
     </div>
   </div>
 </template>
