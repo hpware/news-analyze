@@ -15,8 +15,8 @@ try {
   if (sendError.value) {
     error.value = true;
   }
-  if (data.requested_action === "CONTINUE") {
-    if (data.userAccount && data.userAccount.length !== 0) {
+  if (data.value.requested_action === "CONTINUE") {
+    if (data.value.userAccount && data.value.userAccount.length !== 0) {
       allowed.value = true;
     } else {
       allowed.value = false;
