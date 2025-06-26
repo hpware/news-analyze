@@ -10,7 +10,9 @@
 
     # Install dependencies
     RUN bun pm untrusted
-    RUN bun install
+RUN bun install
+
+RUN apt-get update && apt-get install -y postgresql-client
 
     # Copy source files
     COPY . .
