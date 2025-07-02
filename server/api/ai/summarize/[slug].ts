@@ -20,6 +20,7 @@ export default defineEventHandler(async (event) => {
       apiKey: doesTheUserHasACustomGroqApiAndWhatIsIt.customApi,
     });
   } else {
+    console.log(process.env.GROQ_API_KEY); // DEBUGGING ONLY!!! THIS ONLY CONTAINS THE .ENV KEYS NOT THE USER ONES
     groqClient = new Groq({
       apiKey: process.env.GROQ_API_KEY,
     });

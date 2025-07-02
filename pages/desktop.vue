@@ -711,7 +711,7 @@ setInterval(async () => {
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
   >
     <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[9999] selection:opacity-0 fixed top-[3em]"
+      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[99999] selection:opacity-0 fixed top-[3em]"
       v-if="menuOpen"
     >
       <!--Wait, I'm not using z-9998 this entire time? What?-->
