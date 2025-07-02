@@ -1,0 +1,14 @@
+services:
+  service:
+    image: ghcr.io/hpware/news-analyze:beta
+    ports:
+      - 36695:3000 # CHANGE YOUR PORT HERE
+    restart: unless-stopped
+    # Use only one node to ease development, as this is not for prod use.
+    env_file:
+      - path: ./.env
+        required: true
+    networks:
+      - n3abetaweb
+networks:
+  n3abetaweb: null

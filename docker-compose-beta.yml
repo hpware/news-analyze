@@ -2,32 +2,28 @@ services:
   reverse-proxy:
     image: traefik:v3.1
     command:
-      - "--providers.docker"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
+      - --providers.docker
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
     ports:
-      - 127.0.0.1:36694:80
+      - 127.0.0.1:36695:80
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
-      - web
-
-  newsanalyze-service:
+      - n3abetaweb
+  service:
     image: ghcr.io/hpware/news-analyze:beta
     networks:
-      - web
+      - n3abetaweb
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
-      - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
-      - "com.centurylinklabs.watchtower.enable=true"
+      - traefik.enable=true
+      - traefik.http.routers.newsanalyzebeat.rule=Host(`YOUR_HOSTNAME_HERE`) # YOUR HOSTNAME HERE
+      - traefik.http.services.newsanalyzebeta.loadbalancer.server.port=3000
+      - com.centurylinklabs.watchtower.enable=true
     restart: unless-stopped
+    # Use only one node to ease development, as this is not for prod use.
     env_file:
       - path: ./.env
         required: true
-    deploy:
-      mode: replicated
-      replicas: 2
-
 networks:
-  web:
+  n3abetaweb: null

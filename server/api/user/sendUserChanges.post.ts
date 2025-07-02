@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
     // Use Static values for now.
     const requestChange = body.action || "";
     const apiKeyqq = body.value.match(clearBadDataRegex);
-    console.log(apiKeyqq);  
+    console.log(apiKeyqq);
     const allowedColumns = ["firstname", "email"];
 
     if (!allowedColumns.includes(requestChange)) {

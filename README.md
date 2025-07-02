@@ -46,9 +46,6 @@ Chatbot, which is chatbot for chatting about news articles, is currently not ava
 ### Server Downtime
 Use https://status.yhw.tw/ for checking down time, most of the time it will be up, but sometimes it just won't updated to the latest feature & update.
 
-#### Archive:
-I fixed most issues of the server, including the nameserver stuff, if you want to know how I fixed it, you can view how I fixed it [here](/server_fixes.md) or on [My broken blog](https://4-1-2.yuanhau.com/posts/)
-
 ### Scraping restrictions:
 As LINE Today only loads & put the image file via JS in the browser, node-fetch is not working (yes, this platform uses node-fetch as the only way to scrape stuff). If LINE today became more problematic of this platform, those APIs will no longer work & most of the things will just not work, as it requires LINE Today to NOT patch these node-fetch things.
 
@@ -63,6 +60,14 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 
 ### The API returning outdated data from more than 5+ years:
 Here is the GitHub Issue: https://github.com/hpware/news-analyze/issues/2
+
+### Groq API not loading to .env for some reasons.
+If the user did not load a GROQ api, the summerizing system will just fail outright. Fixing this rn.
+
+### When using the desktop in the dev env it pops up an error
+![](/.github/README/error1.png)
+
+For some reasons, Nuxt's dev env prev does not display this error, but with the newer ones, it started displaying this error, please run `./wipedev.sh` or `./wipedev.bat` and restart the dev server. (And this is only a temp fix, I have no idea how can I fix this, if you have a fix, please submit a PR thx.)
 
 ## Why?
 

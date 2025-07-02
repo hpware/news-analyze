@@ -2,10 +2,6 @@ import { Groq } from "groq-sdk";
 import sql from "~/server/components/postgres";
 import { checkIfUserHasCustomGroqKey } from "~/server/components/customgroqsystem";
 
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY,
-});
-
 export default defineEventHandler(async (event) => {
   const host = getRequestHost(event);
   const protocol = getRequestProtocol(event);
@@ -14,7 +10,7 @@ export default defineEventHandler(async (event) => {
   console.log("Token: ", userToken);
   const doesTheUserHasACustomGroqApiAndWhatIsIt =
     await checkIfUserHasCustomGroqKey(userToken);
-  let groqClient = groq;
+  let groqClient;
   if (doesTheUserHasACustomGroqApiAndWhatIsIt.status === true) {
     groqClient = new Groq({
       apiKey: doesTheUserHasACustomGroqApiAndWhatIsIt.customApi,

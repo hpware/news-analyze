@@ -80,7 +80,7 @@ onMounted(async () => {
   </div>
   <div class="flex flex-row flex-wrap justify-center gap-2">
     <div
-      class="flex flex-col group bg-gray-900/30 rounded-xl p-3 transition-all shadow-lg hover:translate-y-[-2px] ransition-all duration-500 max-w-1/2"
+      class="flex flex-col group bg-gray-900/30 rounded-xl p-3 transition-all shadow-lg hover:translate-y-[-2px] ransition-all duration-500 max-w-1/2 min-w-1/3"
       v-for="item in source?.data"
       :key="item.id"
     >

@@ -500,7 +500,7 @@ const toggleMinWindow = (windowUUId: string) => {
       component: activeWindow.component,
       name: activeWindow.name,
       title: activeWindow.title,
-      width: activeWindow.width,
+      width: activeWindow.width, // HUH THIS IS CAUSING THE ERROR????
       height: activeWindow.height,
       black: activeWindow.black || false,
       translatable: activeWindow.translatable || false,
@@ -631,6 +631,7 @@ setInterval(async () => {
   newUpdate.value = await checkAppVersion();
 }, newUpdateTimer);
 </script>
+
 <template>
   <div v-if="changeLangAnimation">
     <div
@@ -710,9 +711,10 @@ setInterval(async () => {
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
   >
     <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998 selection:opacity-0"
+      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[99999] selection:opacity-0 fixed top-[3em]"
       v-if="menuOpen"
     >
+      <!--Wait, I'm not using z-9998 this entire time? What?-->
       <div v-for="item in menuItems" :key="item.name" class="">
         <button
           @click="openWindow(item.windowName)"

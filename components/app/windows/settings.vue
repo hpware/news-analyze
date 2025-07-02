@@ -56,6 +56,7 @@ const logoutAction = async () => {
   const req = await fetch("/api/user/logout");
   const res = await req.json();
   console.log(res);
+  await validateUserInfo();
   showLogoutDialog.value = false;
 };
 
