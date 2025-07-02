@@ -631,6 +631,7 @@ setInterval(async () => {
   newUpdate.value = await checkAppVersion();
 }, newUpdateTimer);
 </script>
+
 <template>
   <div v-if="changeLangAnimation">
     <div
