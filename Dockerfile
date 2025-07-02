@@ -1,38 +1,36 @@
 # If you have customized your output directory, please just remove it. :)
 
-    FROM oven/bun:latest as builder
+FROM oven/bun:latest as builder
 
-    WORKDIR /app
+WORKDIR /app
 
-    # Copy package files
-    COPY package.json ./
-    COPY bun.lock* package-lock.json* yarn.lock* ./
+# Copy package files
+COPY package.json ./
+COPY bun.lock* package-lock.json* yarn.lock* ./
 
-    # Install dependencies
-    RUN bun pm untrusted
+# Install dependencies
+RUN bun pm untrusted
 RUN bun install
 
-RUN apt-get update && apt-get install -y postgresql-client
+# Copy source files
+COPY . .
+RUN bun run generateVersionTag
+# Build the application
+RUN bun run build
 
-    # Copy source files
-    COPY . .
-    RUN bun run generateVersionTag
-    # Build the application
-    RUN bun run build
+# Production stage
+FROM oven/bun:latest
 
-    # Production stage
-    FROM oven/bun:latest
+WORKDIR /app
 
-    WORKDIR /app
+# Copy package files for production
+COPY --from=builder /app/package.json ./
 
-    # Copy package files for production
-    COPY --from=builder /app/package.json ./
+# Copy build outputs from builder
+COPY --from=builder /app/.output /app/.output
 
-    # Copy build outputs from builder
-    COPY --from=builder /app/.output /app/.output
+RUN bun install --production
 
-    RUN bun install --production
+EXPOSE 3000
 
-    EXPOSE 3000
-
-    CMD ["bun", "run", "start"]
+CMD ["bun", "run", "start"]
