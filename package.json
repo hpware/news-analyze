@@ -15,7 +15,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "wipedev": "./clean-dev-env.sh",
-    "generateVersionTag": "bun run versionTagGenerate.ts",
+    "generateVersionTag": "bun run versionTagGenerate.ts"
   },
   "dependencies": {
     "@fontsource-variable/noto-sans-tc": "^5.2.6",
