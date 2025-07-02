@@ -137,7 +137,7 @@ onMounted(async () => {
   </div>
   <div
     v-if="loadingTranslations"
-    class="flex flex-col bg-gray-200/50 text-black w-full h-full absolute inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
+    class="flex flex-col bg-gray-200/50 text-black w-full h-full fixed inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
   >
     <!--Spinner from  https://flowbite.com/docs/components/spinner/-->
     <div role="status">

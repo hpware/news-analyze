@@ -711,9 +711,10 @@ setInterval(async () => {
     leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
   >
     <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] v-9998 selection:opacity-0"
+      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[9998] selection:opacity-0"
       v-if="menuOpen"
     >
+      <!--Wait, I'm not using z-9998 this entire time? What?-->
       <div v-for="item in menuItems" :key="item.name" class="">
         <button
           @click="openWindow(item.windowName)"
