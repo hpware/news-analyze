@@ -705,6 +705,27 @@ setInterval(async () => {
     </div>
   </div>
   <div class="w-full h-[2.5em]"></div>
+  <!--Menu-->
+  <Transition
+    enter-active-class="animate__animated animate__fadeInDown animate_fast03"
+    leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
+  >
+    <div
+      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[9999] selection:opacity-0 fixed top-[3em]"
+      v-if="menuOpen"
+    >
+      <!--Wait, I'm not using z-9998 this entire time? What?-->
+      <div v-for="item in menuItems" :key="item.name" class="">
+        <button
+          @click="openWindow(item.windowName)"
+          class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
+        >
+          <span>{{ item.name }}</span>
+          <ChevronRightIcon class="w-4 h-4 justify-center align-center" />
+        </button>
+      </div>
+    </div>
+  </Transition>
   <!--Main desktop contents-->
   <div
     class="flex flex-col justify-center align-center text-center absolute w-full h-screen inset-x-0 inset-y-0 z-[-10]"
@@ -804,25 +825,4 @@ setInterval(async () => {
   <div v-if="confetiActive">
     <div v-ref="successcanvas"></div>
   </div>
-  <!--Menu-->
-  <Transition
-    enter-active-class="animate__animated animate__fadeInDown animate_fast03"
-    leave-active-class="animate__animated animate__fadeOutUp animate_fast03"
-  >
-    <div
-      class="m-2 p-2 bg-gray-800 shadow-lg w-fit rounded-[10px] z-[9998] selection:opacity-0"
-      v-if="menuOpen"
-    >
-      <!--Wait, I'm not using z-9998 this entire time? What?-->
-      <div v-for="item in menuItems" :key="item.name" class="">
-        <button
-          @click="openWindow(item.windowName)"
-          class="flex flex-row items-center gap-x-2 text-gray-400 hover:text-gray-600 transition-all duration-100"
-        >
-          <span>{{ item.name }}</span>
-          <ChevronRightIcon class="w-4 h-4 justify-center align-center" />
-        </button>
-      </div>
-    </div>
-  </Transition>
 </template>
