@@ -62,6 +62,11 @@ Here is the GitHub Issue: https://github.com/hpware/news-analyze/issues/2
 ### Groq API not loading to .env for some reasons.
 If the user did not load a GROQ api, the summerizing system will just fail outright. Fixing this rn.
 
+### When using the desktop in the dev env it pops up an error
+![](/.github/README/error1.png)
+
+For some reasons, Nuxt's dev env prev does not display this error, but with the newer ones, it started displaying this error, please run `./wipedev.sh` or `./wipedev.bat` and restart the dev server. (And this is only a temp fix, I have no idea how can I fix this, if you have a fix, please submit a PR thx.)
+
 ## Why?
 
 We'll use this news article from May 7th 2025 as an example:

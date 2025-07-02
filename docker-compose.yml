@@ -18,7 +18,7 @@ services:
       - web
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.newsanalyze.rule=Host(`news.yuanhau.com`)"
+      - "traefik.http.routers.newsanalyze.rule=Host(`YOUR_HOSTNAME_HERE`)" # CHANGE TO YOUR HOSTNAME
       - "traefik.http.services.newsanalyze.loadbalancer.server.port=3000"
       - "com.centurylinklabs.watchtower.enable=true"
     restart: unless-stopped

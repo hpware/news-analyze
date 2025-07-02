@@ -21,6 +21,8 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 4. Download the docker-compose.yml and .env.example file to an dir & change the .env.example file to .env:
+
+psst: You can change the docker-compose file to different systems, these are available: `docker-compose.yml`, `docker-compose-no-traefik.yml`, `docker-compose-beta.yml`, `docker-compose-beta-no-traefik.yml`
 ```bash
 # Chahnge your_dir to your dir in your server!
 mkdir ./your_dir

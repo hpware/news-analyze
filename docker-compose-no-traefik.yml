@@ -1,0 +1,14 @@
+services:
+  newsanalyze-service:
+    image: ghcr.io/hpware/news-analyze:latest
+    ports:
+      - 36694:80 # CHANGE YOUR PORT HERE
+    networks:
+      - web
+    restart: unless-stopped
+    env_file:
+      - path: ./.env
+        required: true
+
+networks:
+  web:

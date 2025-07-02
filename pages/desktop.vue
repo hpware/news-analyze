@@ -500,7 +500,7 @@ const toggleMinWindow = (windowUUId: string) => {
       component: activeWindow.component,
       name: activeWindow.name,
       title: activeWindow.title,
-      width: activeWindow.width,
+      width: activeWindow.width, // HUH THIS IS CAUSING THE ERROR????
       height: activeWindow.height,
       black: activeWindow.black || false,
       translatable: activeWindow.translatable || false,
