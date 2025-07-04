@@ -90,7 +90,6 @@ const activeWindows = ref<associAppWindowInterface[]>([]);
 const hiddenWindows = ref<minAppWindowInterface[]>([]);
 const openApp = ref();
 const openAppId = ref();
-const openAppNameQuery = ref();
 const currentOpenAppId = ref(0);
 const progress = ref(0);
 const titleAppName = ref("Desktop");
@@ -101,7 +100,6 @@ const changeLangAnimation = ref(false);
 const applyForTranslation = ref(false);
 const langPrefDifferent = ref(false);
 const notLoggedInState = ref(false);
-const translateProvider = ref("");
 const newUpdate = ref(false);
 
 // Key Data

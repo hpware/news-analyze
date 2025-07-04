@@ -137,7 +137,7 @@ onMounted(async () => {
   </div>
   <div
     v-if="loadingTranslations"
-    class="flex flex-col bg-gray-200/50 text-black w-full h-full fixed inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
+    class="flex flex-col bg-gray-200/50 text-black w-full h-full absolute inset-0 justify-center align-middle text-center z-[20] backdrop-blur-sm"
   >
     <!--Spinner from  https://flowbite.com/docs/components/spinner/-->
     <div role="status">
@@ -164,7 +164,10 @@ onMounted(async () => {
     class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
   >
     <div class="flex flex-col">
-      <div class="group">
+      <div class="p-4 w-full h-fit pt-0 mt-0">
+        <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
+      </div>
+      <div class="group -translate-y-12 backdrop-blur-lg bg-gray-300/40">
         <h2 class="text-3xl text-bold">
           {{
             displayTranslatedText
@@ -185,9 +188,6 @@ onMounted(async () => {
               : data.author
           }}</span
         >
-      </div>
-      <div class="p-4 w-full h-fit pt-0 mt-0">
-        <img v-if="data.images[0]" :src="data.images[0]" class="rounded" />
       </div>
       <div class="text-center" v-for="item in data.paragraph">
         {{ displayTranslatedText ? translateItem[item]?.translateText : item }}
