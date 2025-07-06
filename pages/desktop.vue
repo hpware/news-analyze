@@ -714,7 +714,7 @@ setInterval(async () => {
           {{ t("popup.stay") }}
         </Button>
         <Button
-          @click="() => switchLocalePath(`${lang !== en' ? 'en' : 'zh-TW'}`)"
+          @click="() => switchLocalePath(`${locale !== 'en' ? 'en' : 'zh_tw'}`)"
           variant="outline"
         >
           {{ t("popup.change") }}
