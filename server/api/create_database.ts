@@ -60,6 +60,12 @@ export default defineEventHandler(async (event) => {
     )
     `;
 
+  const createGlobalVars = await sql`
+    CREATE TABLE IF NOT EXISTS global_vars (
+    NAME TEXT PRIMARY KEY NOT NULL,
+    VAR TEXT NOT NULL
+    )
+    `;
   return {
     createUsers: createUsers,
     usersList: usersList,
@@ -67,5 +73,6 @@ export default defineEventHandler(async (event) => {
     createSources: createSources,
     createUserOtherData: createUserOtherData,
     createArticlesArchive: createArticlesArchive,
+    createGlobalVars: createGlobalVars,
   };
 });

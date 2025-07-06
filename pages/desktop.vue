@@ -51,18 +51,14 @@ import translate from "translate";
 import checkAppVersion from "~/components/checkAppVersion";
 
 // Import Windows
-import UserWindow from "~/components/app/windows/user.vue";
 import SourcesWindow from "~/components/app/windows/sources.vue";
 import AboutWindow from "~/components/app/windows/about.vue";
-import ChatbotWindow from "~/components/app/windows/chatbot.vue";
 import AboutNewsOrgWindow from "~/components/app/windows/aboutNewsOrg.vue";
 import TTYWindow from "~/components/app/windows/tty.vue";
 import FavStaredWindow from "~/components/app/windows/fav.vue";
 import NewsWindow from "~/components/app/windows/news.vue";
 import NewsViewWindow from "~/components/app/windows/newsView.vue";
 import SettingsWindow from "~/components/app/windows/settings.vue";
-import PrivacyPolicyWindow from "~/components/app/windows/privacypolicy.vue";
-import TOSWindow from "~/components/app/windows/tos.vue";
 import onBoardingWindow from "~/components/app/windows/onBoarding.vue";
 
 // Import Icons
@@ -83,14 +79,12 @@ const route = useRoute();
 // values
 const popMessage = ref(null);
 const menuOpen = ref(false);
-2;
 const currentNavBar = ref<currentNavBarInterface[]>([]);
 const bootingAnimation = ref(true);
 const activeWindows = ref<associAppWindowInterface[]>([]);
 const hiddenWindows = ref<minAppWindowInterface[]>([]);
 const openApp = ref();
 const openAppId = ref();
-const openAppNameQuery = ref();
 const currentOpenAppId = ref(0);
 const progress = ref(0);
 const titleAppName = ref("Desktop");
@@ -101,7 +95,6 @@ const changeLangAnimation = ref(false);
 const applyForTranslation = ref(false);
 const langPrefDifferent = ref(false);
 const notLoggedInState = ref(false);
-const translateProvider = ref("");
 const newUpdate = ref(false);
 
 // Key Data
@@ -109,7 +102,6 @@ const menuItems = [
   { name: t("app.news"), windowName: "news" },
   { name: t("app.sources"), windowName: "sources" },
   { name: t("app.starred"), windowName: "starred" },
-  { name: t("app.chatbot"), windowName: "chatbot" },
   { name: t("app.about"), windowName: "about" },
   { name: t("app.terminal"), windowName: "tty" },
   { name: t("app.settings"), windowName: "settings" },
@@ -117,13 +109,6 @@ const menuItems = [
 ];
 
 const associAppWindow = [
-  {
-    name: "login",
-    id: "2",
-    title: t("app.login"),
-    component: UserWindow,
-    translatable: false,
-  },
   {
     name: "sources",
     id: "3",
@@ -164,15 +149,6 @@ const associAppWindow = [
     translatable: true,
   },
   {
-    name: "chatbot",
-    id: "8",
-    title: t("app.chatbot"),
-    component: ChatbotWindow,
-    width: "400px",
-    height: "600px",
-    translatable: false,
-  },
-  {
     name: "aboutNewsOrg",
     id: "9",
     title: t("app.aboutNewsOrg"),
@@ -193,20 +169,6 @@ const associAppWindow = [
     title: t("app.newsview"),
     component: NewsViewWindow,
     translatable: true,
-  },
-  {
-    name: "privacypolicy",
-    id: "12",
-    title: t("app.privacypolicy"),
-    component: PrivacyPolicyWindow,
-    translatable: false,
-  },
-  {
-    name: "tos",
-    id: "13",
-    title: t("app.tos"),
-    component: TOSWindow,
-    translatable: false,
   },
   {
     name: "onboard",
@@ -751,7 +713,10 @@ setInterval(async () => {
         >
           {{ t("popup.stay") }}
         </Button>
-        <Button @click="() => switchLocalePath()" variant="outline">
+        <Button
+          @click="() => switchLocalePath(`${locale !== 'en' ? 'en' : 'zh_tw'}`)"
+          variant="outline"
+        >
           {{ t("popup.change") }}
         </Button>
       </DialogFooter>
@@ -822,7 +787,8 @@ setInterval(async () => {
       </DraggableWindow>
     </div>
   </Transition>
-  <div v-if="confetiActive">
+  <!--TODO: ADD CONFETI-->
+  <!--  <div v-if="confetiActive">
     <div v-ref="successcanvas"></div>
-  </div>
+  </div>-->
 </template>
