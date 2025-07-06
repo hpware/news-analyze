@@ -1,4 +1,5 @@
 <script setup lang="ts">
+"use client";
 // No layout
 definePageMeta({
   layout: false,
