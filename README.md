@@ -25,6 +25,20 @@ Beta (Beta Docker Image): https://newsbeta.20090526.xyz
 
 https://github.com/user-attachments/assets/29414c5d-3b2f-420d-93c0-95c14a15bbb7
 
+## Notes:
+The enviroment vars are stored in the database, which is cursed, I know, but this is the only way to let the system access new envs sent by the user, so if you are trying to spin up a instence of this app you MUST put the postgres url in the .env & create a table using beekeeper studio (my choice for SQL editing, you can choose whatever you like), and after that you can create the entire database by using this api call, https://<<your_domain>>/api/create_database in your browser.
+```sql
+    CREATE TABLE IF NOT EXISTS global_vars (
+    NAME TEXT PRIMARY KEY NOT NULL,
+    VAR TEXT NOT NULL
+    );
+    INSERT INTO global_vars(name, var)
+    VALUES ('groq_api_key', '<<YOUR_API_KEY_HERE>>');
+    INSERT INTO global_vars(name, var)
+    VALUES ('password_hash_salt', '<<YOUR_PASSWORD_SALT_HERE>>');
+```
+Replace `<<YOUR_API_KEY_HERE>>` with your actual api key, and also replace `<<YOUR_PASSWORD_SALT_HERE>>` with a random salt you get by running this command on your Mac/Linux device (Windows idk) `openssl rand -base64 48`.
+
 ## Issues:
 ### Onboarding:
 Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implementing the function in a already large repo is kinda hard. So later this week, I will just add a basic video onboarding system.
@@ -59,13 +73,10 @@ This code is absolutly NOT designed to be spinned up at Vercel or Netlify, it ha
 ### The API returning outdated data from more than 5+ years:
 Here is the GitHub Issue: https://github.com/hpware/news-analyze/issues/2
 
-### Groq API not loading to .env for some reasons.
-If the user did not load a GROQ api, the summerizing system will just fail outright. Fixing this rn.
-
 ### When using the desktop in the dev env it pops up an error
 ![](/.github/README/error1.png)
 
-For some reasons, Nuxt's dev env prev does not display this error, but with the newer ones, it started displaying this error, please run `./wipedev.sh` or `./wipedev.bat` and restart the dev server. (And this is only a temp fix, I have no idea how can I fix this, if you have a fix, please submit a PR thx.)
+For some reasons, Nuxt's dev env prev does not display this error, but with the newer ones, it started displaying this error, please run `./wipedev.sh` or `./wipedev.bat` and restart the dev server. (And this is only a temp fix, I have no idea how can I fix this, if you have a fix, please submit a PR, thx.)
 
 ## Why?
 

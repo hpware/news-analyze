@@ -1,6 +1,7 @@
 import { Groq } from "groq-sdk";
 import sql from "~/server/components/postgres";
 import { checkIfUserHasCustomGroqKey } from "~/server/components/customgroqsystem";
+import getEnvFromDB from "~/server/components/getEnvFromDB";
 
 export default defineEventHandler(async (event) => {
   const host = getRequestHost(event);
@@ -16,8 +17,9 @@ export default defineEventHandler(async (event) => {
       apiKey: doesTheUserHasACustomGroqApiAndWhatIsIt.customApi,
     });
   } else {
+    const groq_api_key = await getEnvFromDB("groq_api_key");
     groqClient = new Groq({
-      apiKey: process.env.NUXT_GROQ_API_KEY,
+      apiKey: groq_api_key,
     });
   }
   const query = getQuery(event);
