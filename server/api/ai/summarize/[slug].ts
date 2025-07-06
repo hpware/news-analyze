@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     });
   } else {
     groqClient = new Groq({
-      apiKey: process.env.GROQ_API_KEY,
+      apiKey: process.env.NUXT_GROQ_API_KEY,
     });
   }
   const query = getQuery(event);
