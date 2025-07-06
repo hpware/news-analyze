@@ -1,16 +1,11 @@
 import sql from "~/server/components/postgres";
 import { v4 as uuidv4 } from "uuid";
 import argon2 from "argon2";
+import getEnvFromDB from "~/server/components/getEnvFromDB";
 
 const defaultAvatarUrl = "https://s3.yhw.tw/news-analyze/avatar/default.png";
 
 export default defineEventHandler(async (event) => {
-  const salt = process.env.PASSWORD_HASH_SALT;
-  if (!salt) {
-    return {
-      error: "SALT_NOT_FOUND",
-    };
-  }
   const body = await readBody(event);
   const { username, password } = body;
   console.log(password);
@@ -33,6 +28,7 @@ export default defineEventHandler(async (event) => {
       where username = ${username}`;
     console.log(fetchUserInfo[0]);
     if (fetchUserInfo.length === 0) {
+      const salt = await getEnvFromDB("password_hash_salt");
       const hashedPassword = await argon2.hash(salt + password);
       const userUUID = uuidv4();
       const createNewUser = await sql`

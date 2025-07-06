@@ -53,7 +53,7 @@ const contentArray = ref([]);
 const errorr = ref(false);
 const switchTabs = ref(false);
 const tabs = ref([]);
-const primary = ref<string>("domestic"); // Hard code default value as top is just pure garbage.
+const primary = ref<string>("top"); // This will be later overwritten, so values set here will be useless.
 const canNotLoadTabUI = ref(false);
 const isDataCached = ref(false);
 const pullTabsData = async () => {

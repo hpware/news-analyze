@@ -380,23 +380,6 @@ const submitUserPassword = async () => {
       </div>
     </div>
     <hr />
-    <div
-      class="flex flex-row gap-2 m-1 p-2 justify-center align-center text-center"
-    >
-      <button
-        class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
-        @click="() => emit('windowopener', 'privacypolicy')"
-      >
-        Privacy Policy
-      </button>
-      <button
-        class="bg-sky-400 p-1 rounded hover:bg-sky-600 transition-all duration-200 w-32"
-        @click="() => emit('windowopener', 'tos')"
-      >
-        TOS
-      </button>
-    </div>
-    <hr />
     <div class="justiy-center align-center text-center">
       {{ t("app.settings") }} v0.0.3 || Version: {{ getVersionTag() }}
     </div>

@@ -117,7 +117,7 @@ const starArticle = async () => {
 };
 
 onMounted(async () => {
-  const req = await fetch(`/user/${slug}/star`);
+  const req = await fetch(`/api/user/${slug}/star`);
   const res = await req.json();
   staredStatus.value = res;
 });
@@ -164,7 +164,7 @@ onMounted(async () => {
     class="justify-center align-center text-center flex flex-col md:flex-row flex-wrap"
   >
     <div class="flex flex-col">
-      <div class="group">
+      <div class="group translate-y-12">
         <h2 class="text-3xl text-bold">
           {{
             displayTranslatedText
@@ -212,16 +212,6 @@ onMounted(async () => {
           <div v-else>{{ summaryText }}</div>
         </div>
       </div>
-      <!--<div class="flex flex-col bg-gray-500">
-        <!--Similar articles-->
-      <!--<div class="flex flex-row" v-for="item in likeart">
-          <img /><!--Image-->
-      <!--<div class="flex flex-col">
-            <h2>title</h2>
-            <span>description</span>
-          </div>
-        </div>
-      </div>-->
       <button
         @click="starArticle"
         :class="[
