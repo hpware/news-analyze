@@ -43,19 +43,13 @@ Replace `<<YOUR_API_KEY_HERE>>` with your actual api key, and also replace `<<YO
 
 ## Issues:
 ### Onboarding:
-Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implementing the function in a already large repo is kinda hard. So later this week, I will just add a basic video onboarding system.
-
-### User actions via the API:
-Currently, user actions are broken.
+Onboarding is a must for most people that are using the app for the first time, but I want to do to via a non-video like system, however implementing the function in a already large repo is kinda hard. So I just add a basic video onboarding system.
 
 ### Login system:
 The current login DOES NOT see if you're logged in or not, it just prompts if the user wants to login or not. This NEEDS to be fixed
 
 ### Windows with the wraping function `<BlurPageBeforeLogin></BlurPageBeforeLogin>`:
 The wrapping function, `<BlurPageBeforeLogin></BlurPageBeforeLogin>`, is currently running a static value for testing use only, so for pages that reqire you to be logged in WILL NOT work for (even if you logged in). It is just a value in the blurPageBeforeLogin.vue function `if (true)`
-
-### Chatbot:
-Chatbot, which is chatbot for chatting about news articles, is currently not available for ppl to use (even chat).
 
 ### Server Downtime
 Use https://status.yhw.tw/ for checking down time, most of the time it will be up, but sometimes it just won't updated to the latest feature & update.
@@ -80,34 +74,6 @@ Here is the GitHub Issue: https://github.com/hpware/news-analyze/issues/2
 
 For some reasons, Nuxt's dev env prev does not display this error, but with the newer ones, it started displaying this error, please run `./wipedev.sh` or `./wipedev.bat` and restart the dev server. (And this is only a temp fix, I have no idea how can I fix this, if you have a fix, please submit a PR, thx.)
 
-## Why?
-
-We'll use this news article from May 7th 2025 as an example:
-
-```
-Zhu Lilun criticizes the government for being like Hitler German Institute in Taiwan: History should not be distorted for politics | Politics - CNA
-5/7/2025, 11:17:00 PM
-Similar News:
-- Zhu Lilun criticizes the government for being like Hitler German Institute in Taiwan: History should not be distorted for politics | Politics - CNA
-- Breaking News/Get Hard! Zhu Lilun hits back at the German Institute in Taiwan: Foreign governments should not interfere in the internal affairs of other countries - Fufang.com
-- Democratic Progressive Party members worried that Hitler's words would cause disasters. Ministry of Foreign Affairs: Make every effort to explain to the Chinese Embassy in Taiwan - Economic Daily
-- "Eric Chu apologizes"! Germany and Israel condemned the DPP for using random metaphors: It has damaged Taiwan's international reputation - Yahoo News
-- Hong Shengfei's Viewpoint》The remnant of dictatorship calls people "fascists" and Zhu Lilun imitates the Communist Party | Politics - Newtalk News
-```
-You will see many opinions, but you won't know why these news outlets write biased articles.
-
-## Inspired by
-
-- puter.com
-- Perplexity
-- Ground.news
-- Threads (Politics)
-- xfce's Desktop Interface
-- juice website
-- Windows XP style X - UI
-- Ghostty
-- Treble's cool card effect (but not quite yet)
-
 ## Stack:
 
 - Postgres
@@ -115,7 +81,6 @@ You will see many opinions, but you won't know why these news outlets write bias
 - Nuxt
 - Animate.css
 - GSAP
-- Minio S3
 - Nuxt i18n
 - BunJS
 - Groq
@@ -139,22 +104,6 @@ You will see many opinions, but you won't know why these news outlets write bias
 
 ### Desktop App:
 ![](/.github/README/desktop.png)
-
-## How to preview the app on your local device machine?
-
-1. First, rename `.env.example` to `.env` and fill in the blanks.
-2. Run `bun install` to install dependencies.
-3. Run `bun run createDatabase` to create the database.
-4. Run `bun run build` to build the project.
-5. Run `bun run preview` to start the preview server.
-6. Open `http://localhost:3000` in your browser.
-
-## Got questions?
-<div>
-Use GitHub Issues<br/>
------- or ------<br/>
-Use this form: <a href="https://yhw.tw/SaBta">https://yhw.tw/SaBta</a>
-</div>
 
 ## Why Line Today?
 <!--[PDF](https://hc-cdn.hel1.your-objectstorage.com/s/v3/c6cef365b20a3faff96540db9b6a9871b60e8e06_cn_b2b_line_today_preroll_______sales_kit_2024.pdf)-->
