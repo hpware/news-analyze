@@ -23,7 +23,7 @@
     "@heroicons/vue": "^2.2.0",
     "@monyone/aho-corasick": "^1.0.4",
     "@nuxtjs/i18n": "9.5.5",
-    "@nuxtjs/robots": "5.2.10",
+    "@nuxtjs/robots": "5.2.11",
     "@nuxtjs/seo": "3.0.3",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@sentry/nuxt": "^9.29.0",
