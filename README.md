@@ -1,3 +1,11 @@
+# NOTE
+This system no longer works. 😭 Since LINE Today has changed their news displaying system from Nuxt (v2) to Next.js (v3) which broke the news displaying function.
+
+---
+# Addressing the down time
+I've moving off the old server system after I've built news-analyze, and after SOM is over I've finally brought back the service.
+
+---
 # News Analyze
 
 [English Version](/README.md)&nbsp;[繁體中文版](/README.ZH_TW.md)
