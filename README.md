@@ -1,5 +1,7 @@
 # NOTE
-This system no longer works. 😭 Since LINE Today has changed their news displaying system from Nuxt (v2) to Next.js (v3) which broke the news displaying function.
+The news displaying API `https://news.yuanhau.com/api/news/get/lt/${article url hash} for getting the article json` no longer works. 😭 Since LINE Today has changed their news displaying system from Nuxt (v2) to Next.js (v3) which broke the news displaying function.
+
+However, the main news fetching service still works 🥳 `https://news.yuanhau.com/api/home/lt?query=domestic`
 
 ---
 # Addressing the down time
