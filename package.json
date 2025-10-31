@@ -46,7 +46,7 @@
     "prettier": "^3.5.3",
     "reka-ui": "^2.3.1",
     "rss-parser": "^3.13.0",
-    "shadcn-nuxt": "2.2.0",
+    "shadcn-nuxt": "2.3.1",
     "tailwind-merge": "^3.3.1",
     "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "^3.4.17",
