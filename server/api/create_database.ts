@@ -56,7 +56,7 @@ export default defineEventHandler(async (event) => {
     uuid text primary key,
     article_id text primary key,
     jsondata json not null,
-    archive_timestamp timestamp default CURRENT_TIMESTAMP,
+    archive_timestamp timestamp default CURRENT_TIMESTAMP
     )
     `;
 
